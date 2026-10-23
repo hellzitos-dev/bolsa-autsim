@@ -3,60 +3,80 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bolsa do Autsim</title>
+<title>Bolsa do Autsim 2.0</title>
 <style>
-:root{--bg:#0f1115;--card:#181b22;--bd:#2a2f3a;--tx:#e8eaf0;--mut:#8b93a5;--ok:#2ecc71;--bad:#ff5c5c;--acc:#5865f2}
+:root{--bg:#0a0a0f;--card:#14141c;--bd:#262633;--tx:#ececf4;--mut:#8a8aa0;--ok:#22c55e;--bad:#ef4444;--acc:#8b5cf6}
 *{box-sizing:border-box}
 body{margin:0;font:15px/1.4 system-ui,sans-serif;background:var(--bg);color:var(--tx)}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--bd);flex-wrap:wrap}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--bd);flex-wrap:wrap;position:sticky;top:0;background:rgba(10,10,15,.92);backdrop-filter:blur(8px);z-index:5}
 h1{font-size:18px;margin:0}
-main{max-width:900px;margin:0 auto;padding:16px}
+main{max-width:960px;margin:0 auto;padding:16px}
 .me{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.me img{width:28px;height:28px;border-radius:50%}
-button{font:inherit;border:0;border-radius:8px;padding:7px 12px;background:var(--bd);color:var(--tx);cursor:pointer}
-button.p{background:var(--acc)}button.b{background:var(--ok);color:#06210f}button.s{background:var(--bad);color:#2b0505}
+.av{width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle;background:var(--bd)}
+.xp{width:70px;height:6px;background:var(--bd);border-radius:4px;overflow:hidden}.xp i{display:block;height:100%;background:var(--acc);transition:width .5s}
+button{font:inherit;border:0;border-radius:8px;padding:7px 12px;background:var(--bd);color:var(--tx);cursor:pointer;transition:filter .15s,transform .1s}
+button:hover:not(:disabled){filter:brightness(1.25)}button:active:not(:disabled){transform:scale(.97)}
+button.p{background:var(--acc)}button.b{background:var(--ok);color:#052e14}button.s{background:var(--bad);color:#fff}
 button:disabled{opacity:.4;cursor:not-allowed}
-nav{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
-nav button.on{background:var(--acc)}
-.tbl{overflow-x:auto}
+nav{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px}
+nav button{white-space:nowrap}nav button.on{background:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;animation:in .3s}
+.card small{color:var(--mut)}.card b.n{display:block;font-size:22px;margin-top:4px}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+.tbl{overflow-x:auto;border:1px solid var(--bd);border-radius:12px}
 table{width:100%;border-collapse:collapse;background:var(--card)}
 th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}
 th{color:var(--mut);font-weight:500;font-size:13px}
-input{width:64px;padding:6px;border-radius:6px;border:1px solid var(--bd);background:var(--bg);color:var(--tx)}
+input{width:70px;padding:6px;border-radius:6px;border:1px solid var(--bd);background:var(--bg);color:var(--tx)}
 .up{color:var(--ok)}.dn{color:var(--bad)}.mut{color:var(--mut)}
-.hero{text-align:center;padding:70px 10px}
-#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--bd);padding:10px 16px;border-radius:10px;display:none;max-width:90%}
+.hero{text-align:center;padding:80px 10px}
+.roul{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.ball{width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;margin:12px 0;border:3px solid var(--bd)}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--acc);padding:10px 16px;border-radius:10px;display:none;max-width:90%;z-index:9}
 </style>
 </head>
 <body>
 <header><h1>📈 Bolsa do Autsim</h1><div class="me" id="me"></div></header>
-<main id="app"></main>
+<main id="app"><p class="mut">Carregando...</p></main>
 <div id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
-// ===== CONFIGURAÇÃO: troque só a chave =====
 const SUPABASE_URL = 'https://vyhhbepqikaizjyuogxk.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_te15kBxoDWsrWci0NhVY3w_M8ZC38XB'; // chave "publishable" (nunca a secret!)
-const BASE = 10; // preço inicial das ações
-// ===========================================
-
+const SUPABASE_KEY = 'sb_publishable_te15kBxoDWsrWci0NhVY3w_M8ZC38XB';
+const BASE = 10;
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = n => Number(n).toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 const TYPES = {buy:'Compra', sell:'Venda', bonus:'Bônus', game:'Jogo', adjust:'Ajuste'};
-let S = {user: null, tab: 'mercado', profiles: [], assets: [], holdings: [], tx: []};
+const COL = {red:'#ef4444', black:'#27272f', green:'#22c55e'};
+let S = {user: null, tab: 'inicio', profiles: [], assets: [], holdings: [], tx: [], hist: {}, spin: null};
 
-const cur = () => S.profiles.find(p => p.id === S.user.id) || {balance: 0, username: '?'};
-const price = id => Number(S.assets.find(a => a.id === id)?.price || 0);
-const name = id => S.profiles.find(p => p.id === id)?.username || '?';
+const cur = () => S.profiles.find(p => p.id === S.user.id) || {balance: 0, username: '?', xp: 0};
+const prof = id => S.profiles.find(p => p.id === id) || {};
+const asset = id => S.assets.find(a => a.id === id) || {};
+const price = id => Number(asset(id).price || 0);
+const name = id => asset(id).name || '?';
 const held = (u, a) => S.holdings.find(h => h.user_id === u && h.asset_id === a)?.quantity || 0;
 const sold = a => S.holdings.filter(h => h.asset_id === a).reduce((s, h) => s + h.quantity, 0);
-const worth = u => Number(S.profiles.find(p => p.id === u)?.balance || 0) +
-  S.holdings.filter(h => h.user_id === u).reduce((s, h) => s + h.quantity * price(h.asset_id), 0);
+const stocks = u => S.holdings.filter(h => h.user_id === u).reduce((s, h) => s + h.quantity * price(h.asset_id), 0);
+const worth = u => Number(prof(u).balance || 0) + stocks(u);
+const lvl = xp => Math.floor(Math.sqrt((xp || 0) / 50)) + 1;
+const ava = a => esc(a.avatar_url || prof(a.id).avatar_url || '');
+const pct = a => (a.price / BASE - 1) * 100;
+const pctH = v => `<span class="${v >= 0 ? 'up' : 'dn'}">${v >= 0 ? '+' : ''}${v.toFixed(1)}%</span>`;
 const table = (head, rows) => `<div class="tbl"><table><tr>${head.map(x => `<th>${x}</th>`).join('')}</tr>${rows || '<tr><td colspan="9" class="mut">Nada por aqui ainda.</td></tr>'}</table></div>`;
+const coin = a => `<img class="av" src="${ava(a)}" alt=""> <b>${esc(a.symbol)}</b> ${esc(a.name)}`;
+
+function spark(id) {
+  const p = S.hist[id] || []; if (p.length < 2) return '';
+  const mn = Math.min(...p), mx = Math.max(...p), r = mx - mn || 1;
+  const pts = p.map((v, i) => `${(i / (p.length - 1) * 80).toFixed(1)},${(22 - (v - mn) / r * 20).toFixed(1)}`).join(' ');
+  return `<svg width="80" height="24"><polyline fill="none" stroke="${p[p.length - 1] >= p[0] ? '#22c55e' : '#ef4444'}" stroke-width="2" points="${pts}"/></svg>`;
+}
 
 function toast(m) {
   const t = $('#toast'); t.textContent = m; t.style.display = 'block';
@@ -65,55 +85,76 @@ function toast(m) {
 
 async function load() {
   if (!S.user) return;
-  const [p, a, h, t] = await Promise.all([
-    sb.from('profiles').select('*'),
-    sb.from('assets').select('*'),
-    sb.from('holdings').select('*'),
-    sb.from('transactions').select('*').eq('user_id', S.user.id).order('created_at', {ascending: false}).limit(50)
+  const [p, a, h, t, ph] = await Promise.all([
+    sb.from('profiles').select('*'), sb.from('assets').select('*'), sb.from('holdings').select('*'),
+    sb.from('transactions').select('*').eq('user_id', S.user.id).order('created_at', {ascending: false}).limit(50),
+    sb.from('price_history').select('asset_id,price').order('created_at', {ascending: false}).limit(1500)
   ]);
   if (p.error) toast('Erro ao carregar: ' + p.error.message);
   S.profiles = p.data || []; S.assets = a.data || []; S.holdings = h.data || []; S.tx = t.data || [];
+  S.hist = {}; (ph.data || []).reverse().forEach(r => (S.hist[r.asset_id] ||= []).push(Number(r.price)));
   render();
 }
 
-function mercado() {
-  const rows = S.assets.slice().sort((a, b) => b.price - a.price).map(a => {
-    const self = a.id === S.user.id, v = (a.price / BASE - 1) * 100;
-    const own = held(S.user.id, a.id), free = a.total_shares - sold(a.id);
-    const acts = self ? '<span class="mut">—</span>' :
-      `<input type="number" min="1" value="1" id="q-${a.id}"> <button class="b" data-act="buy_shares" data-id="${a.id}">Comprar</button> <button class="s" data-act="sell_shares" data-id="${a.id}" ${own ? '' : 'disabled'}>Vender</button>`;
-    return `<tr><td>${esc(a.name)}${self ? ' <span class="mut">(você)</span>' : ''}</td><td>${fmt(a.price)}</td><td class="${v >= 0 ? 'up' : 'dn'}">${v >= 0 ? '+' : ''}${v.toFixed(1)}%</td><td>${free}</td><td>${own}</td><td>${acts}</td></tr>`;
-  }).join('');
-  return table(['Ação', 'Preço', 'Var.', 'Livres', 'Você tem', ''], rows);
-}
-
-function carteira() {
-  const mine = S.holdings.filter(h => h.user_id === S.user.id);
-  const tot = mine.reduce((s, h) => s + h.quantity * price(h.asset_id), 0);
-  return `<p>Saldo: <b>${fmt(cur().balance)}</b> · Em ações: <b>${fmt(tot)}</b></p>` +
-    table(['Ação', 'Qtd', 'Preço', 'Valor'], mine.map(h => `<tr><td>${esc(name(h.asset_id))}</td><td>${h.quantity}</td><td>${fmt(price(h.asset_id))}</td><td>${fmt(h.quantity * price(h.asset_id))}</td></tr>`).join(''));
-}
-
-function ranking() {
-  return table(['#', 'Membro', 'Patrimônio'], S.profiles.map(p => ({p, w: worth(p.id)})).sort((a, b) => b.w - a.w)
-    .map((x, i) => `<tr><td>${i + 1}º</td><td>${esc(x.p.username)}</td><td>${fmt(x.w)}</td></tr>`).join(''));
-}
-
-function extrato() {
-  return table(['Data', 'Tipo', 'Ação', 'Qtd', 'Valor', 'Saldo'], S.tx.map(t =>
-    `<tr><td>${new Date(t.created_at).toLocaleString('pt-BR')}</td><td>${TYPES[t.type] || esc(t.type)}</td><td>${t.asset_id ? esc(name(t.asset_id)) : '—'}</td><td>${t.quantity ?? '—'}</td><td class="${t.amount >= 0 ? 'up' : 'dn'}">${fmt(t.amount)}</td><td>${fmt(t.balance_after)}</td></tr>`).join(''));
-}
+const V = {
+  inicio() {
+    const rk = S.profiles.slice().sort((a, b) => worth(b.id) - worth(a.id)).findIndex(p => p.id === S.user.id) + 1;
+    const top = S.assets.slice().sort((a, b) => b.price - a.price).slice(0, 5);
+    return `<div class="grid"><div class="card"><small>Saldo</small><b class="n">🪙 ${fmt(cur().balance)}</b></div>
+      <div class="card"><small>Patrimônio total</small><b class="n">${fmt(worth(S.user.id))}</b></div>
+      <div class="card"><small>Posição no ranking</small><b class="n">${rk}º</b></div></div>
+      <h3>Moedas em destaque</h3>` + table(['Moeda', 'Preço', 'Var.', 'Gráfico'], top.map(a => `<tr><td>${coin(a)}</td><td>${fmt(a.price)}</td><td>${pctH(pct(a))}</td><td>${spark(a.id)}</td></tr>`).join(''));
+  },
+  bolsa() {
+    return table(['Moeda', 'Preço', 'Var.', 'Gráfico', 'Livres', 'Você tem', ''], S.assets.slice().sort((a, b) => b.price - a.price).map(a => {
+      const own = held(S.user.id, a.id), self = a.id === S.user.id;
+      return `<tr><td>${coin(a)}${self ? ' <span class="mut">(sua · máx. 10)</span>' : ''}</td><td>${fmt(a.price)}</td><td>${pctH(pct(a))}</td><td>${spark(a.id)}</td><td>${a.total_shares - sold(a.id)}</td><td>${own}</td>
+      <td><input type="number" min="1" value="1" id="q-${a.id}"> <button class="b" data-act="buy_shares" data-id="${a.id}">Comprar</button> <button class="s" data-act="sell_shares" data-id="${a.id}" ${own ? '' : 'disabled'}>Vender</button></td></tr>`;
+    }).join(''));
+  },
+  carteira() {
+    const mine = S.holdings.filter(h => h.user_id === S.user.id);
+    return `<div class="grid"><div class="card"><small>Saldo</small><b class="n">${fmt(cur().balance)}</b></div><div class="card"><small>Em ações</small><b class="n">${fmt(stocks(S.user.id))}</b></div></div>` +
+      table(['Moeda', 'Qtd', 'Preço', 'Valor'], mine.map(h => `<tr><td>${coin(asset(h.asset_id))}</td><td>${h.quantity}</td><td>${fmt(price(h.asset_id))}</td><td>${fmt(h.quantity * price(h.asset_id))}</td></tr>`).join(''));
+  },
+  cassino() {
+    const r = S.spin;
+    return `<div class="card"><h3 style="margin-top:0">🎰 Roleta</h3><p class="mut">Vermelho/preto pagam 1:1. Verde (0) paga 35:1. Aposta de 1 a 500.</p>
+      ${r ? `<div class="ball" style="background:${COL[r.color]}">${r.n}</div><p class="${r.net >= 0 ? 'up' : 'dn'}">${r.net >= 0 ? 'Você ganhou' : 'Você perdeu'} ${fmt(Math.abs(r.net))} 🪙</p>` : ''}
+      <div class="roul"><input type="number" id="bet" min="1" max="500" value="10">
+      <button class="s" data-roul="red">Vermelho</button><button data-roul="black">Preto</button><button class="b" data-roul="green">Verde</button></div></div>`;
+  },
+  ranking() {
+    return table(['#', 'Membro', 'Patrimônio', 'Nível'], S.profiles.slice().sort((a, b) => worth(b.id) - worth(a.id))
+      .map((p, i) => `<tr><td>${i + 1}º</td><td><img class="av" src="${esc(p.avatar_url || '')}" alt=""> ${esc(p.username)}</td><td>${fmt(worth(p.id))}</td><td>${lvl(p.xp)}</td></tr>`).join(''));
+  },
+  extrato() {
+    return table(['Data', 'Tipo', 'Moeda', 'Qtd', 'Valor', 'Saldo'], S.tx.map(t =>
+      `<tr><td>${new Date(t.created_at).toLocaleString('pt-BR')}</td><td>${TYPES[t.type] || esc(t.type)}</td><td>${t.asset_id ? esc(name(t.asset_id)) : '—'}</td><td>${t.quantity ?? '—'}</td><td class="${t.amount >= 0 ? 'up' : 'dn'}">${fmt(t.amount)}</td><td>${fmt(t.balance_after)}</td></tr>`).join(''));
+  },
+  perfil() {
+    const m = cur(), a = asset(S.user.id);
+    return `<div class="card"><img class="av" style="width:64px;height:64px" src="${esc(m.avatar_url || '')}" alt=""><h2>${esc(m.username)}</h2>
+      <p>Nível <b>${lvl(m.xp)}</b> · ${m.xp || 0} XP</p><p class="mut">Ganhe XP comprando, vendendo e jogando.</p></div><br>
+      <div class="card"><h3 style="margin-top:0">Minha moeda</h3><p>${coin(a)}</p><button class="p" data-edit="${a.id}">Editar nome, símbolo e imagem</button></div>`;
+  },
+  adm() {
+    return table(['Moeda', 'Dono', ''], S.assets.map(a => `<tr><td>${coin(a)}</td><td>${esc(prof(a.id).username)}</td><td><button data-edit="${a.id}">Editar</button></td></tr>`).join(''));
+  }
+};
 
 function render() {
   if (!S.user) {
     $('#me').innerHTML = '';
-    $('#app').innerHTML = '<div class="hero"><h2>Bolsa de Valores do Autsim</h2><p class="mut">Compre e venda ações dos membros do servidor com AutsimCoins.</p><button class="p" id="login">Entrar com Discord</button></div>';
+    $('#app').innerHTML = '<div class="hero"><h2>Bolsa de Valores do Autsim</h2><p class="mut">Ações, cassino e muito mais com AutsimCoins.</p><button class="p" id="login">Entrar com Discord</button></div>';
     return;
   }
-  const m = cur();
-  $('#me').innerHTML = `${m.avatar_url ? `<img src="${esc(m.avatar_url)}" alt="">` : ''}<span>${esc(m.username)}</span><b>🪙 ${fmt(m.balance)}</b><button id="out">Sair</button>`;
-  const tabs = {mercado: 'Mercado', carteira: 'Carteira', ranking: 'Ranking', extrato: 'Extrato'};
-  $('#app').innerHTML = `<nav>${Object.entries(tabs).map(([k, v]) => `<button data-tab="${k}" class="${S.tab === k ? 'on' : ''}">${v}</button>`).join('')}</nav>` + ({mercado, carteira, ranking, extrato}[S.tab])();
+  const m = cur(), L = lvl(m.xp), lo = 50 * (L - 1) ** 2, w = ((m.xp || 0) - lo) / (50 * (2 * L - 1)) * 100;
+  $('#me').innerHTML = `<img class="av" src="${esc(m.avatar_url || '')}" alt=""><span>${esc(m.username)}</span><b>🪙 ${fmt(m.balance)}</b><span class="mut">Nv ${L}</span><div class="xp"><i style="width:${w}%"></i></div><button id="out">Sair</button>`;
+  const tabs = {inicio: 'Início', bolsa: 'Bolsa', carteira: 'Carteira', cassino: 'Cassino', ranking: 'Ranking', extrato: 'Extrato', perfil: 'Perfil'};
+  if (m.is_admin) tabs.adm = 'Painel ADM';
+  if (!V[S.tab]) S.tab = 'inicio';
+  $('#app').innerHTML = `<nav>${Object.entries(tabs).map(([k, v]) => `<button data-tab="${k}" class="${S.tab === k ? 'on' : ''}">${v}</button>`).join('')}</nav>` + V[S.tab]();
 }
 
 document.addEventListener('click', async e => {
@@ -121,6 +162,20 @@ document.addEventListener('click', async e => {
   if (b.id === 'login') return sb.auth.signInWithOAuth({provider: 'discord', options: {redirectTo: location.origin}});
   if (b.id === 'out') return sb.auth.signOut();
   if (b.dataset.tab) { S.tab = b.dataset.tab; return render(); }
+  if (b.dataset.edit) {
+    const a = asset(b.dataset.edit);
+    const n = prompt('Nome da moeda', a.name); if (n === null) return;
+    const s = prompt('Símbolo (ex: HC$)', a.symbol); if (s === null) return;
+    const u = prompt('Link https:// da imagem (vazio = foto do Discord)', a.avatar_url || ''); if (u === null) return;
+    const {error} = await sb.rpc('update_coin', {p_asset_id: a.id, p_name: n, p_symbol: s, p_avatar: u});
+    toast(error ? error.message : 'Moeda atualizada!'); return load();
+  }
+  if (b.dataset.roul) {
+    b.disabled = true;
+    const {data, error} = await sb.rpc('roulette', {p_bet: parseFloat($('#bet').value), p_color: b.dataset.roul});
+    if (error) toast(error.message); else S.spin = data;
+    return load();
+  }
   if (b.dataset.act) {
     const q = parseInt($('#q-' + b.dataset.id).value, 10);
     b.disabled = true;
@@ -136,7 +191,6 @@ sb.auth.onAuthStateChange((_e, session) => {
   setTimeout(() => S.user ? load() : render(), 0);
 });
 
-// Preços atualizam ao vivo (sem interromper quem está digitando)
 sb.channel('assets').on('postgres_changes', {event: '*', schema: 'public', table: 'assets'}, () => {
   if (S.user && document.activeElement?.tagName !== 'INPUT') load();
 }).subscribe();
