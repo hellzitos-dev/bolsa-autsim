@@ -1,199 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bolsa do Autsim 2.0</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0b12"><title>Bolsa do Autsim 2.0</title>
 <style>
-:root{--bg:#0a0a0f;--card:#14141c;--bd:#262633;--tx:#ececf4;--mut:#8a8aa0;--ok:#22c55e;--bad:#ef4444;--acc:#8b5cf6}
-*{box-sizing:border-box}
-body{margin:0;font:15px/1.4 system-ui,sans-serif;background:var(--bg);color:var(--tx)}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--bd);flex-wrap:wrap;position:sticky;top:0;background:rgba(10,10,15,.92);backdrop-filter:blur(8px);z-index:5}
-h1{font-size:18px;margin:0}
-main{max-width:960px;margin:0 auto;padding:16px}
-.me{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.av{width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle;background:var(--bd)}
-.xp{width:70px;height:6px;background:var(--bd);border-radius:4px;overflow:hidden}.xp i{display:block;height:100%;background:var(--acc);transition:width .5s}
-button{font:inherit;border:0;border-radius:8px;padding:7px 12px;background:var(--bd);color:var(--tx);cursor:pointer;transition:filter .15s,transform .1s}
-button:hover:not(:disabled){filter:brightness(1.25)}button:active:not(:disabled){transform:scale(.97)}
-button.p{background:var(--acc)}button.b{background:var(--ok);color:#052e14}button.s{background:var(--bad);color:#fff}
-button:disabled{opacity:.4;cursor:not-allowed}
-nav{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px}
-nav button{white-space:nowrap}nav button.on{background:var(--acc)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;animation:in .3s}
-.card small{color:var(--mut)}.card b.n{display:block;font-size:22px;margin-top:4px}
-@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
-.tbl{overflow-x:auto;border:1px solid var(--bd);border-radius:12px}
-table{width:100%;border-collapse:collapse;background:var(--card)}
-th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}
-th{color:var(--mut);font-weight:500;font-size:13px}
-input{width:70px;padding:6px;border-radius:6px;border:1px solid var(--bd);background:var(--bg);color:var(--tx)}
-.up{color:var(--ok)}.dn{color:var(--bad)}.mut{color:var(--mut)}
-.hero{text-align:center;padding:80px 10px}
-.roul{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
-.ball{width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;margin:12px 0;border:3px solid var(--bd)}
-#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--acc);padding:10px 16px;border-radius:10px;display:none;max-width:90%;z-index:9}
+:root{color-scheme:dark;--bg:#090910;--panel:#13131d;--panel2:#191925;--line:#29293a;--text:#f3f3fb;--muted:#9999b0;--purple:#8b5cf6;--green:#2dd4a0;--red:#fb7185;--gold:#fbbf24}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#17112b 0,#090910 42rem);color:var(--text);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:#222233;color:var(--text);border-radius:10px;padding:9px 13px;transition:.15s}button:hover:not(:disabled){filter:brightness(1.18);transform:translateY(-1px)}button:disabled{opacity:.45;cursor:not-allowed}.primary{background:var(--purple);border-color:transparent}.good{background:#0c805d;border-color:transparent}.danger{background:#a82d48;border-color:transparent}.gold{background:#8a6512;border-color:transparent}input,select{background:#0d0d16;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px;max-width:100%}input[type=number]{width:105px}header{position:sticky;top:0;z-index:10;background:#0b0b12eF;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:12px clamp(12px,3vw,32px);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.brand{font-weight:900;letter-spacing:-.04em;font-size:20px}.brand span{color:#b49aff}.userbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;background:var(--line);vertical-align:middle}.xpbar{width:90px;height:7px;border-radius:10px;background:#29293a;overflow:hidden}.xpbar i{display:block;height:100%;background:linear-gradient(90deg,#8b5cf6,#d8b4fe)}main{max-width:1200px;margin:auto;padding:22px clamp(12px,3vw,30px) 60px}.hero{padding:68px 15px;text-align:center;border:1px solid var(--line);border-radius:22px;background:linear-gradient(135deg,#20173b,#11111b 65%);margin-top:18px}.hero h1{font-size:clamp(32px,5vw,56px);line-height:1.05;margin:8px 0 14px;letter-spacing:-.05em}.hero p{color:var(--muted);max-width:620px;margin:0 auto 22px}.eyebrow{color:#c4b5fd;text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:800}.nav{display:flex;gap:7px;overflow:auto;padding:3px 0 15px;margin-bottom:8px}.nav button{white-space:nowrap}.nav .active{background:var(--purple);border-color:var(--purple)}h2{margin:8px 0 16px;font-size:24px;letter-spacing:-.03em}h3{margin:0 0 12px;font-size:17px}.muted,small{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px;margin:12px 0 20px}.card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}.stat{font-size:clamp(22px,3vw,30px);font-weight:850;letter-spacing:-.04em;margin-top:6px;overflow-wrap:anywhere}.statlabel{color:var(--muted);font-size:13px}.positive{color:var(--green)}.negative{color:var(--red)}.goldtext{color:var(--gold)}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:13px;margin:10px 0 22px}table{border-collapse:collapse;width:100%;background:#12121b}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);white-space:nowrap}th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:#171722}tr:last-child td{border-bottom:0}.coinavatar{width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:6px;background:#28283a}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.spread{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.chartbox{height:290px;position:relative}.productgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.product{display:flex;flex-direction:column;gap:10px}.product .buyrow{margin-top:auto;display:flex;justify-content:space-between;gap:8px;align-items:center}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-size:12px;color:var(--muted)}.ball{width:76px;height:76px;display:grid;place-items:center;border-radius:50%;font-size:30px;font-weight:900;border:3px solid #ffffff22;margin:12px 0}.redball{background:#b91c1c}.blackball{background:#20202c}.greenball{background:#15803d}.notice{padding:12px 14px;border-radius:11px;border:1px solid #6d5b9d;background:#211a35;color:#ddd2ff;margin:12px 0}.empty{padding:28px;text-align:center;color:var(--muted)}.hidden{display:none!important}#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:30;display:none;max-width:min(600px,92vw);padding:12px 16px;border:1px solid var(--purple);border-radius:12px;background:#191526;box-shadow:0 12px 40px #0008}footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}label{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.adminbox{border-color:#a78bfa}.fineprint{font-size:12px;color:var(--muted)}@media(max-width:600px){header{align-items:flex-start}.userbar{width:100%}.chartbox{height:230px}th,td{padding:9px}}
 </style>
 </head>
 <body>
-<header><h1>📈 Bolsa do Autsim</h1><div class="me" id="me"></div></header>
-<main id="app"><p class="mut">Carregando...</p></main>
-<div id="toast"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<header><div class="brand">📈 Bolsa do <span>Autsim</span></div><div id="userbar" class="userbar"></div></header>
+<main id="app"><div class="empty">Carregando Bolsa do Autsim…</div></main><footer>Economia virtual para a comunidade. AutsimCoins não têm valor monetário real.</footer><div id="toast" role="status" aria-live="polite"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script>
-const SUPABASE_URL = 'https://vyhhbepqikaizjyuogxk.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_te15kBxoDWsrWci0NhVY3w_M8ZC38XB';
-const BASE = 10;
+'use strict';
+const SUPABASE_URL='https://vyhhbepqikaizjyuogxk.supabase.co';
+const SUPABASE_KEY='sb_publishable_te15kBxoDWsrWci0NhVY3w_M8ZC38XB';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>Number(n||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const names={buy:'Compra',sell:'Venda',bonus:'Bônus',game:'Jogo',adjust:'Ajuste',shop:'Loja'};
+const tabs={inicio:'Início',bolsa:'Bolsa',carteira:'Carteira',graficos:'Gráficos',cassino:'Cassino',jogos:'Jogos',loja:'Loja',missoes:'Missões',conquistas:'Conquistas',ranking:'Ranking',extrato:'Extrato',perfil:'Perfil'};
+let S={user:null,profile:null,profiles:[],assets:[],holdings:[],tx:[],history:[],items:[],inventory:[],missions:[],tab:'inicio',spin:null,charts:{},xpConfig:{base:100,exponent:1.55,endgame_bonus:18000},loading:false};
+const me=()=>S.profile||{balance:0,xp:0,username:'Membro'};
+const profile=id=>S.profiles.find(x=>x.id===id)||{};const asset=id=>S.assets.find(x=>x.id===id)||{};
+const held=(uid,aid)=>Number(S.holdings.find(x=>x.user_id===uid&&x.asset_id===aid)?.quantity||0);
+const sold=aid=>S.holdings.filter(x=>x.asset_id===aid).reduce((n,x)=>n+Number(x.quantity||0),0);
+const price=aid=>Number(asset(aid).price||0);const worth=uid=>Number(profile(uid).balance||0)+S.holdings.filter(x=>x.user_id===uid).reduce((n,x)=>n+Number(x.quantity)*price(x.asset_id),0);
+const lvl=xp=>{let level=1;while(level<99&&xp>=xpForLevel(level+1))level++;return level};
+// Curva progressiva: fácil no início, muito mais difícil nos níveis finais.
+function xpForLevel(level){if(level<=1)return 0;const x=(level-1)/98;return Math.round(Number(S.xpConfig.base||100)*Math.pow(level-1,Number(S.xpConfig.exponent||1.55))+Number(S.xpConfig.endgame_bonus||18000)*Math.pow(x,5));}
+function xpProgress(xp){const l=lvl(xp);return {l,lo:xpForLevel(l),hi:xpForLevel(Math.min(99,l+1)),pct:l>=99?100:Math.max(0,Math.min(100,(xp-xpForLevel(l))/(xpForLevel(l+1)-xpForLevel(l))*100))};}
+function avatar(p){return p?.avatar_url||''}function coin(a){return `${a.avatar_url?`<img class="coinavatar" src="${esc(a.avatar_url)}" alt="">`:''}<b>${esc(a.symbol||'AC$')}</b> ${esc(a.name||'Moeda')}`}
+function toast(msg){const t=$('#toast');t.textContent=msg;t.style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.style.display='none',4200)}
+function table(headers,rows,empty='Nada por aqui ainda.'){return `<div class="tablewrap"><table><thead><tr>${headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="empty">${empty}</td></tr>`}</tbody></table></div>`}
+async function safeQuery(query,label){const r=await query;if(r.error){console.warn(label,r.error.message);return {data:[],error:r.error}}return r}
+async function load(){if(!S.user)return;S.loading=true;try{
+ const gate=await sb.functions.invoke('check-guild-membership');if(gate.error||!gate.data?.is_member){toast('Acesso permitido apenas a membros do servidor Discord configurado.');await sb.auth.signOut();S.user=null;render();return}
 
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-const $ = s => document.querySelector(s);
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt = n => Number(n).toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-const TYPES = {buy:'Compra', sell:'Venda', bonus:'Bônus', game:'Jogo', adjust:'Ajuste'};
-const COL = {red:'#ef4444', black:'#27272f', green:'#22c55e'};
-let S = {user: null, tab: 'inicio', profiles: [], assets: [], holdings: [], tx: [], hist: {}, spin: null};
-
-const cur = () => S.profiles.find(p => p.id === S.user.id) || {balance: 0, username: '?', xp: 0};
-const prof = id => S.profiles.find(p => p.id === id) || {};
-const asset = id => S.assets.find(a => a.id === id) || {};
-const price = id => Number(asset(id).price || 0);
-const name = id => asset(id).name || '?';
-const held = (u, a) => S.holdings.find(h => h.user_id === u && h.asset_id === a)?.quantity || 0;
-const sold = a => S.holdings.filter(h => h.asset_id === a).reduce((s, h) => s + h.quantity, 0);
-const stocks = u => S.holdings.filter(h => h.user_id === u).reduce((s, h) => s + h.quantity * price(h.asset_id), 0);
-const worth = u => Number(prof(u).balance || 0) + stocks(u);
-const lvl = xp => Math.floor(Math.sqrt((xp || 0) / 50)) + 1;
-const ava = a => esc(a.avatar_url || prof(a.id).avatar_url || '');
-const pct = a => (a.price / BASE - 1) * 100;
-const pctH = v => `<span class="${v >= 0 ? 'up' : 'dn'}">${v >= 0 ? '+' : ''}${v.toFixed(1)}%</span>`;
-const table = (head, rows) => `<div class="tbl"><table><tr>${head.map(x => `<th>${x}</th>`).join('')}</tr>${rows || '<tr><td colspan="9" class="mut">Nada por aqui ainda.</td></tr>'}</table></div>`;
-const coin = a => `<img class="av" src="${ava(a)}" alt=""> <b>${esc(a.symbol)}</b> ${esc(a.name)}`;
-
-function spark(id) {
-  const p = S.hist[id] || []; if (p.length < 2) return '';
-  const mn = Math.min(...p), mx = Math.max(...p), r = mx - mn || 1;
-  const pts = p.map((v, i) => `${(i / (p.length - 1) * 80).toFixed(1)},${(22 - (v - mn) / r * 20).toFixed(1)}`).join(' ');
-  return `<svg width="80" height="24"><polyline fill="none" stroke="${p[p.length - 1] >= p[0] ? '#22c55e' : '#ef4444'}" stroke-width="2" points="${pts}"/></svg>`;
-}
-
-function toast(m) {
-  const t = $('#toast'); t.textContent = m; t.style.display = 'block';
-  clearTimeout(toast.t); toast.t = setTimeout(() => t.style.display = 'none', 4000);
-}
-
-async function load() {
-  if (!S.user) return;
-  const [p, a, h, t, ph] = await Promise.all([
-    sb.from('profiles').select('*'), sb.from('assets').select('*'), sb.from('holdings').select('*'),
-    sb.from('transactions').select('*').eq('user_id', S.user.id).order('created_at', {ascending: false}).limit(50),
-    sb.from('price_history').select('asset_id,price').order('created_at', {ascending: false}).limit(1500)
-  ]);
-  if (p.error) toast('Erro ao carregar: ' + p.error.message);
-  S.profiles = p.data || []; S.assets = a.data || []; S.holdings = h.data || []; S.tx = t.data || [];
-  S.hist = {}; (ph.data || []).reverse().forEach(r => (S.hist[r.asset_id] ||= []).push(Number(r.price)));
-  render();
-}
-
-const V = {
-  inicio() {
-    const rk = S.profiles.slice().sort((a, b) => worth(b.id) - worth(a.id)).findIndex(p => p.id === S.user.id) + 1;
-    const top = S.assets.slice().sort((a, b) => b.price - a.price).slice(0, 5);
-    return `<div class="grid"><div class="card"><small>Saldo</small><b class="n">🪙 ${fmt(cur().balance)}</b></div>
-      <div class="card"><small>Patrimônio total</small><b class="n">${fmt(worth(S.user.id))}</b></div>
-      <div class="card"><small>Posição no ranking</small><b class="n">${rk}º</b></div></div>
-      <h3>Moedas em destaque</h3>` + table(['Moeda', 'Preço', 'Var.', 'Gráfico'], top.map(a => `<tr><td>${coin(a)}</td><td>${fmt(a.price)}</td><td>${pctH(pct(a))}</td><td>${spark(a.id)}</td></tr>`).join(''));
-  },
-  bolsa() {
-    return table(['Moeda', 'Preço', 'Var.', 'Gráfico', 'Livres', 'Você tem', ''], S.assets.slice().sort((a, b) => b.price - a.price).map(a => {
-      const own = held(S.user.id, a.id), self = a.id === S.user.id;
-      return `<tr><td>${coin(a)}${self ? ' <span class="mut">(sua · máx. 10)</span>' : ''}</td><td>${fmt(a.price)}</td><td>${pctH(pct(a))}</td><td>${spark(a.id)}</td><td>${a.total_shares - sold(a.id)}</td><td>${own}</td>
-      <td><input type="number" min="1" value="1" id="q-${a.id}"> <button class="b" data-act="buy_shares" data-id="${a.id}">Comprar</button> <button class="s" data-act="sell_shares" data-id="${a.id}" ${own ? '' : 'disabled'}>Vender</button></td></tr>`;
-    }).join(''));
-  },
-  carteira() {
-    const mine = S.holdings.filter(h => h.user_id === S.user.id);
-    return `<div class="grid"><div class="card"><small>Saldo</small><b class="n">${fmt(cur().balance)}</b></div><div class="card"><small>Em ações</small><b class="n">${fmt(stocks(S.user.id))}</b></div></div>` +
-      table(['Moeda', 'Qtd', 'Preço', 'Valor'], mine.map(h => `<tr><td>${coin(asset(h.asset_id))}</td><td>${h.quantity}</td><td>${fmt(price(h.asset_id))}</td><td>${fmt(h.quantity * price(h.asset_id))}</td></tr>`).join(''));
-  },
-  cassino() {
-    const r = S.spin;
-    return `<div class="card"><h3 style="margin-top:0">🎰 Roleta</h3><p class="mut">Vermelho/preto pagam 1:1. Verde (0) paga 35:1. Aposta de 1 a 500.</p>
-      ${r ? `<div class="ball" style="background:${COL[r.color]}">${r.n}</div><p class="${r.net >= 0 ? 'up' : 'dn'}">${r.net >= 0 ? 'Você ganhou' : 'Você perdeu'} ${fmt(Math.abs(r.net))} 🪙</p>` : ''}
-      <div class="roul"><input type="number" id="bet" min="1" max="500" value="10">
-      <button class="s" data-roul="red">Vermelho</button><button data-roul="black">Preto</button><button class="b" data-roul="green">Verde</button></div></div>`;
-  },
-  ranking() {
-    return table(['#', 'Membro', 'Patrimônio', 'Nível'], S.profiles.slice().sort((a, b) => worth(b.id) - worth(a.id))
-      .map((p, i) => `<tr><td>${i + 1}º</td><td><img class="av" src="${esc(p.avatar_url || '')}" alt=""> ${esc(p.username)}</td><td>${fmt(worth(p.id))}</td><td>${lvl(p.xp)}</td></tr>`).join(''));
-  },
-  extrato() {
-    return table(['Data', 'Tipo', 'Moeda', 'Qtd', 'Valor', 'Saldo'], S.tx.map(t =>
-      `<tr><td>${new Date(t.created_at).toLocaleString('pt-BR')}</td><td>${TYPES[t.type] || esc(t.type)}</td><td>${t.asset_id ? esc(name(t.asset_id)) : '—'}</td><td>${t.quantity ?? '—'}</td><td class="${t.amount >= 0 ? 'up' : 'dn'}">${fmt(t.amount)}</td><td>${fmt(t.balance_after)}</td></tr>`).join(''));
-  },
-  perfil() {
-    const m = cur(), a = asset(S.user.id);
-    return `<div class="card"><img class="av" style="width:64px;height:64px" src="${esc(m.avatar_url || '')}" alt=""><h2>${esc(m.username)}</h2>
-      <p>Nível <b>${lvl(m.xp)}</b> · ${m.xp || 0} XP</p><p class="mut">Ganhe XP comprando, vendendo e jogando.</p></div><br>
-      <div class="card"><h3 style="margin-top:0">Minha moeda</h3><p>${coin(a)}</p><button class="p" data-edit="${a.id}">Editar nome, símbolo e imagem</button></div>`;
-  },
-  adm() {
-    return table(['Moeda', 'Dono', ''], S.assets.map(a => `<tr><td>${coin(a)}</td><td>${esc(prof(a.id).username)}</td><td><button data-edit="${a.id}">Editar</button></td></tr>`).join(''));
-  }
+ const [pr,ar,hr,tr,phr,ir,inv,mr,xpr]=await Promise.all([
+  safeQuery(sb.from('profiles').select('id,username,avatar_url,balance,xp,is_admin,terms_accepted_at,terms_version'), 'profiles'),safeQuery(sb.from('assets').select('id,name,symbol,avatar_url,price,total_shares,updated_at'),'assets'),safeQuery(sb.from('holdings').select('user_id,asset_id,quantity'),'holdings'),safeQuery(sb.from('transactions').select('id,user_id,asset_id,type,quantity,unit_price,amount,balance_after,created_at').eq('user_id',S.user.id).order('created_at',{ascending:false}).limit(100),'transactions'),safeQuery(sb.from('price_history').select('asset_id,price,created_at').order('created_at',{ascending:true}).limit(3000),'price_history'),safeQuery(sb.from('shop_items').select('*').eq('active',true).order('price'),'shop_items'),safeQuery(sb.from('user_inventory').select('*').eq('user_id',S.user.id),'inventory'),safeQuery(sb.from('missions').select('*').eq('active',true).order('sort_order'),'missions'),safeQuery(sb.from('xp_settings').select('base,exponent,endgame_bonus').eq('id',true).maybeSingle(),'xp_settings')
+ ]);
+ S.profiles=pr.data||[];S.profile=S.profiles.find(x=>x.id===S.user.id)||null;S.assets=ar.data||[];S.holdings=hr.data||[];S.tx=tr.data||[];S.history=phr.data||[];S.items=ir.data||[];S.inventory=inv.data||[];S.missions=mr.data||[];if(xpr.data)S.xpConfig=xpr.data;
+ if(!S.profile){toast('Seu perfil ainda não foi criado. Verifique o trigger de cadastro do Supabase.');}
+ }catch(e){console.error(e);toast('Não foi possível atualizar os dados.')}finally{S.loading=false;render()}}
+function chart(canvasId,labels,datasets,type='line'){if(S.charts[canvasId]){S.charts[canvasId].destroy();delete S.charts[canvasId]}const el=document.getElementById(canvasId);if(!el)return;S.charts[canvasId]=new Chart(el,{type,data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:'index'},plugins:{legend:{labels:{color:'#d8d8e8'}}},scales:{x:{ticks:{color:'#9999b0',maxTicksLimit:8},grid:{color:'#29293a'}},y:{ticks:{color:'#9999b0'},grid:{color:'#29293a'}}}}})}
+const V={
+inicio(){const sorted=S.profiles.slice().sort((a,b)=>worth(b.id)-worth(a.id));const rank=sorted.findIndex(p=>p.id===S.user.id)+1;const hot=S.assets.slice().sort((a,b)=>b.price-a.price).slice(0,5);return `<div class="spread"><div><div class="eyebrow">Painel da comunidade</div><h2>Salve, ${esc(me().username)} 👋</h2><p class="muted">Sua economia, sua progressão e o mercado num só lugar.</p></div><span class="pill">${S.profiles.length} membros no ranking</span></div><div class="grid"><div class="card"><div class="statlabel">Saldo disponível</div><div class="stat">🪙 ${fmt(me().balance)}</div><small>AutsimCoins</small></div><div class="card"><div class="statlabel">Patrimônio estimado</div><div class="stat">${fmt(worth(S.user.id))}</div><small>Saldo + ações</small></div><div class="card"><div class="statlabel">Sua posição</div><div class="stat">${rank>0?rank+'º':'—'}</div><small>No ranking geral</small></div><div class="card"><div class="statlabel">Nível atual</div><div class="stat">Nv. ${xpProgress(me().xp||0).l}</div><div class="xpbar"><i style="width:${xpProgress(me().xp||0).pct}%"></i></div><small>${Number(me().xp||0).toLocaleString('pt-BR')} XP</small></div></div><div class="spread"><h3>Moedas em destaque</h3><button data-tab="bolsa">Abrir mercado →</button></div>${table(['Moeda','Preço','Variação da base','Ações'],hot.map(a=>`<tr><td>${coin(a)}</td><td>${fmt(a.price)}</td><td class="${Number(a.price)>=10?'positive':'negative'}">${Number(a.price)>=10?'+':''}${((Number(a.price)/10-1)*100).toFixed(1)}%</td><td><button data-tab="bolsa">Negociar</button></td></tr>`).join(''))}<div class="grid"><div class="card"><h3>🎰 Cassino</h3><p class="muted">Roleta com fichas virtuais e limites por rodada.</p><button class="primary" data-tab="cassino">Jogar roleta</button></div><div class="card"><h3>🛍️ Loja</h3><p class="muted">Gaste suas moedas em itens e recompensas da comunidade.</p><button data-tab="loja">Ver itens</button></div><div class="card"><h3>🎯 Progressão</h3><p class="muted">Suba de nível, complete missões e conquiste títulos.</p><button data-tab="missoes">Ver missões</button></div></div>`},
+bolsa(){return `<h2>📈 Mercado de moedas</h2><p class="muted">Ordens processadas pelo banco de dados. Sua própria moeda tem limite de 10 unidades, conforme a regra do backend.</p>${table(['Moeda','Preço','Disponíveis','Você tem','Comprar / vender'],S.assets.slice().sort((a,b)=>b.price-a.price).map(a=>{const own=held(S.user.id,a.id),free=Number(a.total_shares||0)-sold(a.id);return `<tr><td>${coin(a)}${a.id===S.user.id?' <span class="pill">Sua moeda</span>':''}</td><td>${fmt(a.price)}</td><td>${free}</td><td>${own}</td><td><input type="number" min="1" step="1" value="1" id="qty-${esc(a.id)}"><button class="good" data-act="buy_shares" data-id="${esc(a.id)}">Comprar</button> <button class="danger" data-act="sell_shares" data-id="${esc(a.id)}" ${own<1?'disabled':''}>Vender</button></td></tr>`}).join(''))}`},
+carteira(){const mine=S.holdings.filter(h=>h.user_id===S.user.id);return `<h2>💼 Carteira</h2><div class="grid"><div class="card"><div class="statlabel">Saldo</div><div class="stat">${fmt(me().balance)} AC</div></div><div class="card"><div class="statlabel">Valor em ações</div><div class="stat">${fmt(worth(S.user.id)-Number(me().balance||0))} AC</div></div></div>${table(['Ativo','Quantidade','Preço atual','Valor estimado'],mine.map(h=>`<tr><td>${coin(asset(h.asset_id))}</td><td>${h.quantity}</td><td>${fmt(price(h.asset_id))}</td><td>${fmt(Number(h.quantity)*price(h.asset_id))}</td></tr>`).join(''))}`},
+graficos(){return `<h2>📊 Gráficos</h2><div class="card"><h3>Histórico de preço</h3><label>Moeda <select id="chartasset">${S.assets.map(a=>`<option value="${esc(a.id)}">${esc(a.name)} (${esc(a.symbol)})</option>`).join('')}</select></label><div class="chartbox"><canvas id="pricechart"></canvas></div></div><div class="card" style="margin-top:12px"><h3>Distribuição do seu patrimônio</h3><div class="chartbox"><canvas id="wealthchart"></canvas></div></div>`},
+cassino(){const r=S.spin;return `<h2>🎰 Cassino do Autsim</h2><div class="notice">Somente moedas virtuais: não há depósitos, saques ou conversão em dinheiro real. Aposte com responsabilidade; a aposta máxima é 500 AC.</div><div class="card"><div class="spread"><div><h3>Roleta europeia</h3><p class="muted">Vermelho/preto pagam 1:1; verde (zero) paga 35:1.</p></div><span class="pill">Saldo: ${fmt(me().balance)} AC</span></div>${r?`<div class="ball ${r.color==='red'?'redball':r.color==='black'?'blackball':'greenball'}">${r.n}</div><p class="${Number(r.net)>=0?'positive':'negative'}">${Number(r.net)>=0?'Resultado positivo':'Resultado negativo'}: ${Number(r.net)>=0?'+':''}${fmt(r.net)} AC</p>`:''}<div class="row"><label>Aposta <input id="bet" type="number" min="1" max="500" step="1" value="10"></label><button class="danger" data-roul="red">🔴 Vermelho</button><button data-roul="black">⚫ Preto</button><button class="good" data-roul="green">🟢 Verde (0)</button></div></div>`},
+jogos(){return `<h2>🕹️ Jogos</h2><div class="grid"><div class="card"><h3>🧠 Quiz da comunidade</h3><p class="muted">A área de jogos está preparada, mas o quiz só deve ser ativado quando houver perguntas e validação de recompensa no backend.</p><button disabled title="Configure o backend de quiz primeiro">Em breve</button></div><div class="card"><h3>🎲 Desafios</h3><p class="muted">Minijogos com recompensas precisam de validação server-side para impedir XP e moedas fabricadas no navegador.</p><button disabled>Em breve</button></div></div><div class="notice">Não foi criado um botão que credita moedas localmente: recompensas precisam de uma RPC segura no banco para evitar exploração.</div>`},
+loja(){return `<h2>🛍️ Loja da comunidade</h2><p class="muted">Itens comprados são registrados no backend. Exemplos como “Date com Abigolaura” são recompensas de meme/roleplay e dependem do consentimento de todos os envolvidos.</p><div class="productgrid">${S.items.map(i=>`<div class="card product"><div class="spread"><h3>${esc(i.name||'Item')}</h3><span class="pill">${i.stock===null||i.stock===undefined?'∞':`Estoque ${i.stock}`}</span></div><p class="muted">${esc(i.description||'Recompensa da comunidade.')}</p><div class="buyrow"><b class="goldtext">🪙 ${fmt(i.price)} AC</b><button class="primary" data-buyitem="${esc(i.id)}" ${Number(i.stock)===0?'disabled':''}>Comprar</button></div></div>`).join('')||'<div class="card"><h3>A loja ainda está vazia</h3><p class="muted">O administrador pode cadastrar itens na tabela shop_items pelo painel seguro do backend.</p></div>'}</div><h3 style="margin-top:24px">Meu inventário</h3>${table(['Item','Quantidade','Adquirido em'],S.inventory.map(v=>`<tr><td>${esc(v.item_name||v.name||'Item')}</td><td>${v.quantity||1}</td><td>${v.created_at?new Date(v.created_at).toLocaleDateString('pt-BR'):'—'}</td></tr>`).join(''))}`},
+missoes(){return `<h2>🎯 Missões</h2><p class="muted">As missões são exibidas quando a tabela public.missions existe. Recompensas devem ser resgatadas por uma função segura e idempotente no backend.</p><div class="productgrid">${S.missions.map(m=>`<div class="card"><span class="pill">${esc(m.category||'Missão')}</span><h3 style="margin-top:10px">${esc(m.title||m.name||'Missão')}</h3><p class="muted">${esc(m.description||'Complete o objetivo para progredir.')}</p><b class="goldtext">+${Number(m.xp_reward||0)} XP · ${fmt(m.coin_reward||0)} AC</b></div>`).join('')||'<div class="card"><p class="muted">Nenhuma missão cadastrada no momento.</p></div>'}</div>`},
+conquistas(){return `<h2>🏆 Conquistas</h2><div class="grid"><div class="card"><h3>📈 Primeiro investimento</h3><p class="muted">Faça sua primeira compra no mercado.</p><span class="pill">Condição: transação buy</span></div><div class="card"><h3>🎰 Na sorte</h3><p class="muted">Jogue sua primeira rodada de roleta.</p><span class="pill">Condição: transação game</span></div><div class="card"><h3>💰 Acumulador</h3><p class="muted">Alcance 10.000 AC de patrimônio.</p><span class="pill">Condição: patrimônio</span></div></div><p class="muted">A exibição estática não significa que uma conquista já foi validada; o desbloqueio precisa ser persistido pelo backend.</p>`},
+ranking(){return `<h2>🏅 Ranking</h2>${table(['#','Membro','Patrimônio','XP','Nível'],S.profiles.slice().sort((a,b)=>worth(b.id)-worth(a.id)).map((p,i)=>`<tr><td>${i+1}</td><td>${p.avatar_url?`<img class="avatar" src="${esc(p.avatar_url)}" alt="">`:''} ${esc(p.username||'Membro')}</td><td>${fmt(worth(p.id))} AC</td><td>${Number(p.xp||0).toLocaleString('pt-BR')}</td><td>${xpProgress(Number(p.xp||0)).l}</td></tr>`).join(''))}`},
+extrato(){return `<h2>🧾 Meu extrato</h2>${table(['Data','Tipo','Moeda','Qtd','Valor','Saldo após'],S.tx.map(t=>`<tr><td>${t.created_at?new Date(t.created_at).toLocaleString('pt-BR'):'—'}</td><td>${esc(names[t.type]||t.type||'—')}</td><td>${t.asset_id?esc(asset(t.asset_id).name||'Moeda'):'—'}</td><td>${t.quantity??'—'}</td><td class="${Number(t.amount)>=0?'positive':'negative'}">${Number(t.amount)>0?'+':''}${fmt(t.amount)}</td><td>${fmt(t.balance_after)}</td></tr>`).join(''))}`},
+perfil(){const xp=xpProgress(Number(me().xp||0)),a=asset(S.user.id);return `<h2>👤 Meu perfil</h2><div class="card"><div class="row">${avatar(me())?`<img class="avatar" style="width:64px;height:64px" src="${esc(avatar(me()))}" alt="">`:''}<div><h2 style="margin:0">${esc(me().username)}</h2><span class="pill">Membro da comunidade</span></div></div><div class="grid"><div><div class="statlabel">Nível</div><div class="stat">${xp.l} / 99</div></div><div><div class="statlabel">XP</div><div class="stat">${Number(me().xp||0).toLocaleString('pt-BR')}</div></div><div><div class="statlabel">Próximo nível</div><div class="stat">${xp.l>=99?'Nível máximo':Number(xp.hi-xp.lo).toLocaleString('pt-BR')+' XP total'}</div></div></div><div class="xpbar" style="width:100%;height:10px"><i style="width:${xp.pct}%"></i></div><p class="muted">A progressão fica mais difícil conforme você avança. O XP é calculado no banco de dados, nunca confiado ao navegador.</p></div><div class="card" style="margin-top:12px"><h3>Minha moeda</h3><p>${a.id?coin(a):'Sua moeda ainda não foi criada.'}</p>${a.id?`<button class="primary" data-edit="${esc(a.id)}">Editar nome, símbolo e imagem</button>`:''}</div><div class="notice">Ao usar o site, você concorda em manter apenas uma conta por pessoa. A aplicação precisa registrar a versão dos termos e a data do aceite durante o cadastro.</div>`},
+adm(){if(!me().is_admin)return '<div class="notice">Acesso negado.</div>';return `<h2>🛡️ Painel ADM</h2><div class="notice">A interface só é exibida para contas marcadas como administradoras no banco. Toda ação administrativa também deve ser validada no servidor; ocultar um botão não é segurança.</div><div class="grid"><div class="card"><h3>Economia</h3><p class="muted">Membros: ${S.profiles.length} · Moedas: ${S.assets.length}</p><button data-admin-refresh>Atualizar dados</button></div><div class="card"><h3>Configuração de XP</h3><p class="muted">Ajuste a curva de progressão. Base maior e bônus final maior tornam os níveis mais difíceis.</p><div class="row"><label>Base <input id="xpbase" type="number" min="1" max="1000000" value="100"></label><label>Expoente <input id="xpexp" type="number" min="1" max="3" step="0.05" value="1.55"></label><label>Bônus final <input id="xpbonus" type="number" min="0" max="100000000" value="18000"></label></div><button class="primary" data-save-xp style="margin-top:10px">Salvar curva de XP</button><p class="fineprint">Os valores iniciais refletem o padrão do banco. A autorização é conferida pela RPC.</p></div><div class="card"><h3>Loja</h3><p class="muted">Cadastre itens em shop_items e controle compras via RPC atômica.</p></div></div>${table(['Moeda','Dono','Preço','Ação'],S.assets.map(a=>`<tr><td>${coin(a)}</td><td>${esc(profile(a.id).username||'—')}</td><td>${fmt(a.price)}</td><td><button data-edit="${esc(a.id)}">Editar moeda</button></td></tr>`).join(''))}`}
 };
-
-function render() {
-  if (!S.user) {
-    $('#me').innerHTML = '';
-    $('#app').innerHTML = '<div class="hero"><h2>Bolsa de Valores do Autsim</h2><p class="mut">Ações, cassino e muito mais com AutsimCoins.</p><button class="p" id="login">Entrar com Discord</button></div>';
-    return;
-  }
-  const m = cur(), L = lvl(m.xp), lo = 50 * (L - 1) ** 2, w = ((m.xp || 0) - lo) / (50 * (2 * L - 1)) * 100;
-  $('#me').innerHTML = `<img class="av" src="${esc(m.avatar_url || '')}" alt=""><span>${esc(m.username)}</span><b>🪙 ${fmt(m.balance)}</b><span class="mut">Nv ${L}</span><div class="xp"><i style="width:${w}%"></i></div><button id="out">Sair</button>`;
-  const tabs = {inicio: 'Início', bolsa: 'Bolsa', carteira: 'Carteira', cassino: 'Cassino', ranking: 'Ranking', extrato: 'Extrato', perfil: 'Perfil'};
-  if (m.is_admin) tabs.adm = 'Painel ADM';
-  if (!V[S.tab]) S.tab = 'inicio';
-  $('#app').innerHTML = `<nav>${Object.entries(tabs).map(([k, v]) => `<button data-tab="${k}" class="${S.tab === k ? 'on' : ''}">${v}</button>`).join('')}</nav>` + V[S.tab]();
-}
-
-document.addEventListener('click', async e => {
-  const b = e.target.closest('button'); if (!b) return;
-  if (b.id === 'login') return sb.auth.signInWithOAuth({provider: 'discord', options: {redirectTo: location.origin}});
-  if (b.id === 'out') return sb.auth.signOut();
-  if (b.dataset.tab) { S.tab = b.dataset.tab; return render(); }
-  if (b.dataset.edit) {
-    const a = asset(b.dataset.edit);
-    const n = prompt('Nome da moeda', a.name); if (n === null) return;
-    const s = prompt('Símbolo (ex: HC$)', a.symbol); if (s === null) return;
-    const u = prompt('Link https:// da imagem (vazio = foto do Discord)', a.avatar_url || ''); if (u === null) return;
-    const {error} = await sb.rpc('update_coin', {p_asset_id: a.id, p_name: n, p_symbol: s, p_avatar: u});
-    toast(error ? error.message : 'Moeda atualizada!'); return load();
-  }
-  if (b.dataset.roul) {
-    b.disabled = true;
-    const {data, error} = await sb.rpc('roulette', {p_bet: parseFloat($('#bet').value), p_color: b.dataset.roul});
-    if (error) toast(error.message); else S.spin = data;
-    return load();
-  }
-  if (b.dataset.act) {
-    const q = parseInt($('#q-' + b.dataset.id).value, 10);
-    b.disabled = true;
-    const {data, error} = await sb.rpc(b.dataset.act, {p_asset_id: b.dataset.id, p_qty: q});
-    if (error) toast(error.message);
-    else toast(b.dataset.act === 'buy_shares' ? `Comprou por ${fmt(data.cost)} 🪙` : `Vendeu por ${fmt(data.proceeds)} 🪙`);
-    await load();
-  }
+function render(){if(S.user && S.profile && !S.profile.terms_accepted_at){$('#app').innerHTML=`<section class="hero"><div class="eyebrow">Antes de continuar</div><h1>Termos da comunidade</h1><p>Você se compromete a utilizar apenas uma conta pessoal nesta plataforma. Contas duplicadas podem ser bloqueadas conforme as regras da comunidade.</p><label style="justify-content:center;margin:20px auto"><input id="accepttermscheck" type="checkbox" style="width:auto"> Li e aceito os termos (versão autsim-terms-v1).</label><button id="acceptterms" class="primary">Aceitar e continuar</button></section>`;$('#userbar').innerHTML='';return}if(!S.user){$('#userbar').innerHTML='';$('#app').innerHTML=`<section class="hero"><div class="eyebrow">Economia gamificada da comunidade</div><h1>Bolsa do <span style="color:#b49aff">Autsim</span></h1><p>Invista em moedas da comunidade, acompanhe gráficos, suba de nível e use AutsimCoins em jogos e recompensas virtuais.</p><label style="justify-content:center;margin:0 auto 14px"><input id="termscheck" type="checkbox" style="width:auto"> Li e concordo em usar apenas uma conta e aceito os termos da comunidade.</label><button id="login" class="primary">Entrar com Discord</button><p class="fineprint" style="margin-top:18px">O aceite deve ser registrado no banco. O acesso restrito ao servidor Discord exige a Edge Function incluída no pacote.</p></section>`;return}
+ const m=me(),xp=xpProgress(Number(m.xp||0));$('#userbar').innerHTML=`${avatar(m)?`<img class="avatar" src="${esc(avatar(m))}" alt="">`:''}<span>${esc(m.username||'Membro')}</span><b>🪙 ${fmt(m.balance)}</b><span class="pill">Nv. ${xp.l}</span><div class="xpbar"><i style="width:${xp.pct}%"></i></div>${m.is_admin?'<span class="pill" style="color:#c4b5fd">ADM</span>':''}<button id="refresh">↻</button><button id="logout">Sair</button>`;
+ const visible={...tabs};if(m.is_admin)visible.adm='Painel ADM';if(!V[S.tab])S.tab='inicio';$('#app').innerHTML=`<nav class="nav">${Object.entries(visible).map(([k,v])=>`<button data-tab="${k}" class="${S.tab===k?'active':''}">${v}</button>`).join('')}</nav><div id="view">${(V[S.tab]||V.inicio)()}</div>`;
+ if(S.tab==='graficos'){const id=$('#chartasset')?.value||S.assets[0]?.id;drawPrice(id);drawWealth()}}
+function drawPrice(id){const data=S.history.filter(x=>x.asset_id===id).slice(-200);const byDate=new Map();for(const x of data)byDate.set(new Date(x.created_at).toLocaleString('pt-BR'),Number(x.price));chart('pricechart',[...byDate.keys()],[{label:'Preço (AC)',data:[...byDate.values()],borderColor:'#a78bfa',backgroundColor:'#8b5cf633',fill:true,tension:.25,pointRadius:1}])}
+function drawWealth(){const mine=S.holdings.filter(h=>h.user_id===S.user.id&&Number(h.quantity)*price(h.asset_id)>0);const labels=['Saldo',...mine.map(h=>asset(h.asset_id).name||'Ativo')];const vals=[Number(me().balance||0),...mine.map(h=>Number(h.quantity)*price(h.asset_id))];if(S.charts.wealthchart){S.charts.wealthchart.destroy();delete S.charts.wealthchart}const el=$('#wealthchart');if(el)S.charts.wealthchart=new Chart(el,{type:'doughnut',data:{labels,datasets:[{data:vals,backgroundColor:['#8b5cf6','#2dd4a0','#fbbf24','#fb7185','#38bdf8','#c084fc']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#ddd'}}}}})}
+async function runRpc(fn,args,success){const {data,error}=await sb.rpc(fn,args);if(error){toast(error.message||'Operação recusada');return false}toast(success||'Operação concluída!');await load();return data}
+document.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;
+ if(b.id==='login'){if(!$('#termscheck')?.checked){toast('Marque a caixa para aceitar a regra de uma conta por pessoa.');return}const {error}=await sb.auth.signInWithOAuth({provider:'discord',options:{redirectTo:location.origin}});if(error)toast(error.message);return}
+ if(b.id==='logout'){await sb.auth.signOut();return}
+ if(b.id==='acceptterms'){if(!$('#accepttermscheck')?.checked){toast('Você precisa aceitar os termos para continuar.');return}b.disabled=true;const {error}=await sb.rpc('accept_terms',{p_version:'autsim-terms-v1'});if(error)toast(error.message);else await load();b.disabled=false;return}
+ if(b.id==='refresh'||b.dataset.adminRefresh!==undefined){await load();return}
+ if(b.dataset.tab){S.tab=b.dataset.tab;render();return}
+ if(b.dataset.edit){const a=asset(b.dataset.edit);const n=prompt('Nome da moeda (2–30 caracteres)',a.name||'');if(n===null)return;const s=prompt('Símbolo (2–6 caracteres)',a.symbol||'AC$');if(s===null)return;const u=prompt('URL HTTPS da imagem (vazio para remover)',a.avatar_url||'');if(u===null)return;await runRpc('update_coin',{p_asset_id:a.id,p_name:n,p_symbol:s,p_avatar:u},'Moeda atualizada!');return}
+ if(b.dataset.roul){const bet=Number($('#bet')?.value);if(!Number.isFinite(bet)||bet<1||bet>500){toast('A aposta deve ser de 1 a 500 AC.');return}b.disabled=true;try{const data=await runRpc('roulette',{p_bet:bet,p_color:b.dataset.roul},'Rodada concluída!');if(data)S.spin=data;S.tab='cassino';render()}finally{b.disabled=false}return}
+ if(b.dataset.act){const id=b.dataset.id,q=Number($('#qty-'+CSS.escape(id))?.value);if(!Number.isInteger(q)||q<1){toast('Informe uma quantidade inteira maior que zero.');return}b.disabled=true;try{const result=await runRpc(b.dataset.act,{p_asset_id:id,p_qty:q},b.dataset.act==='buy_shares'?'Compra concluída!':'Venda concluída!');if(result&&b.dataset.act==='buy_shares')toast('Compra concluída por '+fmt(result.cost)+' AC');if(result&&b.dataset.act==='sell_shares')toast('Venda concluída por '+fmt(result.proceeds)+' AC')}finally{b.disabled=false}return}
+ if(b.dataset.saveXp!==undefined){const base=Number($('#xpbase')?.value),exponent=Number($('#xpexp')?.value),bonus=Number($('#xpbonus')?.value);if(!Number.isFinite(base)||!Number.isFinite(exponent)||!Number.isFinite(bonus)){toast('Confira os valores da curva.');return}b.disabled=true;try{await runRpc('admin_update_xp_settings',{p_base:base,p_exponent:exponent,p_endgame_bonus:bonus},'Curva de XP salva no banco.')}finally{b.disabled=false}return}
+ if(b.dataset.buyitem){const id=b.dataset.buyitem;const ok=confirm('Confirmar compra deste item com AutsimCoins?');if(!ok)return;b.disabled=true;try{await runRpc('purchase_shop_item',{p_item_id:id,p_quantity:1},'Item comprado e registrado!')}catch(err){toast('A compra precisa da RPC purchase_shop_item no backend.')}finally{b.disabled=false}return}
 });
-
-sb.auth.onAuthStateChange((_e, session) => {
-  S.user = session?.user || null;
-  setTimeout(() => S.user ? load() : render(), 0);
-});
-
-sb.channel('assets').on('postgres_changes', {event: '*', schema: 'public', table: 'assets'}, () => {
-  if (S.user && document.activeElement?.tagName !== 'INPUT') load();
-}).subscribe();
-</script>
-</body>
-</html>
+document.addEventListener('change',e=>{if(e.target.id==='chartasset')drawPrice(e.target.value)});
+sb.auth.onAuthStateChange((_event,session)=>{S.user=session?.user||null;setTimeout(()=>S.user?load():render(),0)});
+(async()=>{const {data:{session}}=await sb.auth.getSession();S.user=session?.user||null;if(S.user)await load();else render()})();
+</script></body></html>
