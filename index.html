@@ -2,83 +2,1380 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b0b12"><title>[TESTE] Bolsa do Autsim 2.0</title>
+<meta name="theme-color" content="#0b0919"><title>Bolsa do Autsim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#090910;--panel:#13131d;--panel2:#191925;--line:#29293a;--text:#f3f3fb;--muted:#9999b0;--purple:#8b5cf6;--green:#2dd4a0;--red:#fb7185;--gold:#fbbf24}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#17112b 0,#090910 42rem);color:var(--text);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:#222233;color:var(--text);border-radius:10px;padding:9px 13px;transition:.15s}button:hover:not(:disabled){filter:brightness(1.18);transform:translateY(-1px)}button:disabled{opacity:.45;cursor:not-allowed}.primary{background:var(--purple);border-color:transparent}.good{background:#0c805d;border-color:transparent}.danger{background:#a82d48;border-color:transparent}.gold{background:#8a6512;border-color:transparent}input,select{background:#0d0d16;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px;max-width:100%}input[type=number]{width:105px}header{position:sticky;top:0;z-index:10;background:#0b0b12eF;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:12px clamp(12px,3vw,32px);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.brand{font-weight:900;letter-spacing:-.04em;font-size:20px}.brand span{color:#b49aff}.userbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;background:var(--line);vertical-align:middle}.xpbar{width:90px;height:7px;border-radius:10px;background:#29293a;overflow:hidden}.xpbar i{display:block;height:100%;background:linear-gradient(90deg,#8b5cf6,#d8b4fe)}main{max-width:1200px;margin:auto;padding:22px clamp(12px,3vw,30px) 60px}.hero{padding:68px 15px;text-align:center;border:1px solid var(--line);border-radius:22px;background:linear-gradient(135deg,#20173b,#11111b 65%);margin-top:18px}.hero h1{font-size:clamp(32px,5vw,56px);line-height:1.05;margin:8px 0 14px;letter-spacing:-.05em}.hero p{color:var(--muted);max-width:620px;margin:0 auto 22px}.eyebrow{color:#c4b5fd;text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:800}.nav{display:flex;gap:7px;overflow:auto;padding:3px 0 15px;margin-bottom:8px}.nav button{white-space:nowrap}.nav .active{background:var(--purple);border-color:var(--purple)}h2{margin:8px 0 16px;font-size:24px;letter-spacing:-.03em}h3{margin:0 0 12px;font-size:17px}.muted,small{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px;margin:12px 0 20px}.card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}.stat{font-size:clamp(22px,3vw,30px);font-weight:850;letter-spacing:-.04em;margin-top:6px;overflow-wrap:anywhere}.statlabel{color:var(--muted);font-size:13px}.positive{color:var(--green)}.negative{color:var(--red)}.goldtext{color:var(--gold)}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:13px;margin:10px 0 22px}table{border-collapse:collapse;width:100%;background:#12121b}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);white-space:nowrap}th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:#171722}tr:last-child td{border-bottom:0}.coinavatar{width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:6px;background:#28283a}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.spread{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.chartbox{height:290px;position:relative}.productgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.product{display:flex;flex-direction:column;gap:10px}.product .buyrow{margin-top:auto;display:flex;justify-content:space-between;gap:8px;align-items:center}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-size:12px;color:var(--muted)}.ball{width:76px;height:76px;display:grid;place-items:center;border-radius:50%;font-size:30px;font-weight:900;border:3px solid #ffffff22;margin:12px 0}.redball{background:#b91c1c}.blackball{background:#20202c}.greenball{background:#15803d}.notice{padding:12px 14px;border-radius:11px;border:1px solid #6d5b9d;background:#211a35;color:#ddd2ff;margin:12px 0}.empty{padding:28px;text-align:center;color:var(--muted)}.hidden{display:none!important}#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:30;display:none;max-width:min(600px,92vw);padding:12px 16px;border:1px solid var(--purple);border-radius:12px;background:#191526;box-shadow:0 12px 40px #0008}footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}label{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.adminbox{border-color:#a78bfa}.fineprint{font-size:12px;color:var(--muted)}@media(max-width:600px){header{align-items:flex-start}.userbar{width:100%}.chartbox{height:230px}th,td{padding:9px}}
+:root{
+  color-scheme:dark;
+  --ink:#0b0919; --panel:#15122b; --panel-2:#1e1a3c; --line:#2f2a5c; --line-soft:#231f48;
+  --text:#f3f0ff; --muted:#a8a3d1; --dim:#6f6a9c;
+  --accent:#8b5cf6; --accent-soft:color-mix(in srgb,var(--accent) 22%,transparent); --accent-hi:color-mix(in srgb,var(--accent) 60%,#fff);
+  --gold:#ffc857; --up:#3ddc97; --down:#ff5d73; --red:#d8344d; --black:#1a1830; --green:#17a05d;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif; --body:'Instrument Sans','Segoe UI',system-ui,sans-serif;
+  --r-panel:4px 22px 4px 22px; --r-btn:10px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font:15px/1.5 var(--body);font-variant-numeric:tabular-nums;min-height:100vh;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;margin:0}
+h2{font-size:28px;font-weight:800;line-height:1.1}
+h3{font-size:17px;font-weight:700}
+p{margin:0}
+a{color:var(--accent-hi)}
+.hidden{display:none!important}
+.muted{color:var(--muted)} .dim{color:var(--dim)} small,.small{font-size:13px;color:var(--muted)}
+.up{color:var(--up)} .down{color:var(--down)} .gold{color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* fundo */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(1200px 700px at 80% -10%,color-mix(in srgb,var(--accent) 24%,transparent),transparent 60%),radial-gradient(900px 600px at -10% 110%,rgba(255,200,87,.07),transparent 60%),var(--ink)}
+.bg i{position:absolute;width:46vmax;height:46vmax;border-radius:50%;filter:blur(90px);opacity:.28;animation:drift 26s ease-in-out infinite alternate}
+.bg i:nth-child(1){background:var(--accent);left:-12vmax;top:-10vmax}
+.bg i:nth-child(2){background:#2a7fff;right:-16vmax;top:30vh;animation-duration:34s;opacity:.16}
+@keyframes drift{to{transform:translate3d(8vmax,6vmax,0) scale(1.15)}}
+html.calm .bg i{animation:none}
+
+/* topo */
+header.top{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px clamp(12px,3vw,28px);background:color-mix(in srgb,var(--ink) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
+.brand{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.04em;display:flex;align-items:center;gap:10px;cursor:pointer;background:none;border:0;padding:0}
+.brand .logo{width:34px;height:34px;display:grid;place-items:center;background:var(--accent);border-radius:4px 14px 4px 14px;font-size:18px;box-shadow:0 6px 22px var(--accent-soft)}
+.userbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;background:var(--line);flex:none}
+.bal{display:flex;align-items:center;gap:6px;font-family:var(--display);font-weight:800;font-size:18px;color:var(--gold);padding:4px 12px;border-radius:999px;background:rgba(255,200,87,.1);border:1px solid rgba(255,200,87,.25)}
+.lvl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.xpbar{width:84px;height:6px;border-radius:9px;background:var(--line-soft);overflow:hidden}
+.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-hi));transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.iconbtn{width:36px;height:36px;padding:0;display:grid;place-items:center;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}
+
+/* ticker */
+.ticker{position:relative;overflow:hidden;background:#07061320;border-bottom:1px solid var(--line-soft);height:44px;display:flex;align-items:center}
+.ticker::before,.ticker::after{content:"";position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--ink),transparent)} .ticker::after{right:0;background:linear-gradient(270deg,var(--ink),transparent)}
+.tk-track{display:flex;width:max-content;animation:marquee var(--dur,60s) linear infinite}
+.ticker:hover .tk-track{animation-play-state:paused}
+html.calm .tk-track{animation:none} html.calm .ticker{overflow-x:auto}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.tk{display:flex;align-items:baseline;gap:9px;padding:0 22px;border:0;background:none;white-space:nowrap;cursor:pointer;font-size:14px}
+.tk b{font-family:var(--display);font-weight:700;color:var(--muted)}
+.tk .pr{font-weight:700}
+.tk .ch{font-weight:700;font-size:13px}
+.tk:hover b{color:var(--text)}
+.tk-empty{margin:auto;color:var(--dim);font-size:13px}
+.band{display:flex;justify-content:space-between;gap:16px;padding:6px clamp(12px,3vw,28px);font-size:13px;color:var(--muted);background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 16%,transparent),transparent);border-bottom:1px solid var(--line-soft)}
+.band b{color:var(--gold);font-weight:700}
+.band .ann{color:var(--text)}
+
+/* casca */
+.shell{display:grid;grid-template-columns:188px minmax(0,1fr);gap:22px;max-width:1380px;margin:0 auto;padding:22px clamp(12px,3vw,28px) 90px}
+.rail{position:sticky;top:112px;align-self:start;display:flex;flex-direction:column;gap:3px}
+.rail button{display:flex;align-items:center;gap:11px;text-align:left;padding:10px 12px;border:0;background:none;border-radius:4px 14px 4px 14px;color:var(--muted);font-weight:600;cursor:pointer;transition:background .15s,color .15s,transform .15s}
+.rail button:hover{background:var(--panel);color:var(--text);transform:translateX(3px)}
+.rail button.active{background:linear-gradient(90deg,var(--accent-soft),transparent);color:var(--text);box-shadow:inset 3px 0 0 var(--accent)}
+.rail .ic{width:22px;text-align:center;font-size:17px}
+.badge{margin-left:auto;background:var(--down);color:#fff;font-size:11px;font-weight:700;border-radius:99px;padding:1px 7px}
+#view{min-width:0;animation:viewIn .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes viewIn{from{opacity:0;transform:translateY(8px)}}
+html.calm #view{animation:none}
+
+/* componentes */
+.panel{background:linear-gradient(165deg,var(--panel-2),var(--panel));border:1px solid var(--line-soft);border-radius:var(--r-panel);padding:18px;min-width:0;position:relative}
+.panel.glow{border-color:var(--line);box-shadow:0 18px 60px -28px var(--accent)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin:14px 0}
+.cols{display:grid;gap:14px;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spread{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.stack{display:flex;flex-direction:column;gap:10px}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.page-head p{max-width:60ch;margin-top:6px}
+.stat-label{color:var(--muted);font-size:13px}
+.stat{font-family:var(--display);font-weight:800;font-size:clamp(24px,3vw,34px);letter-spacing:-.03em;line-height:1.1;margin-top:4px;overflow-wrap:anywhere}
+.hero-bal{font-size:clamp(40px,7vw,68px);color:var(--gold);line-height:1}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:2px 10px;font-size:12px;color:var(--muted);white-space:nowrap}
+.pill.acc{color:var(--accent-hi);border-color:var(--accent)}
+.notice{padding:12px 14px;border-radius:4px 14px 4px 14px;border:1px solid var(--line);background:var(--accent-soft);color:#e6defc;margin:12px 0;font-size:14px}
+.empty{padding:26px;text-align:center;color:var(--dim)}
+
+button{cursor:pointer;border:1px solid var(--line);background:var(--panel-2);border-radius:var(--r-btn);padding:8px 14px;font-weight:600;transition:transform .12s,filter .15s,background .15s}
+button:hover:not(:disabled){filter:brightness(1.2);transform:translateY(-1px)}
+button:active:not(:disabled){transform:translateY(1px) scale(.98)}
+button:disabled{opacity:.42;cursor:not-allowed}
+.btn-main{background:var(--accent);border-color:transparent;color:#fff;box-shadow:0 8px 26px -10px var(--accent)}
+.btn-good{background:#0f8f62;border-color:transparent;color:#fff}
+.btn-bad{background:#b3304a;border-color:transparent;color:#fff}
+.btn-gold{background:var(--gold);border-color:transparent;color:#2a1c00}
+.btn-ghost{background:transparent}
+.btn-sm{padding:5px 10px;font-size:13px}
+.btn-lg{padding:14px 22px;font-size:17px}
+input,select,textarea{background:#0a0817;border:1px solid var(--line);border-radius:9px;padding:9px 11px;max-width:100%;width:100%}
+input[type=number]{width:112px}
+input[type=checkbox]{width:auto;accent-color:var(--accent)}
+input[type=color]{padding:2px;height:38px;width:64px}
+input[type=range]{padding:0;accent-color:var(--accent)}
+textarea{resize:vertical;min-height:70px}
+label{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--muted)}
+label.inline{flex-direction:row;align-items:center;gap:9px;color:var(--text);font-size:14px}
+
+.tablewrap{overflow:auto;border:1px solid var(--line-soft);border-radius:4px 16px 4px 16px;margin:10px 0 20px}
+table{border-collapse:collapse;width:100%;background:#0d0b20}
+th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line-soft);white-space:nowrap;vertical-align:middle}
+th{font-size:12px;color:var(--dim);font-weight:600;background:#110e26}
+tr:last-child td{border-bottom:0}
+tbody tr{transition:background .15s} tbody tr:hover{background:#15122b}
+.coin{display:inline-flex;align-items:center;gap:8px}
+.coin img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:var(--line)}
+.coin .sym{font-family:var(--display);font-weight:800;letter-spacing:-.01em}
+.coin .nm{color:var(--muted);font-size:13px}
+.spark{display:block}
+.me-row{background:var(--accent-soft)}
+.podium td:first-child{font-family:var(--display);font-weight:800;font-size:18px}
+.rank1{color:var(--gold)} .rank2{color:#cfd3e6} .rank3{color:#d79a6a}
+
+/* loja */
+.items{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.item{display:flex;flex-direction:column;gap:10px;transition:transform .2s}
+.item:hover{transform:translateY(-3px) rotate(-.4deg)}
+.item .em{font-size:38px;line-height:1}
+.item .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.slotcard{border-color:var(--accent);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 24%,var(--panel-2)),var(--panel))}
+
+/* cassino */
+.casino{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;align-items:start}
+.subtabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.subtabs button{border-radius:99px;background:var(--panel);padding:8px 18px}
+.subtabs button.active{background:var(--accent);border-color:transparent;color:#fff}
+.arena{position:relative;overflow:hidden}
+.cv-wrap{position:relative;width:100%;aspect-ratio:16/9;max-height:430px;border-radius:4px 18px 4px 18px;overflow:hidden;background:#07051a;border:1px solid var(--line-soft)}
+.cv-wrap canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cv-over{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;text-align:center}
+.cv-over .big{font-family:var(--display);font-weight:800;font-size:clamp(42px,9vw,92px);letter-spacing:-.04em;text-shadow:0 4px 40px #000}
+.cv-over .sub{color:var(--muted);font-size:15px;margin-top:4px}
+.crashed .big{color:var(--down)}
+.betbar{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin-top:14px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{padding:5px 10px;font-size:13px;border-radius:99px}
+.colorbtns{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.colorbtns button{padding:14px 8px;font-weight:800;font-size:16px;border:0;color:#fff;display:flex;flex-direction:column;gap:2px;align-items:center}
+.colorbtns small{color:rgba(255,255,255,.75);font-weight:600}
+.cb-red{background:var(--red)} .cb-black{background:#2a2750;border:1px solid var(--line)!important} .cb-green{background:var(--green)}
+.hist{display:flex;gap:5px;flex-wrap:wrap;margin:12px 0 4px}
+.hist span{min-width:30px;height:30px;padding:0 7px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff}
+.hist .h-red{background:var(--red)} .hist .h-black{background:#2a2750} .hist .h-green{background:var(--green)}
+.hist .h-lo{background:#4a2740;color:#ff8da0} .hist .h-mid{background:#1e3a5a;color:#8dd0ff} .hist .h-hi{background:#4b3a12;color:var(--gold)}
+.hist span:first-child{animation:pop .5s}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+.livebets{display:grid;gap:10px;grid-template-columns:repeat(3,1fr);margin-top:12px}
+.livebets .col{background:#0d0b20;border-radius:4px 14px 4px 14px;padding:10px;min-height:70px;font-size:13px}
+.livebets .col h4{margin:0 0 6px;font-size:13px;display:flex;justify-content:space-between}
+.betline{display:flex;justify-content:space-between;gap:8px;padding:2px 0}
+.betline.win{color:var(--up)} .betline.lose{color:var(--dim);text-decoration:line-through}
+.rocketbets{margin-top:12px;display:grid;gap:4px;font-size:13px}
+.rocketbets .betline{background:#0d0b20;padding:6px 10px;border-radius:8px}
+.cash-btn{width:100%;margin-top:0;font-size:20px;padding:16px;animation:throb .9s ease-in-out infinite}
+@keyframes throb{50%{box-shadow:0 0 0 8px rgba(61,220,151,.18)}}
+html.calm .cash-btn{animation:none}
+
+.chatbox{display:flex;flex-direction:column;height:min(640px,calc(100vh - 150px));position:sticky;top:112px;padding:0;overflow:hidden}
+.chat-head{padding:12px 16px;border-bottom:1px solid var(--line-soft);display:flex;justify-content:space-between;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--dim);display:inline-block;margin-right:6px}
+.dot.on{background:var(--up);box-shadow:0 0 10px var(--up)}
+#chatlist{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:9px}
+.msg{display:flex;gap:9px;align-items:flex-start;animation:msgIn .25s ease-out}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}}
+.msg .avatar{width:26px;height:26px;margin-top:2px}
+.msg .who{font-weight:700;font-size:13px;color:var(--accent-hi)}
+.msg.mine .who{color:var(--gold)}
+.msg .txt{font-size:14px;overflow-wrap:anywhere;color:#e6e2fb}
+.msg .del{margin-left:auto;padding:0 6px;font-size:12px;background:none;border:0;color:var(--dim)}
+.chat-form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line-soft)}
+
+.market{display:flex;flex-direction:column;gap:12px}
+.poolbar{height:12px;border-radius:99px;overflow:hidden;display:flex;background:#0d0b20}
+.poolbar i{display:block;height:100%;transition:width .6s}
+.poolbar .y{background:var(--up)} .poolbar .n{background:var(--down)}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sides>div{background:#0d0b20;border-radius:4px 14px 4px 14px;padding:10px 12px}
+
+/* modal / toast / fx */
+#modal{position:fixed;inset:0;z-index:100;background:rgba(5,4,14,.72);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.sheet{width:min(520px,100%);max-height:92vh;overflow:auto;animation:sheetIn .28s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes sheetIn{from{transform:translateY(24px) scale(.97);opacity:0}}
+.sheet.wide{width:min(760px,100%)}
+.formgrid{display:grid;gap:12px;margin:14px 0}
+#toasts{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:8px;align-items:center;width:min(560px,92vw);pointer-events:none}
+.toast{pointer-events:auto;padding:11px 16px;border-radius:4px 14px 4px 14px;background:#191433;border:1px solid var(--accent);box-shadow:0 14px 40px #000a;animation:toastIn .3s cubic-bezier(.2,.9,.3,1.3)}
+.toast.err{border-color:var(--down)} .toast.gain{border-color:var(--gold);color:var(--gold)}
+@keyframes toastIn{from{transform:translateY(16px);opacity:0}}
+#fx{position:fixed;inset:0;z-index:110;pointer-events:none}
+
+/* musica */
+.dock{position:fixed;left:14px;bottom:14px;z-index:60;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.dock-bar{display:flex;align-items:center;gap:10px;padding:7px 8px 7px 12px;border-radius:99px;background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line);backdrop-filter:blur(10px);max-width:min(300px,calc(100vw - 28px));box-shadow:0 10px 30px #0008}
+.eq{display:flex;gap:2px;align-items:flex-end;height:16px;flex:none}
+.eq i{width:3px;background:var(--accent-hi);border-radius:2px;height:4px}
+.dock.playing .eq i{animation:eq .8s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:.2s!important}.eq i:nth-child(3){animation-delay:.4s!important}.eq i:nth-child(4){animation-delay:.1s!important}
+@keyframes eq{50%{height:16px}}
+.dock-title{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+.dock-title small{display:block;line-height:1.1}
+#spwrap{width:300px;max-width:calc(100vw - 28px);border-radius:12px;overflow:hidden}
+#ytp{position:fixed;left:-20px;bottom:-20px;width:2px;height:2px;opacity:.01;pointer-events:none}
+
+/* gate */
+.gate{max-width:760px;margin:6vh auto;padding:0 16px;text-align:center}
+.gate h1{font-size:clamp(42px,9vw,88px);font-weight:800;letter-spacing:-.05em;line-height:.95;margin:6px 0 18px}
+.gate p.lead{color:var(--muted);max-width:52ch;margin:0 auto 22px;font-size:17px}
+.gate .panel{text-align:left;max-width:520px;margin:0 auto}
+.floaty{display:inline-block;animation:floaty 3s ease-in-out infinite}
+@keyframes floaty{50%{transform:translateY(-8px) rotate(6deg)}}
+html.calm .floaty{animation:none}
+
+/* admin */
+.admtabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.admtabs button{border-radius:99px;background:var(--panel)} .admtabs button.active{background:var(--accent);border-color:transparent;color:#fff}
+.setrow{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:end;padding:10px 0;border-bottom:1px solid var(--line-soft)}
+.setrow:last-child{border:0}
+
+@media(max-width:1000px){.casino{grid-template-columns:1fr}.chatbox{position:static;height:460px}.cols{grid-template-columns:1fr}}
+@media(max-width:860px){
+  .shell{grid-template-columns:1fr;gap:10px;padding-top:12px}
+  .rail{position:sticky;top:96px;z-index:30;flex-direction:row;overflow-x:auto;background:color-mix(in srgb,var(--ink) 90%,transparent);backdrop-filter:blur(10px);padding:6px 0;margin:0 -4px}
+  .rail button{flex:none;padding:8px 12px} .rail button:hover{transform:none}
+  .livebets{grid-template-columns:1fr}
+  th,td{padding:9px}
+}
+@media(prefers-reduced-motion:reduce){.bg i,.tk-track,.floaty,.cash-btn,#view{animation:none!important}}
+
 </style>
 </head>
 <body>
-<header><div class="brand">📈 Bolsa do <span>Autsim</span></div><div id="userbar" class="userbar"></div></header>
-<main id="app"><div class="empty">Carregando Bolsa do Autsim…</div></main><footer>Economia virtual para a comunidade. AutsimCoins não têm valor monetário real.</footer><div id="toast" role="status" aria-live="polite"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<div class="bg"><i></i><i></i></div>
+<header class="top">
+  <button class="brand" data-do="tab" data-tab="inicio" aria-label="Início"><span class="logo">📈</span><span id="brandname">Bolsa do Autsim</span></button>
+  <div id="userbar" class="userbar"></div>
+</header>
+<div class="ticker" id="ticker" aria-label="Maiores variações de preço"><div class="tk-empty">Carregando o mercado…</div></div>
+<div class="band"><span class="ann" id="annc"></span><span>Bônus diário reseta em <b id="dailycd">--:--:--</b></span></div>
+<section id="gate" class="gate"><div class="muted">Carregando…</div></section>
+<div class="shell hidden" id="shell"><nav class="rail" id="rail" aria-label="Seções"></nav><main id="view"></main></div>
+<div class="dock hidden" id="dock">
+  <div id="spwrap" class="hidden"><div id="spembed"></div></div>
+  <div class="dock-bar">
+    <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="dock-title" id="docktitle">Música desligada</div>
+    <button class="iconbtn" data-do="music-toggle" id="dockplay" title="Ligar ou desligar a música" aria-label="Ligar ou desligar a música">▶</button>
+    <button class="iconbtn" data-do="music-next" title="Próxima faixa" aria-label="Próxima faixa">⏭</button>
+  </div>
+</div>
+<div id="ytp"></div>
+<div id="modal" class="hidden" role="dialog" aria-modal="true"></div>
+<div id="toasts" role="status" aria-live="polite"></div>
+<canvas id="fx"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script>
 'use strict';
+/* ============================================================
+   BOLSA DO AUTSIM 3.0 — núcleo: config, estado, utilitários, sons, efeitos
+   ============================================================ */
 const SUPABASE_URL='https://vyhhbepqikaizjyuogxk.supabase.co';
 const SUPABASE_KEY='sb_publishable_te15kBxoDWsrWci0NhVY3w_M8ZC38XB';
+// Quando for ativar a proteção "só membros do servidor", troque para true (precisa da Edge Function check-guild-membership).
+const REQUIRE_GUILD_CHECK=false;
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt=n=>Number(n||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
-const names={buy:'Compra',sell:'Venda',bonus:'Bônus',game:'Jogo',adjust:'Ajuste',shop:'Loja'};
-const tabs={inicio:'Início',bolsa:'Bolsa',carteira:'Carteira',graficos:'Gráficos',cassino:'Cassino',jogos:'Jogos',loja:'Loja',missoes:'Missões',conquistas:'Conquistas',ranking:'Ranking',extrato:'Extrato',perfil:'Perfil'};
-let S={user:null,profile:null,profiles:[],assets:[],holdings:[],tx:[],history:[],items:[],inventory:[],missions:[],tab:'inicio',spin:null,charts:{},xpConfig:{base:100,exponent:1.55,endgame_bonus:18000},loading:false};
+
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=(n,d=2)=>Number(n||0).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtMult=m=>fmt(m,2)+'x';
+const pctTxt=p=>(p>0?'+':'')+fmt(p,2)+'%';
+const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const ease={out3:t=>1-Math.pow(1-t,3),out5:t=>1-Math.pow(1-t,5)};
+const TYPE_NAMES={buy:'Compra',sell:'Venda',bonus:'Bônus',game:'Jogo',adjust:'Ajuste do ADM',shop:'Loja',daily:'Bônus diário',bet:'Aposta',win:'Prêmio',refund:'Devolução',music:'Música'};
+
+/* ---------- preferências (neste navegador) ---------- */
+const PREFS_KEY='autsim_prefs_v3';
+const P={music:false,volume:0.5,sfx:true,motion:!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)};
+try{Object.assign(P,JSON.parse(localStorage.getItem(PREFS_KEY)||'{}'))}catch(e){}
+function savePrefs(){try{localStorage.setItem(PREFS_KEY,JSON.stringify(P))}catch(e){}document.documentElement.classList.toggle('calm',!P.motion)}
+document.documentElement.classList.toggle('calm',!P.motion);
+
+/* ---------- estado ---------- */
+const S={user:null,profile:null,profiles:[],assets:[],holdings:[],tx:[],items:[],inventory:[],missions:[],completions:[],
+  movers:{},settings:{site_name:'Bolsa do Autsim',announcement:'',accent_color:'#8b5cf6',daily_bonus:50},
+  xpConfig:{base:100,exponent:1.55,endgame_bonus:18000},tab:'inicio',charts:{},chartAsset:null,unread:0,dailyChecked:false,lastLevel:null};
 const me=()=>S.profile||{balance:0,xp:0,username:'Membro'};
-const profile=id=>S.profiles.find(x=>x.id===id)||{};const asset=id=>S.assets.find(x=>x.id===id)||{};
+const profile=id=>S.profiles.find(x=>x.id===id)||{};
+const asset=id=>S.assets.find(x=>x.id===id)||{};
 const held=(uid,aid)=>Number(S.holdings.find(x=>x.user_id===uid&&x.asset_id===aid)?.quantity||0);
 const sold=aid=>S.holdings.filter(x=>x.asset_id===aid).reduce((n,x)=>n+Number(x.quantity||0),0);
-const price=aid=>Number(asset(aid).price||0);const worth=uid=>Number(profile(uid).balance||0)+S.holdings.filter(x=>x.user_id===uid).reduce((n,x)=>n+Number(x.quantity)*price(x.asset_id),0);
-const lvl=xp=>{let level=1;while(level<99&&xp>=xpForLevel(level+1))level++;return level};
-// Curva progressiva: fácil no início, muito mais difícil nos níveis finais.
-function xpForLevel(level){if(level<=1)return 0;const x=(level-1)/98;return Math.round(Number(S.xpConfig.base||100)*Math.pow(level-1,Number(S.xpConfig.exponent||1.55))+Number(S.xpConfig.endgame_bonus||18000)*Math.pow(x,5));}
-function xpProgress(xp){const l=lvl(xp);return {l,lo:xpForLevel(l),hi:xpForLevel(Math.min(99,l+1)),pct:l>=99?100:Math.max(0,Math.min(100,(xp-xpForLevel(l))/(xpForLevel(l+1)-xpForLevel(l))*100))};}
-function avatar(p){return p?.avatar_url||''}function coin(a){return `${a.avatar_url?`<img class="coinavatar" src="${esc(a.avatar_url)}" alt="">`:''}<b>${esc(a.symbol||'AC$')}</b> ${esc(a.name||'Moeda')}`}
-function toast(msg){const t=$('#toast');t.textContent=msg;t.style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.style.display='none',4200)}
-function table(headers,rows,empty='Nada por aqui ainda.'){return `<div class="tablewrap"><table><thead><tr>${headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="empty">${empty}</td></tr>`}</tbody></table></div>`}
-async function safeQuery(query,label){const r=await query;if(r.error){console.warn(label,r.error.message);return {data:[],error:r.error}}return r}
-async function load(){if(!S.user)return;S.loading=true;try{
- // MODO TESTE: verificação de membro do Discord DESATIVADA. Não publique esta versão.
+const price=aid=>Number(asset(aid).price||0);
+const worth=uid=>Number(profile(uid).balance||0)+S.holdings.filter(x=>x.user_id===uid).reduce((n,x)=>n+Number(x.quantity)*price(x.asset_id),0);
+const isAdmin=()=>!!me().is_admin;
 
- const [pr,ar,hr,tr,phr,ir,inv,mr,xpr]=await Promise.all([
-  safeQuery(sb.from('profiles').select('id,username,avatar_url,balance,xp,is_admin,terms_accepted_at,terms_version'), 'profiles'),safeQuery(sb.from('assets').select('id,name,symbol,avatar_url,price,total_shares,updated_at'),'assets'),safeQuery(sb.from('holdings').select('user_id,asset_id,quantity'),'holdings'),safeQuery(sb.from('transactions').select('id,user_id,asset_id,type,quantity,unit_price,amount,balance_after,created_at').eq('user_id',S.user.id).order('created_at',{ascending:false}).limit(100),'transactions'),safeQuery(sb.from('price_history').select('asset_id,price,created_at').order('created_at',{ascending:true}).limit(3000),'price_history'),safeQuery(sb.from('shop_items').select('*').eq('active',true).order('price'),'shop_items'),safeQuery(sb.from('user_inventory').select('*').eq('user_id',S.user.id),'inventory'),safeQuery(sb.from('missions').select('*').eq('active',true).order('sort_order'),'missions'),safeQuery(sb.from('xp_settings').select('base,exponent,endgame_bonus').eq('id',true).maybeSingle(),'xp_settings')
- ]);
- S.profiles=pr.data||[];S.profile=S.profiles.find(x=>x.id===S.user.id)||null;S.assets=ar.data||[];S.holdings=hr.data||[];S.tx=tr.data||[];S.history=phr.data||[];S.items=ir.data||[];S.inventory=inv.data||[];S.missions=mr.data||[];if(xpr.data)S.xpConfig=xpr.data;
- if(!S.profile){toast('Seu perfil ainda não foi criado. Verifique o trigger de cadastro do Supabase.');}
- }catch(e){console.error(e);toast('Não foi possível atualizar os dados.')}finally{S.loading=false;render()}}
-function chart(canvasId,labels,datasets,type='line'){if(S.charts[canvasId]){S.charts[canvasId].destroy();delete S.charts[canvasId]}const el=document.getElementById(canvasId);if(!el)return;S.charts[canvasId]=new Chart(el,{type,data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:'index'},plugins:{legend:{labels:{color:'#d8d8e8'}}},scales:{x:{ticks:{color:'#9999b0',maxTicksLimit:8},grid:{color:'#29293a'}},y:{ticks:{color:'#9999b0'},grid:{color:'#29293a'}}}}})}
+function xpForLevel(l){if(l<=1)return 0;const x=(l-1)/98;return Math.round(Number(S.xpConfig.base||100)*Math.pow(l-1,Number(S.xpConfig.exponent||1.55))+Number(S.xpConfig.endgame_bonus||18000)*Math.pow(x,5))}
+function levelOf(xp){let l=1;while(l<99&&xp>=xpForLevel(l+1))l++;return l}
+function xpProgress(xp){const l=levelOf(xp),lo=xpForLevel(l),hi=xpForLevel(Math.min(99,l+1));return{l,lo,hi,pct:l>=99?100:clamp((xp-lo)/(hi-lo)*100,0,100)}}
+
+/* ---------- relógio do servidor (para animações sincronizadas) ---------- */
+let clockOffset=0,clockInit=false;
+const srvNow=()=>Date.now()+clockOffset;
+function syncClock(iso,t0,t1){const t=Date.parse(iso);if(isNaN(t))return;const off=t-(t0+t1)/2;clockOffset=clockInit?clockOffset*.7+off*.3:off;clockInit=true}
+async function stateRpc(fn){const t0=Date.now();const r=await sb.rpc(fn);const t1=Date.now();if(r.error)throw r.error;if(r.data?.now)syncClock(r.data.now,t0,t1);return r.data}
+
+/* ---------- toasts, modal ---------- */
+function toast(msg,kind='ok',ms=4200){const box=$('#toasts');if(!box)return;const t=document.createElement('div');t.className='toast '+(kind==='ok'?'':kind);t.textContent=msg;box.appendChild(t);while(box.children.length>3)box.firstChild.remove();setTimeout(()=>t.remove(),ms)}
+const errMsg=e=>(e&&(e.message||e.error_description))||'Algo deu errado. Tente de novo.';
+function openModal(html,wide=false){const m=$('#modal');m.innerHTML=`<div class="panel sheet${wide?' wide':''}">${html}</div>`;m.classList.remove('hidden');const f=m.querySelector('input,select,textarea,button.btn-main');if(f)setTimeout(()=>f.focus(),50)}
+function closeModal(){const m=$('#modal');m.classList.add('hidden');m.innerHTML=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#modal').classList.contains('hidden'))closeModal()});
+document.addEventListener('mousedown',e=>{if(e.target.id==='modal')closeModal()});
+function confirmBox(msg,okLabel='Confirmar'){return new Promise(res=>{openModal(`<h3>${esc(msg)}</h3><div class="row" style="margin-top:18px;justify-content:flex-end"><button id="cfNo">Cancelar</button><button id="cfYes" class="btn-main">${esc(okLabel)}</button></div>`);$('#cfNo').onclick=()=>{closeModal();res(false)};$('#cfYes').onclick=()=>{closeModal();res(true)}})}
+/* Formulário genérico: fields=[{name,label,type,value,options,hint,required}] */
+function openForm({title,intro,fields,submit='Salvar',onSubmit,wide=false}){
+  const inputs=fields.map(f=>{const id='f_'+f.name,v=f.value??'';let c;
+    if(f.type==='textarea')c=`<textarea id="${id}" rows="3" ${f.max?`maxlength="${f.max}"`:''}>${esc(v)}</textarea>`;
+    else if(f.type==='select')c=`<select id="${id}">${f.options.map(o=>`<option value="${esc(o.value)}" ${String(o.value)===String(v)?'selected':''}>${esc(o.label)}</option>`).join('')}</select>`;
+    else if(f.type==='checkbox')return `<label class="inline"><input id="${id}" type="checkbox" ${v?'checked':''}> ${esc(f.label)}</label>`;
+    else c=`<input id="${id}" type="${f.type||'text'}" value="${esc(v)}" ${f.step?`step="${f.step}"`:''} ${f.min!==undefined?`min="${f.min}"`:''} ${f.max&&f.type!=='number'?`maxlength="${f.max}"`:''} ${f.placeholder?`placeholder="${esc(f.placeholder)}"`:''} ${f.type==='number'?'style="width:100%"':''}>`;
+    return `<label>${esc(f.label)}${c}${f.hint?`<small>${esc(f.hint)}</small>`:''}</label>`}).join('');
+  openModal(`<h3>${esc(title)}</h3>${intro?`<p class="muted" style="margin-top:6px">${esc(intro)}</p>`:''}<form id="genform"><div class="formgrid">${inputs}</div><div class="row" style="justify-content:flex-end"><button type="button" id="gfCancel">Cancelar</button><button type="submit" class="btn-main">${esc(submit)}</button></div></form>`,wide);
+  $('#gfCancel').onclick=closeModal;
+  $('#genform').onsubmit=async ev=>{ev.preventDefault();const vals={};for(const f of fields){const el=$('#f_'+f.name);vals[f.name]=f.type==='checkbox'?el.checked:(f.type==='number'?(el.value===''?null:Number(el.value)):el.value)}
+    const btn=ev.submitter||$('#genform button[type=submit]');btn.disabled=true;try{await onSubmit(vals);closeModal()}catch(e){toast(errMsg(e),'err')}finally{btn.disabled=false}};
+}
+
+/* ---------- números animados ---------- */
+function countTo(el,to,dur=700,dec=2){if(!el)return;to=Number(to||0);const from=el.dataset.v!==undefined?Number(el.dataset.v):to;el.dataset.v=to;
+  if(!P.motion||from===to){el.textContent=fmt(to,dec);return}
+  const t0=performance.now();const f=t=>{const p=clamp((t-t0)/dur,0,1);el.textContent=fmt(from+(to-from)*ease.out3(p),dec);if(p<1&&el.isConnected)requestAnimationFrame(f)};requestAnimationFrame(f)}
+
+/* ---------- efeitos sonoros (sintetizados, sem arquivos) ---------- */
+const SFX={ctx:null,
+  init(){if(!this.ctx){try{this.ctx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(this.ctx&&this.ctx.state==='suspended')this.ctx.resume()},
+  tone(f,d=.08,type='sine',vol=.05,at=0,to=0){const c=this.ctx;if(!c)return;const t=c.currentTime+at,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(to)o.frequency.exponentialRampToValueAtTime(to,t+d);g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g).connect(c.destination);o.start(t);o.stop(t+d+.02)},
+  play(n){if(!P.sfx)return;this.init();if(!this.ctx)return;
+    switch(n){
+      case'click':this.tone(520,.05,'triangle',.03);break;
+      case'coin':this.tone(988,.07,'square',.03);this.tone(1319,.14,'square',.03,.07);break;
+      case'win':[523,659,784,1047].forEach((f,i)=>this.tone(f,.16,'triangle',.05,i*.08));break;
+      case'lose':this.tone(240,.28,'sawtooth',.04,0,110);break;
+      case'tick':this.tone(1200,.03,'square',.015);break;
+      case'launch':this.tone(120,.6,'sawtooth',.04,0,520);break;
+      case'cash':this.tone(784,.08,'triangle',.06);this.tone(1175,.18,'triangle',.06,.08);break;
+      case'crash':this.tone(180,.45,'sawtooth',.07,0,40);break;
+      case'chat':this.tone(740,.06,'sine',.03);break;
+      case'error':this.tone(200,.15,'square',.03);break;
+      case'level':[392,523,659,784,1047].forEach((f,i)=>this.tone(f,.18,'triangle',.05,i*.07));break;
+    }}};
+document.addEventListener('click',e=>{if(e.target.closest('button,.tk'))SFX.play('click')},true);
+
+/* ---------- confete e chuva de moedas ---------- */
+const FX={cv:null,cx:null,parts:[],run:false,
+  init(){this.cv=$('#fx');this.cx=this.cv&&this.cv.getContext?this.cv.getContext('2d'):null;this.resize();addEventListener('resize',()=>this.resize())},
+  resize(){if(this.cv){this.cv.width=innerWidth;this.cv.height=innerHeight}},
+  add(p){this.parts.push(p);if(!this.run&&this.cx){this.run=true;requestAnimationFrame(()=>this.step())}},
+  confetti(x=innerWidth/2,y=innerHeight/3,n=70){if(!P.motion||!this.cx)return;const cols=['#ffc857','#8b5cf6','#3ddc97','#ff5d73','#5cc8ff','#fff'];
+    for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=3+Math.random()*7;this.add({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-5,g:.28,life:90+Math.random()*50,c:cols[i%cols.length],w:5+Math.random()*6,h:3+Math.random()*4,r:Math.random()*6,vr:(Math.random()-.5)*.4})}},
+  rain(n=26){if(!P.motion||!this.cx)return;for(let i=0;i<n;i++)this.add({x:Math.random()*innerWidth,y:-30-Math.random()*400,vx:(Math.random()-.5)*1.5,vy:3+Math.random()*4,g:.05,life:200,emoji:'🪙',size:20+Math.random()*16,r:0,vr:(Math.random()-.5)*.1})},
+  step(){const c=this.cx;c.clearRect(0,0,this.cv.width,this.cv.height);this.parts=this.parts.filter(p=>{p.life--;p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;if(p.life<=0||p.y>innerHeight+60)return false;
+      c.save();c.translate(p.x,p.y);c.rotate(p.r);c.globalAlpha=clamp(p.life/30,0,1);if(p.emoji){c.font=p.size+'px serif';c.fillText(p.emoji,-p.size/2,0)}else{c.fillStyle=p.c;c.fillRect(-p.w/2,-p.h/2,p.w,p.h)}c.restore();return true});
+    if(this.parts.length)requestAnimationFrame(()=>this.step());else{this.run=false;c.clearRect(0,0,this.cv.width,this.cv.height)}}};
+
+/* ---------- sparkline em SVG ---------- */
+function spark(arr,w=96,h=28){arr=(arr||[]).map(Number);if(arr.length<2)return`<svg class="spark" width="${w}" height="${h}"><line x1="0" y1="${h/2}" x2="${w}" y2="${h/2}" stroke="#4a4580" stroke-dasharray="3 3"/></svg>`;
+  const mn=Math.min(...arr),mx=Math.max(...arr),rg=mx-mn||1,up=arr[arr.length-1]>=arr[0];
+  const pts=arr.map((v,i)=>`${(i/(arr.length-1)*(w-2)+1).toFixed(1)},${(h-3-((v-mn)/rg)*(h-6)).toFixed(1)}`).join(' ');
+  return`<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline points="${pts}" fill="none" stroke="${up?'#3ddc97':'#ff5d73'}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>`}
+
+/* ---------- peças de UI repetidas ---------- */
+function coinTag(a){return`<span class="coin">${a.avatar_url?`<img src="${esc(a.avatar_url)}" alt="" loading="lazy">`:''}<span><span class="sym">${esc(a.symbol||'MOEDA$')}</span> <span class="nm">${esc(a.name||'')}</span></span></span>`}
+function whoTag(p){return`<span class="coin">${p.avatar_url?`<img class="avatar" style="width:26px;height:26px" src="${esc(p.avatar_url)}" alt="" loading="lazy">`:''}<span>${esc(p.username||'Membro')}</span></span>`}
+function table(headers,rows,empty='Nada por aqui ainda.'){return`<div class="tablewrap"><table><thead><tr>${headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="empty">${empty}</td></tr>`}</tbody></table></div>`}
+const fmtDate=d=>d?new Date(d).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';
+function countdownTxt(ms){ms=Math.max(0,ms);const s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;return(h?String(h).padStart(2,'0')+':':'')+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0')}
+
+/* ============================================================
+   Música de fundo: playlist do ADM (YouTube/Spotify) + fila paga pelos membros (Spotify)
+   ============================================================ */
+const MUS={tracks:[],slots:[],idx:0,cur:null,yt:null,ytReady:false,ytLoading:false,pendingYt:null,gesture:false,price:100,minutes:60};
+
+async function musicLoad(){
+  try{const d=await stateRpc('music_state');MUS.tracks=d.tracks||[];MUS.slots=d.slots||[];MUS.price=Number(d.price||100);MUS.minutes=Number(d.minutes||60);musicTick()}
+  catch(e){console.warn('música:',e.message||e)}
+}
+function musicActiveSlot(){const n=srvNow();return MUS.slots.find(s=>Date.parse(s.starts_at)<=n&&n<Date.parse(s.ends_at))||null}
+function musicDesired(){
+  const s=musicActiveSlot();
+  if(s)return{key:'slot:'+s.id,kind:'spotify',type:s.ref_type,id:s.ref_id,title:s.title,by:s.username};
+  const t=MUS.tracks.filter(x=>x.active);if(!t.length)return null;
+  const x=t[MUS.idx%t.length];
+  return{key:'trk:'+x.id,kind:x.kind,type:x.ref_type,id:x.ref_id,title:x.title};
+}
+function musicTick(){
+  if(!S.user){return}
+  if(!P.music||!MUS.gesture){dockUpdate();return}
+  const want=musicDesired();
+  if(!want){musicStop();MUS.cur=null;dockUpdate();return}
+  if(!MUS.cur||MUS.cur.key!==want.key)musicPlay(want);
+  else dockUpdate();
+}
+function musicPlay(w){
+  MUS.cur=w;
+  if(w.kind==='youtube'){spHide();ytPlay()}
+  else{ytStop();spShow(w)}
+  dockUpdate();
+}
+function musicStop(){ytStop();spHide();MUS.cur=null;dockUpdate()}
+function musicNext(){MUS.idx++;MUS.cur=null;if(P.music)musicTick();else dockUpdate()}
+function musicToggle(){
+  MUS.gesture=true;P.music=!P.music;savePrefs();
+  if(P.music)musicTick();else musicStop();
+  dockUpdate();const c=$('#prefMusic');if(c)c.checked=P.music;
+}
+
+/* YouTube */
+function ytEnsure(cb){
+  if(window.YT&&YT.Player){cb();return}
+  MUS.pendingYt=cb;if(MUS.ytLoading)return;MUS.ytLoading=true;
+  window.onYouTubeIframeAPIReady=()=>{MUS.ytLoading=false;const c=MUS.pendingYt;MUS.pendingYt=null;if(c)c()};
+  const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';s.onerror=()=>{MUS.ytLoading=false;toast('Não foi possível carregar o player do YouTube.','err')};document.head.appendChild(s);
+}
+function ytPlay(){
+  ytEnsure(()=>{
+    if(!MUS.yt){
+      const holder=document.createElement('div');holder.id='ytinner';$('#ytp').appendChild(holder);
+      MUS.yt=new YT.Player('ytinner',{width:'200',height:'200',playerVars:{playsinline:1,controls:0,rel:0},events:{
+        onReady:()=>{MUS.ytReady=true;ytLoadCur()},
+        onStateChange:e=>{if(e.data===0)musicNext()},
+        onError:()=>{toast('Essa faixa do YouTube não pôde tocar. Pulando para a próxima.','err');setTimeout(musicNext,900)}}});
+    }else if(MUS.ytReady)ytLoadCur();
+  });
+}
+function ytLoadCur(){
+  const w=MUS.cur;if(!w||w.kind!=='youtube'||!MUS.ytReady)return;
+  try{MUS.yt.setVolume(Math.round(P.volume*100));
+    if(w.type==='playlist')MUS.yt.loadPlaylist({list:w.id,listType:'playlist',index:0});else MUS.yt.loadVideoById(w.id)}catch(e){console.warn(e)}
+}
+function ytStop(){try{if(MUS.yt&&MUS.ytReady)MUS.yt.stopVideo()}catch(e){}}
+function musicSetVolume(v){P.volume=clamp(v,0,1);savePrefs();try{if(MUS.yt&&MUS.ytReady)MUS.yt.setVolume(Math.round(P.volume*100))}catch(e){}}
+
+/* Spotify (embed oficial; o navegador exige apertar play dentro do player) */
+function spShow(w){
+  $('#spwrap').classList.remove('hidden');
+  $('#spembed').innerHTML=`<iframe title="Spotify" src="https://open.spotify.com/embed/${esc(w.type)}/${esc(w.id)}?theme=0" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:12px;display:block"></iframe>`;
+}
+function spHide(){$('#spwrap').classList.add('hidden');$('#spembed').innerHTML=''}
+
+function dockUpdate(){
+  const dock=$('#dock');if(!dock)return;
+  dock.classList.toggle('hidden',!S.user);
+  const w=MUS.cur;
+  dock.classList.toggle('playing',!!(P.music&&w));
+  $('#dockplay').textContent=P.music?'⏸':'▶';
+  let t;
+  if(!P.music)t='Música desligada';
+  else if(!w)t=MUS.tracks.some(x=>x.active)?'Carregando…':'Sem faixas — o ADM ainda não adicionou músicas';
+  else t=`<span>♪ ${esc(w.title)}</span><small>${w.by?`pedida por ${esc(w.by)}`:(w.kind==='spotify'?'Spotify':'YouTube')}${w.kind==='spotify'?' · aperte ▶ no player':''}</small>`;
+  $('#docktitle').innerHTML=t;
+}
+/* O navegador só libera som depois de um clique: o primeiro clique "arma" a música. */
+function armMusic(){
+  const go=()=>{MUS.gesture=true;if(P.music)musicTick();removeEventListener('pointerdown',go,true);removeEventListener('keydown',go,true)};
+  addEventListener('pointerdown',go,true);addEventListener('keydown',go,true);
+}
+
+/* ============================================================
+   Telas: início, mercado, carteira, gráficos, loja, missões, ranking, extrato, perfil, configurações
+   ============================================================ */
+const TABS=[['inicio','🏠','Início'],['bolsa','📈','Mercado'],['carteira','💼','Carteira'],['graficos','📊','Gráficos'],['cassino','🎰','Cassino'],['loja','🛍️','Loja'],['missoes','🎯','Missões'],['ranking','🏅','Ranking'],['extrato','🧾','Extrato'],['perfil','👤','Perfil'],['config','⚙️','Configurações']];
+const todaySP=()=>new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
+const nextResetMs=()=>{const t=Date.now()-3*3600e3;return (Math.floor(t/86400e3)+1)*86400e3+3*3600e3-Date.now()};
+const rankedProfiles=()=>S.profiles.slice().sort((a,b)=>worth(b.id)-worth(a.id));
+const changeOf=id=>Number(S.movers[id]?.change_pct||0);
+const changeTag=c=>`<span class="${c>0?'up':c<0?'down':'dim'}">${c>0?'▲':c<0?'▼':'■'} ${pctTxt(c)}</span>`;
+const topMovers=(n=10)=>S.assets.map(a=>({a,c:changeOf(a.id)})).sort((x,y)=>Math.abs(y.c)-Math.abs(x.c)).slice(0,n);
+
+/* ---------- topo: ticker, barra do usuário, faixa de aviso ---------- */
+function renderTicker(){
+  const el=$('#ticker');if(!el)return;
+  const list=topMovers(10);
+  const sig=JSON.stringify(list.map(x=>[x.a.id,x.a.symbol,x.a.price,x.c]));
+  if(sig===S.tickSig)return;S.tickSig=sig;
+  if(!list.length){el.innerHTML='<div class="tk-empty">O mercado ainda não tem moedas.</div>';return}
+  const one=list.map(({a,c})=>`<button class="tk" data-do="coin" data-id="${esc(a.id)}" title="Variação em 24h — clique para ver o gráfico"><b>${esc(a.symbol)}</b><span class="pr">${fmt(a.price)}</span><span class="ch ${c>0?'up':c<0?'down':'dim'}">${c>0?'▲':c<0?'▼':'■'} ${pctTxt(c)}</span></button>`).join('');
+  const k=Math.max(1,Math.ceil(1700/(list.length*200)));
+  const group=one.repeat(k);
+  const dur=Math.max(24,Math.round(list.length*k*200/55));
+  el.innerHTML=`<div class="tk-track" style="--dur:${dur}s">${group}${group}</div>`;
+}
+function updateUserbar(){
+  const m=me(),xp=xpProgress(Number(m.xp||0));
+  if(S.lastLevel!==null&&xp.l>S.lastLevel){toast(`Subiu para o nível ${xp.l}! 🎉`,'gain',5200);SFX.play('level');FX.confetti()}
+  S.lastLevel=xp.l;
+  $('#userbar').innerHTML=`${m.avatar_url?`<img class="avatar" src="${esc(m.avatar_url)}" alt="">`:''}<span>${esc(m.username||'Membro')}</span><span class="bal" title="Seu saldo">🪙 <span id="topbal">${fmt(m.balance)}</span></span><span class="lvl">Nv. ${xp.l}<span class="xpbar"><i style="width:${xp.pct}%"></i></span></span>${m.is_admin?'<span class="pill acc">ADM</span>':''}<button class="iconbtn" data-do="refresh" title="Atualizar" aria-label="Atualizar">↻</button><button data-do="logout">Sair</button>`;
+}
+function setBalance(v){if(S.profile)S.profile.balance=Number(v);const t=$('#topbal');if(t)countTo(t,v,500);const h=$('#heroBal');if(h)countTo(h,v,500)}
+function applySettings(){
+  const s=S.settings;
+  document.title=s.site_name||'Bolsa do Autsim';
+  const b=$('#brandname');if(b)b.textContent=s.site_name||'Bolsa do Autsim';
+  const a=$('#annc');if(a)a.textContent=s.announcement||'Economia virtual da comunidade — AutsimCoins não valem dinheiro real.';
+  if(/^#[0-9a-fA-F]{6}$/.test(s.accent_color||'')){document.documentElement.style.setProperty('--accent',s.accent_color);const tc=document.querySelector('meta[name=theme-color]');if(tc)tc.content='#0b0919'}
+}
+
+/* ---------- casca ---------- */
+function renderRail(){
+  const tabs=TABS.slice();if(isAdmin())tabs.push(['adm','🛡️','Painel ADM']);
+  $('#rail').innerHTML=tabs.map(([k,i,n])=>`<button data-do="tab" data-tab="${k}" class="${S.tab===k?'active':''}"><span class="ic">${i}</span>${n}${k==='cassino'&&S.unread&&S.tab!=='cassino'?`<span class="badge">${S.unread>9?'9+':S.unread}</span>`:''}</button>`).join('');
+}
+function keepInputs(fn){
+  const snap={};$$('#view input,#view select,#view textarea').forEach(el=>{if(el.id)snap[el.id]=el.type==='checkbox'?el.checked:el.value});
+  const ae=document.activeElement,aid=ae&&ae.id,pos=ae&&ae.selectionStart!==undefined?[ae.selectionStart,ae.selectionEnd]:null;
+  fn();
+  for(const[id,v]of Object.entries(snap)){const el=document.getElementById(id);if(el){if(el.type==='checkbox')el.checked=v;else el.value=v}}
+  if(aid){const el=document.getElementById(aid);if(el){el.focus();try{if(pos)el.setSelectionRange(...pos)}catch(e){}}}
+}
+function renderView(){
+  const fn=V[S.tab]||V.inicio;
+  $('#view').innerHTML=fn();
+  const after=AFTER[S.tab];if(after)after();
+}
+function render(){
+  if(CAS.running&&S.tab!=='cassino')casinoStop();
+  if(S.tab==='cassino')S.unread=0;
+  renderRail();renderView();
+  const v=$('#view');v.style.animation='none';void v.offsetWidth;v.style.animation='';
+  if(S.tab==='cassino'&&!CAS.running)casinoStart();
+  window.scrollTo({top:0});
+}
+function goTab(t){if(t==='adm'&&!isAdmin())t='inicio';S.tab=t;render()}
+
+const tile=(label,val,sub='')=>`<div class="panel"><div class="stat-label">${label}</div><div class="stat">${val}</div>${sub?`<small>${sub}</small>`:''}</div>`;
+const musicPromo=()=>`<div class="panel slotcard"><div class="spread"><div><h3>🎵 Toque sua música no site</h3><p class="muted" style="margin-top:4px">Por ${fmt(MUS.price,0)} AC, o link do Spotify que você escolher toca por ${MUS.minutes>=60&&MUS.minutes%60===0?MUS.minutes/60+' h':MUS.minutes+' min'} para todo mundo que estiver com a música ligada.</p></div><button class="btn-main" data-do="music-buy">Escolher minha música</button></div></div>`;
+
 const V={
-inicio(){const sorted=S.profiles.slice().sort((a,b)=>worth(b.id)-worth(a.id));const rank=sorted.findIndex(p=>p.id===S.user.id)+1;const hot=S.assets.slice().sort((a,b)=>b.price-a.price).slice(0,5);return `<div class="spread"><div><div class="eyebrow">Painel da comunidade</div><h2>Salve, ${esc(me().username)} 👋</h2><p class="muted">Sua economia, sua progressão e o mercado num só lugar.</p></div><span class="pill">${S.profiles.length} membros no ranking</span></div><div class="grid"><div class="card"><div class="statlabel">Saldo disponível</div><div class="stat">🪙 ${fmt(me().balance)}</div><small>AutsimCoins</small></div><div class="card"><div class="statlabel">Patrimônio estimado</div><div class="stat">${fmt(worth(S.user.id))}</div><small>Saldo + ações</small></div><div class="card"><div class="statlabel">Sua posição</div><div class="stat">${rank>0?rank+'º':'—'}</div><small>No ranking geral</small></div><div class="card"><div class="statlabel">Nível atual</div><div class="stat">Nv. ${xpProgress(me().xp||0).l}</div><div class="xpbar"><i style="width:${xpProgress(me().xp||0).pct}%"></i></div><small>${Number(me().xp||0).toLocaleString('pt-BR')} XP</small></div></div><div class="spread"><h3>Moedas em destaque</h3><button data-tab="bolsa">Abrir mercado →</button></div>${table(['Moeda','Preço','Variação da base','Ações'],hot.map(a=>`<tr><td>${coin(a)}</td><td>${fmt(a.price)}</td><td class="${Number(a.price)>=10?'positive':'negative'}">${Number(a.price)>=10?'+':''}${((Number(a.price)/10-1)*100).toFixed(1)}%</td><td><button data-tab="bolsa">Negociar</button></td></tr>`).join(''))}<div class="grid"><div class="card"><h3>🎰 Cassino</h3><p class="muted">Roleta com fichas virtuais e limites por rodada.</p><button class="primary" data-tab="cassino">Jogar roleta</button></div><div class="card"><h3>🛍️ Loja</h3><p class="muted">Gaste suas moedas em itens e recompensas da comunidade.</p><button data-tab="loja">Ver itens</button></div><div class="card"><h3>🎯 Progressão</h3><p class="muted">Suba de nível, complete missões e conquiste títulos.</p><button data-tab="missoes">Ver missões</button></div></div>`},
-bolsa(){return `<h2>📈 Mercado de moedas</h2><p class="muted">Ordens processadas pelo banco de dados. Sua própria moeda tem limite de 10 unidades, conforme a regra do backend.</p>${table(['Moeda','Preço','Disponíveis','Você tem','Comprar / vender'],S.assets.slice().sort((a,b)=>b.price-a.price).map(a=>{const own=held(S.user.id,a.id),free=Number(a.total_shares||0)-sold(a.id);return `<tr><td>${coin(a)}${a.id===S.user.id?' <span class="pill">Sua moeda</span>':''}</td><td>${fmt(a.price)}</td><td>${free}</td><td>${own}</td><td><input type="number" min="1" step="1" value="1" id="qty-${esc(a.id)}"><button class="good" data-act="buy_shares" data-id="${esc(a.id)}">Comprar</button> <button class="danger" data-act="sell_shares" data-id="${esc(a.id)}" ${own<1?'disabled':''}>Vender</button></td></tr>`}).join(''))}`},
-carteira(){const mine=S.holdings.filter(h=>h.user_id===S.user.id);return `<h2>💼 Carteira</h2><div class="grid"><div class="card"><div class="statlabel">Saldo</div><div class="stat">${fmt(me().balance)} AC</div></div><div class="card"><div class="statlabel">Valor em ações</div><div class="stat">${fmt(worth(S.user.id)-Number(me().balance||0))} AC</div></div></div>${table(['Ativo','Quantidade','Preço atual','Valor estimado'],mine.map(h=>`<tr><td>${coin(asset(h.asset_id))}</td><td>${h.quantity}</td><td>${fmt(price(h.asset_id))}</td><td>${fmt(Number(h.quantity)*price(h.asset_id))}</td></tr>`).join(''))}`},
-graficos(){return `<h2>📊 Gráficos</h2><div class="card"><h3>Histórico de preço</h3><label>Moeda <select id="chartasset">${S.assets.map(a=>`<option value="${esc(a.id)}">${esc(a.name)} (${esc(a.symbol)})</option>`).join('')}</select></label><div class="chartbox"><canvas id="pricechart"></canvas></div></div><div class="card" style="margin-top:12px"><h3>Distribuição do seu patrimônio</h3><div class="chartbox"><canvas id="wealthchart"></canvas></div></div>`},
-cassino(){const r=S.spin;return `<h2>🎰 Cassino do Autsim</h2><div class="notice">Somente moedas virtuais: não há depósitos, saques ou conversão em dinheiro real. Aposte com responsabilidade; a aposta máxima é 500 AC.</div><div class="card"><div class="spread"><div><h3>Roleta europeia</h3><p class="muted">Vermelho/preto pagam 1:1; verde (zero) paga 35:1.</p></div><span class="pill">Saldo: ${fmt(me().balance)} AC</span></div>${r?`<div class="ball ${r.color==='red'?'redball':r.color==='black'?'blackball':'greenball'}">${r.n}</div><p class="${Number(r.net)>=0?'positive':'negative'}">${Number(r.net)>=0?'Resultado positivo':'Resultado negativo'}: ${Number(r.net)>=0?'+':''}${fmt(r.net)} AC</p>`:''}<div class="row"><label>Aposta <input id="bet" type="number" min="1" max="500" step="1" value="10"></label><button class="danger" data-roul="red">🔴 Vermelho</button><button data-roul="black">⚫ Preto</button><button class="good" data-roul="green">🟢 Verde (0)</button></div></div>`},
-jogos(){return `<h2>🕹️ Jogos</h2><div class="grid"><div class="card"><h3>🧠 Quiz da comunidade</h3><p class="muted">A área de jogos está preparada, mas o quiz só deve ser ativado quando houver perguntas e validação de recompensa no backend.</p><button disabled title="Configure o backend de quiz primeiro">Em breve</button></div><div class="card"><h3>🎲 Desafios</h3><p class="muted">Minijogos com recompensas precisam de validação server-side para impedir XP e moedas fabricadas no navegador.</p><button disabled>Em breve</button></div></div><div class="notice">Não foi criado um botão que credita moedas localmente: recompensas precisam de uma RPC segura no banco para evitar exploração.</div>`},
-loja(){return `<h2>🛍️ Loja da comunidade</h2><p class="muted">Itens comprados são registrados no backend. Exemplos como “Date com Abigolaura” são recompensas de meme/roleplay e dependem do consentimento de todos os envolvidos.</p><div class="productgrid">${S.items.map(i=>`<div class="card product"><div class="spread"><h3>${esc(i.name||'Item')}</h3><span class="pill">${i.stock===null||i.stock===undefined?'∞':`Estoque ${i.stock}`}</span></div><p class="muted">${esc(i.description||'Recompensa da comunidade.')}</p><div class="buyrow"><b class="goldtext">🪙 ${fmt(i.price)} AC</b><button class="primary" data-buyitem="${esc(i.id)}" ${Number(i.stock)===0?'disabled':''}>Comprar</button></div></div>`).join('')||'<div class="card"><h3>A loja ainda está vazia</h3><p class="muted">O administrador pode cadastrar itens na tabela shop_items pelo painel seguro do backend.</p></div>'}</div><h3 style="margin-top:24px">Meu inventário</h3>${table(['Item','Quantidade','Adquirido em'],S.inventory.map(v=>`<tr><td>${esc(v.item_name||v.name||'Item')}</td><td>${v.quantity||1}</td><td>${v.created_at?new Date(v.created_at).toLocaleDateString('pt-BR'):'—'}</td></tr>`).join(''))}`},
-missoes(){return `<h2>🎯 Missões</h2><p class="muted">As missões são exibidas quando a tabela public.missions existe. Recompensas devem ser resgatadas por uma função segura e idempotente no backend.</p><div class="productgrid">${S.missions.map(m=>`<div class="card"><span class="pill">${esc(m.category||'Missão')}</span><h3 style="margin-top:10px">${esc(m.title||m.name||'Missão')}</h3><p class="muted">${esc(m.description||'Complete o objetivo para progredir.')}</p><b class="goldtext">+${Number(m.xp_reward||0)} XP · ${fmt(m.coin_reward||0)} AC</b></div>`).join('')||'<div class="card"><p class="muted">Nenhuma missão cadastrada no momento.</p></div>'}</div>`},
-conquistas(){return `<h2>🏆 Conquistas</h2><div class="grid"><div class="card"><h3>📈 Primeiro investimento</h3><p class="muted">Faça sua primeira compra no mercado.</p><span class="pill">Condição: transação buy</span></div><div class="card"><h3>🎰 Na sorte</h3><p class="muted">Jogue sua primeira rodada de roleta.</p><span class="pill">Condição: transação game</span></div><div class="card"><h3>💰 Acumulador</h3><p class="muted">Alcance 10.000 AC de patrimônio.</p><span class="pill">Condição: patrimônio</span></div></div><p class="muted">A exibição estática não significa que uma conquista já foi validada; o desbloqueio precisa ser persistido pelo backend.</p>`},
-ranking(){return `<h2>🏅 Ranking</h2>${table(['#','Membro','Patrimônio','XP','Nível'],S.profiles.slice().sort((a,b)=>worth(b.id)-worth(a.id)).map((p,i)=>`<tr><td>${i+1}</td><td>${p.avatar_url?`<img class="avatar" src="${esc(p.avatar_url)}" alt="">`:''} ${esc(p.username||'Membro')}</td><td>${fmt(worth(p.id))} AC</td><td>${Number(p.xp||0).toLocaleString('pt-BR')}</td><td>${xpProgress(Number(p.xp||0)).l}</td></tr>`).join(''))}`},
-extrato(){return `<h2>🧾 Meu extrato</h2>${table(['Data','Tipo','Moeda','Qtd','Valor','Saldo após'],S.tx.map(t=>`<tr><td>${t.created_at?new Date(t.created_at).toLocaleString('pt-BR'):'—'}</td><td>${esc(names[t.type]||t.type||'—')}</td><td>${t.asset_id?esc(asset(t.asset_id).name||'Moeda'):'—'}</td><td>${t.quantity??'—'}</td><td class="${Number(t.amount)>=0?'positive':'negative'}">${Number(t.amount)>0?'+':''}${fmt(t.amount)}</td><td>${fmt(t.balance_after)}</td></tr>`).join(''))}`},
-perfil(){const xp=xpProgress(Number(me().xp||0)),a=asset(S.user.id);return `<h2>👤 Meu perfil</h2><div class="card"><div class="row">${avatar(me())?`<img class="avatar" style="width:64px;height:64px" src="${esc(avatar(me()))}" alt="">`:''}<div><h2 style="margin:0">${esc(me().username)}</h2><span class="pill">Membro da comunidade</span></div></div><div class="grid"><div><div class="statlabel">Nível</div><div class="stat">${xp.l} / 99</div></div><div><div class="statlabel">XP</div><div class="stat">${Number(me().xp||0).toLocaleString('pt-BR')}</div></div><div><div class="statlabel">Próximo nível</div><div class="stat">${xp.l>=99?'Nível máximo':Number(xp.hi-xp.lo).toLocaleString('pt-BR')+' XP total'}</div></div></div><div class="xpbar" style="width:100%;height:10px"><i style="width:${xp.pct}%"></i></div><p class="muted">A progressão fica mais difícil conforme você avança. O XP é calculado no banco de dados, nunca confiado ao navegador.</p></div><div class="card" style="margin-top:12px"><h3>Minha moeda</h3><p>${a.id?coin(a):'Sua moeda ainda não foi criada.'}</p>${a.id?`<button class="primary" data-edit="${esc(a.id)}">Editar nome, símbolo e imagem</button>`:''}</div><div class="notice">Ao usar o site, você concorda em manter apenas uma conta por pessoa. A aplicação precisa registrar a versão dos termos e a data do aceite durante o cadastro.</div>`},
-adm(){if(!me().is_admin)return '<div class="notice">Acesso negado.</div>';return `<h2>🛡️ Painel ADM</h2><div class="notice">A interface só é exibida para contas marcadas como administradoras no banco. Toda ação administrativa também deve ser validada no servidor; ocultar um botão não é segurança.</div><div class="grid"><div class="card"><h3>Economia</h3><p class="muted">Membros: ${S.profiles.length} · Moedas: ${S.assets.length}</p><button data-admin-refresh>Atualizar dados</button></div><div class="card"><h3>Configuração de XP</h3><p class="muted">Ajuste a curva de progressão. Base maior e bônus final maior tornam os níveis mais difíceis.</p><div class="row"><label>Base <input id="xpbase" type="number" min="1" max="1000000" value="100"></label><label>Expoente <input id="xpexp" type="number" min="1" max="3" step="0.05" value="1.55"></label><label>Bônus final <input id="xpbonus" type="number" min="0" max="100000000" value="18000"></label></div><button class="primary" data-save-xp style="margin-top:10px">Salvar curva de XP</button><p class="fineprint">Os valores iniciais refletem o padrão do banco. A autorização é conferida pela RPC.</p></div><div class="card"><h3>Loja</h3><p class="muted">Cadastre itens em shop_items e controle compras via RPC atômica.</p></div></div>${table(['Moeda','Dono','Preço','Ação'],S.assets.map(a=>`<tr><td>${coin(a)}</td><td>${esc(profile(a.id).username||'—')}</td><td>${fmt(a.price)}</td><td><button data-edit="${esc(a.id)}">Editar moeda</button></td></tr>`).join(''))}`}
+inicio(){
+  const m=me(),rk=rankedProfiles(),pos=rk.findIndex(p=>p.id===S.user.id)+1,xp=xpProgress(Number(m.xp||0));
+  const claimed=m.last_daily_date===todaySP();
+  const stocks=S.holdings.filter(h=>h.user_id===S.user.id).reduce((n,h)=>n+Number(h.quantity)*price(h.asset_id),0);
+  return`<div class="page-head"><div><h2>Salve, ${esc(m.username)} 👋</h2><p class="muted">Invista nas moedas dos membros, jogue no cassino e suba no ranking.</p></div><span class="pill">${S.profiles.length} membros no ranking</span></div>
+<div class="cols">
+  <div class="panel glow"><div class="stat-label">Seu saldo</div><div class="stat hero-bal">🪙 <span id="heroBal" data-v="${Number(m.balance||0)}">${fmt(m.balance)}</span></div><small>AutsimCoins (AC) · patrimônio total ${fmt(worth(S.user.id))} AC</small>
+    <div class="row" style="margin-top:16px"><button class="btn-main" data-do="tab" data-tab="cassino">🎰 Ir ao cassino</button><button data-do="tab" data-tab="bolsa">📈 Ver mercado</button><button data-do="tab" data-tab="loja">🛍️ Loja</button></div></div>
+  <div class="panel"><h3>Bônus diário</h3>${claimed?`<p class="up" style="margin-top:8px">✔ Você já pegou os ${fmt(S.settings.daily_bonus,0)} AC de hoje.</p><p class="muted small">Próximo bônus em <b id="dailycd2">--:--:--</b>.</p>`:`<p class="muted" style="margin-top:8px">O bônus de hoje ainda não foi coletado.</p><button class="btn-gold" style="margin-top:10px" data-do="claim-daily">Coletar ${fmt(S.settings.daily_bonus,0)} AC</button>`}</div>
+</div>
+<div class="grid">
+  ${tile('Posição no ranking',pos?pos+'º':'—',`de ${S.profiles.length} membros`)}
+  ${tile('Nível',`Nv. ${xp.l}`,`${Number(m.xp||0).toLocaleString('pt-BR')} XP`)+''}
+  ${tile('Em ações',fmt(stocks)+' AC','valor atual da carteira')}
+</div>
+<div class="spread"><h3>Maiores variações em 24h</h3><button class="btn-sm" data-do="tab" data-tab="bolsa">Abrir mercado</button></div>
+${table(['Moeda','Preço','Variação','Últimos preços',''],topMovers(6).map(({a,c})=>`<tr><td>${coinTag(a)}</td><td>${fmt(a.price)}</td><td>${changeTag(c)}</td><td>${spark(S.movers[a.id]?.spark)}</td><td><button class="btn-sm" data-do="coin" data-id="${esc(a.id)}">Gráfico</button></td></tr>`).join(''),'O mercado ainda não tem moedas.')}
+${musicPromo()}`;
+},
+bolsa(){
+  const rows=S.assets.slice().sort((a,b)=>b.price-a.price).map(a=>{const own=held(S.user.id,a.id),free=Number(a.total_shares||0)-sold(a.id),c=changeOf(a.id),id=esc(a.id);
+    return`<tr><td>${coinTag(a)}${a.id===S.user.id?' <span class="pill acc">sua moeda</span>':''}</td><td><b>${fmt(a.price)}</b></td><td>${changeTag(c)}</td><td>${spark(S.movers[a.id]?.spark,80,24)}</td><td>${free.toLocaleString('pt-BR')}</td><td>${own}</td><td><div class="row" style="flex-wrap:nowrap"><input type="number" min="1" step="1" value="1" id="qty-${id}" aria-label="Quantidade"><button class="btn-good btn-sm" data-do="trade" data-kind="buy_shares" data-id="${id}">Comprar</button><button class="btn-bad btn-sm" data-do="trade" data-kind="sell_shares" data-id="${id}" ${own<1?'disabled':''}>Vender</button></div></td></tr>`}).join('');
+  return`<div class="page-head"><div><h2>📈 Mercado</h2><p class="muted">O preço sobe quando alguém compra e cai quando alguém vende. Você pode ter no máximo 10 unidades da sua própria moeda.</p></div></div>${table(['Moeda','Preço','24h','Tendência','Disponíveis','Você tem','Negociar'],rows,'Ainda não há moedas no mercado.')}${musicPromo()}`;
+},
+carteira(){
+  const mine=S.holdings.filter(h=>h.user_id===S.user.id&&Number(h.quantity)>0);const stocks=mine.reduce((n,h)=>n+Number(h.quantity)*price(h.asset_id),0);
+  return`<div class="page-head"><h2>💼 Carteira</h2></div><div class="grid">${tile('Saldo',fmt(me().balance)+' AC')}${tile('Valor em ações',fmt(stocks)+' AC')}${tile('Patrimônio total',fmt(worth(S.user.id))+' AC')}</div>${table(['Moeda','Quantidade','Preço atual','24h','Valor'],mine.map(h=>`<tr><td>${coinTag(asset(h.asset_id))}</td><td>${h.quantity}</td><td>${fmt(price(h.asset_id))}</td><td>${changeTag(changeOf(h.asset_id))}</td><td>${fmt(Number(h.quantity)*price(h.asset_id))}</td></tr>`).join(''),'Você ainda não tem ações. Compre no Mercado.')}`;
+},
+graficos(){
+  if(!S.chartAsset||!asset(S.chartAsset).id)S.chartAsset=(asset(S.user.id).id?S.user.id:S.assets[0]?.id);
+  return`<div class="page-head"><h2>📊 Gráficos</h2></div>
+<div class="panel"><div class="spread"><label style="min-width:220px">Moeda<select id="chartasset">${S.assets.map(a=>`<option value="${esc(a.id)}" ${a.id===S.chartAsset?'selected':''}>${esc(a.symbol)} — ${esc(a.name)}</option>`).join('')}</select></label><div id="chartstats" class="row"></div></div><div style="height:300px;position:relative;margin-top:12px"><canvas id="pricechart"></canvas></div></div>
+<div class="panel" style="margin-top:14px"><h3>Distribuição do seu patrimônio</h3><div style="height:260px;position:relative;margin-top:8px"><canvas id="wealthchart"></canvas></div></div>`;
+},
+loja(){
+  return`<div class="page-head"><div><h2>🛍️ Loja</h2><p class="muted">Compre recompensas com AutsimCoins. Depois da compra, o ADM entrega o item.</p></div></div>
+${musicPromo()}
+<h3 style="margin:20px 0 10px">Itens</h3>
+<div class="items">${S.items.map(i=>`<div class="panel item"><div class="spread"><span class="em">${esc(i.emoji||'🎁')}</span><span class="pill">${i.stock===null||i.stock===undefined?'sem limite':`restam ${i.stock}`}</span></div><h3>${esc(i.name)}</h3><p class="muted small">${esc(i.description||'')}</p><div class="foot"><b class="gold">🪙 ${fmt(i.price)}</b><button class="btn-main" data-do="buy-item" data-id="${esc(i.id)}" ${Number(i.stock)===0&&i.stock!==null?'disabled':''}>Comprar</button></div></div>`).join('')||'<div class="panel empty">A loja ainda está vazia. O ADM pode cadastrar itens no Painel ADM.</div>'}</div>
+<h3 style="margin:24px 0 4px">Meus itens</h3>${table(['Item','Qtd','Comprado em','Situação'],S.inventory.slice().sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))).map(v=>`<tr><td>${esc(v.item_name||'Item')}</td><td>${v.quantity||1}</td><td>${fmtDate(v.created_at)}</td><td>${v.delivered?'<span class="up">entregue</span>':'<span class="gold">aguardando entrega</span>'}</td></tr>`).join(''),'Você ainda não comprou nada.')}`;
+},
+missoes(){
+  const done=new Set(S.completions.map(c=>c.mission_id));
+  return`<div class="page-head"><div><h2>🎯 Missões</h2><p class="muted">Cumpra a missão e fale com o ADM: ele confirma e libera a recompensa.</p></div></div><div class="items">${S.missions.map(m=>`<div class="panel item"><div class="spread"><span class="pill">${esc(m.category||'Geral')}</span>${done.has(m.id)?'<span class="up">✔ concluída</span>':''}</div><h3>${esc(m.title)}</h3><p class="muted small">${esc(m.description||'')}</p><div class="foot"><b class="gold">+${Number(m.xp_reward||0)} XP · ${fmt(m.coin_reward||0)} AC</b></div></div>`).join('')||'<div class="panel empty">Nenhuma missão no momento.</div>'}</div>`;
+},
+ranking(){
+  return`<div class="page-head"><h2>🏅 Ranking</h2></div>${table(['#','Membro','Moeda','Patrimônio','Nível'],rankedProfiles().map((p,i)=>`<tr class="${p.id===S.user.id?'me-row':''} ${i<3?'podium':''}"><td class="rank${i+1}">${i+1}</td><td>${whoTag(p)}</td><td>${asset(p.id).symbol?`<b>${esc(asset(p.id).symbol)}</b> <span class="muted">${fmt(price(p.id))}</span>`:'—'}</td><td>${fmt(worth(p.id))} AC</td><td>Nv. ${levelOf(Number(p.xp||0))}</td></tr>`).join(''))}`;
+},
+extrato(){
+  return`<div class="page-head"><h2>🧾 Extrato</h2><span class="pill">últimas 100 movimentações</span></div>${table(['Data','Tipo','Moeda','Qtd','Valor','Saldo depois'],S.tx.map(t=>`<tr><td>${fmtDate(t.created_at)}</td><td>${esc(TYPE_NAMES[t.type]||t.type||'—')}</td><td>${t.asset_id?esc(asset(t.asset_id).symbol||'—'):'—'}</td><td>${t.quantity??'—'}</td><td class="${Number(t.amount)>=0?'up':'down'}">${Number(t.amount)>0?'+':''}${fmt(t.amount)}</td><td>${fmt(t.balance_after)}</td></tr>`).join(''),'Nenhuma movimentação ainda.')}`;
+},
+perfil(){
+  const m=me(),xp=xpProgress(Number(m.xp||0)),a=asset(S.user.id);
+  return`<div class="page-head"><h2>👤 Meu perfil</h2></div>
+<div class="panel glow"><div class="row">${m.avatar_url?`<img class="avatar" style="width:64px;height:64px" src="${esc(m.avatar_url)}" alt="">`:''}<div><h2>${esc(m.username)}</h2><span class="pill">Nível ${xp.l} de 99</span></div></div>
+<div class="grid"><div><div class="stat-label">XP</div><div class="stat">${Number(m.xp||0).toLocaleString('pt-BR')}</div></div><div><div class="stat-label">Para o próximo nível</div><div class="stat">${xp.l>=99?'Máximo':Number(Math.max(0,xp.hi-Number(m.xp||0))).toLocaleString('pt-BR')+' XP'}</div></div></div>
+<div class="xpbar" style="width:100%;height:10px"><i style="width:${xp.pct}%"></i></div><p class="muted small" style="margin-top:8px">Você ganha XP comprando, vendendo e jogando. Quanto mais alto o nível, mais XP cada nível pede.</p></div>
+<div class="panel" style="margin-top:14px"><h3>Minha moeda</h3><div style="margin:10px 0">${a.id?coinTag(a):'Sua moeda ainda não foi criada.'}</div>${a.id?`<div class="row"><button class="btn-main" data-do="edit-coin" data-id="${esc(a.id)}">Editar nome e imagem</button></div><p class="muted small" style="margin-top:8px">O ID da moeda (${esc(a.symbol||'')}) só o ADM pode alterar.</p>`:''}</div>`;
+},
+config(){
+  return`<div class="page-head"><h2>⚙️ Configurações</h2><p class="muted">Ficam salvas só neste navegador.</p></div>
+<div class="panel stack"><label class="inline"><input type="checkbox" id="prefMusic" data-pref="music" ${P.music?'checked':''}> Música de fundo</label>
+<label>Volume da música (só YouTube; o Spotify tem controle próprio)<input type="range" id="prefVol" data-pref="volume" min="0" max="100" value="${Math.round(P.volume*100)}"></label>
+<label class="inline"><input type="checkbox" id="prefSfx" data-pref="sfx" ${P.sfx?'checked':''}> Efeitos sonoros (cliques, moedas, vitórias)</label>
+<label class="inline"><input type="checkbox" id="prefMotion" data-pref="motion" ${P.motion?'checked':''}> Animações (desligue para um site mais calmo)</label></div>`;
+}
 };
-function render(){if(S.user && S.profile && !S.profile.terms_accepted_at){$('#app').innerHTML=`<section class="hero"><div class="eyebrow">Antes de continuar</div><h1>Termos da comunidade</h1><p>Você se compromete a utilizar apenas uma conta pessoal nesta plataforma. Contas duplicadas podem ser bloqueadas conforme as regras da comunidade.</p><label style="justify-content:center;margin:20px auto"><input id="accepttermscheck" type="checkbox" style="width:auto"> Li e aceito os termos (versão autsim-terms-v1).</label><button id="acceptterms" class="primary">Aceitar e continuar</button></section>`;$('#userbar').innerHTML='';return}if(!S.user){$('#userbar').innerHTML='';$('#app').innerHTML=`<section class="hero"><div class="eyebrow">Economia gamificada da comunidade</div><h1>Bolsa do <span style="color:#b49aff">Autsim</span></h1><p>Invista em moedas da comunidade, acompanhe gráficos, suba de nível e use AutsimCoins em jogos e recompensas virtuais.</p><label style="justify-content:center;margin:0 auto 14px"><input id="termscheck" type="checkbox" style="width:auto"> Li e concordo em usar apenas uma conta e aceito os termos da comunidade.</label><button id="login" class="primary">Entrar com Discord</button><p class="fineprint" style="margin-top:18px">O aceite deve ser registrado no banco. O acesso restrito ao servidor Discord exige a Edge Function incluída no pacote.</p></section>`;return}
- const m=me(),xp=xpProgress(Number(m.xp||0));$('#userbar').innerHTML=`${avatar(m)?`<img class="avatar" src="${esc(avatar(m))}" alt="">`:''}<span>${esc(m.username||'Membro')}</span><b>🪙 ${fmt(m.balance)}</b><span class="pill">Nv. ${xp.l}</span><div class="xpbar"><i style="width:${xp.pct}%"></i></div>${m.is_admin?'<span class="pill" style="color:#c4b5fd">ADM</span>':''}<button id="refresh">↻</button><button id="logout">Sair</button>`;
- const visible={...tabs};if(m.is_admin)visible.adm='Painel ADM';if(!V[S.tab])S.tab='inicio';$('#app').innerHTML=`<nav class="nav">${Object.entries(visible).map(([k,v])=>`<button data-tab="${k}" class="${S.tab===k?'active':''}">${v}</button>`).join('')}</nav><div id="view">${(V[S.tab]||V.inicio)()}</div>`;
- if(S.tab==='graficos'){const id=$('#chartasset')?.value||S.assets[0]?.id;drawPrice(id);drawWealth()}}
-function drawPrice(id){const data=S.history.filter(x=>x.asset_id===id).slice(-200);const byDate=new Map();for(const x of data)byDate.set(new Date(x.created_at).toLocaleString('pt-BR'),Number(x.price));chart('pricechart',[...byDate.keys()],[{label:'Preço (AC)',data:[...byDate.values()],borderColor:'#a78bfa',backgroundColor:'#8b5cf633',fill:true,tension:.25,pointRadius:1}])}
-function drawWealth(){const mine=S.holdings.filter(h=>h.user_id===S.user.id&&Number(h.quantity)*price(h.asset_id)>0);const labels=['Saldo',...mine.map(h=>asset(h.asset_id).name||'Ativo')];const vals=[Number(me().balance||0),...mine.map(h=>Number(h.quantity)*price(h.asset_id))];if(S.charts.wealthchart){S.charts.wealthchart.destroy();delete S.charts.wealthchart}const el=$('#wealthchart');if(el)S.charts.wealthchart=new Chart(el,{type:'doughnut',data:{labels,datasets:[{data:vals,backgroundColor:['#8b5cf6','#2dd4a0','#fbbf24','#fb7185','#38bdf8','#c084fc']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#ddd'}}}}})}
-async function runRpc(fn,args,success){const {data,error}=await sb.rpc(fn,args);if(error){toast(error.message||'Operação recusada');return false}toast(success||'Operação concluída!');await load();return data}
-document.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;
- if(b.id==='login'){if(!$('#termscheck')?.checked){toast('Marque a caixa para aceitar a regra de uma conta por pessoa.');return}const {error}=await sb.auth.signInWithOAuth({provider:'discord',options:{redirectTo:location.origin}});if(error)toast(error.message);return}
- if(b.id==='logout'){await sb.auth.signOut();return}
- if(b.id==='acceptterms'){if(!$('#accepttermscheck')?.checked){toast('Você precisa aceitar os termos para continuar.');return}b.disabled=true;const {error}=await sb.rpc('accept_terms',{p_version:'autsim-terms-v1'});if(error)toast(error.message);else await load();b.disabled=false;return}
- if(b.id==='refresh'||b.dataset.adminRefresh!==undefined){await load();return}
- if(b.dataset.tab){S.tab=b.dataset.tab;render();return}
- if(b.dataset.edit){const a=asset(b.dataset.edit);const n=prompt('Nome da moeda (2–30 caracteres)',a.name||'');if(n===null)return;const s=prompt('Símbolo (2–6 caracteres)',a.symbol||'AC$');if(s===null)return;const u=prompt('URL HTTPS da imagem (vazio para remover)',a.avatar_url||'');if(u===null)return;await runRpc('update_coin',{p_asset_id:a.id,p_name:n,p_symbol:s,p_avatar:u},'Moeda atualizada!');return}
- if(b.dataset.roul){const bet=Number($('#bet')?.value);if(!Number.isFinite(bet)||bet<1||bet>500){toast('A aposta deve ser de 1 a 500 AC.');return}b.disabled=true;try{const data=await runRpc('roulette',{p_bet:bet,p_color:b.dataset.roul},'Rodada concluída!');if(data)S.spin=data;S.tab='cassino';render()}finally{b.disabled=false}return}
- if(b.dataset.act){const id=b.dataset.id,q=Number($('#qty-'+CSS.escape(id))?.value);if(!Number.isInteger(q)||q<1){toast('Informe uma quantidade inteira maior que zero.');return}b.disabled=true;try{const result=await runRpc(b.dataset.act,{p_asset_id:id,p_qty:q},b.dataset.act==='buy_shares'?'Compra concluída!':'Venda concluída!');if(result&&b.dataset.act==='buy_shares')toast('Compra concluída por '+fmt(result.cost)+' AC');if(result&&b.dataset.act==='sell_shares')toast('Venda concluída por '+fmt(result.proceeds)+' AC')}finally{b.disabled=false}return}
- if(b.dataset.saveXp!==undefined){const base=Number($('#xpbase')?.value),exponent=Number($('#xpexp')?.value),bonus=Number($('#xpbonus')?.value);if(!Number.isFinite(base)||!Number.isFinite(exponent)||!Number.isFinite(bonus)){toast('Confira os valores da curva.');return}b.disabled=true;try{await runRpc('admin_update_xp_settings',{p_base:base,p_exponent:exponent,p_endgame_bonus:bonus},'Curva de XP salva no banco.')}finally{b.disabled=false}return}
- if(b.dataset.buyitem){const id=b.dataset.buyitem;const ok=confirm('Confirmar compra deste item com AutsimCoins?');if(!ok)return;b.disabled=true;try{await runRpc('purchase_shop_item',{p_item_id:id,p_quantity:1},'Item comprado e registrado!')}catch(err){toast('A compra precisa da RPC purchase_shop_item no backend.')}finally{b.disabled=false}return}
+
+/* ---------- depois de desenhar a tela ---------- */
+const AFTER={
+inicio(){const c=$('#dailycd2');if(c)c.textContent=countdownTxt(nextResetMs())},
+graficos(){drawWealth();drawPrice(S.chartAsset)}
+};
+function drawWealth(){
+  const el=$('#wealthchart');if(!el||typeof Chart==='undefined')return;
+  if(S.charts.wealth){S.charts.wealth.destroy();delete S.charts.wealth}
+  const mine=S.holdings.filter(h=>h.user_id===S.user.id&&Number(h.quantity)*price(h.asset_id)>0);
+  const labels=['Saldo',...mine.map(h=>asset(h.asset_id).symbol||'Ativo')],vals=[Number(me().balance||0),...mine.map(h=>Number(h.quantity)*price(h.asset_id))];
+  S.charts.wealth=new Chart(el,{type:'doughnut',data:{labels,datasets:[{data:vals,borderWidth:0,backgroundColor:['#8b5cf6','#3ddc97','#ffc857','#ff5d73','#5cc8ff','#c084fc','#f472b6','#34d399']}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:P.motion?700:0},plugins:{legend:{position:'right',labels:{color:'#cfcaf5'}}}}});
+}
+async function drawPrice(id){
+  const el=$('#pricechart');if(!el||!id)return;
+  const {data,error}=await sb.from('price_history').select('price,created_at').eq('asset_id',id).order('created_at',{ascending:true}).limit(400);
+  if(S.tab!=='graficos'||S.chartAsset!==id)return;
+  if(error){toast('Não foi possível carregar o histórico.','err');return}
+  const rows=data||[];
+  const ps=rows.map(r=>Number(r.price)),cur=price(id);
+  const box=$('#chartstats');if(box&&ps.length)box.innerHTML=`<span class="pill">Atual ${fmt(cur)}</span><span class="pill up">Máx ${fmt(Math.max(...ps))}</span><span class="pill down">Mín ${fmt(Math.min(...ps))}</span><span class="pill">24h ${pctTxt(changeOf(id))}</span>`;
+  if(typeof Chart==='undefined')return;
+  if(S.charts.price){S.charts.price.destroy();delete S.charts.price}
+  const ctx=el.getContext('2d'),g=ctx.createLinearGradient(0,0,0,300);g.addColorStop(0,'rgba(139,92,246,.45)');g.addColorStop(1,'rgba(139,92,246,0)');
+  S.charts.price=new Chart(el,{type:'line',data:{labels:rows.map(r=>fmtDate(r.created_at)),datasets:[{label:'Preço (AC)',data:ps,borderColor:'#b49aff',backgroundColor:g,fill:true,tension:.3,pointRadius:ps.length>60?0:3,borderWidth:2.5}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:P.motion?800:0},interaction:{intersect:false,mode:'index'},plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#8a85b8',maxTicksLimit:7},grid:{color:'#221e45'}},y:{ticks:{color:'#8a85b8'},grid:{color:'#221e45'}}}}});
+}
+
+/* ---------- ações das telas ---------- */
+async function trade(kind,id){
+  const q=Number($('#qty-'+CSS.escape(id))?.value);
+  if(!Number.isInteger(q)||q<1){toast('Informe uma quantidade inteira maior que zero.','err');return}
+  const{data,error}=await sb.rpc(kind,{p_asset_id:id,p_qty:q});
+  if(error){toast(errMsg(error),'err');SFX.play('error');return}
+  SFX.play('coin');
+  toast(kind==='buy_shares'?`Compra feita: ${q} × ${asset(id).symbol} por ${fmt(data?.cost)} AC`:`Venda feita: ${q} × ${asset(id).symbol} por ${fmt(data?.proceeds)} AC`);
+  await refreshLight();
+}
+async function claimDaily(silent){
+  const{data,error}=await sb.rpc('claim_daily');
+  if(error){if(!silent)toast(errMsg(error),'err');return}
+  if(data?.claimed){toast(`+${fmt(data.amount,0)} AC de bônus diário! 🎁`,'gain',5200);SFX.play('win');FX.rain();if(S.profile){S.profile.last_daily_date=todaySP()}setBalance(data.balance)}
+  else if(S.profile)S.profile.last_daily_date=todaySP();
+  if(S.tab==='inicio')renderView();
+}
+async function buyItem(id){
+  const it=S.items.find(x=>x.id===id);if(!it)return;
+  if(!await confirmBox(`Comprar "${it.name}" por ${fmt(it.price)} AC?`,'Comprar'))return;
+  const{data,error}=await sb.rpc('purchase_shop_item',{p_item_id:id,p_quantity:1});
+  if(error){toast(errMsg(error),'err');SFX.play('error');return}
+  SFX.play('coin');toast(`Item comprado: ${data?.item||it.name}. Agora é só esperar o ADM entregar.`,'gain');
+  await refreshLight(true);
+}
+function musicBuyModal(){
+  const q=MUS.slots.map(s=>`<div class="betline"><span>${esc(s.username)} — ${esc(s.title)}</span><span class="muted">${fmtDate(s.starts_at)}</span></div>`).join('')||'<span class="muted small">A fila está vazia: sua música toca na hora.</span>';
+  openForm({title:'🎵 Tocar minha música',intro:`Custa ${fmt(MUS.price,0)} AC e toca por ${MUS.minutes} minutos. Só aceita link do Spotify (faixa, álbum ou playlist).`,submit:`Pagar ${fmt(MUS.price,0)} AC`,
+    fields:[{name:'url',label:'Link do Spotify',placeholder:'https://open.spotify.com/track/…'},{name:'title',label:'Nome para mostrar no player',max:80,placeholder:'Ex.: Minha playlist de treino'}],
+    onSubmit:async v=>{const{data,error}=await sb.rpc('buy_music_slot',{p_url:v.url,p_title:v.title});if(error)throw error;
+      SFX.play('win');toast(`Música na fila! Toca a partir de ${fmtDate(data.starts_at)}.`,'gain');setBalance(data.balance);await musicLoad();if(S.tab==='loja'||S.tab==='bolsa'||S.tab==='inicio')renderView()}});
+  const f=$('#genform');if(f)f.insertAdjacentHTML('beforebegin',`<div class="panel" style="margin-top:12px;padding:10px 12px"><small>Fila atual</small>${q}</div>`);
+}
+function editCoinForm(id){
+  const a=asset(id),adm=isAdmin();
+  const fields=[{name:'name',label:'Nome da moeda',value:a.name,max:30},{name:'avatar',label:'Imagem (link https://)',value:a.avatar_url||'',placeholder:'https://…/imagem.png'}];
+  if(adm)fields.splice(1,0,{name:'symbol',label:'ID da moeda',value:a.symbol,hint:'Letras, números e _. O $ no final é automático (ex.: LUDOVICO$).'});
+  openForm({title:'Editar moeda',fields,onSubmit:async v=>{const{error}=await sb.rpc('update_coin',{p_asset_id:id,p_name:v.name,p_symbol:adm?v.symbol:'',p_avatar:v.avatar});if(error)throw error;toast('Moeda atualizada!');await refreshLight(true)}});
+}
+
+/* ============================================================
+   Cassino: roleta e foguete em tempo real, chat e apostas entre membros
+   O banco de dados é quem decide tudo; o navegador só desenha o que o banco informa.
+   ============================================================ */
+const CAS={tab:'roleta',gen:0,running:false,raf:0,timers:[],
+  chat:{msgs:[],ids:new Set(),sub:null,live:false,lastId:0,loaded:false,fb:0},
+  rl:{st:null,phase:null,lastKey:''},rk:{st:null,phase:null,stars:null,mode:'',lastTxt:''},pr:{data:null,tickT:0}};
+const WHEEL=[0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,24,16,33,1,20,14,31,9,22,18,29,7,28,12,35,3,26];
+const REDS=new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]);
+const numColor=n=>n===0?'green':REDS.has(n)?'red':'black';
+const COLOR_PT={red:'Vermelho',black:'Preto',green:'Verde'};
+const casinoTimer=(fn,ms)=>{const t=setTimeout(fn,ms);CAS.timers.push(t);return t};
+
+function casinoStart(){
+  CAS.running=true;CAS.gen++;const g=CAS.gen;
+  if(CAS.tab==='roleta'){rlPoll(g);CAS.raf=requestAnimationFrame(rlFrame)}
+  else if(CAS.tab==='foguete'){rkPoll(g);CAS.raf=requestAnimationFrame(rkFrame)}
+  else{prLoad(g)}
+  chatRender();
+}
+function casinoStop(){CAS.running=false;CAS.gen++;cancelAnimationFrame(CAS.raf);CAS.timers.forEach(clearTimeout);CAS.timers=[]}
+function casinoSwitch(tab){casinoStop();CAS.tab=tab;CAS.rl.phase=null;CAS.rk.phase=null;CAS.rk.mode='';renderView();casinoStart()}
+
+/* ---------- tela ---------- */
+V.cassino=function(){
+  const sub=[['roleta','🎡 Roleta'],['foguete','🚀 Foguete'],['apostas','🎯 Apostas']];
+  return`<div class="page-head"><div><h2>🎰 Cassino</h2><p class="muted">Só moedas virtuais: não existe depósito, saque ou troca por dinheiro real.</p></div><span class="pill">Saldo: <b id="casbal">${fmt(me().balance)}</b> AC</span></div>
+<div class="subtabs">${sub.map(([k,n])=>`<button data-do="cas-tab" data-tab="${k}" class="${CAS.tab===k?'active':''}">${n}</button>`).join('')}</div>
+<div class="casino"><div id="casmain">${CAS.tab==='roleta'?rlHtml():CAS.tab==='foguete'?rkHtml():prHtml()}</div>${chatHtml()}</div>`;
+};
+AFTER.cassino=function(){chatRender()};
+
+/* ============================================================
+   ROLETA
+   ============================================================ */
+function rlHtml(){
+  return`<div class="panel arena"><div class="spread" style="margin-bottom:10px"><div><h3>Roleta europeia</h3><small>Vermelho e preto pagam 2x · verde (0) paga 36x</small></div><span class="pill" id="rlmax">Aposta máxima: 500 AC</span></div>
+<div class="cv-wrap" style="aspect-ratio:2/1.15"><canvas id="rlcv"></canvas></div>
+<div class="muted" id="rlstatus" style="text-align:center;margin-top:10px;min-height:22px">Conectando…</div>
+<div class="hist" id="rlhist"></div>
+<div class="betbar"><label>Valor da aposta (AC)<input type="number" id="rlamt" min="1" step="1" value="10"></label><div class="chips" id="rlchips"><button data-do="chip" data-for="rlamt" data-v="10">+10</button><button data-do="chip" data-for="rlamt" data-v="50">+50</button><button data-do="chip" data-for="rlamt" data-v="100">+100</button><button data-do="chip" data-for="rlamt" data-v="half">½</button><button data-do="chip" data-for="rlamt" data-v="double">2×</button><button data-do="chip" data-for="rlamt" data-v="max">Máx</button></div></div>
+<div class="colorbtns"><button class="cb-red" data-do="rl-bet" data-color="red">Vermelho<small>paga 2x</small></button><button class="cb-black" data-do="rl-bet" data-color="black">Preto<small>paga 2x</small></button><button class="cb-green" data-do="rl-bet" data-color="green">Verde (0)<small>paga 36x</small></button></div>
+<div class="livebets" id="rlbets"></div></div>`;
+}
+async function rlPoll(g){
+  if(g!==CAS.gen)return;
+  try{const st=await stateRpc('roulette_state');if(g!==CAS.gen)return;rlApply(st)}catch(e){if(g===CAS.gen)console.warn('roleta:',e.message||e)}
+  if(g===CAS.gen)casinoTimer(()=>rlPoll(g),1100);
+}
+function rlApply(st){
+  const prev=CAS.rl.st;CAS.rl.st=st;const r=st.round;
+  const same=prev&&prev.round.id===r.id;
+  if(r.status==='spinning'&&CAS.rl.phase!=='spin:'+r.id){CAS.rl.phase='spin:'+r.id;if(same||!prev)SFX.play('launch')}
+  if(r.status==='settled'&&CAS.rl.phase!=='done:'+r.id){
+    const announce=CAS.rl.phase==='spin:'+r.id||(same&&prev.round.status!=='settled');
+    CAS.rl.phase='done:'+r.id;
+    if(announce)rlAnnounce(st);
+    refreshBalance();
+  }
+  if(r.status==='betting'&&CAS.rl.phase&&CAS.rl.phase!=='bet:'+r.id)CAS.rl.phase='bet:'+r.id;
+  rlSide(st);
+}
+function rlAnnounce(st){
+  const mine=(st.bets||[]).filter(b=>b.user_id===S.user.id);if(!mine.length)return;
+  const bet=mine.reduce((n,b)=>n+Number(b.amount),0),pay=mine.reduce((n,b)=>n+Number(b.payout||0),0),net=pay-bet;
+  if(net>0){toast(`Deu ${COLOR_PT[st.round.result_color].toLowerCase()} ${st.round.result_number}! Você ganhou +${fmt(net)} AC 🎉`,'gain',5500);SFX.play('win');FX.confetti()}
+  else if(pay>0){toast(`Deu ${st.round.result_number}. Você recuperou ${fmt(pay)} AC.`)}
+  else{toast(`Deu ${COLOR_PT[st.round.result_color].toLowerCase()} ${st.round.result_number}. Você perdeu ${fmt(bet)} AC.`);SFX.play('lose')}
+}
+function rlSide(st){
+  const r=st.round,betting=r.status==='betting';
+  const mx=$('#rlmax');if(mx)mx.textContent=`Aposta máxima: ${fmt(st.max_bet,0)} AC`;
+  $$('[data-do=rl-bet]').forEach(b=>b.disabled=!betting);
+  const h=$('#rlhist');if(h)h.innerHTML=(st.history||[]).map(x=>`<span class="h-${x.color}" title="${COLOR_PT[x.color]}">${x.n}</span>`).join('')||'<small>Nenhuma rodada ainda.</small>';
+  const box=$('#rlbets');if(box){
+    const cols=['red','black','green'];
+    box.innerHTML=cols.map(c=>{const list=(st.bets||[]).filter(b=>b.color===c),tot=list.reduce((n,b)=>n+Number(b.amount),0);
+      return`<div class="col"><h4><span>${COLOR_PT[c]}</span><span class="gold">${fmt(tot,0)} AC</span></h4>${list.map(b=>{const done=b.payout!==null&&b.payout!==undefined,won=done&&Number(b.payout)>0;return`<div class="betline ${done?(won?'win':'lose'):''}"><span>${esc(b.username)}${b.user_id===S.user.id?' (você)':''}</span><span>${won?'+'+fmt(b.payout,0):fmt(b.amount,0)}</span></div>`}).join('')||'<small class="dim">sem apostas</small>'}</div>`}).join('');
+  }
+  const s=$('#rlstatus');if(s){
+    let t;if(r.status==='betting')t=r.betting_ends_at?'':'Faça a primeira aposta para iniciar a rodada.';
+    else if(r.status==='spinning')t='A bola está girando…';
+    else t=`Saiu ${r.result_number} (${COLOR_PT[r.result_color].toLowerCase()}). Nova rodada em instantes.`;
+    if(t||r.status!=='betting')s.textContent=t;
+  }
+}
+async function rlBet(color){
+  const amt=Number($('#rlamt')?.value);
+  if(!Number.isFinite(amt)||amt<1){toast('Informe quanto quer apostar.','err');return}
+  const{data,error}=await sb.rpc('roulette_place_bet',{p_color:color,p_amount:amt});
+  if(error){toast(errMsg(error),'err');SFX.play('error');return}
+  SFX.play('coin');setBalance(data.balance);const cb=$('#casbal');if(cb)cb.textContent=fmt(data.balance);
+  try{const st=await stateRpc('roulette_state');rlApply(st)}catch(e){}
+}
+function rlFrame(){
+  if(!CAS.running||CAS.tab!=='roleta')return;
+  CAS.raf=requestAnimationFrame(rlFrame);
+  const cv=$('#rlcv');if(!cv)return;
+  const dpr=Math.min(2,window.devicePixelRatio||1),w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;
+  if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}
+  const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);
+  const cx=w/2,cy=h/2,R=Math.min(w,h)/2-6,N=37,step=Math.PI*2/N,now=srvNow(),st=CAS.rl.st,r=st&&st.round;
+  const wa=((now/1000)*0.32)%(Math.PI*2); // reduzido a uma volta: ângulos enormes quebram o arc() do canvas
+  // aro externo
+  const rim=c.createRadialGradient(cx,cy,R*.9,cx,cy,R);rim.addColorStop(0,'#3a2d73');rim.addColorStop(1,'#120d2e');
+  c.beginPath();c.arc(cx,cy,R,0,7);c.fillStyle=rim;c.fill();
+  c.lineWidth=2;c.strokeStyle='#5b49b0';c.stroke();
+  // casas
+  for(let i=0;i<N;i++){
+    const n=WHEEL[i],a0=wa+i*step-step/2-Math.PI/2,a1=a0+step;
+    c.beginPath();c.moveTo(cx+Math.cos(a0)*R*.62,cy+Math.sin(a0)*R*.62);c.arc(cx,cy,R*.88,a0,a1);c.arc(cx,cy,R*.62,a1,a0,true);c.closePath();
+    c.fillStyle=n===0?'#17a05d':REDS.has(n)?'#d8344d':'#1a1830';c.fill();c.strokeStyle='#8f7be0';c.lineWidth=.8;c.stroke();
+    const am=a0+step/2;c.save();c.translate(cx+Math.cos(am)*R*.8,cy+Math.sin(am)*R*.8);c.rotate(am+Math.PI/2);
+    c.fillStyle='#f3f0ff';c.font=`700 ${Math.max(9,R*.075)}px Inter,sans-serif`;c.textAlign='center';c.textBaseline='middle';c.fillText(n,0,0);c.restore();
+  }
+  // miolo
+  c.beginPath();c.arc(cx,cy,R*.6,0,7);const hub=c.createRadialGradient(cx,cy,0,cx,cy,R*.6);hub.addColorStop(0,'#2a2158');hub.addColorStop(1,'#0e0a24');c.fillStyle=hub;c.fill();c.strokeStyle='#5b49b0';c.lineWidth=2;c.stroke();
+  // texto central
+  c.textAlign='center';c.textBaseline='middle';
+  if(r&&(r.status==='settled'||(r.status==='spinning'&&now>=Date.parse(r.spin_ends_at)))&&r.result_number!==null){
+    c.beginPath();c.arc(cx,cy,R*.3,0,7);c.fillStyle=r.result_color==='red'?'#d8344d':r.result_color==='green'?'#17a05d':'#26224a';c.fill();c.strokeStyle='#fff';c.lineWidth=3;c.stroke();
+    c.fillStyle='#fff';c.font=`800 ${R*.26}px 'Bricolage Grotesque',sans-serif`;c.fillText(r.result_number,cx,cy+2);
+  }else if(r&&r.status==='betting'){
+    c.fillStyle='#f3f0ff';
+    if(r.betting_ends_at){const left=Math.max(0,Math.ceil((Date.parse(r.betting_ends_at)-now)/1000));c.font=`800 ${R*.34}px 'Bricolage Grotesque',sans-serif`;c.fillText(left,cx,cy);c.font=`600 ${R*.075}px sans-serif`;c.fillStyle='#a8a3d1';c.fillText('apostas fecham',cx,cy+R*.26);
+      if(left!==CAS.rl.lastTick&&left<=5&&left>0){CAS.rl.lastTick=left;SFX.play('tick')}}
+    else{c.font=`${R*.3}px serif`;c.fillText('🎰',cx,cy)}
+  }else if(r){c.fillStyle='#a8a3d1';c.font=`700 ${R*.12}px sans-serif`;c.fillText('girando…',cx,cy)}
+  // bola
+  let ang,rad,show=true;
+  if(!r||r.status==='betting'){ang=-(now/1000)*0.9;rad=R*.935}
+  else if(r.result_number!==null&&r.result_number!==undefined){
+    const idx=WHEEL.indexOf(r.result_number),spinEnd=Date.parse(r.spin_ends_at),p=clamp(1-(spinEnd-now)/8000,0,1);
+    const rel=idx*step-Math.PI/2,D=Math.PI*2*8,e=ease.out5(p);
+    ang=wa+rel+D*(1-e);rad=R*(.935-.2*ease.out3(clamp((p-.55)/.45,0,1)));
+  }else show=false;
+  if(show){const bx=cx+Math.cos(ang)*rad,by=cy+Math.sin(ang)*rad;
+    c.beginPath();c.arc(bx,by,Math.max(5,R*.032),0,7);const bg=c.createRadialGradient(bx-2,by-2,1,bx,by,R*.04);bg.addColorStop(0,'#fff');bg.addColorStop(1,'#cfd3e6');c.fillStyle=bg;c.shadowColor='#0008';c.shadowBlur=6;c.fill();c.shadowBlur=0}
+  // marcador
+  c.beginPath();c.moveTo(cx,cy-R-2);c.lineTo(cx-8,cy-R-16);c.lineTo(cx+8,cy-R-16);c.closePath();c.fillStyle='#ffc857';c.fill();
+}
+
+/* ============================================================
+   FOGUETE
+   ============================================================ */
+function rkHtml(){
+  return`<div class="panel arena"><div class="spread" style="margin-bottom:10px"><div><h3>Foguetinho</h3><small>Aposte, veja o multiplicador subir e saque antes que o foguete exploda.</small></div><span class="pill" id="rkmax">Aposta máxima: 500 AC</span></div>
+<div class="cv-wrap" id="rkwrap"><canvas id="rkcv"></canvas><div class="cv-over"><div><div class="big" id="rkbig">…</div><div class="sub" id="rksub"></div></div></div></div>
+<div class="hist" id="rkhist"></div>
+<div class="betbar"><label>Valor da aposta (AC)<input type="number" id="rkamt" min="1" step="1" value="10"></label><label>Saque automático em (opcional)<input type="number" id="rkauto" min="1.01" step="0.01" placeholder="ex.: 2.00" style="width:150px"></label><div class="chips"><button data-do="chip" data-for="rkamt" data-v="10">+10</button><button data-do="chip" data-for="rkamt" data-v="50">+50</button><button data-do="chip" data-for="rkamt" data-v="100">+100</button><button data-do="chip" data-for="rkamt" data-v="half">½</button><button data-do="chip" data-for="rkamt" data-v="double">2×</button></div></div>
+<div id="rkact" style="margin-top:12px"></div>
+<div class="rocketbets" id="rkbets"></div></div>`;
+}
+async function rkPoll(g){
+  if(g!==CAS.gen)return;
+  try{const st=await stateRpc('rocket_state');if(g!==CAS.gen)return;rkApply(st)}catch(e){if(g===CAS.gen)console.warn('foguete:',e.message||e)}
+  const flying=CAS.rk.st&&CAS.rk.st.round.status==='flying';
+  if(g===CAS.gen)casinoTimer(()=>rkPoll(g),flying?450:1000);
+}
+const rkMy=st=>(st.bets||[]).find(b=>b.user_id===S.user.id);
+function rkApply(st){
+  const prev=CAS.rk.st;CAS.rk.st=st;const r=st.round,same=prev&&prev.round.id===r.id;
+  if(r.status==='flying'&&CAS.rk.phase!=='fly:'+r.id){CAS.rk.phase='fly:'+r.id;if(!prev||same)SFX.play('launch')}
+  if(r.status==='crashed'&&CAS.rk.phase!=='crash:'+r.id){
+    const wasFlying=CAS.rk.phase==='fly:'+r.id;CAS.rk.phase='crash:'+r.id;
+    if(wasFlying||(same&&prev.round.status!=='crashed')){SFX.play('crash');const my=rkMy(st);if(my&&!my.cashed_mult)toast(`O foguete explodiu em ${fmtMult(r.crash_point)}. Você perdeu ${fmt(my.amount)} AC.`);
+      else if(my&&my.cashed_mult&&my.payout&&!CAS.rk.paidToast){}}
+    refreshBalance();
+  }
+  if(r.status==='betting'&&CAS.rk.phase!=='bet:'+r.id){CAS.rk.phase='bet:'+r.id;CAS.rk.paidToast=false;CAS.rk.autoSeen=false}
+  // saque automático pago pelo banco
+  const my=rkMy(st);
+  if(my&&my.cashed_mult&&!CAS.rk.autoSeen&&st.my_auto&&Math.abs(Number(my.cashed_mult)-Number(st.my_auto))<0.011&&!CAS.rk.localCash){CAS.rk.autoSeen=true;toast(`Saque automático em ${fmtMult(my.cashed_mult)}: +${fmt(my.payout)} AC 💸`,'gain');SFX.play('cash');refreshBalance()}
+  const mx=$('#rkmax');if(mx)mx.textContent=`Aposta máxima: ${fmt(st.max_bet,0)} AC`;
+  rkSide(st);
+}
+function rkSide(st){
+  const r=st.round,my=rkMy(st),betting=r.status==='betting';
+  const amt=$('#rkamt'),au=$('#rkauto');if(amt)amt.disabled=!betting||!!my;if(au)au.disabled=!betting||!!my;
+  $$('#rkwrap ~ .betbar .chips button').forEach(b=>b.disabled=!betting||!!my);
+  const mode=r.status+':'+(my?(my.cashed_mult?'cashed':'in'):'out')+':'+r.id;
+  const act=$('#rkact');
+  if(act&&mode!==CAS.rk.mode){CAS.rk.mode=mode;
+    if(betting&&!my)act.innerHTML=`<button class="btn-main btn-lg" style="width:100%" data-do="rk-bet">🚀 Apostar nesta rodada</button>`;
+    else if(betting&&my)act.innerHTML=`<div class="notice" style="margin:0">Aposta de <b>${fmt(my.amount)} AC</b> confirmada${st.my_auto?` · saque automático em ${fmtMult(st.my_auto)}`:''}. Decolagem em breve.</div>`;
+    else if(r.status==='flying'&&my&&!my.cashed_mult)act.innerHTML=`<button class="btn-good cash-btn" data-do="rk-cash" id="rkcash">Sacar</button>`;
+    else if(my&&my.cashed_mult)act.innerHTML=`<div class="notice" style="margin:0;border-color:var(--up)">✔ Você sacou em <b>${fmtMult(my.cashed_mult)}</b> e recebeu <b>${fmt(my.payout)} AC</b>.</div>`;
+    else if(r.status==='crashed'&&my)act.innerHTML=`<div class="notice" style="margin:0;border-color:var(--down)">Explodiu em ${fmtMult(r.crash_point)}. Você perdeu ${fmt(my.amount)} AC.</div>`;
+    else if(r.status==='flying')act.innerHTML=`<div class="notice" style="margin:0">Foguete no ar. Você pode apostar na próxima rodada.</div>`;
+    else act.innerHTML=`<div class="notice" style="margin:0">Próxima rodada em instantes.</div>`;
+  }
+  const hs=$('#rkhist');if(hs)hs.innerHTML=(st.history||[]).map(x=>{const v=Number(x.crash);return`<span class="${v<2?'h-lo':v<10?'h-mid':'h-hi'}" style="min-width:auto;border-radius:99px;padding:0 10px">${fmt(v,2)}x</span>`}).join('')||'<small>Nenhuma rodada ainda.</small>';
+  const bx=$('#rkbets');if(bx)bx.innerHTML=(st.bets||[]).map(b=>{const won=!!b.cashed_mult,lost=r.status==='crashed'&&!won;return`<div class="betline ${won?'win':lost?'lose':''}"><span>${esc(b.username)}${b.user_id===S.user.id?' (você)':''}</span><span>${fmt(b.amount,0)} AC ${won?`→ ${fmtMult(b.cashed_mult)} (+${fmt(b.payout)})`:''}</span></div>`}).join('')||'<div class="dim small">Ninguém apostou ainda nesta rodada.</div>';
+}
+async function rkBet(){
+  const amt=Number($('#rkamt')?.value),autoRaw=$('#rkauto')?.value,auto=autoRaw===''||autoRaw==null?null:Number(autoRaw);
+  if(!Number.isFinite(amt)||amt<1){toast('Informe quanto quer apostar.','err');return}
+  if(auto!==null&&(!Number.isFinite(auto)||auto<1.01)){toast('O saque automático precisa ser 1,01x ou mais.','err');return}
+  const{data,error}=await sb.rpc('rocket_place_bet',{p_amount:amt,p_auto:auto});
+  if(error){toast(errMsg(error),'err');SFX.play('error');return}
+  SFX.play('coin');CAS.rk.localCash=false;setBalance(data.balance);const cb=$('#casbal');if(cb)cb.textContent=fmt(data.balance);
+  try{const st=await stateRpc('rocket_state');rkApply(st)}catch(e){}
+}
+async function rkCash(){
+  const b=$('#rkcash');if(b)b.disabled=true;
+  const{data,error}=await sb.rpc('rocket_cashout');
+  if(error){toast(errMsg(error),'err');SFX.play('error');return}
+  CAS.rk.localCash=true;SFX.play('cash');FX.confetti(innerWidth/2,innerHeight/2,40);
+  toast(`Sacou em ${fmtMult(data.mult)}: +${fmt(data.payout)} AC 💸`,'gain');
+  try{const st=await stateRpc('rocket_state');rkApply(st)}catch(e){}
+  refreshBalance();
+}
+function rkFrame(){
+  if(!CAS.running||CAS.tab!=='foguete')return;
+  CAS.raf=requestAnimationFrame(rkFrame);
+  const cv=$('#rkcv');if(!cv)return;
+  const dpr=Math.min(2,window.devicePixelRatio||1),W=cv.clientWidth,H=cv.clientHeight;if(!W||!H)return;
+  if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr)}
+  const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W,H);
+  const st=CAS.rk.st,now=srvNow(),r=st&&st.round,g=st?Number(st.growth):.12;
+  let t=0,m=1,status=r?r.status:'betting';
+  if(r&&status==='flying'){t=Math.max(0,(now-Date.parse(r.started_at))/1000);m=Math.exp(g*t)}
+  else if(r&&status==='crashed'){t=Math.max(0,(Date.parse(r.crashed_at)-Date.parse(r.started_at))/1000);m=Number(r.crash_point)}
+  // estrelas
+  if(!CAS.rk.stars)CAS.rk.stars=Array.from({length:70},()=>({x:Math.random(),y:Math.random(),s:Math.random()*1.6+.3,v:Math.random()*.5+.2}));
+  for(const s of CAS.rk.stars){const yy=((s.y+(status==='flying'?t*s.v*.05:0))%1);c.globalAlpha=.25+s.s*.25;c.fillStyle='#fff';c.fillRect(s.x*W,yy*H,s.s,s.s)}c.globalAlpha=1;
+  const padL=46,padB=34,padT=20,padR=26,pw=W-padL-padR,ph=H-padB-padT;
+  const tMax=Math.max(10,t*1.12),mMax=Math.max(2,m*1.22);
+  const X=tt=>padL+tt/tMax*pw,Y=mm=>padT+ph-((mm-1)/(mMax-1))*ph;
+  // grade
+  c.strokeStyle='#241f4d';c.lineWidth=1;c.fillStyle='#6f6a9c';c.font='11px sans-serif';c.textAlign='right';
+  const stepM=mMax>40?10:mMax>16?5:mMax>8?2:mMax>4?1:.5;
+  for(let v=1;v<=mMax;v+=stepM){const y=Y(v);c.beginPath();c.moveTo(padL,y);c.lineTo(W-padR,y);c.stroke();c.fillText(fmt(v,v%1?1:0)+'x',padL-6,y+4)}
+  const crashed=status==='crashed';
+  let tipX=X(0),tipY=Y(1),ang=-Math.PI/2.6;
+  if(status==='flying'||crashed){
+    const N=90;c.beginPath();
+    for(let i=0;i<=N;i++){const tt=i/N*t,mm=Math.exp(g*tt);const x=X(tt),y=Y(mm);if(i===0)c.moveTo(x,y);else c.lineTo(x,y)}
+    tipX=X(t);tipY=Y(Math.min(m,mMax));
+    const ex=X(Math.max(0,t-.15)),ey=Y(Math.exp(g*Math.max(0,t-.15)));ang=Math.atan2(tipY-ey,tipX-ex);
+    c.lineWidth=4;c.lineCap='round';c.strokeStyle=crashed?'#ff5d73':'#b49aff';c.shadowColor=crashed?'#ff5d73':'#8b5cf6';c.shadowBlur=14;c.stroke();c.shadowBlur=0;
+    c.lineTo(tipX,padT+ph);c.lineTo(X(0),padT+ph);c.closePath();
+    const gr=c.createLinearGradient(0,padT,0,padT+ph);gr.addColorStop(0,crashed?'rgba(255,93,115,.28)':'rgba(139,92,246,.32)');gr.addColorStop(1,'rgba(139,92,246,0)');c.fillStyle=gr;c.fill();
+  }
+  c.save();c.translate(tipX,tipY);
+  if(crashed){c.font='44px serif';c.textAlign='center';c.textBaseline='middle';c.fillText('💥',0,0)}
+  else{c.rotate(ang+Math.PI/4);c.font='34px serif';c.textAlign='center';c.textBaseline='middle';if(status==='flying'){c.shadowColor='#ffb347';c.shadowBlur=18}c.fillText('🚀',0,0)}
+  c.restore();
+  // textos
+  const big=$('#rkbig'),sub=$('#rksub'),wrap=$('#rkwrap');let bt,stx='';
+  if(status==='betting'){if(r&&r.betting_ends_at){const left=Math.max(0,(Date.parse(r.betting_ends_at)-now)/1000);bt=left>0?`Decola em ${Math.ceil(left)}s`:'Preparar…';stx='Faça sua aposta'}else{bt='Aguardando apostas';stx='A contagem começa com a primeira aposta'}}
+  else if(status==='flying'){bt=fmtMult(Math.floor(m*100)/100);const my=st&&rkMy(st);if(my&&!my.cashed_mult){const pay=Math.floor(Number(my.amount)*m*100)/100;stx=`Sacar agora rende ${fmt(pay)} AC`;const cb=$('#rkcash');if(cb)cb.textContent=`Sacar ${fmt(pay)} AC (${fmtMult(Math.floor(m*100)/100)})`}}
+  else{bt=`Explodiu em ${fmtMult(m)}`;stx='Próxima rodada em instantes'}
+  wrap.classList.toggle('crashed',crashed);
+  if(CAS.rk.lastTxt!==bt+'|'+stx){CAS.rk.lastTxt=bt+'|'+stx;big.textContent=bt;sub.textContent=stx}
+}
+
+/* ============================================================
+   CHAT (Realtime)
+   ============================================================ */
+function chatHtml(){return`<div class="panel chatbox"><div class="chat-head"><h3>💬 Chat do cassino</h3><small><span class="dot" id="chatdot"></span><span id="chatstate">conectando</span></small></div><div id="chatlist"></div><form class="chat-form" id="chatform" data-form="chat" autocomplete="off"><input id="chatinput" maxlength="300" placeholder="Mande uma mensagem…" aria-label="Mensagem"><button class="btn-main">Enviar</button></form></div>`}
+function chatMsgHtml(m){const mine=m.user_id===S.user.id;return`<div class="msg ${mine?'mine':''}" data-mid="${m.id}">${m.avatar_url?`<img class="avatar" src="${esc(m.avatar_url)}" alt="" loading="lazy">`:'<span class="avatar"></span>'}<div style="min-width:0;flex:1"><div class="who">${esc(m.username||'Membro')}</div><div class="txt">${esc(m.body)}</div></div>${isAdmin()?`<button class="del" data-do="chat-del" data-id="${m.id}" title="Apagar mensagem" aria-label="Apagar mensagem">✕</button>`:''}</div>`}
+function chatRender(){
+  const l=$('#chatlist');if(!l)return;
+  l.innerHTML=CAS.chat.msgs.map(chatMsgHtml).join('')||'<div class="empty small">Ninguém falou ainda. Mande a primeira mensagem!</div>';
+  l.scrollTop=l.scrollHeight;chatDot();
+}
+function chatDot(){const d=$('#chatdot'),s=$('#chatstate');if(d)d.classList.toggle('on',CAS.chat.live);if(s)s.textContent=CAS.chat.live?'ao vivo':'atualizando a cada poucos segundos'}
+function chatPush(m){
+  if(!m||CAS.chat.ids.has(m.id))return;CAS.chat.ids.add(m.id);CAS.chat.msgs.push(m);CAS.chat.lastId=Math.max(CAS.chat.lastId,m.id);
+  if(CAS.chat.msgs.length>120){const o=CAS.chat.msgs.shift();CAS.chat.ids.delete(o.id)}
+  const l=$('#chatlist');
+  if(l){const near=l.scrollHeight-l.scrollTop-l.clientHeight<80;const e=l.querySelector('.empty');if(e)e.remove();l.insertAdjacentHTML('beforeend',chatMsgHtml(m));if(near||m.user_id===S.user.id)l.scrollTop=l.scrollHeight;
+    if(m.user_id!==S.user.id)SFX.play('chat')}
+  else if(m.user_id!==S.user.id&&CAS.chat.loaded){S.unread++;renderRail()}
+}
+function chatRemove(id){CAS.chat.msgs=CAS.chat.msgs.filter(m=>m.id!==id);const e=document.querySelector(`[data-mid="${id}"]`);if(e)e.remove()}
+async function chatFetch(){
+  const q=sb.from('chat_messages').select('id,user_id,username,avatar_url,body,created_at');
+  const{data,error}=await(CAS.chat.lastId?q.gt('id',CAS.chat.lastId).order('id',{ascending:true}).limit(100):q.order('id',{ascending:false}).limit(60));
+  if(error){console.warn('chat:',error.message);return}
+  const rows=CAS.chat.lastId?data:(data||[]).reverse();
+  const first=!CAS.chat.loaded;CAS.chat.loaded=true;
+  rows.forEach(m=>{if(first){if(!CAS.chat.ids.has(m.id)){CAS.chat.ids.add(m.id);CAS.chat.msgs.push(m);CAS.chat.lastId=Math.max(CAS.chat.lastId,m.id)}}else chatPush(m)});
+  if(first)chatRender();
+}
+function chatStart(){
+  if(CAS.chat.sub)return;
+  chatFetch();
+  try{
+    CAS.chat.sub=sb.channel('autsim-chat')
+      .on('postgres_changes',{event:'INSERT',schema:'public',table:'chat_messages'},p=>chatPush(p.new))
+      .on('postgres_changes',{event:'DELETE',schema:'public',table:'chat_messages'},p=>chatRemove(p.old&&p.old.id))
+      .subscribe(s=>{CAS.chat.live=(s==='SUBSCRIBED');chatDot()});
+  }catch(e){console.warn('realtime:',e)}
+  CAS.chat.fb=setInterval(()=>{if(!CAS.chat.live&&S.user)chatFetch()},5000);
+}
+function chatStop(){if(CAS.chat.sub){try{sb.removeChannel(CAS.chat.sub)}catch(e){}}CAS.chat.sub=null;CAS.chat.live=false;clearInterval(CAS.chat.fb);CAS.chat.msgs=[];CAS.chat.ids=new Set();CAS.chat.lastId=0;CAS.chat.loaded=false}
+async function chatSend(){
+  const inp=$('#chatinput'),txt=inp.value.trim();if(!txt)return;inp.value='';
+  const{error}=await sb.rpc('send_chat',{p_body:txt});
+  if(error){inp.value=txt;toast(errMsg(error),'err',3000)}
+  else if(!CAS.chat.live)chatFetch();
+}
+
+/* ============================================================
+   APOSTAS ENTRE MEMBROS
+   ============================================================ */
+function prHtml(){
+  return`<div class="panel"><div class="spread"><div><h3>Apostas da comunidade</h3><p class="muted small" style="max-width:56ch">Alguém cria uma aposta com uma condição (“Fulano vai passar na prova?”). Quem acerta divide o pote de quem errou, proporcional ao que apostou.</p></div><button class="btn-main" data-do="pr-new">+ Criar aposta</button></div></div><div class="market" id="prlist" style="margin-top:14px"><div class="empty">Carregando…</div></div>`;
+}
+async function prLoad(g){
+  if(g!==CAS.gen)return;
+  try{const d=await stateRpc('predictions_list');if(g!==CAS.gen)return;CAS.pr.data=d;prRender()}catch(e){if(g===CAS.gen)console.warn('apostas:',e.message||e)}
+  if(g===CAS.gen)casinoTimer(()=>prLoad(g),9000);
+}
+function prTick(g){
+  clearTimeout(CAS.pr.tickT);
+  if(g!==CAS.gen||CAS.tab!=='apostas')return;
+  $$('.pr-cd').forEach(el=>{const t=Date.parse(el.dataset.t),ms=t-srvNow();el.textContent=ms>0?countdownTxt(ms):'prazo encerrado'});
+  CAS.pr.tickT=casinoTimer(()=>prTick(g),1000);
+}
+const prShare=(side,amt,m)=>{const fee=Number(CAS.pr.data?.fee||0)/100,y=Number(m.yes_total),n=Number(m.no_total),win=(side==='yes'?y:n)+amt,pool=(y+n+amt)*(1-fee);return win>0?amt/win*pool:0};
+function prRender(){
+  const box=$('#prlist');if(!box||!CAS.pr.data)return;
+  const now=srvNow(),list=CAS.pr.data.markets||[];
+  box.innerHTML=list.map(m=>{
+    const y=Number(m.yes_total),n=Number(m.no_total),tot=y+n,py=tot?y/tot*100:50,open=m.status==='open',closed=open&&Date.parse(m.closes_at)<=now;
+    const mine=m.creator_id===S.user.id,canResolve=open&&(isAdmin()||(mine&&closed)),canCancel=open&&(isAdmin()||mine);
+    let tag;if(open)tag=closed?'<span class="pill gold">aguardando resultado</span>':`<span class="pill acc">fecha em <b class="pr-cd" data-t="${esc(m.closes_at)}"></b></span>`;
+    else if(m.status==='cancelled')tag='<span class="pill">cancelada · valores devolvidos</span>';
+    else tag=m.refunded?'<span class="pill">encerrada sem vencedores · valores devolvidos</span>':`<span class="pill ${m.outcome==='yes'?'up':'down'}">resultado: ${m.outcome==='yes'?'SIM ✔':'NÃO ✘'}</span>`;
+    const myLine=Number(m.my_amount)>0?`<div class="small">Você apostou <b>${fmt(m.my_amount)} AC</b> no ${m.my_side==='yes'?'SIM':'NÃO'}${m.my_payout!==null&&m.my_payout!==undefined&&!open?` · recebeu <b class="${Number(m.my_payout)>Number(m.my_amount)?'up':''}">${fmt(m.my_payout)} AC</b>`:''}</div>`:'';
+    const canBet=open&&!closed&&!mine;
+    return`<div class="panel"><div class="spread"><div style="min-width:0"><h3>${esc(m.title)}</h3><small>criada por ${esc(m.creator_name||'—')}</small></div>${tag}</div>${m.description?`<p class="muted small" style="margin-top:6px">${esc(m.description)}</p>`:''}
+<div class="poolbar" style="margin:12px 0"><i class="y" style="width:${py}%"></i><i class="n" style="width:${100-py}%"></i></div>
+<div class="sides"><div><div class="up"><b>SIM</b> · ${m.yes_count} ${m.yes_count==1?'aposta':'apostas'}</div><div class="stat" style="font-size:22px">${fmt(y,0)} AC</div></div><div><div class="down"><b>NÃO</b> · ${m.no_count} ${m.no_count==1?'aposta':'apostas'}</div><div class="stat" style="font-size:22px">${fmt(n,0)} AC</div></div></div>
+${myLine}<div class="row" style="margin-top:12px">${canBet?`<button class="btn-good" data-do="pr-bet" data-id="${esc(m.id)}" data-side="yes" ${m.my_side==='no'?'disabled':''}>Apostar no SIM</button><button class="btn-bad" data-do="pr-bet" data-id="${esc(m.id)}" data-side="no" ${m.my_side==='yes'?'disabled':''}>Apostar no NÃO</button>`:''}${canResolve?`<button data-do="pr-resolve" data-id="${esc(m.id)}" data-out="yes">Aconteceu (SIM)</button><button data-do="pr-resolve" data-id="${esc(m.id)}" data-out="no">Não aconteceu (NÃO)</button>`:''}${canCancel?`<button class="btn-ghost" data-do="pr-cancel" data-id="${esc(m.id)}">Cancelar e devolver</button>`:''}${open&&mine&&!closed?'<small class="dim">Quem cria não pode apostar. Você encerra depois do prazo.</small>':''}</div></div>`}).join('')||'<div class="panel empty">Nenhuma aposta aberta. Crie a primeira!</div>';
+  prTick(CAS.gen);
+}
+function prNewForm(){
+  const d=new Date(Date.now()+24*3600e3);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
+  openForm({title:'Criar aposta',intro:'Escreva uma condição clara que dê para responder com SIM ou NÃO.',submit:'Criar aposta',
+    fields:[{name:'title',label:'Condição',max:140,placeholder:'Ex.: Abigobal vai passar em enfermagem'},{name:'description',label:'Detalhes (opcional)',type:'textarea',max:500,hint:'Explique como o resultado será conferido.'},{name:'closes',label:'Prazo para apostar',type:'datetime-local',value:d.toISOString().slice(0,16),hint:'Depois do prazo, só você (ou o ADM) encerra a aposta.'}],
+    onSubmit:async v=>{const dt=new Date(v.closes);if(isNaN(dt))throw new Error('Informe o prazo.');const{error}=await sb.rpc('create_prediction',{p_title:v.title,p_description:v.description,p_closes_at:dt.toISOString()});if(error)throw error;toast('Aposta criada!');SFX.play('coin');prLoad(CAS.gen)}});
+}
+function prBetForm(id,side){
+  const m=(CAS.pr.data?.markets||[]).find(x=>x.id===id);if(!m)return;
+  openForm({title:`Apostar no ${side==='yes'?'SIM':'NÃO'}`,intro:m.title,submit:'Confirmar aposta',
+    fields:[{name:'amount',label:'Valor (AC)',type:'number',value:50,min:1,step:1,hint:'Seu ganho depende do pote final: outras apostas ainda podem mudar o valor.'}],
+    onSubmit:async v=>{const{data,error}=await sb.rpc('place_prediction_bet',{p_market:id,p_side:side,p_amount:v.amount});if(error)throw error;SFX.play('coin');toast('Aposta feita!');setBalance(data.balance);prLoad(CAS.gen)}});
+  const upd=()=>{const a=Number($('#f_amount').value)||0;let h=$('#prest');if(!h){h=document.createElement('div');h.id='prest';h.className='notice';h.style.margin='0';$('#genform .formgrid').appendChild(h)}
+    const est=prShare(side,a,m);h.innerHTML=a>0?`Se o ${side==='yes'?'SIM':'NÃO'} ganhar agora, você leva cerca de <b>${fmt(est)} AC</b> (${est>0?fmt(est/a,2):'0'}x).`:'Informe um valor para ver a estimativa.'};
+  $('#f_amount').addEventListener('input',upd);upd();
+}
+async function prResolve(id,out){
+  if(!await confirmBox(`Encerrar como "${out==='yes'?'SIM — aconteceu':'NÃO — não aconteceu'}"? Os prêmios são pagos na hora e não dá para desfazer.`,'Encerrar'))return;
+  const{error}=await sb.rpc('resolve_prediction',{p_market:id,p_outcome:out});
+  if(error){toast(errMsg(error),'err');return}
+  SFX.play('win');toast('Aposta encerrada e prêmios pagos.','gain');refreshBalance();prLoad(CAS.gen);
+}
+async function prCancel(id){
+  if(!await confirmBox('Cancelar a aposta e devolver o valor de todo mundo?','Cancelar aposta'))return;
+  const{error}=await sb.rpc('cancel_prediction',{p_market:id});
+  if(error){toast(errMsg(error),'err');return}
+  toast('Aposta cancelada. Valores devolvidos.');refreshBalance();prLoad(CAS.gen);
+}
+
+/* ============================================================
+   Painel do ADM: tudo é feito por funções do banco que conferem a permissão no servidor
+   ============================================================ */
+const ADM={tab:'site',items:[],missions:[],orders:[],tracks:[],slots:[],log:[],loaded:false};
+const ADM_TABS=[['site','Site e economia'],['membros','Membros'],['moedas','Moedas'],['loja','Loja e pedidos'],['missoes','Missões'],['musica','Música'],['registro','Registro']];
+const SETTINGS=[
+ ['Aparência',[['site_name','Nome do site','text'],['announcement','Aviso na faixa do topo (vazio = texto padrão)','text'],['accent_color','Cor principal do site','color']]],
+ ['Economia',[['daily_bonus','Bônus diário (AC)','number'],['music_slot_price','Preço para tocar uma música (AC)','number'],['music_slot_minutes','Duração da música paga (minutos)','number']]],
+ ['Cassino e apostas',[['roulette_bet_seconds','Roleta: tempo para apostar (segundos)','number'],['roulette_max_bet','Roleta: aposta máxima (AC)','number'],['rocket_bet_seconds','Foguete: tempo para apostar (segundos)','number'],['rocket_max_bet','Foguete: aposta máxima (AC)','number'],['prediction_fee_percent','Apostas entre membros: taxa da casa (%)','number'],['prediction_max_open_per_user','Apostas entre membros: máximo abertas por pessoa','number']]]
+];
+const SETTING_DEFAULTS={site_name:'Bolsa do Autsim',announcement:'',accent_color:'#8b5cf6',daily_bonus:50,music_slot_price:100,music_slot_minutes:60,roulette_bet_seconds:20,roulette_max_bet:500,rocket_bet_seconds:12,rocket_max_bet:500,prediction_fee_percent:0,prediction_max_open_per_user:3};
+
+async function admLoad(){
+  if(!isAdmin())return;
+  const [it,mi,od,mu,lg]=await Promise.all([
+    sb.from('shop_items').select('*').order('sort_order').order('created_at'),
+    sb.from('missions').select('*').order('sort_order').order('created_at'),
+    sb.rpc('admin_list_orders'),
+    sb.rpc('music_state',{p_all:true}),
+    sb.from('admin_log').select('*').order('id',{ascending:false}).limit(80)]);
+  ADM.items=it.data||[];ADM.missions=mi.data||[];ADM.orders=od.data||[];ADM.tracks=mu.data?.tracks||[];ADM.slots=mu.data?.slots||[];ADM.log=lg.data||[];
+  const bad=[it,mi,od,mu,lg].find(r=>r.error);if(bad)toast('Parte do painel não carregou: '+errMsg(bad.error),'err');
+  ADM.loaded=true;if(S.tab==='adm')keepInputs(renderView);
+}
+AFTER.adm=function(){if(!ADM.loaded)admLoad()};
+
+const admSet=k=>S.settings[k]!==undefined?S.settings[k]:SETTING_DEFAULTS[k];
+const admBtn=(act,label,attrs='',cls='btn-sm')=>`<button class="${cls}" data-do="${act}" ${attrs}>${label}</button>`;
+function admSite(){
+  const blocks=SETTINGS.map(([title,rows])=>`<div class="panel"><h3 style="margin-bottom:6px">${title}</h3>${rows.map(([k,label,type])=>`<div class="setrow"><label>${label}<input id="set_${k}" type="${type}" value="${esc(admSet(k))}" ${type==='number'?'step="any" style="width:100%"':''}></label>${admBtn('adm-set',`Salvar`,`data-key="${k}" data-type="${type}"`)}</div>`).join('')}</div>`).join('');
+  const x=S.xpConfig;
+  return`<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(340px,1fr))">${blocks}
+<div class="panel"><h3 style="margin-bottom:6px">Curva de níveis (XP)</h3><p class="muted small">Quanto maiores a base e o bônus final, mais difícil subir de nível.</p><div class="formgrid"><label>Base<input id="xpbase" type="number" value="${x.base}"></label><label>Expoente (1 a 3)<input id="xpexp" type="number" step="0.05" value="${x.exponent}"></label><label>Bônus do nível final<input id="xpbonus" type="number" value="${x.endgame_bonus}"></label></div>${admBtn('adm-xpcurve','Salvar curva','','btn-main')}</div>
+<div class="panel"><h3 style="margin-bottom:6px">Moderação</h3><div class="row">${admBtn('adm-clear-chat','🧹 Limpar o chat do cassino')}${admBtn('adm-refresh','↻ Recarregar painel')}</div><p class="muted small" style="margin-top:8px">Para apagar uma mensagem só, use o ✕ ao lado dela no chat.</p></div></div>`;
+}
+function admMembers(){
+  return table(['Membro','Saldo','Patrimônio','XP / nível','ADM','Ações'],rankedProfiles().map(p=>`<tr><td>${whoTag(p)}</td><td>${fmt(p.balance)}</td><td>${fmt(worth(p.id))}</td><td>${Number(p.xp||0).toLocaleString('pt-BR')} · Nv. ${levelOf(Number(p.xp||0))}</td><td>${p.is_admin?'<span class="pill acc">ADM</span>':'—'}</td><td><div class="row">${admBtn('adm-adjust','± Dinheiro',`data-id="${esc(p.id)}"`,'btn-sm btn-gold')}${admBtn('adm-xp','XP',`data-id="${esc(p.id)}"`)}${p.id!==S.user.id?admBtn('adm-toggle-admin',p.is_admin?'Tirar ADM':'Dar ADM',`data-id="${esc(p.id)}"`):''}</div></td></tr>`).join(''));
+}
+function admCoins(){
+  return table(['Moeda','Dono','Preço','Ações (vendidas / total)','Ações'],S.assets.slice().sort((a,b)=>String(a.symbol).localeCompare(String(b.symbol))).map(a=>`<tr><td>${coinTag(a)}</td><td>${esc(profile(a.id).username||'—')}</td><td>${fmt(a.price)}</td><td>${sold(a.id)} / ${a.total_shares}</td><td>${admBtn('adm-coin','Editar moeda',`data-id="${esc(a.id)}"`)}</td></tr>`).join(''),'Nenhuma moeda ainda.');
+}
+function admShop(){
+  const items=table(['Item','Preço','Estoque','Situação','Ações'],ADM.items.map(i=>`<tr><td>${esc(i.emoji||'🎁')} ${esc(i.name)}</td><td>${fmt(i.price)}</td><td>${i.stock===null?'sem limite':i.stock}</td><td>${i.active?'<span class="up">à venda</span>':'<span class="dim">oculto</span>'}</td><td><div class="row">${admBtn('adm-item-edit','Editar',`data-id="${esc(i.id)}"`)}${admBtn('adm-item-del','Excluir',`data-id="${esc(i.id)}"`,'btn-sm btn-bad')}</div></td></tr>`).join(''),'Nenhum item cadastrado.');
+  const pend=ADM.orders.filter(o=>!o.delivered).length;
+  const orders=table(['Membro','Item','Qtd','Quando','Situação'],ADM.orders.map(o=>`<tr><td>${esc(o.username)}</td><td>${esc(o.item_name)}</td><td>${o.quantity}</td><td>${fmtDate(o.created_at)}</td><td>${o.delivered?`<span class="up">entregue</span> ${admBtn('adm-order-undo','desfazer',`data-id="${esc(o.id)}"`)}`:admBtn('adm-order-done','Marcar como entregue',`data-id="${esc(o.id)}"`,'btn-sm btn-good')}</td></tr>`).join(''),'Nenhum pedido ainda.');
+  return`<div class="spread"><h3>Itens da loja</h3>${admBtn('adm-item-new','+ Novo item','','btn-main')}</div>${items}<div class="spread"><h3>Pedidos ${pend?`<span class="badge" style="position:static;margin-left:6px">${pend} pendentes</span>`:''}</h3></div>${orders}`;
+}
+function admMissions(){
+  return`<div class="spread"><h3>Missões</h3>${admBtn('adm-mis-new','+ Nova missão','','btn-main')}</div>${table(['Missão','Categoria','Recompensa','Situação','Ações'],ADM.missions.map(m=>`<tr><td>${esc(m.title)}</td><td>${esc(m.category)}</td><td>+${m.xp_reward} XP · ${fmt(m.coin_reward)} AC</td><td>${m.active?'<span class="up">ativa</span>':'<span class="dim">oculta</span>'}</td><td><div class="row">${admBtn('adm-mis-grant','Conceder a um membro',`data-id="${esc(m.id)}"`,'btn-sm btn-gold')}${admBtn('adm-mis-edit','Editar',`data-id="${esc(m.id)}"`)}${admBtn('adm-mis-del','Excluir',`data-id="${esc(m.id)}"`,'btn-sm btn-bad')}</div></td></tr>`).join(''),'Nenhuma missão cadastrada.')}<p class="muted small">Missões não pagam sozinhas: você confere se o membro cumpriu e clica em “Conceder”. Cada membro recebe uma vez só.</p>`;
+}
+function admMusic(){
+  return`<div class="spread"><div><h3>Playlist do site</h3><p class="muted small">Toca em sequência para quem ligou a música. Aceita vídeo ou playlist do YouTube e faixa, álbum ou playlist do Spotify.</p></div>${admBtn('adm-music-add','+ Adicionar música','','btn-main')}</div>
+${table(['Faixa','Origem','Situação','Ações'],ADM.tracks.map(t=>`<tr><td>${esc(t.title)}</td><td>${t.kind==='youtube'?'YouTube':'Spotify'} · ${esc(t.ref_type)}</td><td>${t.active?'<span class="up">tocando na rotação</span>':'<span class="dim">pausada</span>'}</td><td><div class="row">${admBtn('adm-music-toggle',t.active?'Pausar':'Ativar',`data-id="${esc(t.id)}" data-on="${t.active?0:1}"`)}${admBtn('adm-music-del','Remover',`data-id="${esc(t.id)}"`,'btn-sm btn-bad')}</div></td></tr>`).join(''),'Nenhuma música ainda. Adicione a primeira.')}
+<h3 style="margin-top:20px">Fila de músicas pagas pelos membros</h3>${table(['Quem pediu','Música','Começa','Termina','Ações'],ADM.slots.map(s=>`<tr><td>${esc(s.username)}</td><td>${esc(s.title)}</td><td>${fmtDate(s.starts_at)}</td><td>${fmtDate(s.ends_at)}</td><td><div class="row">${admBtn('adm-slot-del','Remover e devolver',`data-id="${esc(s.id)}" data-refund="1"`,'btn-sm btn-gold')}${admBtn('adm-slot-del','Remover',`data-id="${esc(s.id)}" data-refund="0"`)}</div></td></tr>`).join(''),'A fila está vazia.')}`;
+}
+function admLog(){
+  return table(['Quando','Quem','Ação','Detalhes'],ADM.log.map(l=>`<tr><td>${fmtDate(l.created_at)}</td><td>${esc(l.admin_name||'—')}</td><td>${esc(l.action)}</td><td style="white-space:normal;max-width:420px;overflow-wrap:anywhere" class="muted small">${esc(JSON.stringify(l.details||{}))}</td></tr>`).join(''),'Nenhuma ação registrada.');
+}
+V.adm=function(){
+  if(!isAdmin())return'<div class="notice">Acesso negado.</div>';
+  const body={site:admSite,membros:admMembers,moedas:admCoins,loja:admShop,missoes:admMissions,musica:admMusic,registro:admLog}[ADM.tab]();
+  return`<div class="page-head"><div><h2>🛡️ Painel do ADM</h2><p class="muted">Tudo que muda aqui vale na hora para todo mundo. Cada ação fica registrada.</p></div></div><div class="admtabs">${ADM_TABS.map(([k,n])=>`<button data-do="adm-tab" data-tab="${k}" class="${ADM.tab===k?'active':''}">${n}</button>`).join('')}</div>${ADM.loaded?body:'<div class="empty">Carregando painel…</div>'}`;
+};
+
+/* ---------- ações ---------- */
+async function admRpc(fn,args,ok,reload=true){
+  const{data,error}=await sb.rpc(fn,args);
+  if(error)throw error;
+  if(ok)toast(ok);
+  if(reload){await refreshLight(true);await admLoad()}
+  return data;
+}
+function admAdjust(id){
+  const p=profile(id);
+  openForm({title:`Dinheiro de ${p.username}`,intro:`Saldo atual: ${fmt(p.balance)} AC`,submit:'Aplicar',
+    fields:[{name:'op',label:'O que fazer',type:'select',value:'add',options:[{value:'add',label:'Adicionar dinheiro'},{value:'remove',label:'Remover dinheiro'}]},{name:'amount',label:'Quantidade (AC)',type:'number',min:0.01,step:0.01,value:100},{name:'reason',label:'Motivo (fica no registro)',max:200}],
+    onSubmit:async v=>{const a=Number(v.amount);if(!(a>0))throw new Error('Informe uma quantidade maior que zero.');await admRpc('admin_adjust_balance',{p_user:id,p_amount:v.op==='remove'?-a:a,p_reason:v.reason},`${v.op==='remove'?'Removido':'Adicionado'}: ${fmt(a)} AC ${v.op==='remove'?'de':'para'} ${p.username}.`)}});
+}
+function admXp(id){
+  const p=profile(id);
+  openForm({title:`XP de ${p.username}`,intro:'Define o XP total do membro (o nível é calculado a partir dele).',fields:[{name:'xp',label:'XP total',type:'number',min:0,step:1,value:Number(p.xp||0)}],
+    onSubmit:async v=>{await admRpc('admin_set_xp',{p_user:id,p_xp:Math.round(v.xp)},'XP atualizado.')}});
+}
+function admCoinForm(id){
+  const a=asset(id);
+  openForm({title:`Editar moeda de ${profile(id).username||a.name}`,intro:'Você pode mudar tudo: nome, ID, imagem, preço e total de ações.',
+    fields:[{name:'name',label:'Nome',value:a.name,max:30},{name:'symbol',label:'ID da moeda',value:a.symbol,hint:'Ex.: HELLZINHO$ — letras, números e _ (o $ final é automático).'},{name:'avatar',label:'Imagem (link https://)',value:a.avatar_url||''},{name:'price',label:'Preço (AC)',type:'number',step:'any',min:0.01,value:Number(a.price)},{name:'shares',label:'Total de ações',type:'number',step:1,min:1,value:Number(a.total_shares)}],
+    onSubmit:async v=>{await admRpc('admin_update_asset',{p_asset_id:id,p_name:v.name,p_symbol:v.symbol,p_avatar:v.avatar,p_price:v.price,p_total_shares:Math.round(v.shares)},'Moeda atualizada.')}});
+}
+function admItemForm(id){
+  const i=ADM.items.find(x=>x.id===id)||{emoji:'🎁',name:'',description:'',price:100,stock:null,active:true,sort_order:0};
+  openForm({title:id?'Editar item':'Novo item da loja',submit:id?'Salvar':'Adicionar à loja',
+    fields:[{name:'emoji',label:'Emoji',value:i.emoji,max:8},{name:'name',label:'Nome do item',value:i.name,max:80},{name:'description',label:'Descrição',type:'textarea',value:i.description,max:400},{name:'price',label:'Preço (AC)',type:'number',step:0.01,min:0,value:Number(i.price)},{name:'stock',label:'Estoque',type:'number',step:1,min:0,value:i.stock,hint:'Deixe vazio para estoque ilimitado.'},{name:'sort',label:'Ordem na vitrine',type:'number',step:1,value:i.sort_order},{name:'active',label:'À venda',type:'checkbox',value:i.active}],
+    onSubmit:async v=>{await admRpc('admin_upsert_shop_item',{p_id:id||null,p_name:v.name,p_description:v.description,p_price:v.price,p_stock:v.stock===null?null:Math.round(v.stock),p_active:v.active,p_sort:Math.round(v.sort||0),p_emoji:v.emoji},id?'Item atualizado.':'Item adicionado à loja.')}});
+}
+function admMissionForm(id){
+  const m=ADM.missions.find(x=>x.id===id)||{title:'',description:'',category:'Geral',xp_reward:50,coin_reward:0,active:true,sort_order:0};
+  openForm({title:id?'Editar missão':'Nova missão',
+    fields:[{name:'title',label:'Título',value:m.title,max:80},{name:'description',label:'Descrição',type:'textarea',value:m.description,max:400},{name:'category',label:'Categoria',value:m.category,max:30},{name:'xp',label:'Recompensa em XP',type:'number',min:0,step:1,value:m.xp_reward},{name:'coins',label:'Recompensa em AC',type:'number',min:0,step:0.01,value:Number(m.coin_reward)},{name:'sort',label:'Ordem',type:'number',step:1,value:m.sort_order},{name:'active',label:'Visível para os membros',type:'checkbox',value:m.active}],
+    onSubmit:async v=>{await admRpc('admin_upsert_mission',{p_id:id||null,p_title:v.title,p_description:v.description,p_category:v.category,p_xp:Math.round(v.xp||0),p_coins:v.coins||0,p_active:v.active,p_sort:Math.round(v.sort||0)},id?'Missão atualizada.':'Missão criada.')}});
+}
+function admGrantForm(mid){
+  const m=ADM.missions.find(x=>x.id===mid);if(!m)return;
+  openForm({title:`Conceder “${m.title}”`,intro:`O membro recebe +${m.xp_reward} XP e ${fmt(m.coin_reward)} AC, uma única vez.`,submit:'Conceder',
+    fields:[{name:'user',label:'Membro',type:'select',value:'',options:[{value:'',label:'Escolha…'},...S.profiles.slice().sort((a,b)=>String(a.username).localeCompare(String(b.username))).map(p=>({value:p.id,label:p.username}))]}],
+    onSubmit:async v=>{if(!v.user)throw new Error('Escolha um membro.');await admRpc('admin_grant_mission',{p_user:v.user,p_mission:mid},'Recompensa concedida!')}});
+}
+function admMusicForm(){
+  openForm({title:'Adicionar música à playlist',intro:'Cole um link do YouTube (vídeo ou playlist) ou do Spotify (faixa, álbum ou playlist).',submit:'Adicionar',
+    fields:[{name:'url',label:'Link',placeholder:'https://www.youtube.com/watch?v=…'},{name:'title',label:'Nome para mostrar no player',max:80}],
+    onSubmit:async v=>{await admRpc('admin_add_music',{p_url:v.url,p_title:v.title},'Música adicionada.',false);await musicLoad();await admLoad()}});
+}
+async function admSaveSetting(key,type){
+  const el=$('#set_'+key);if(!el)return;
+  let val=el.value;if(type==='number'){val=Number(val);if(!Number.isFinite(val)){toast('Informe um número válido.','err');return}}
+  const{error}=await sb.rpc('admin_set_setting',{p_key:key,p_value:val});
+  if(error){toast(errMsg(error),'err');return}
+  S.settings[key]=val;applySettings();toast('Configuração salva.');
+}
+async function admSaveXp(){
+  const base=Number($('#xpbase').value),exp=Number($('#xpexp').value),bonus=Number($('#xpbonus').value);
+  if(![base,exp,bonus].every(Number.isFinite)){toast('Confira os valores da curva.','err');return}
+  const{error}=await sb.rpc('admin_update_xp_settings',{p_base:base,p_exponent:exp,p_endgame_bonus:bonus});
+  if(error){toast(errMsg(error),'err');return}
+  S.xpConfig={base,exponent:exp,endgame_bonus:bonus};toast('Curva de níveis salva.');updateUserbar();
+}
+
+/* ============================================================
+   Início do app: login, carregamento de dados, atualização periódica e eventos
+   ============================================================ */
+async function fetchCore(){
+  const uid=S.user.id;
+  const r=await Promise.all([
+    sb.from('profiles').select('id,username,avatar_url,balance,xp,is_admin,terms_accepted_at,last_daily_date'),
+    sb.from('assets').select('id,name,symbol,avatar_url,price,total_shares,updated_at'),
+    sb.from('holdings').select('user_id,asset_id,quantity'),
+    sb.from('transactions').select('id,user_id,asset_id,type,quantity,unit_price,amount,balance_after,created_at').eq('user_id',uid).order('created_at',{ascending:false}).limit(100),
+    sb.from('shop_items').select('*').eq('active',true).order('sort_order').order('price'),
+    sb.from('user_inventory').select('*').eq('user_id',uid),
+    sb.from('missions').select('*').eq('active',true).order('sort_order'),
+    sb.from('mission_completions').select('mission_id').eq('user_id',uid),
+    sb.from('xp_settings').select('base,exponent,endgame_bonus').eq('id',true).maybeSingle(),
+    sb.rpc('market_movers'),
+    sb.from('site_settings').select('key,value')]);
+  const [pr,ar,hr,tr,ir,inv,mr,cm,xr,mv,ss]=r;
+  r.forEach((x,i)=>{if(x.error)console.warn('carga',i,x.error.message)});
+  if(!pr.error){S.profiles=pr.data||[];S.profile=S.profiles.find(x=>x.id===uid)||null}
+  if(!ar.error)S.assets=ar.data||[];
+  if(!hr.error)S.holdings=hr.data||[];
+  if(!tr.error)S.tx=tr.data||[];
+  if(!ir.error)S.items=ir.data||[];
+  if(!inv.error)S.inventory=inv.data||[];
+  if(!mr.error)S.missions=mr.data||[];
+  if(!cm.error)S.completions=cm.data||[];
+  if(xr.data)S.xpConfig=xr.data;
+  if(!mv.error){S.movers={};(mv.data||[]).forEach(x=>S.movers[x.asset_id]=x)}
+  if(!ss.error&&ss.data)ss.data.forEach(x=>{S.settings[x.key]=x.value});
+  applySettings();
+}
+async function loadPublicSettings(){
+  try{const{data,error}=await sb.from('site_settings').select('key,value');if(!error&&data){data.forEach(x=>S.settings[x.key]=x.value);applySettings()}}catch(e){}
+}
+async function refreshBalance(){
+  if(!S.user)return;
+  const{data}=await sb.from('profiles').select('balance,xp,last_daily_date').eq('id',S.user.id).maybeSingle();
+  if(data&&S.profile){Object.assign(S.profile,data);updateUserbar();const cb=$('#casbal');if(cb)cb.textContent=fmt(data.balance)}
+}
+const LIVE_TABS=new Set(['inicio','bolsa','carteira','ranking','extrato','loja','missoes','perfil']);
+async function refreshLight(force){
+  if(!S.user||!S.profile||(S.refreshing&&!force))return;
+  S.refreshing=true;
+  try{
+    await fetchCore();updateUserbar();renderRail();renderTicker();
+    if(LIVE_TABS.has(S.tab)&&($('#modal').classList.contains('hidden')||force))keepInputs(renderView);
+    else if(S.tab==='graficos'&&force)renderView();
+    else if(S.tab==='adm'&&force)keepInputs(renderView);
+    const cb=$('#casbal');if(cb)cb.textContent=fmt(me().balance);
+  }catch(e){console.warn('atualização:',e)}
+  finally{S.refreshing=false}
+}
+
+/* ---------- telas de entrada ---------- */
+function showGate(kind){
+  $('#shell').classList.add('hidden');$('#gate').classList.remove('hidden');$('#userbar').innerHTML='';$('#dock').classList.add('hidden');
+  const name=esc(S.settings.site_name||'Bolsa do Autsim'),g=$('#gate');
+  if(kind==='login')g.innerHTML=`<div class="floaty" style="font-size:54px">📈</div><h1>${name}</h1><p class="lead">Invista nas moedas dos membros, jogue roleta e foguete com o chat ao vivo, faça apostas entre amigos e suba de nível. Tudo com AutsimCoins, sem dinheiro de verdade.</p>
+<div class="panel glow stack"><label class="inline"><input type="checkbox" id="termscheck"> Li e concordo em usar apenas uma conta e aceito os termos da comunidade.</label><button id="login" class="btn-main btn-lg" data-do="login">Entrar com Discord</button><small>Ganhe ${fmt(S.settings.daily_bonus||50,0)} AC de bônus todo dia que entrar.</small></div>`;
+  else if(kind==='terms')g.innerHTML=`<h1 style="font-size:clamp(34px,6vw,56px)">Termos da comunidade</h1><p class="lead">Você se compromete a usar apenas uma conta pessoal. Contas duplicadas podem ser bloqueadas pelo ADM.</p><div class="panel stack"><label class="inline"><input type="checkbox" id="accepttermscheck"> Li e aceito os termos (versão autsim-terms-v1).</label><button class="btn-main btn-lg" data-do="accept-terms">Aceitar e continuar</button><button data-do="logout">Sair</button></div>`;
+  else if(kind==='profile')g.innerHTML=`<h1 style="font-size:clamp(34px,6vw,56px)">Perfil não encontrado</h1><p class="lead">Sua conta entrou, mas o perfil ainda não foi criado no banco. Confira o trigger de cadastro do Supabase e tente de novo.</p><div class="row" style="justify-content:center"><button class="btn-main" data-do="reload">Tentar de novo</button><button data-do="logout">Sair</button></div>`;
+  else if(kind==='denied')g.innerHTML=`<h1 style="font-size:clamp(34px,6vw,56px)">Acesso só para membros</h1><p class="lead">Não encontramos você no servidor do Discord da comunidade. Entre no servidor e tente de novo.</p><button class="btn-main" data-do="login">Entrar de novo</button>`;
+  else g.innerHTML=`<div class="muted">Carregando…</div>`;
+}
+async function guildGate(){
+  if(!REQUIRE_GUILD_CHECK)return true;
+  const g=await sb.functions.invoke('check-guild-membership');
+  if(g.error||!g.data?.is_member){await sb.auth.signOut();S.user=null;showGate('denied');return false}
+  return true;
+}
+async function enter(){
+  if(S.booting||!S.user)return;
+  if(S.started&&S.startedFor===S.user.id)return;
+  S.booting=true;
+  try{
+    if(!await guildGate())return;
+    await fetchCore();
+    if(!S.profile){showGate('profile');return}
+    if(!S.profile.terms_accepted_at){showGate('terms');return}
+    startApp();
+  }catch(e){console.error(e);toast('Não foi possível carregar os dados. Recarregue a página.','err',8000)}
+  finally{S.booting=false}
+}
+function startApp(){
+  S.started=true;S.startedFor=S.user.id;S.lastLevel=null;S.day=todaySP();
+  $('#gate').classList.add('hidden');$('#shell').classList.remove('hidden');
+  updateUserbar();renderTicker();render();dockUpdate();
+  armMusic();musicLoad();chatStart();
+  if(S.profile.last_daily_date!==todaySP())claimDaily(true);
+  if(!S.timersOn){S.timersOn=true;
+    setInterval(()=>{if(S.user&&!document.hidden)refreshLight()},20000);
+    setInterval(()=>{if(!S.user)return;const t=countdownTxt(nextResetMs()),a=$('#dailycd'),b=$('#dailycd2');if(a)a.textContent=t;if(b)b.textContent=t;if(S.day!==todaySP()){S.day=todaySP();claimDaily(true)}},1000);
+    setInterval(()=>{if(S.user)musicTick()},4000);
+    setInterval(()=>{if(S.user&&!document.hidden)musicLoad()},45000);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden&&S.user&&S.started)refreshLight()});
+  }
+}
+function teardown(){
+  casinoStop();chatStop();musicStop();S.started=false;S.startedFor=null;S.profile=null;S.user=null;ADM.loaded=false;S.tab='inicio';
+  showGate('login');
+}
+
+/* ---------- eventos ---------- */
+document.addEventListener('click',async e=>{
+  const el=e.target.closest('[data-do]');if(!el)return;
+  const d=el.dataset,act=d.do;
+  try{switch(act){
+    case'tab':goTab(d.tab);break;
+    case'coin':S.chartAsset=d.id;goTab('graficos');break;
+    case'login':{const c=$('#termscheck');if(c&&!c.checked){toast('Marque a caixa para aceitar a regra de uma conta por pessoa.','err');break}
+      const{error}=await sb.auth.signInWithOAuth({provider:'discord',options:{redirectTo:location.origin}});if(error)toast(errMsg(error),'err');break}
+    case'logout':await sb.auth.signOut();teardown();break;
+    case'reload':location.reload();break;
+    case'accept-terms':{if(!$('#accepttermscheck')?.checked){toast('Você precisa aceitar os termos para continuar.','err');break}
+      el.disabled=true;const{error}=await sb.rpc('accept_terms',{p_version:'autsim-terms-v1'});el.disabled=false;if(error){toast(errMsg(error),'err');break}
+      await fetchCore();if(S.profile?.terms_accepted_at)startApp();break}
+    case'refresh':await refreshLight(true);toast('Dados atualizados.');break;
+    case'trade':el.disabled=true;try{await trade(d.kind,d.id)}finally{el.disabled=false}break;
+    case'claim-daily':await claimDaily(false);break;
+    case'buy-item':await buyItem(d.id);break;
+    case'edit-coin':editCoinForm(d.id);break;
+    case'music-buy':musicBuyModal();break;
+    case'music-toggle':musicToggle();break;
+    case'music-next':MUS.gesture=true;musicNext();break;
+    case'cas-tab':if(d.tab!==CAS.tab){casinoSwitch(d.tab)}break;
+    case'chip':{const inp=$('#'+d.for);if(!inp||inp.disabled)break;let v=Number(inp.value)||0;
+      if(d.v==='half')v=Math.floor(v/2);else if(d.v==='double')v=v*2;
+      else if(d.v==='max'){const mx=Number((d.for==='rlamt'?CAS.rl.st?.max_bet:CAS.rk.st?.max_bet)||500);v=Math.floor(Math.min(mx,Number(me().balance)))}
+      else v+=Number(d.v);inp.value=Math.max(1,Math.floor(v));break}
+    case'rl-bet':el.disabled=true;await rlBet(d.color);break;
+    case'rk-bet':el.disabled=true;await rkBet();el.disabled=false;break;
+    case'rk-cash':await rkCash();break;
+    case'chat-del':{const{error}=await sb.rpc('admin_delete_chat',{p_id:Number(d.id)});if(error)toast(errMsg(error),'err');break}
+    case'pr-new':prNewForm();break;
+    case'pr-bet':prBetForm(d.id,d.side);break;
+    case'pr-resolve':await prResolve(d.id,d.out);break;
+    case'pr-cancel':await prCancel(d.id);break;
+    /* painel ADM */
+    case'adm-tab':ADM.tab=d.tab;keepInputs(renderView);break;
+    case'adm-refresh':await refreshLight(true);await admLoad();toast('Painel atualizado.');break;
+    case'adm-set':await admSaveSetting(d.key,d.type);break;
+    case'adm-xpcurve':await admSaveXp();break;
+    case'adm-clear-chat':if(await confirmBox('Apagar todas as mensagens do chat do cassino?','Apagar tudo')){const{error}=await sb.rpc('admin_clear_chat');if(error)throw error;chatStop();chatStart();toast('Chat limpo.')}break;
+    case'adm-adjust':admAdjust(d.id);break;
+    case'adm-xp':admXp(d.id);break;
+    case'adm-toggle-admin':{const p=profile(d.id);if(await confirmBox(`${p.is_admin?'Tirar':'Dar'} permissão de ADM para ${p.username}?`)){await admRpc('admin_set_admin',{p_user:d.id,p_flag:!p.is_admin},'Permissão alterada.')}break}
+    case'adm-coin':admCoinForm(d.id);break;
+    case'adm-item-new':admItemForm(null);break;
+    case'adm-item-edit':admItemForm(d.id);break;
+    case'adm-item-del':if(await confirmBox('Excluir este item da loja? Pedidos já feitos continuam no histórico.','Excluir'))await admRpc('admin_delete_shop_item',{p_id:d.id},'Item excluído.');break;
+    case'adm-order-done':await admRpc('admin_set_delivered',{p_id:d.id,p_flag:true},'Pedido marcado como entregue.',false);await admLoad();break;
+    case'adm-order-undo':await admRpc('admin_set_delivered',{p_id:d.id,p_flag:false},null,false);await admLoad();break;
+    case'adm-mis-new':admMissionForm(null);break;
+    case'adm-mis-edit':admMissionForm(d.id);break;
+    case'adm-mis-del':if(await confirmBox('Excluir esta missão?','Excluir'))await admRpc('admin_delete_mission',{p_id:d.id},'Missão excluída.');break;
+    case'adm-mis-grant':admGrantForm(d.id);break;
+    case'adm-music-add':admMusicForm();break;
+    case'adm-music-toggle':await admRpc('admin_toggle_music',{p_id:d.id,p_active:d.on==='1'},null,false);await musicLoad();await admLoad();break;
+    case'adm-music-del':if(await confirmBox('Remover esta música da playlist?','Remover')){await admRpc('admin_delete_music',{p_id:d.id},'Música removida.',false);await musicLoad();await admLoad()}break;
+    case'adm-slot-del':await admRpc('admin_remove_music_slot',{p_id:d.id,p_refund:d.refund==='1'},d.refund==='1'?'Removida e valor devolvido.':'Removida da fila.');await musicLoad();break;
+  }}catch(err){toast(errMsg(err),'err');SFX.play('error')}
 });
-document.addEventListener('change',e=>{if(e.target.id==='chartasset')drawPrice(e.target.value)});
-sb.auth.onAuthStateChange((_event,session)=>{S.user=session?.user||null;setTimeout(()=>S.user?load():render(),0)});
-(async()=>{const {data:{session}}=await sb.auth.getSession();S.user=session?.user||null;if(S.user)await load();else render()})();
-</script></body></html>
+document.addEventListener('submit',e=>{const f=e.target.closest('[data-form]');if(f&&f.dataset.form==='chat'){e.preventDefault();chatSend()}});
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.id==='chartasset'){S.chartAsset=t.value;drawPrice(t.value);return}
+  const pref=t.dataset&&t.dataset.pref;if(!pref)return;
+  if(pref==='music'){if(t.checked!==P.music)musicToggle()}
+  else if(pref==='sfx'){P.sfx=t.checked;savePrefs();if(P.sfx)SFX.play('coin')}
+  else if(pref==='motion'){P.motion=t.checked;savePrefs()}
+});
+document.addEventListener('input',e=>{if(e.target.dataset&&e.target.dataset.pref==='volume')musicSetVolume(Number(e.target.value)/100)});
+
+/* ---------- partida ---------- */
+(async()=>{
+  FX.init();applySettings();showGate('loading');
+  await loadPublicSettings();
+  sb.auth.onAuthStateChange((ev,session)=>{
+    const u=session?.user||null,changed=(u&&u.id)!==(S.user&&S.user.id);
+    if(!u){if(S.started||ev==='SIGNED_OUT'){teardown()}return}
+    S.user=u;if(changed)setTimeout(enter,0);
+  });
+  const{data:{session}}=await sb.auth.getSession();
+  if(session?.user){S.user=session.user;await enter()}else showGate('login');
+})();
+
+
+</script>
+</body>
+</html>
