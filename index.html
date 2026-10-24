@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b0919"><title>Bolsa do Autsim</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0919"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>Bolsa do Autsim</title>
+<link id="favicon" rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%88%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>(function(){var P={};try{P=JSON.parse(localStorage.getItem('autsim_prefs_v3')||'{}')}catch(e){}var n=navigator,auto=(n.hardwareConcurrency&&n.hardwareConcurrency<=4)||(n.deviceMemory&&n.deviceMemory<=4)||/Android|iPhone|iPad|Mobi/i.test(n.userAgent||'');var lite=P.lite===true||(P.lite!==false&&!!auto);window.__LITE_AUTO=!!auto;document.documentElement.classList.toggle('lite',lite);if(!lite){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap';document.head.appendChild(l)}})();</script>
 <style>
 :root{
   color-scheme:dark;
@@ -248,38 +250,188 @@ html.calm .floaty{animation:none}
 }
 @media(prefers-reduced-motion:reduce){.bg i,.tk-track,.floaty,.cash-btn,#view{animation:none!important}}
 
+/* ============================================================
+   4.0 — ícones personalizados, notícias, gráficos, mercado livre, celular e modo leve
+   ============================================================ */
+.hico{display:inline-flex;vertical-align:middle;margin-right:2px}
+.ico-img{width:1.15em;height:1.15em;object-fit:contain;vertical-align:-.2em;border-radius:3px}
+.brand .logo.has-img{background:none;box-shadow:none}
+.brand .logo .ico-img{width:100%;height:100%;border-radius:0}
+.rail .ic,.bnav .ic{display:inline-grid;place-items:center}
+.rail .ic .ico-img{width:22px;height:22px}
+.item .em .ico-img{width:42px;height:42px}
+.hero-bal .ico-img{width:.8em;height:.8em}
+.bal .ico-img{width:20px;height:20px}
+.cols3{grid-template-columns:repeat(3,minmax(0,1fr))}
+fieldset{border:1px solid var(--line-soft);border-radius:10px;padding:8px 12px 12px;margin:0;min-width:0}
+legend{padding:0 6px;color:var(--muted);font-size:13px}
+.note{white-space:normal;max-width:260px;color:var(--muted);font-size:13px}
+
+/* faixa de notícias dentro do ticker */
+.tk{align-items:center}
+.tk-news{gap:10px}
+.tk-news .nb{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 9px;border-radius:99px;background:var(--down);color:#fff}
+.tk-news.info .nb{background:#2a7fff}
+.tk-news.alert .nb{animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{filter:brightness(1.5)}}
+.tk-news .nt{font-weight:600;color:var(--text);max-width:560px;overflow:hidden;text-overflow:ellipsis}
+.tk-news .nb .ico-img{width:14px;height:14px}
+
+/* top 10 em barras divergentes */
+.movers{display:flex;flex-direction:column;gap:3px;margin-top:12px}
+.mv{display:grid;grid-template-columns:minmax(96px,150px) minmax(0,1fr) 74px 74px;align-items:center;gap:10px;padding:6px 8px;border:0;background:none;border-radius:8px;text-align:left;font-weight:600}
+.mv:hover:not(:disabled){background:#15122b;filter:none;transform:none}
+.mv-n .coin img{width:22px;height:22px}
+.mv-bar{display:grid;grid-template-columns:1fr 1fr;height:20px;position:relative}
+.mv-bar::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line)}
+.mv-bar .neg,.mv-bar .pos{display:flex;align-items:center;height:100%}
+.mv-bar .neg{justify-content:flex-end}
+.mv-bar i{display:block;height:14px;min-width:3px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.mv-bar .pos i{background:linear-gradient(90deg,#1c8f63,var(--up));border-radius:0 7px 7px 0}
+.mv-bar .neg i{background:linear-gradient(270deg,#b3304a,var(--down));border-radius:7px 0 0 7px}
+.mv-v{text-align:right;font-weight:800}
+.mv-p{text-align:right;color:var(--muted);font-size:13px}
+
+/* comparador */
+.subtabs button .pill{margin-left:4px;padding:0 7px}
+.cmp-bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;margin-bottom:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;border-radius:0;background:var(--panel);padding:7px 14px}
+.seg button.active{background:var(--accent);color:#fff}
+.chips-sel{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.selchip{display:inline-flex;align-items:center;gap:7px;padding:3px 4px 3px 11px;border-radius:99px;border:1px solid var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);font-weight:700;font-size:14px}
+.selchip i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.selchip button{padding:0 8px;border:0;background:none;color:var(--muted);border-radius:99px}
+.chips-sel select{width:auto;min-width:190px}
+.presets{margin-top:10px;gap:8px}
+.chartbox{position:relative;height:340px;margin-top:12px}
+.chartbox canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+.chart-load{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);pointer-events:none}
+.dotc{width:10px;height:10px;border-radius:50%;display:inline-block}
+.wealth{display:grid;grid-template-columns:260px minmax(0,1fr);gap:22px;align-items:center;margin-top:10px}
+.donutbox{height:260px;position:relative}.donutbox canvas{position:absolute;inset:0;width:100%;height:100%}
+.legend{display:flex;flex-direction:column;gap:6px}
+.lg{display:grid;grid-template-columns:12px minmax(0,1fr) auto 54px;gap:10px;align-items:center;font-size:14px}
+.lg i{width:12px;height:12px;border-radius:4px}.lg small{text-align:right}
+
+/* trocas */
+.offer{margin-bottom:10px}
+.offer-body{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:center;margin-top:10px}
+.offer-body>div{background:#0d0b20;border-radius:4px 14px 4px 14px;padding:10px 12px;overflow-wrap:anywhere}
+.swap{color:var(--accent-hi);font-size:22px}
+.offer-msg{margin-top:8px}
+.offer.accepted{border-color:#1c8f63}.offer.rejected,.offer.cancelled,.offer.expired{opacity:.7}
+
+/* ícones no painel ADM */
+.iclist{padding:6px 16px}
+.icrow{display:grid;grid-template-columns:44px minmax(120px,1fr) minmax(150px,1.2fr) 290px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-soft)}
+.icrow:last-child{border:0}
+.iclabel{display:flex;flex-direction:column;min-width:0}
+.icprev{width:42px;height:42px;display:grid;place-items:center;font-size:24px;background:var(--panel);border-radius:10px}
+.icprev .ico-img{width:30px;height:30px}
+.filebtn{cursor:pointer;display:inline-block;border:1px solid var(--line);border-radius:var(--r-btn);background:var(--panel-2);padding:5px 10px;font-weight:600;color:var(--text);font-size:13px;white-space:nowrap}
+.filebtn:hover{filter:brightness(1.2)}
+
+/* menu inferior (celular) */
+.bnav{display:none}
+.moregrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.moregrid button{display:flex;align-items:center;gap:10px;padding:14px;border-radius:4px 14px 4px 14px;font-size:15px}
+.moregrid button.active{background:var(--accent);border-color:transparent;color:#fff}
+
+/* modo leve: sem desfoques, sem fundo animado, quase sem animação */
+html.lite .bg i{display:none}
+html.lite .bg{background:radial-gradient(900px 500px at 80% -10%,color-mix(in srgb,var(--accent) 18%,transparent),transparent 60%),var(--ink)}
+html.lite header.top{backdrop-filter:none;background:var(--ink)}
+html.lite #modal{backdrop-filter:none;background:rgba(5,4,14,.88)}
+html.lite .dock-bar,html.lite .rail,html.lite .bnav{backdrop-filter:none}
+html.lite .floaty,html.lite .cash-btn,html.lite .dock.playing .eq i,html.lite .tk-news.alert .nb,html.lite #view,html.lite .toast,html.lite .sheet,html.lite .msg,html.lite .hist span:first-child{animation:none}
+html.lite .panel.glow,html.lite .btn-main{box-shadow:none}
+html.lite button,html.lite .rail button,html.lite .item,html.lite tbody tr,html.lite .xpbar i,html.lite .mv-bar i,html.lite .poolbar i{transition:none}
+html.lite .item:hover,html.lite button:hover:not(:disabled),html.lite .rail button:hover{transform:none}
+html.lite .toast{box-shadow:none}
+html.lite .brand .logo{box-shadow:none}
+
+@media(max-width:1000px){.wealth{grid-template-columns:1fr}.donutbox{max-width:260px;margin:0 auto}}
+@media(max-width:860px){
+  .rail{display:none}
+  .bnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--panel);border-top:1px solid var(--line);padding:5px 6px calc(5px + env(safe-area-inset-bottom));gap:2px}
+  .bnav button{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 2px;border:0;background:none;border-radius:10px;color:var(--muted);font-size:11px;font-weight:600}
+  .bnav button.active{color:var(--text);background:var(--accent-soft)}
+  .bnav .ic{font-size:21px;line-height:1.1}.bnav .ic .ico-img{width:24px;height:24px}
+  .bnav .badge{position:absolute;top:1px;right:calc(50% - 22px);margin:0}
+  .shell{padding:12px 12px calc(150px + env(safe-area-inset-bottom))}
+  .dock{bottom:calc(66px + env(safe-area-inset-bottom));left:10px}
+  #toasts{bottom:calc(78px + env(safe-area-inset-bottom))}
+  header.top{padding:8px 12px;gap:8px;flex-wrap:nowrap}
+  .brand{font-size:18px;gap:8px;min-width:0}.brand .logo{width:30px;height:30px;font-size:16px;flex:none}
+  #brandname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .userbar{gap:6px;flex-wrap:nowrap;flex:none}
+  .bal{font-size:15px;padding:3px 9px}.iconbtn{width:32px;height:32px}
+  h2{font-size:23px}
+  .band{font-size:12px;padding:5px 12px}.band span:last-child{display:none}
+  .mv{grid-template-columns:minmax(80px,112px) minmax(0,1fr) 62px;gap:8px}.mv-p{display:none}
+  .chartbox{height:280px}
+  .offer-body{grid-template-columns:1fr}.swap{text-align:center;transform:rotate(90deg)}
+  .icrow{grid-template-columns:44px minmax(0,1fr)}.icrow .row{flex-wrap:wrap!important}.icrow input,.icrow .row{grid-column:1/-1}
+  .casino .chatbox{height:380px}
+  /* tabelas viram cartões */
+  .tablewrap{border:0;overflow:visible;margin:10px 0 14px}
+  table.rt,table.rt tbody,table.rt tr,table.rt td{display:block;width:100%;background:none}
+  table.rt thead{display:none}
+  table.rt tr{background:#0d0b20;border:1px solid var(--line-soft);border-radius:4px 14px 4px 14px;margin-bottom:10px;padding:6px 4px}
+  table.rt td{display:flex;justify-content:space-between;align-items:center;gap:12px;border:0;padding:6px 10px;white-space:normal;text-align:right;min-height:30px}
+  table.rt td::before{content:attr(data-l);color:var(--dim);font-size:12px;text-align:left;flex:none}
+  table.rt td:not([data-l])::before{display:none}
+  table.rt td:not([data-l]){justify-content:flex-end}
+  table.rt td.empty{display:block;text-align:center}
+  table.rt td .row{justify-content:flex-end}
+  table.rt td.note{max-width:none}
+  table.rt td:empty{display:none}
+  table.rt tr.podium td:first-child{font-size:inherit}
+}
+@media(max-width:520px){
+  .uname,.lvl,.adm-pill{display:none}
+  .userbar .avatar{display:none}
+  .btn-out{display:none}
+  .gate h1{font-size:40px}
+  .cols3{grid-template-columns:1fr}
+  .sheet{padding:14px}
+  .grid{grid-template-columns:1fr 1fr}
+  .stat{font-size:22px}
+  .setrow{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
 <div class="bg"><i></i><i></i></div>
 <header class="top">
-  <button class="brand" data-do="tab" data-tab="inicio" aria-label="Início"><span class="logo">📈</span><span id="brandname">Bolsa do Autsim</span></button>
+  <button class="brand" data-do="tab" data-tab="inicio" aria-label="Início"><span class="logo" id="brandlogo">📈</span><span id="brandname">Bolsa do Autsim</span></button>
   <div id="userbar" class="userbar"></div>
 </header>
-<div class="ticker" id="ticker" aria-label="Maiores variações de preço"><div class="tk-empty">Carregando o mercado…</div></div>
+<div class="ticker" id="ticker" aria-label="Maiores variações de preço e notícias"><div class="tk-empty">Carregando o mercado…</div></div>
 <div class="band"><span class="ann" id="annc"></span><span>Bônus diário reseta em <b id="dailycd">--:--:--</b></span></div>
 <section id="gate" class="gate"><div class="muted">Carregando…</div></section>
 <div class="shell hidden" id="shell"><nav class="rail" id="rail" aria-label="Seções"></nav><main id="view"></main></div>
+<nav class="bnav hidden" id="bnav" aria-label="Menu principal"></nav>
 <div class="dock hidden" id="dock">
   <div id="spwrap" class="hidden"><div id="spembed"></div></div>
   <div class="dock-bar">
     <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <div class="dock-title" id="docktitle">Música desligada</div>
     <button class="iconbtn" data-do="music-toggle" id="dockplay" title="Ligar ou desligar a música" aria-label="Ligar ou desligar a música">▶</button>
-    <button class="iconbtn" data-do="music-next" title="Próxima faixa" aria-label="Próxima faixa">⏭</button>
+    <button class="iconbtn" data-do="music-next" id="docknext" title="Próxima faixa" aria-label="Próxima faixa">⏭</button>
   </div>
 </div>
 <div id="ytp"></div>
 <div id="modal" class="hidden" role="dialog" aria-modal="true"></div>
 <div id="toasts" role="status" aria-live="polite"></div>
 <canvas id="fx"></canvas>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script>
 'use strict';
 /* ============================================================
-   BOLSA DO AUTSIM 3.0 — núcleo: config, estado, utilitários, sons, efeitos
+   BOLSA DO AUTSIM 4.0 — núcleo: config, estado, utilitários, sons, efeitos
    ============================================================ */
 const SUPABASE_URL='https://vyhhbepqikaizjyuogxk.supabase.co';
 const SUPABASE_KEY='sb_publishable_te15kBxoDWsrWci0NhVY3w_M8ZC38XB';
@@ -295,18 +447,20 @@ const pctTxt=p=>(p>0?'+':'')+fmt(p,2)+'%';
 const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const ease={out3:t=>1-Math.pow(1-t,3),out5:t=>1-Math.pow(1-t,5)};
-const TYPE_NAMES={buy:'Compra',sell:'Venda',bonus:'Bônus',game:'Jogo',adjust:'Ajuste do ADM',shop:'Loja',daily:'Bônus diário',bet:'Aposta',win:'Prêmio',refund:'Devolução',music:'Música'};
+const TYPE_NAMES={buy:'Compra',sell:'Venda',bonus:'Bônus',game:'Jogo',adjust:'Ajuste do ADM',shop:'Loja',daily:'Bônus diário',bet:'Aposta',win:'Prêmio',refund:'Devolução',music:'Música',trade:'Troca'};
 
 /* ---------- preferências (neste navegador) ---------- */
 const PREFS_KEY='autsim_prefs_v3';
-const P={music:false,volume:0.5,sfx:true,motion:!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)};
+// lite: null = automático (celular e PC fraco ficam no modo leve), true = sempre leve, false = sempre completo
+const P={music:false,volume:0.5,sfx:true,motion:!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches),lite:null};
 try{Object.assign(P,JSON.parse(localStorage.getItem(PREFS_KEY)||'{}'))}catch(e){}
-function savePrefs(){try{localStorage.setItem(PREFS_KEY,JSON.stringify(P))}catch(e){}document.documentElement.classList.toggle('calm',!P.motion)}
-document.documentElement.classList.toggle('calm',!P.motion);
-
+const isLite=()=>document.documentElement.classList.contains('lite');
+function applyPerf(){const lite=P.lite===true||(P.lite!==false&&!!window.__LITE_AUTO);document.documentElement.classList.toggle('lite',lite);document.documentElement.classList.toggle('calm',!P.motion)}
+function savePrefs(){try{localStorage.setItem(PREFS_KEY,JSON.stringify(P))}catch(e){}applyPerf()}
+applyPerf();
 /* ---------- estado ---------- */
 const S={user:null,profile:null,profiles:[],assets:[],holdings:[],tx:[],items:[],inventory:[],missions:[],completions:[],
-  movers:{},settings:{site_name:'Bolsa do Autsim',announcement:'',accent_color:'#8b5cf6',daily_bonus:50},
+  movers:{},news:[],icons:{},settings:{site_name:'Bolsa do Autsim',announcement:'',accent_color:'#8b5cf6',daily_bonus:500,site_open:true},
   xpConfig:{base:100,exponent:1.55,endgame_bonus:18000},tab:'inicio',charts:{},chartAsset:null,unread:0,dailyChecked:false,lastLevel:null};
 const me=()=>S.profile||{balance:0,xp:0,username:'Membro'};
 const profile=id=>S.profiles.find(x=>x.id===id)||{};
@@ -351,7 +505,7 @@ function openForm({title,intro,fields,submit='Salvar',onSubmit,wide=false}){
 
 /* ---------- números animados ---------- */
 function countTo(el,to,dur=700,dec=2){if(!el)return;to=Number(to||0);const from=el.dataset.v!==undefined?Number(el.dataset.v):to;el.dataset.v=to;
-  if(!P.motion||from===to){el.textContent=fmt(to,dec);return}
+  if(!P.motion||isLite()||from===to){el.textContent=fmt(to,dec);return}
   const t0=performance.now();const f=t=>{const p=clamp((t-t0)/dur,0,1);el.textContent=fmt(from+(to-from)*ease.out3(p),dec);if(p<1&&el.isConnected)requestAnimationFrame(f)};requestAnimationFrame(f)}
 
 /* ---------- efeitos sonoros (sintetizados, sem arquivos) ---------- */
@@ -379,9 +533,9 @@ const FX={cv:null,cx:null,parts:[],run:false,
   init(){this.cv=$('#fx');this.cx=this.cv&&this.cv.getContext?this.cv.getContext('2d'):null;this.resize();addEventListener('resize',()=>this.resize())},
   resize(){if(this.cv){this.cv.width=innerWidth;this.cv.height=innerHeight}},
   add(p){this.parts.push(p);if(!this.run&&this.cx){this.run=true;requestAnimationFrame(()=>this.step())}},
-  confetti(x=innerWidth/2,y=innerHeight/3,n=70){if(!P.motion||!this.cx)return;const cols=['#ffc857','#8b5cf6','#3ddc97','#ff5d73','#5cc8ff','#fff'];
+  confetti(x=innerWidth/2,y=innerHeight/3,n=70){if(!P.motion||isLite()||!this.cx)return;const cols=['#ffc857','#8b5cf6','#3ddc97','#ff5d73','#5cc8ff','#fff'];
     for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=3+Math.random()*7;this.add({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-5,g:.28,life:90+Math.random()*50,c:cols[i%cols.length],w:5+Math.random()*6,h:3+Math.random()*4,r:Math.random()*6,vr:(Math.random()-.5)*.4})}},
-  rain(n=26){if(!P.motion||!this.cx)return;for(let i=0;i<n;i++)this.add({x:Math.random()*innerWidth,y:-30-Math.random()*400,vx:(Math.random()-.5)*1.5,vy:3+Math.random()*4,g:.05,life:200,emoji:'🪙',size:20+Math.random()*16,r:0,vr:(Math.random()-.5)*.1})},
+  rain(n=26){if(!P.motion||isLite()||!this.cx)return;for(let i=0;i<n;i++)this.add({x:Math.random()*innerWidth,y:-30-Math.random()*400,vx:(Math.random()-.5)*1.5,vy:3+Math.random()*4,g:.05,life:200,emoji:'🪙',size:20+Math.random()*16,r:0,vr:(Math.random()-.5)*.1})},
   step(){const c=this.cx;c.clearRect(0,0,this.cv.width,this.cv.height);this.parts=this.parts.filter(p=>{p.life--;p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;if(p.life<=0||p.y>innerHeight+60)return false;
       c.save();c.translate(p.x,p.y);c.rotate(p.r);c.globalAlpha=clamp(p.life/30,0,1);if(p.emoji){c.font=p.size+'px serif';c.fillText(p.emoji,-p.size/2,0)}else{c.fillStyle=p.c;c.fillRect(-p.w/2,-p.h/2,p.w,p.h)}c.restore();return true});
     if(this.parts.length)requestAnimationFrame(()=>this.step());else{this.run=false;c.clearRect(0,0,this.cv.width,this.cv.height)}}};
@@ -395,9 +549,151 @@ function spark(arr,w=96,h=28){arr=(arr||[]).map(Number);if(arr.length<2)return`<
 /* ---------- peças de UI repetidas ---------- */
 function coinTag(a){return`<span class="coin">${a.avatar_url?`<img src="${esc(a.avatar_url)}" alt="" loading="lazy">`:''}<span><span class="sym">${esc(a.symbol||'MOEDA$')}</span> <span class="nm">${esc(a.name||'')}</span></span></span>`}
 function whoTag(p){return`<span class="coin">${p.avatar_url?`<img class="avatar" style="width:26px;height:26px" src="${esc(p.avatar_url)}" alt="" loading="lazy">`:''}<span>${esc(p.username||'Membro')}</span></span>`}
-function table(headers,rows,empty='Nada por aqui ainda.'){return`<div class="tablewrap"><table><thead><tr>${headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="empty">${empty}</td></tr>`}</tbody></table></div>`}
+function table(headers,rows,empty='Nada por aqui ainda.'){return`<div class="tablewrap"><table class="rt"><thead><tr>${headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="empty">${empty}</td></tr>`}</tbody></table></div>`}
 const fmtDate=d=>d?new Date(d).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';
 function countdownTxt(ms){ms=Math.max(0,ms);const s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;return(h?String(h).padStart(2,'0')+':':'')+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0')}
+
+/* ---------- ícones trocáveis pelo ADM ----------
+   Cada lugar do site que tinha emoji tem um "slot". O ADM pode trocar por outro emoji, um link de imagem ou uma imagem enviada. */
+const ICON_DEFS=[
+ ['brand','Logo ao lado do nome do site','📈','Geral'],['favicon','Ícone da aba do navegador (favicon)','','Geral'],
+ ['coin','Moeda (saldo e preços)','🪙','Geral'],['hello','Saudação da página inicial','👋','Geral'],['gift','Item de loja sem ícone próprio','🎁','Geral'],['news','Etiqueta das notícias no topo','📰','Geral'],
+ ['nav.inicio','Menu: Início','🏠','Menu'],['nav.bolsa','Menu: Mercado','📈','Menu'],['nav.trocas','Menu: Trocas','🔁','Menu'],['nav.carteira','Menu: Carteira','💼','Menu'],
+ ['nav.graficos','Menu: Gráficos','📊','Menu'],['nav.cassino','Menu: Cassino','🎰','Menu'],['nav.loja','Menu: Loja','🛍️','Menu'],['nav.missoes','Menu: Missões','🎯','Menu'],
+ ['nav.ranking','Menu: Ranking','🏅','Menu'],['nav.extrato','Menu: Extrato','🧾','Menu'],['nav.perfil','Menu: Perfil','👤','Menu'],['nav.config','Menu: Configurações','⚙️','Menu'],
+ ['nav.adm','Menu: Painel ADM','🛡️','Menu'],['nav.mais','Menu do celular: botão "Mais"','☰','Menu'],
+ ['cas.roleta','Cassino: Roleta','🎡','Cassino'],['cas.foguete','Cassino: Foguete','🚀','Cassino'],['cas.apostas','Cassino: Apostas','🎯','Cassino'],['cas.chat','Cassino: Chat','💬','Cassino'],
+ ['music','Música (chamada da loja)','🎵','Música'],['music.play','Player: tocar','▶','Música'],['music.pause','Player: pausar','⏸','Música'],['music.next','Player: próxima','⏭','Música'],['music.note','Player: nota ao lado do nome','♪','Música']
+];
+const ICON_DEFAULT=Object.fromEntries(ICON_DEFS.map(d=>[d[0],d[2]]));
+const isImgIcon=v=>typeof v==='string'&&(/^https:\/\//.test(v)||/^data:image\//.test(v));
+function ico(slot,def){
+  const v=S.icons[slot],d=def!==undefined?def:(ICON_DEFAULT[slot]||'');
+  if(v===undefined||v==='')return esc(d);
+  if(isImgIcon(v))return`<img class="ico-img" src="${esc(v)}" alt="" decoding="async">`;
+  return esc(v);
+}
+/* Aplica os ícones nas partes fixas da página (logo, favicon, botões do player). */
+function applyIcons(){
+  const lg=$('#brandlogo');if(lg){lg.innerHTML=ico('brand');lg.classList.toggle('has-img',isImgIcon(S.icons.brand))}
+  const fv=$('#favicon');
+  if(fv){const f=S.icons.favicon||(isImgIcon(S.icons.brand)?S.icons.brand:'');
+    if(f&&isImgIcon(f))fv.href=f;
+    else{const e=(S.icons.favicon||S.icons.brand||'📈');fv.href="data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>${String(e).replace(/[<>&"']/g,'')}</text></svg>`)}}
+  const dn=$('#docknext');if(dn)dn.innerHTML=ico('music.next');
+  if(typeof dockUpdate==='function')dockUpdate();
+}
+
+/* ============================================================
+   Gráficos próprios (canvas, sem biblioteca): linhas com comparação e rosca
+   ============================================================ */
+const SERIES_COLORS=['#8b5cf6','#3ddc97','#ffc857','#ff5d73','#5cc8ff','#f472b6','#fb923c','#a3e635'];
+
+function niceTicks(lo,hi,n=5){
+  const span=hi-lo||1,raw=span/(n-1),mag=Math.pow(10,Math.floor(Math.log10(raw))),f=raw/mag;
+  const step=(f<1.5?1:f<3?2:f<7?5:10)*mag,start=Math.floor(lo/step)*step,out=[];
+  for(let v=start;v<=hi+step*.5;v+=step)out.push(+v.toFixed(10));
+  return out;
+}
+function timeLabel(ms,spanH){
+  const d=new Date(ms),hh=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+  if(spanH<=30)return hh;
+  return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+' '+hh;
+}
+function valueAt(pts,t){ // último ponto até o instante t (o preço fica igual até a próxima mudança)
+  let lo=0,hi=pts.length-1,r=-1;
+  while(lo<=hi){const m=(lo+hi)>>1;if(pts[m][0]<=t){r=m;lo=m+1}else hi=m-1}
+  return r;
+}
+
+/* cfg: {series:[{id,name,color,hidden,pts:[[ms,preço]]}], mode:'price'|'pct', fill:boolean} */
+function lineChart(cv,cfg){
+  if(!cv)return;
+  const st=cv._c||(cv._c={});st.cfg=cfg;
+  if(!st.bound){
+    st.bound=true;
+    const mv=e=>{const r=cv.getBoundingClientRect();st.hx=e.clientX-r.left;st.hy=e.clientY-r.top;chartSchedule(cv)};
+    cv.addEventListener('pointermove',mv);cv.addEventListener('pointerdown',mv);
+    cv.addEventListener('pointerleave',()=>{st.hx=null;chartSchedule(cv)});
+    if(window.ResizeObserver){const ro=new ResizeObserver(()=>chartSchedule(cv));ro.observe(cv)}
+  }
+  chartSchedule(cv);
+}
+function chartSchedule(cv){const st=cv._c;if(!st||st.raf)return;st.raf=requestAnimationFrame(()=>{st.raf=0;if(cv.isConnected)chartPaint(cv)})}
+
+function chartPaint(cv){
+  const st=cv._c,cfg=st.cfg;if(!cfg)return;
+  const dpr=Math.min(isLite()?1:2,window.devicePixelRatio||1),W=cv.clientWidth,H=cv.clientHeight;if(!W||!H)return;
+  if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr)}
+  const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W,H);
+  const pct=cfg.mode==='pct';
+  const vis=cfg.series.filter(s=>!s.hidden&&s.pts&&s.pts.length);
+  const padL=pct?58:62,padR=16,padT=14,padB=28,pw=W-padL-padR,ph=H-padT-padB;
+  c.font='11px Inter,system-ui,sans-serif';c.textBaseline='middle';
+  if(!vis.length){c.fillStyle='#6f6a9c';c.textAlign='center';c.fillText('Escolha ao menos uma moeda para ver o gráfico.',W/2,H/2);return}
+  // dados na escala certa (preço ou % sobre o primeiro ponto)
+  const data=vis.map(s=>{const base=Number(s.pts[0][1])||1;return{s,pts:s.pts.map(p=>[p[0],pct?(Number(p[1])/base-1)*100:Number(p[1])])}});
+  let t0=Infinity,t1=-Infinity,lo=Infinity,hi=-Infinity;
+  for(const d of data)for(const p of d.pts){if(p[0]<t0)t0=p[0];if(p[0]>t1)t1=p[0];if(p[1]<lo)lo=p[1];if(p[1]>hi)hi=p[1]}
+  if(pct){lo=Math.min(lo,0);hi=Math.max(hi,0)}
+  if(t1<=t0)t1=t0+60000;
+  if(hi-lo<1e-9){const e=Math.abs(hi)*.02||1;lo-=e;hi+=e}
+  const pad=(hi-lo)*.08;lo-=pad;hi+=pad;
+  const X=t=>padL+(t-t0)/(t1-t0)*pw,Y=v=>padT+ph-(v-lo)/(hi-lo)*ph;
+  // grade e eixo Y
+  const ticks=niceTicks(lo,hi,5).filter(v=>v>=lo&&v<=hi);
+  c.lineWidth=1;c.textAlign='right';
+  for(const v of ticks){const y=Math.round(Y(v))+.5;c.strokeStyle=pct&&Math.abs(v)<1e-9?'#4a4580':'#221e45';c.beginPath();c.moveTo(padL,y);c.lineTo(W-padR,y);c.stroke();
+    c.fillStyle='#8a85b8';c.fillText(pct?pctTxt(v):fmt(v,hi-lo<10?2:hi-lo<100?1:0),padL-8,y)}
+  // eixo X
+  const spanH=(t1-t0)/3600e3;c.textAlign='center';c.fillStyle='#8a85b8';
+  const nx=W<420?3:5;
+  for(let i=0;i<nx;i++){const t=t0+(t1-t0)*i/(nx-1);c.textAlign=i===0?'left':i===nx-1?'right':'center';c.fillText(timeLabel(t,spanH),X(t)+(i===0?-4:i===nx-1?4:0),H-10)}
+  // linhas
+  const single=data.length===1;
+  for(const d of data){
+    const col=d.s.color;c.beginPath();
+    d.pts.forEach((p,i)=>{const x=X(p[0]),y=Y(p[1]);if(i===0)c.moveTo(x,y);else c.lineTo(x,y)});
+    // estende até o fim do gráfico (o preço atual continua valendo)
+    const last=d.pts[d.pts.length-1];if(last[0]<t1)c.lineTo(X(t1),Y(last[1]));
+    c.lineWidth=isLite()?2:2.4;c.lineJoin='round';c.lineCap='round';c.strokeStyle=col;c.stroke();
+    if(single&&cfg.fill!==false){
+      c.lineTo(X(Math.max(last[0],t1)),padT+ph);c.lineTo(X(d.pts[0][0]),padT+ph);c.closePath();
+      const g=c.createLinearGradient(0,padT,0,padT+ph);g.addColorStop(0,col+'55');g.addColorStop(1,col+'00');c.fillStyle=g;c.fill();
+    }
+    c.beginPath();c.arc(X(t1),Y(last[1]),3.5,0,7);c.fillStyle=col;c.fill();
+  }
+  // cursor
+  if(st.hx!=null&&st.hx>=padL&&st.hx<=W-padR){
+    const tx=t0+(st.hx-padL)/pw*(t1-t0);
+    c.strokeStyle='#8a85b8';c.setLineDash([4,4]);c.lineWidth=1;c.beginPath();c.moveTo(Math.round(st.hx)+.5,padT);c.lineTo(Math.round(st.hx)+.5,padT+ph);c.stroke();c.setLineDash([]);
+    const rows=[];
+    for(const d of data){const i=valueAt(d.pts,tx);const p=d.pts[Math.max(0,i)];const raw=d.s.pts[Math.max(0,i)][1];
+      c.beginPath();c.arc(X(Math.max(p[0],t0)<X(t0)?t0:Math.min(Math.max(p[0],t0),t1)),Y(p[1]),4,0,7);c.fillStyle=d.s.color;c.fill();c.strokeStyle='#0b0919';c.lineWidth=1.5;c.stroke();
+      rows.push([d.s.color,d.s.name,pct?pctTxt(p[1])+'  ('+fmt(raw)+')':fmt(raw)])}
+    const title=timeLabel(tx,spanH);
+    c.font='12px Inter,system-ui,sans-serif';
+    const wTxt=Math.max(c.measureText(title).width,...rows.map(r=>c.measureText(r[1]+'   '+r[2]).width+18))+20,hBox=26+rows.length*18;
+    let bx=st.hx+14;if(bx+wTxt>W-4)bx=st.hx-14-wTxt;let by=Math.max(padT,Math.min(padT+ph-hBox,(st.hy||padT)-hBox/2));
+    c.fillStyle='#191433f2';c.strokeStyle='#2f2a5c';c.lineWidth=1;c.beginPath();c.roundRect?c.roundRect(bx,by,wTxt,hBox,8):c.rect(bx,by,wTxt,hBox);c.fill();c.stroke();
+    c.textAlign='left';c.fillStyle='#a8a3d1';c.fillText(title,bx+10,by+13);
+    rows.forEach((r,i)=>{const y=by+30+i*18;c.fillStyle=r[0];c.beginPath();c.arc(bx+13,y,4,0,7);c.fill();c.fillStyle='#f3f0ff';c.textAlign='left';c.fillText(r[1],bx+23,y);c.textAlign='right';c.fillStyle='#cfcaf5';c.fillText(r[2],bx+wTxt-10,y)});
+  }
+}
+
+/* rosca: items=[{label,value,color}] */
+function donutChart(cv,items,centerTxt,centerSub){
+  if(!cv)return;
+  const dpr=Math.min(isLite()?1:2,window.devicePixelRatio||1),W=cv.clientWidth,H=cv.clientHeight;if(!W||!H)return;
+  cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+  const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W,H);
+  const cx=W/2,cy=H/2,R=Math.min(W,H)/2-4,r=R*.62,tot=items.reduce((n,i)=>n+i.value,0);
+  if(tot<=0){c.beginPath();c.arc(cx,cy,R,0,7);c.arc(cx,cy,r,0,7,true);c.fillStyle='#221e45';c.fill('evenodd');return}
+  let a=-Math.PI/2;
+  for(const it of items){const da=it.value/tot*Math.PI*2;c.beginPath();c.arc(cx,cy,R,a,a+da);c.arc(cx,cy,r,a+da,a,true);c.closePath();c.fillStyle=it.color;c.fill();a+=da}
+  c.textAlign='center';c.textBaseline='middle';c.fillStyle='#f3f0ff';c.font=`800 ${Math.round(R*.2)}px 'Bricolage Grotesque',system-ui,sans-serif`;c.fillText(centerTxt||'',cx,cy-(centerSub?7:0));
+  if(centerSub){c.fillStyle='#8a85b8';c.font=`${Math.round(R*.11)}px Inter,system-ui,sans-serif`;c.fillText(centerSub,cx,cy+R*.16)}
+}
 
 /* ============================================================
    Música de fundo: playlist do ADM (YouTube/Spotify) + fila paga pelos membros (Spotify)
@@ -476,11 +772,11 @@ function dockUpdate(){
   dock.classList.toggle('hidden',!S.user);
   const w=MUS.cur;
   dock.classList.toggle('playing',!!(P.music&&w));
-  $('#dockplay').textContent=P.music?'⏸':'▶';
+  $('#dockplay').innerHTML=ico(P.music?'music.pause':'music.play');
   let t;
   if(!P.music)t='Música desligada';
   else if(!w)t=MUS.tracks.some(x=>x.active)?'Carregando…':'Sem faixas — o ADM ainda não adicionou músicas';
-  else t=`<span>♪ ${esc(w.title)}</span><small>${w.by?`pedida por ${esc(w.by)}`:(w.kind==='spotify'?'Spotify':'YouTube')}${w.kind==='spotify'?' · aperte ▶ no player':''}</small>`;
+  else t=`<span>${ico('music.note')} ${esc(w.title)}</span><small>${w.by?`pedida por ${esc(w.by)}`:(w.kind==='spotify'?'Spotify':'YouTube')}${w.kind==='spotify'?' · aperte ▶ no player':''}</small>`;
   $('#docktitle').innerHTML=t;
 }
 /* O navegador só libera som depois de um clique: o primeiro clique "arma" a música. */
@@ -492,46 +788,76 @@ function armMusic(){
 /* ============================================================
    Telas: início, mercado, carteira, gráficos, loja, missões, ranking, extrato, perfil, configurações
    ============================================================ */
-const TABS=[['inicio','🏠','Início'],['bolsa','📈','Mercado'],['carteira','💼','Carteira'],['graficos','📊','Gráficos'],['cassino','🎰','Cassino'],['loja','🛍️','Loja'],['missoes','🎯','Missões'],['ranking','🏅','Ranking'],['extrato','🧾','Extrato'],['perfil','👤','Perfil'],['config','⚙️','Configurações']];
+const TABS=[['inicio','Início'],['bolsa','Mercado'],['trocas','Trocas'],['carteira','Carteira'],['graficos','Gráficos'],['cassino','Cassino'],['loja','Loja'],['missoes','Missões'],['ranking','Ranking'],['extrato','Extrato'],['perfil','Perfil'],['config','Configurações']];
+const BNAV_MAIN=['inicio','bolsa','trocas','cassino'];
 const todaySP=()=>new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
 const nextResetMs=()=>{const t=Date.now()-3*3600e3;return (Math.floor(t/86400e3)+1)*86400e3+3*3600e3-Date.now()};
 const rankedProfiles=()=>S.profiles.slice().sort((a,b)=>worth(b.id)-worth(a.id));
 const changeOf=id=>Number(S.movers[id]?.change_pct||0);
 const changeTag=c=>`<span class="${c>0?'up':c<0?'down':'dim'}">${c>0?'▲':c<0?'▼':'■'} ${pctTxt(c)}</span>`;
 const topMovers=(n=10)=>S.assets.map(a=>({a,c:changeOf(a.id)})).sort((x,y)=>Math.abs(y.c)-Math.abs(x.c)).slice(0,n);
+const siteClosed=()=>S.settings.site_open===false||S.settings.site_open==='false';
+const coinMini=a=>`<span class="coin">${a.avatar_url?`<img src="${esc(a.avatar_url)}" alt="" loading="lazy">`:''}<span class="sym">${esc(a.symbol||'MOEDA$')}</span></span>`;
+const navIco=k=>ico('nav.'+k);
+const head=(k,title,sub='')=>`<div class="page-head"><div><h2><span class="hico">${navIco(k)}</span> ${title}</h2>${sub?`<p class="muted">${sub}</p>`:''}</div>`;
 
-/* ---------- topo: ticker, barra do usuário, faixa de aviso ---------- */
+/* ---------- topo: ticker (moedas + notícias), barra do usuário, faixa de aviso ---------- */
+const activeNews=()=>S.news.filter(n=>n.active!==false&&(!n.expires_at||Date.parse(n.expires_at)>Date.now())).slice(0,8);
 function renderTicker(){
   const el=$('#ticker');if(!el)return;
-  const list=topMovers(10);
-  const sig=JSON.stringify(list.map(x=>[x.a.id,x.a.symbol,x.a.price,x.c]));
+  const coins=topMovers(10),news=activeNews();
+  const sig=JSON.stringify([coins.map(x=>[x.a.id,x.a.symbol,x.a.price,x.c]),news.map(n=>[n.id,n.body,n.kind]),S.icons.news||'']);
   if(sig===S.tickSig)return;S.tickSig=sig;
-  if(!list.length){el.innerHTML='<div class="tk-empty">O mercado ainda não tem moedas.</div>';return}
-  const one=list.map(({a,c})=>`<button class="tk" data-do="coin" data-id="${esc(a.id)}" title="Variação em 24h — clique para ver o gráfico"><b>${esc(a.symbol)}</b><span class="pr">${fmt(a.price)}</span><span class="ch ${c>0?'up':c<0?'down':'dim'}">${c>0?'▲':c<0?'▼':'■'} ${pctTxt(c)}</span></button>`).join('');
-  const k=Math.max(1,Math.ceil(1700/(list.length*200)));
+  if(!coins.length&&!news.length){el.innerHTML='<div class="tk-empty">O mercado ainda não tem moedas.</div>';return}
+  const items=[];let ni=0;
+  coins.forEach((x,i)=>{if(i%3===0&&ni<news.length)items.push({n:news[ni++]});items.push(x)});
+  while(ni<news.length)items.push({n:news[ni++]});
+  let width=0;
+  const one=items.map(it=>{
+    if(it.n){const n=it.n,t=n.body.length>110?n.body.slice(0,108)+'…':n.body;width+=Math.min(560,t.length*8+130);
+      return`<button class="tk tk-news ${n.kind==='info'?'info':'alert'}" data-do="news" data-id="${esc(n.id)}" title="Clique para ler"><span class="nb">${ico('news')} ${n.kind==='info'?'AVISO':'AO VIVO'}</span><span class="nt">${esc(t)}</span></button>`}
+    const{a,c}=it;width+=200;
+    return`<button class="tk" data-do="coin" data-id="${esc(a.id)}" title="Variação em 24h — clique para ver o gráfico"><b>${esc(a.symbol)}</b><span class="pr">${fmt(a.price)}</span><span class="ch ${c>0?'up':c<0?'down':'dim'}">${c>0?'▲':c<0?'▼':'■'} ${pctTxt(c)}</span></button>`}).join('');
+  const k=Math.max(1,Math.ceil(1700/Math.max(width,200)));
   const group=one.repeat(k);
-  const dur=Math.max(24,Math.round(list.length*k*200/55));
+  const dur=Math.max(26,Math.round(width*k/55));
   el.innerHTML=`<div class="tk-track" style="--dur:${dur}s">${group}${group}</div>`;
+}
+function newsModal(id){
+  const n=S.news.find(x=>String(x.id)===String(id));if(!n)return;
+  openModal(`<div class="spread"><span class="pill ${n.kind==='info'?'':'acc'}">${ico('news')} ${n.kind==='info'?'Aviso':'Notícia de última hora'}</span><small>${fmtDate(n.created_at)}</small></div><p style="margin:14px 0 18px;font-size:17px;line-height:1.5;overflow-wrap:anywhere">${esc(n.body)}</p><div class="row" style="justify-content:flex-end"><button class="btn-main" id="nwOk">Fechar</button></div>`);
+  $('#nwOk').onclick=closeModal;
 }
 function updateUserbar(){
   const m=me(),xp=xpProgress(Number(m.xp||0));
   if(S.lastLevel!==null&&xp.l>S.lastLevel){toast(`Subiu para o nível ${xp.l}! 🎉`,'gain',5200);SFX.play('level');FX.confetti()}
   S.lastLevel=xp.l;
-  $('#userbar').innerHTML=`${m.avatar_url?`<img class="avatar" src="${esc(m.avatar_url)}" alt="">`:''}<span>${esc(m.username||'Membro')}</span><span class="bal" title="Seu saldo">🪙 <span id="topbal">${fmt(m.balance)}</span></span><span class="lvl">Nv. ${xp.l}<span class="xpbar"><i style="width:${xp.pct}%"></i></span></span>${m.is_admin?'<span class="pill acc">ADM</span>':''}<button class="iconbtn" data-do="refresh" title="Atualizar" aria-label="Atualizar">↻</button><button data-do="logout">Sair</button>`;
+  $('#userbar').innerHTML=`${m.avatar_url?`<img class="avatar" src="${esc(m.avatar_url)}" alt="">`:''}<span class="uname">${esc(m.username||'Membro')}</span><span class="bal" title="Seu saldo">${ico('coin')} <span id="topbal">${fmt(m.balance)}</span></span><span class="lvl">Nv. ${xp.l}<span class="xpbar"><i style="width:${xp.pct}%"></i></span></span>${m.is_admin?'<span class="pill acc adm-pill">ADM</span>':''}<button class="iconbtn" data-do="refresh" title="Atualizar" aria-label="Atualizar">↻</button><button data-do="logout" class="btn-out">Sair</button>`;
 }
 function setBalance(v){if(S.profile)S.profile.balance=Number(v);const t=$('#topbal');if(t)countTo(t,v,500);const h=$('#heroBal');if(h)countTo(h,v,500)}
 function applySettings(){
   const s=S.settings;
   document.title=s.site_name||'Bolsa do Autsim';
   const b=$('#brandname');if(b)b.textContent=s.site_name||'Bolsa do Autsim';
-  const a=$('#annc');if(a)a.textContent=s.announcement||'Economia virtual da comunidade — AutsimCoins não valem dinheiro real.';
+  const a=$('#annc');if(a)a.textContent=(siteClosed()&&isAdmin()?'⚠ SITE FECHADO para os membros — só ADMs conseguem operar. ':'')+(s.announcement||'Economia virtual da comunidade — AutsimCoins não valem dinheiro real.');
   if(/^#[0-9a-fA-F]{6}$/.test(s.accent_color||'')){document.documentElement.style.setProperty('--accent',s.accent_color);const tc=document.querySelector('meta[name=theme-color]');if(tc)tc.content='#0b0919'}
 }
 
-/* ---------- casca ---------- */
+/* ---------- casca: menu lateral (PC) e barra inferior (celular) ---------- */
+const tabList=()=>{const t=TABS.slice();if(isAdmin())t.push(['adm','Painel ADM']);return t};
 function renderRail(){
-  const tabs=TABS.slice();if(isAdmin())tabs.push(['adm','🛡️','Painel ADM']);
-  $('#rail').innerHTML=tabs.map(([k,i,n])=>`<button data-do="tab" data-tab="${k}" class="${S.tab===k?'active':''}"><span class="ic">${i}</span>${n}${k==='cassino'&&S.unread&&S.tab!=='cassino'?`<span class="badge">${S.unread>9?'9+':S.unread}</span>`:''}</button>`).join('');
+  const pend=S.tradesPending||0;
+  $('#rail').innerHTML=tabList().map(([k,n])=>`<button data-do="tab" data-tab="${k}" class="${S.tab===k?'active':''}"><span class="ic">${navIco(k)}</span>${n}${k==='cassino'&&S.unread&&S.tab!=='cassino'?`<span class="badge">${S.unread>9?'9+':S.unread}</span>`:''}${k==='trocas'&&pend?`<span class="badge">${pend>9?'9+':pend}</span>`:''}</button>`).join('');
+  const bn=$('#bnav');
+  if(bn){
+    const inMain=BNAV_MAIN.includes(S.tab);
+    bn.innerHTML=BNAV_MAIN.map(k=>{const n=TABS.find(t=>t[0]===k)[1];return`<button data-do="tab" data-tab="${k}" class="${S.tab===k?'active':''}"><span class="ic">${navIco(k)}</span><span class="lb">${n}</span>${k==='trocas'&&pend?`<span class="badge">${pend>9?'9+':pend}</span>`:''}${k==='cassino'&&S.unread&&S.tab!=='cassino'?`<span class="badge">${S.unread>9?'9+':S.unread}</span>`:''}</button>`}).join('')
+      +`<button data-do="more" class="${!inMain?'active':''}"><span class="ic">${navIco('mais')}</span><span class="lb">Mais</span></button>`;
+  }
+}
+function moreModal(){
+  const list=tabList().filter(([k])=>!BNAV_MAIN.includes(k));
+  openModal(`<h3>Todas as seções</h3><div class="moregrid">${list.map(([k,n])=>`<button data-do="tab" data-tab="${k}" class="${S.tab===k?'active':''}"><span class="ic">${navIco(k)}</span>${n}</button>`).join('')}</div>`);
 }
 function keepInputs(fn){
   const snap={};$$('#view input,#view select,#view textarea').forEach(el=>{if(el.id)snap[el.id]=el.type==='checkbox'?el.checked:el.value});
@@ -540,118 +866,212 @@ function keepInputs(fn){
   for(const[id,v]of Object.entries(snap)){const el=document.getElementById(id);if(el){if(el.type==='checkbox')el.checked=v;else el.value=v}}
   if(aid){const el=document.getElementById(aid);if(el){el.focus();try{if(pos)el.setSelectionRange(...pos)}catch(e){}}}
 }
+/* No celular as tabelas viram cartões: cada célula ganha o nome da coluna. */
+function labelTables(root){
+  $$('table',root||$('#view')).forEach(t=>{
+    const hs=t.tHead&&t.tHead.rows[0]?[...t.tHead.rows[0].cells].map(h=>h.textContent.trim()):[];
+    if(!t.tBodies[0])return;
+    [...t.tBodies[0].rows].forEach(r=>[...r.cells].forEach((c,i)=>{if(c.colSpan<2&&hs[i])c.dataset.l=hs[i]}));
+  });
+}
 function renderView(){
   const fn=V[S.tab]||V.inicio;
   $('#view').innerHTML=fn();
+  labelTables();
   const after=AFTER[S.tab];if(after)after();
 }
 function render(){
   if(CAS.running&&S.tab!=='cassino')casinoStop();
   if(S.tab==='cassino')S.unread=0;
   renderRail();renderView();
-  const v=$('#view');v.style.animation='none';void v.offsetWidth;v.style.animation='';
+  const v=$('#view');if(!isLite()){v.style.animation='none';void v.offsetWidth;v.style.animation=''}
   if(S.tab==='cassino'&&!CAS.running)casinoStart();
   window.scrollTo({top:0});
 }
-function goTab(t){if(t==='adm'&&!isAdmin())t='inicio';S.tab=t;render()}
+function goTab(t){if(t==='adm'&&!isAdmin())t='inicio';S.tab=t;closeModal();render()}
 
 const tile=(label,val,sub='')=>`<div class="panel"><div class="stat-label">${label}</div><div class="stat">${val}</div>${sub?`<small>${sub}</small>`:''}</div>`;
-const musicPromo=()=>`<div class="panel slotcard"><div class="spread"><div><h3>🎵 Toque sua música no site</h3><p class="muted" style="margin-top:4px">Por ${fmt(MUS.price,0)} AC, o link do Spotify que você escolher toca por ${MUS.minutes>=60&&MUS.minutes%60===0?MUS.minutes/60+' h':MUS.minutes+' min'} para todo mundo que estiver com a música ligada.</p></div><button class="btn-main" data-do="music-buy">Escolher minha música</button></div></div>`;
+const musicPromo=()=>`<div class="panel slotcard"><div class="spread"><div><h3>${ico('music')} Toque sua música no site</h3><p class="muted" style="margin-top:4px">Por ${fmt(MUS.price,0)} AC, o link do Spotify que você escolher toca por ${MUS.minutes>=60&&MUS.minutes%60===0?MUS.minutes/60+' h':MUS.minutes+' min'} para todo mundo que estiver com a música ligada.</p></div><button class="btn-main" data-do="music-buy">Escolher minha música</button></div></div>`;
+
+/* gráfico de barras divergentes: quem subiu à direita, quem caiu à esquerda */
+function moversChart(){
+  const list=topMovers(10);
+  if(!list.length)return'<div class="empty">O mercado ainda não tem moedas.</div>';
+  const mx=Math.max(1,...list.map(x=>Math.abs(x.c)));
+  return`<div class="movers" role="img" aria-label="Gráfico das dez moedas com maior variação em 24 horas">${list.map(({a,c})=>{
+    const w=Math.min(100,Math.abs(c)/mx*100).toFixed(1);
+    return`<button class="mv" data-do="coin" data-id="${esc(a.id)}" title="${esc(a.name||'')} — ver gráfico"><span class="mv-n">${coinMini(a)}</span><span class="mv-bar"><span class="neg">${c<0?`<i style="width:${w}%"></i>`:''}</span><span class="pos">${c>0?`<i style="width:${w}%"></i>`:''}</span></span><span class="mv-v ${c>0?'up':c<0?'down':'dim'}">${pctTxt(c)}</span><span class="mv-p">${fmt(a.price)}</span></button>`}).join('')}</div>`;
+}
 
 const V={
 inicio(){
   const m=me(),rk=rankedProfiles(),pos=rk.findIndex(p=>p.id===S.user.id)+1,xp=xpProgress(Number(m.xp||0));
   const claimed=m.last_daily_date===todaySP();
   const stocks=S.holdings.filter(h=>h.user_id===S.user.id).reduce((n,h)=>n+Number(h.quantity)*price(h.asset_id),0);
-  return`<div class="page-head"><div><h2>Salve, ${esc(m.username)} 👋</h2><p class="muted">Invista nas moedas dos membros, jogue no cassino e suba no ranking.</p></div><span class="pill">${S.profiles.length} membros no ranking</span></div>
+  return`<div class="page-head"><div><h2>Salve, ${esc(m.username)} ${ico('hello')}</h2><p class="muted">Invista nas moedas dos membros, jogue no cassino e suba no ranking.</p></div><span class="pill">${S.profiles.length} membros no ranking</span></div>
 <div class="cols">
-  <div class="panel glow"><div class="stat-label">Seu saldo</div><div class="stat hero-bal">🪙 <span id="heroBal" data-v="${Number(m.balance||0)}">${fmt(m.balance)}</span></div><small>AutsimCoins (AC) · patrimônio total ${fmt(worth(S.user.id))} AC</small>
-    <div class="row" style="margin-top:16px"><button class="btn-main" data-do="tab" data-tab="cassino">🎰 Ir ao cassino</button><button data-do="tab" data-tab="bolsa">📈 Ver mercado</button><button data-do="tab" data-tab="loja">🛍️ Loja</button></div></div>
+  <div class="panel glow"><div class="stat-label">Seu saldo</div><div class="stat hero-bal">${ico('coin')} <span id="heroBal" data-v="${Number(m.balance||0)}">${fmt(m.balance)}</span></div><small>AutsimCoins (AC) · patrimônio total ${fmt(worth(S.user.id))} AC</small>
+    <div class="row" style="margin-top:16px"><button class="btn-main" data-do="tab" data-tab="cassino">${navIco('cassino')} Ir ao cassino</button><button data-do="tab" data-tab="bolsa">${navIco('bolsa')} Ver mercado</button><button data-do="tab" data-tab="loja">${navIco('loja')} Loja</button></div></div>
   <div class="panel"><h3>Bônus diário</h3>${claimed?`<p class="up" style="margin-top:8px">✔ Você já pegou os ${fmt(S.settings.daily_bonus,0)} AC de hoje.</p><p class="muted small">Próximo bônus em <b id="dailycd2">--:--:--</b>.</p>`:`<p class="muted" style="margin-top:8px">O bônus de hoje ainda não foi coletado.</p><button class="btn-gold" style="margin-top:10px" data-do="claim-daily">Coletar ${fmt(S.settings.daily_bonus,0)} AC</button>`}</div>
 </div>
 <div class="grid">
   ${tile('Posição no ranking',pos?pos+'º':'—',`de ${S.profiles.length} membros`)}
-  ${tile('Nível',`Nv. ${xp.l}`,`${Number(m.xp||0).toLocaleString('pt-BR')} XP`)+''}
+  ${tile('Nível',`Nv. ${xp.l}`,`${Number(m.xp||0).toLocaleString('pt-BR')} XP`)}
   ${tile('Em ações',fmt(stocks)+' AC','valor atual da carteira')}
 </div>
-<div class="spread"><h3>Maiores variações em 24h</h3><button class="btn-sm" data-do="tab" data-tab="bolsa">Abrir mercado</button></div>
-${table(['Moeda','Preço','Variação','Últimos preços',''],topMovers(6).map(({a,c})=>`<tr><td>${coinTag(a)}</td><td>${fmt(a.price)}</td><td>${changeTag(c)}</td><td>${spark(S.movers[a.id]?.spark)}</td><td><button class="btn-sm" data-do="coin" data-id="${esc(a.id)}">Gráfico</button></td></tr>`).join(''),'O mercado ainda não tem moedas.')}
-${musicPromo()}`;
+<div class="panel"><div class="spread"><div><h3>Top 10 · maiores variações em 24h</h3><small>Verde subiu, vermelho caiu. Clique numa moeda para ver o gráfico dela.</small></div><button class="btn-sm" data-do="tab" data-tab="bolsa">Abrir mercado</button></div>${moversChart()}</div>
+<div style="height:14px"></div>${musicPromo()}`;
 },
 bolsa(){
-  const rows=S.assets.slice().sort((a,b)=>b.price-a.price).map(a=>{const own=held(S.user.id,a.id),free=Number(a.total_shares||0)-sold(a.id),c=changeOf(a.id),id=esc(a.id);
-    return`<tr><td>${coinTag(a)}${a.id===S.user.id?' <span class="pill acc">sua moeda</span>':''}</td><td><b>${fmt(a.price)}</b></td><td>${changeTag(c)}</td><td>${spark(S.movers[a.id]?.spark,80,24)}</td><td>${free.toLocaleString('pt-BR')}</td><td>${own}</td><td><div class="row" style="flex-wrap:nowrap"><input type="number" min="1" step="1" value="1" id="qty-${id}" aria-label="Quantidade"><button class="btn-good btn-sm" data-do="trade" data-kind="buy_shares" data-id="${id}">Comprar</button><button class="btn-bad btn-sm" data-do="trade" data-kind="sell_shares" data-id="${id}" ${own<1?'disabled':''}>Vender</button></div></td></tr>`}).join('');
-  return`<div class="page-head"><div><h2>📈 Mercado</h2><p class="muted">O preço sobe quando alguém compra e cai quando alguém vende. Você pode ter no máximo 10 unidades da sua própria moeda.</p></div></div>${table(['Moeda','Preço','24h','Tendência','Disponíveis','Você tem','Negociar'],rows,'Ainda não há moedas no mercado.')}${musicPromo()}`;
+  return`${head('bolsa','Mercado',`O preço oficial sobe quando alguém compra e cai quando alguém vende. Você também pode vender suas ações aos outros membros pelo preço que quiser. Máximo de ${OWN_CAP} unidades da sua própria moeda.`)}</div>${mkSubtabs()}${MK.sub==='jogadores'?mkListingsHtml():mkOfficialHtml()}${musicPromo()}`;
 },
 carteira(){
   const mine=S.holdings.filter(h=>h.user_id===S.user.id&&Number(h.quantity)>0);const stocks=mine.reduce((n,h)=>n+Number(h.quantity)*price(h.asset_id),0);
-  return`<div class="page-head"><h2>💼 Carteira</h2></div><div class="grid">${tile('Saldo',fmt(me().balance)+' AC')}${tile('Valor em ações',fmt(stocks)+' AC')}${tile('Patrimônio total',fmt(worth(S.user.id))+' AC')}</div>${table(['Moeda','Quantidade','Preço atual','24h','Valor'],mine.map(h=>`<tr><td>${coinTag(asset(h.asset_id))}</td><td>${h.quantity}</td><td>${fmt(price(h.asset_id))}</td><td>${changeTag(changeOf(h.asset_id))}</td><td>${fmt(Number(h.quantity)*price(h.asset_id))}</td></tr>`).join(''),'Você ainda não tem ações. Compre no Mercado.')}`;
+  return`${head('carteira','Carteira')}</div><div class="grid">${tile('Saldo',fmt(me().balance)+' AC')}${tile('Valor em ações',fmt(stocks)+' AC')}${tile('Patrimônio total',fmt(worth(S.user.id))+' AC')}</div>${table(['Moeda','Quantidade','À venda','Preço atual','24h','Valor'],mine.map(h=>{const lst=mkMyListed(h.asset_id);return`<tr><td>${coinTag(asset(h.asset_id))}</td><td>${h.quantity}</td><td>${lst?`<span class="gold">${lst}</span>`:'—'}</td><td>${fmt(price(h.asset_id))}</td><td>${changeTag(changeOf(h.asset_id))}</td><td>${fmt(Number(h.quantity)*price(h.asset_id))}</td></tr>`}).join(''),'Você ainda não tem ações. Compre no Mercado.')}`;
 },
-graficos(){
-  if(!S.chartAsset||!asset(S.chartAsset).id)S.chartAsset=(asset(S.user.id).id?S.user.id:S.assets[0]?.id);
-  return`<div class="page-head"><h2>📊 Gráficos</h2></div>
-<div class="panel"><div class="spread"><label style="min-width:220px">Moeda<select id="chartasset">${S.assets.map(a=>`<option value="${esc(a.id)}" ${a.id===S.chartAsset?'selected':''}>${esc(a.symbol)} — ${esc(a.name)}</option>`).join('')}</select></label><div id="chartstats" class="row"></div></div><div style="height:300px;position:relative;margin-top:12px"><canvas id="pricechart"></canvas></div></div>
-<div class="panel" style="margin-top:14px"><h3>Distribuição do seu patrimônio</h3><div style="height:260px;position:relative;margin-top:8px"><canvas id="wealthchart"></canvas></div></div>`;
-},
+graficos(){return cmpHtml()},
 loja(){
-  return`<div class="page-head"><div><h2>🛍️ Loja</h2><p class="muted">Compre recompensas com AutsimCoins. Depois da compra, o ADM entrega o item.</p></div></div>
+  return`${head('loja','Loja','Compre recompensas com AutsimCoins. Depois da compra, o ADM entrega o item.')}</div>
 ${musicPromo()}
 <h3 style="margin:20px 0 10px">Itens</h3>
-<div class="items">${S.items.map(i=>`<div class="panel item"><div class="spread"><span class="em">${esc(i.emoji||'🎁')}</span><span class="pill">${i.stock===null||i.stock===undefined?'sem limite':`restam ${i.stock}`}</span></div><h3>${esc(i.name)}</h3><p class="muted small">${esc(i.description||'')}</p><div class="foot"><b class="gold">🪙 ${fmt(i.price)}</b><button class="btn-main" data-do="buy-item" data-id="${esc(i.id)}" ${Number(i.stock)===0&&i.stock!==null?'disabled':''}>Comprar</button></div></div>`).join('')||'<div class="panel empty">A loja ainda está vazia. O ADM pode cadastrar itens no Painel ADM.</div>'}</div>
+<div class="items">${S.items.map(i=>`<div class="panel item"><div class="spread"><span class="em">${itemIco(i)}</span><span class="pill">${i.stock===null||i.stock===undefined?'sem limite':`restam ${i.stock}`}</span></div><h3>${esc(i.name)}</h3><p class="muted small">${esc(i.description||'')}</p><div class="foot"><b class="gold">${ico('coin')} ${fmt(i.price)}</b><button class="btn-main" data-do="buy-item" data-id="${esc(i.id)}" ${Number(i.stock)===0&&i.stock!==null?'disabled':''}>Comprar</button></div></div>`).join('')||'<div class="panel empty">A loja ainda está vazia. O ADM pode cadastrar itens no Painel ADM.</div>'}</div>
 <h3 style="margin:24px 0 4px">Meus itens</h3>${table(['Item','Qtd','Comprado em','Situação'],S.inventory.slice().sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))).map(v=>`<tr><td>${esc(v.item_name||'Item')}</td><td>${v.quantity||1}</td><td>${fmtDate(v.created_at)}</td><td>${v.delivered?'<span class="up">entregue</span>':'<span class="gold">aguardando entrega</span>'}</td></tr>`).join(''),'Você ainda não comprou nada.')}`;
 },
 missoes(){
   const done=new Set(S.completions.map(c=>c.mission_id));
-  return`<div class="page-head"><div><h2>🎯 Missões</h2><p class="muted">Cumpra a missão e fale com o ADM: ele confirma e libera a recompensa.</p></div></div><div class="items">${S.missions.map(m=>`<div class="panel item"><div class="spread"><span class="pill">${esc(m.category||'Geral')}</span>${done.has(m.id)?'<span class="up">✔ concluída</span>':''}</div><h3>${esc(m.title)}</h3><p class="muted small">${esc(m.description||'')}</p><div class="foot"><b class="gold">+${Number(m.xp_reward||0)} XP · ${fmt(m.coin_reward||0)} AC</b></div></div>`).join('')||'<div class="panel empty">Nenhuma missão no momento.</div>'}</div>`;
+  return`${head('missoes','Missões','Cumpra a missão e fale com o ADM: ele confirma e libera a recompensa.')}</div><div class="items">${S.missions.map(m=>`<div class="panel item"><div class="spread"><span class="pill">${esc(m.category||'Geral')}</span>${done.has(m.id)?'<span class="up">✔ concluída</span>':''}</div><h3>${esc(m.title)}</h3><p class="muted small">${esc(m.description||'')}</p><div class="foot"><b class="gold">+${Number(m.xp_reward||0)} XP · ${fmt(m.coin_reward||0)} AC</b></div></div>`).join('')||'<div class="panel empty">Nenhuma missão no momento.</div>'}</div>`;
 },
 ranking(){
-  return`<div class="page-head"><h2>🏅 Ranking</h2></div>${table(['#','Membro','Moeda','Patrimônio','Nível'],rankedProfiles().map((p,i)=>`<tr class="${p.id===S.user.id?'me-row':''} ${i<3?'podium':''}"><td class="rank${i+1}">${i+1}</td><td>${whoTag(p)}</td><td>${asset(p.id).symbol?`<b>${esc(asset(p.id).symbol)}</b> <span class="muted">${fmt(price(p.id))}</span>`:'—'}</td><td>${fmt(worth(p.id))} AC</td><td>Nv. ${levelOf(Number(p.xp||0))}</td></tr>`).join(''))}`;
+  return`${head('ranking','Ranking')}</div>${table(['#','Membro','Moeda','Patrimônio','Nível'],rankedProfiles().map((p,i)=>`<tr class="${p.id===S.user.id?'me-row':''} ${i<3?'podium':''}"><td class="rank${i+1}">${i+1}</td><td>${whoTag(p)}</td><td>${asset(p.id).symbol?`<b>${esc(asset(p.id).symbol)}</b> <span class="muted">${fmt(price(p.id))}</span>`:'—'}</td><td>${fmt(worth(p.id))} AC</td><td>Nv. ${levelOf(Number(p.xp||0))}</td></tr>`).join(''))}`;
 },
 extrato(){
-  return`<div class="page-head"><h2>🧾 Extrato</h2><span class="pill">últimas 100 movimentações</span></div>${table(['Data','Tipo','Moeda','Qtd','Valor','Saldo depois'],S.tx.map(t=>`<tr><td>${fmtDate(t.created_at)}</td><td>${esc(TYPE_NAMES[t.type]||t.type||'—')}</td><td>${t.asset_id?esc(asset(t.asset_id).symbol||'—'):'—'}</td><td>${t.quantity??'—'}</td><td class="${Number(t.amount)>=0?'up':'down'}">${Number(t.amount)>0?'+':''}${fmt(t.amount)}</td><td>${fmt(t.balance_after)}</td></tr>`).join(''),'Nenhuma movimentação ainda.')}`;
+  const sh=Number(S.settings.retention_short_hours||12),lg=Number(S.settings.retention_long_days||3);
+  return`${head('extrato','Extrato')}<span class="pill">últimas 100 movimentações</span></div><p class="muted small" style="margin-top:6px">Para o site não ficar pesado, apostas e prêmios de jogos somem do extrato em ${sh} h; compras, vendas, trocas e o resto, em ${lg} dias. O saldo e as ações não mudam.</p>${table(['Data','Tipo','Moeda','Qtd','Valor','Saldo depois','Detalhe'],S.tx.map(t=>`<tr><td>${fmtDate(t.created_at)}</td><td>${esc(TYPE_NAMES[t.type]||t.type||'—')}</td><td>${t.asset_id?esc(asset(t.asset_id).symbol||'—'):'—'}</td><td>${t.quantity??'—'}</td><td class="${Number(t.amount)>=0?'up':'down'}">${Number(t.amount)>0?'+':''}${fmt(t.amount)}</td><td>${fmt(t.balance_after)}</td><td class="note">${esc(t.note||'')}</td></tr>`).join(''),'Nenhuma movimentação ainda.')}`;
 },
 perfil(){
   const m=me(),xp=xpProgress(Number(m.xp||0)),a=asset(S.user.id);
-  return`<div class="page-head"><h2>👤 Meu perfil</h2></div>
+  return`${head('perfil','Meu perfil')}</div>
 <div class="panel glow"><div class="row">${m.avatar_url?`<img class="avatar" style="width:64px;height:64px" src="${esc(m.avatar_url)}" alt="">`:''}<div><h2>${esc(m.username)}</h2><span class="pill">Nível ${xp.l} de 99</span></div></div>
 <div class="grid"><div><div class="stat-label">XP</div><div class="stat">${Number(m.xp||0).toLocaleString('pt-BR')}</div></div><div><div class="stat-label">Para o próximo nível</div><div class="stat">${xp.l>=99?'Máximo':Number(Math.max(0,xp.hi-Number(m.xp||0))).toLocaleString('pt-BR')+' XP'}</div></div></div>
 <div class="xpbar" style="width:100%;height:10px"><i style="width:${xp.pct}%"></i></div><p class="muted small" style="margin-top:8px">Você ganha XP comprando, vendendo e jogando. Quanto mais alto o nível, mais XP cada nível pede.</p></div>
 <div class="panel" style="margin-top:14px"><h3>Minha moeda</h3><div style="margin:10px 0">${a.id?coinTag(a):'Sua moeda ainda não foi criada.'}</div>${a.id?`<div class="row"><button class="btn-main" data-do="edit-coin" data-id="${esc(a.id)}">Editar nome e imagem</button></div><p class="muted small" style="margin-top:8px">O ID da moeda (${esc(a.symbol||'')}) só o ADM pode alterar.</p>`:''}</div>`;
 },
 config(){
-  return`<div class="page-head"><h2>⚙️ Configurações</h2><p class="muted">Ficam salvas só neste navegador.</p></div>
-<div class="panel stack"><label class="inline"><input type="checkbox" id="prefMusic" data-pref="music" ${P.music?'checked':''}> Música de fundo</label>
+  const mode=P.lite===null?'auto':P.lite?'on':'off';
+  return`${head('config','Configurações','Ficam salvas só neste navegador.')}</div>
+<div class="panel stack"><label>Desempenho do site
+<select id="prefLite" data-pref="lite"><option value="auto" ${mode==='auto'?'selected':''}>Automático (leve em celular e computador fraco)</option><option value="on" ${mode==='on'?'selected':''}>Modo leve (mais rápido, menos efeitos)</option><option value="off" ${mode==='off'?'selected':''}>Completo (todos os efeitos)</option></select>
+<small>Agora: <b>${isLite()?'modo leve':'modo completo'}</b>. O modo leve tira desfoques, fundo animado, confete e fontes extras. Se mudar, recarregue a página para as fontes acompanharem.</small></label>
+<label class="inline"><input type="checkbox" id="prefMusic" data-pref="music" ${P.music?'checked':''}> Música de fundo</label>
 <label>Volume da música (só YouTube; o Spotify tem controle próprio)<input type="range" id="prefVol" data-pref="volume" min="0" max="100" value="${Math.round(P.volume*100)}"></label>
 <label class="inline"><input type="checkbox" id="prefSfx" data-pref="sfx" ${P.sfx?'checked':''}> Efeitos sonoros (cliques, moedas, vitórias)</label>
-<label class="inline"><input type="checkbox" id="prefMotion" data-pref="motion" ${P.motion?'checked':''}> Animações (desligue para um site mais calmo)</label></div>`;
+<label class="inline"><input type="checkbox" id="prefMotion" data-pref="motion" ${P.motion?'checked':''}> Animações (desligue para um site mais calmo)</label>
+<div><button data-do="logout">Sair da conta</button></div></div>`;
 }
 };
+const OWN_CAP=10;
+const itemIco=i=>ico('item.'+i.id,i.emoji||ICON_DEFAULT.gift);
+
+/* ---------- mercado oficial (preço automático) ---------- */
+function mkOfficialHtml(){
+  mkLoad();
+  const rows=S.assets.slice().sort((a,b)=>b.price-a.price).map(a=>{const own=held(S.user.id,a.id),free=Number(a.total_shares||0)-sold(a.id),c=changeOf(a.id),id=esc(a.id),ask=mkBestAsk(a.id);
+    return`<tr><td>${coinTag(a)}${a.id===S.user.id?' <span class="pill acc">sua moeda</span>':''}</td><td><b>${fmt(a.price)}</b></td><td>${changeTag(c)}</td><td>${isLite()?'':spark(S.movers[a.id]?.spark,80,24)}</td><td>${free.toLocaleString('pt-BR')}</td><td>${own}</td><td>${ask?`<button class="btn-sm" data-do="mk-sub" data-sub="jogadores" title="Ver ofertas de jogadores">${fmt(ask.unit_price)} <small>(${ask.n})</small></button>`:'<span class="dim">—</span>'}</td><td><div class="row" style="flex-wrap:nowrap"><input type="number" min="1" step="1" value="1" id="qty-${id}" aria-label="Quantidade"><button class="btn-good btn-sm" data-do="trade" data-kind="buy_shares" data-id="${id}">Comprar</button><button class="btn-bad btn-sm" data-do="trade" data-kind="sell_shares" data-id="${id}" ${own-mkMyListed(a.id)<1?'disabled':''}>Vender</button></div></td></tr>`}).join('');
+  return table(['Moeda','Preço','24h',isLite()?'':'Tendência','Disponíveis','Você tem','Melhor oferta de jogador','Negociar'],rows,'Ainda não há moedas no mercado.');
+}
+
+/* ============================================================
+   GRÁFICOS: comparador de moedas + distribuição do patrimônio
+   ============================================================ */
+const CMP={ids:null,hours:24,mode:'pct',series:null,key:'',at:0,loading:false,sub:'comparar'};
+const CMP_HOURS=[[6,'6 h'],[24,'24 h'],[72,'3 dias'],[168,'7 dias']];
+function cmpInit(){
+  if(CMP.ids)CMP.ids=CMP.ids.filter(id=>asset(id).id);
+  if(!CMP.ids||(!CMP.ids.length&&!CMP.touched)){
+    const ids=[];if(asset(S.user.id).id)ids.push(S.user.id);
+    for(const{a}of topMovers(8)){if(ids.length>=4)break;if(!ids.includes(a.id))ids.push(a.id)}
+    CMP.ids=ids;
+  }
+}
+const cmpColor=id=>SERIES_COLORS[CMP.ids.indexOf(id)%SERIES_COLORS.length];
+function cmpHtml(){
+  cmpInit();
+  const sub=`<div class="subtabs"><button data-do="cmp-sub" data-sub="comparar" class="${CMP.sub==='comparar'?'active':''}">Comparar moedas</button><button data-do="cmp-sub" data-sub="patrimonio" class="${CMP.sub==='patrimonio'?'active':''}">Meu patrimônio</button></div>`;
+  if(CMP.sub==='patrimonio'){
+    const it=wealthItems(),tot=it.reduce((n,x)=>n+x.value,0);
+    return`${head('graficos','Gráficos')}</div>${sub}<div class="panel"><h3>Distribuição do seu patrimônio</h3><div class="wealth"><div class="donutbox"><canvas id="wealthchart"></canvas></div><div class="legend">${it.map(x=>`<div class="lg"><i style="background:${x.color}"></i><span>${esc(x.label)}</span><b>${fmt(x.value)}</b><small>${tot?fmt(x.value/tot*100,1):'0,0'}%</small></div>`).join('')}</div></div></div>`;
+  }
+  const chosen=CMP.ids.map(id=>asset(id)),avail=S.assets.filter(a=>!CMP.ids.includes(a.id)).sort((a,b)=>String(a.symbol).localeCompare(String(b.symbol)));
+  return`${head('graficos','Gráficos','Coloque até 8 moedas no mesmo gráfico para ver quem rende mais. Passe o mouse (ou toque) para ver os valores.')}</div>${sub}
+<div class="panel">
+  <div class="cmp-bar"><div class="seg" role="group" aria-label="Período">${CMP_HOURS.map(([h,n])=>`<button data-do="cmp-hours" data-h="${h}" class="${CMP.hours===h?'active':''}">${n}</button>`).join('')}</div>
+  <div class="seg" role="group" aria-label="Escala"><button data-do="cmp-mode" data-m="pct" class="${CMP.mode==='pct'?'active':''}">Variação %</button><button data-do="cmp-mode" data-m="price" class="${CMP.mode==='price'?'active':''}">Preço (AC)</button></div></div>
+  <div class="chips-sel">${chosen.map(a=>`<span class="selchip" style="--c:${cmpColor(a.id)}"><i></i>${esc(a.symbol)}<button data-do="cmp-del" data-id="${esc(a.id)}" aria-label="Tirar ${esc(a.symbol)}">✕</button></span>`).join('')||'<span class="muted small">Nenhuma moeda escolhida.</span>'}
+    ${CMP.ids.length<8&&avail.length?`<select id="cmpadd" aria-label="Adicionar moeda"><option value="">+ Adicionar moeda…</option>${avail.map(a=>`<option value="${esc(a.id)}">${esc(a.symbol)} — ${esc(a.name)}</option>`).join('')}</select>`:''}</div>
+  <div class="row presets"><small>Atalhos:</small><button class="btn-sm" data-do="cmp-preset" data-p="up">Maiores altas</button><button class="btn-sm" data-do="cmp-preset" data-p="down">Maiores quedas</button><button class="btn-sm" data-do="cmp-preset" data-p="mine">Minhas ações</button><button class="btn-sm" data-do="cmp-preset" data-p="top">Mais valiosas</button><button class="btn-sm" data-do="cmp-preset" data-p="clear">Limpar</button></div>
+  <div class="chartbox"><canvas id="cmpchart"></canvas><div class="chart-load" id="cmpload">Carregando…</div></div>
+</div>
+<div id="cmpstats"></div>`;
+}
+function wealthItems(){
+  const mine=S.holdings.filter(h=>h.user_id===S.user.id&&Number(h.quantity)*price(h.asset_id)>0).map(h=>({label:asset(h.asset_id).symbol||'Ativo',value:Number(h.quantity)*price(h.asset_id)})).sort((a,b)=>b.value-a.value);
+  const all=[{label:'Saldo em AC',value:Number(me().balance||0)},...mine].filter(x=>x.value>0);
+  let out=all.slice(0,7);const rest=all.slice(7).reduce((n,x)=>n+x.value,0);if(rest>0)out.push({label:'Outras',value:rest});
+  return out.map((x,i)=>({...x,color:x.label==='Outras'?'#6f6a9c':SERIES_COLORS[i%SERIES_COLORS.length]}));
+}
+function drawWealth(){
+  const cv=$('#wealthchart');if(!cv)return;
+  const it=wealthItems(),tot=it.reduce((n,x)=>n+x.value,0);
+  donutChart(cv,it,fmt(tot,0),'AC no total');
+}
+async function cmpLoad(force){
+  const cv=$('#cmpchart');if(!cv)return;
+  const ld=$('#cmpload');
+  if(!CMP.ids.length){CMP.series={};if(ld)ld.classList.add('hidden');cmpDraw();return}
+  const key=CMP.ids.join(',')+'|'+CMP.hours;
+  if(!force&&CMP.key===key&&CMP.series&&Date.now()-CMP.at<60000){if(ld)ld.classList.add('hidden');cmpDraw();return}
+  CMP.loading=true;if(ld)ld.classList.remove('hidden');
+  try{
+    const{data,error}=await sb.rpc('price_series',{p_asset_ids:CMP.ids,p_hours:CMP.hours,p_points:isLite()?60:110});
+    if(error)throw error;
+    if(CMP.ids.join(',')+'|'+CMP.hours!==key)return; // o usuário mudou a escolha enquanto carregava
+    CMP.series=data.series||{};CMP.key=key;CMP.at=Date.now();
+  }catch(e){toast('Não foi possível carregar o gráfico: '+errMsg(e),'err')}
+  finally{CMP.loading=false;const l=$('#cmpload');if(l)l.classList.add('hidden')}
+  if(S.tab==='graficos'&&CMP.sub==='comparar')cmpDraw();
+}
+function cmpSeries(){
+  const now=Date.now();
+  return CMP.ids.map(id=>{const a=asset(id);let pts=((CMP.series&&CMP.series[id])||[]).map(p=>[Number(p[0]),Number(p[1])]);
+    if(!pts.length)pts=[[now-CMP.hours*3600e3,Number(a.price)]];
+    if(now-pts[pts.length-1][0]>1500)pts.push([now,Number(a.price)]);
+    return{id,name:a.symbol||'?',color:cmpColor(id),pts}});
+}
+function cmpDraw(){
+  const cv=$('#cmpchart');if(!cv)return;
+  const series=cmpSeries();
+  lineChart(cv,{series,mode:CMP.mode,fill:true});
+  const box=$('#cmpstats');if(!box)return;
+  box.innerHTML=table(['Moeda','Preço agora','No período','Mínimo','Máximo'],series.map(s=>{const v=s.pts.map(p=>p[1]),first=v[0],last=v[v.length-1],ch=first?(last/first-1)*100:0;
+    return`<tr><td><span class="coin"><i class="dotc" style="background:${s.color}"></i><span class="sym">${esc(s.name)}</span></span></td><td><b>${fmt(last)}</b></td><td>${changeTag(ch)}</td><td>${fmt(Math.min(...v))}</td><td>${fmt(Math.max(...v))}</td></tr>`}).join(''),'Escolha uma moeda para ver os números.');
+  labelTables(box);
+}
+function cmpPreset(p){
+  CMP.touched=true;
+  const by=fn=>S.assets.map(a=>({a,c:changeOf(a.id)})).sort(fn).slice(0,5).map(x=>x.a.id);
+  if(p==='up')CMP.ids=by((x,y)=>y.c-x.c);
+  else if(p==='down')CMP.ids=by((x,y)=>x.c-y.c);
+  else if(p==='top')CMP.ids=S.assets.slice().sort((a,b)=>b.price-a.price).slice(0,5).map(a=>a.id);
+  else if(p==='mine')CMP.ids=S.holdings.filter(h=>h.user_id===S.user.id&&Number(h.quantity)>0).map(h=>h.asset_id).filter((x,i,a)=>a.indexOf(x)===i).slice(0,8);
+  else CMP.ids=[];
+  renderView();
+}
 
 /* ---------- depois de desenhar a tela ---------- */
 const AFTER={
 inicio(){const c=$('#dailycd2');if(c)c.textContent=countdownTxt(nextResetMs())},
-graficos(){drawWealth();drawPrice(S.chartAsset)}
+graficos(){if(CMP.sub==='patrimonio')drawWealth();else cmpLoad()}
 };
-function drawWealth(){
-  const el=$('#wealthchart');if(!el||typeof Chart==='undefined')return;
-  if(S.charts.wealth){S.charts.wealth.destroy();delete S.charts.wealth}
-  const mine=S.holdings.filter(h=>h.user_id===S.user.id&&Number(h.quantity)*price(h.asset_id)>0);
-  const labels=['Saldo',...mine.map(h=>asset(h.asset_id).symbol||'Ativo')],vals=[Number(me().balance||0),...mine.map(h=>Number(h.quantity)*price(h.asset_id))];
-  S.charts.wealth=new Chart(el,{type:'doughnut',data:{labels,datasets:[{data:vals,borderWidth:0,backgroundColor:['#8b5cf6','#3ddc97','#ffc857','#ff5d73','#5cc8ff','#c084fc','#f472b6','#34d399']}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:P.motion?700:0},plugins:{legend:{position:'right',labels:{color:'#cfcaf5'}}}}});
-}
-async function drawPrice(id){
-  const el=$('#pricechart');if(!el||!id)return;
-  const {data,error}=await sb.from('price_history').select('price,created_at').eq('asset_id',id).order('created_at',{ascending:true}).limit(400);
-  if(S.tab!=='graficos'||S.chartAsset!==id)return;
-  if(error){toast('Não foi possível carregar o histórico.','err');return}
-  const rows=data||[];
-  const ps=rows.map(r=>Number(r.price)),cur=price(id);
-  const box=$('#chartstats');if(box&&ps.length)box.innerHTML=`<span class="pill">Atual ${fmt(cur)}</span><span class="pill up">Máx ${fmt(Math.max(...ps))}</span><span class="pill down">Mín ${fmt(Math.min(...ps))}</span><span class="pill">24h ${pctTxt(changeOf(id))}</span>`;
-  if(typeof Chart==='undefined')return;
-  if(S.charts.price){S.charts.price.destroy();delete S.charts.price}
-  const ctx=el.getContext('2d'),g=ctx.createLinearGradient(0,0,0,300);g.addColorStop(0,'rgba(139,92,246,.45)');g.addColorStop(1,'rgba(139,92,246,0)');
-  S.charts.price=new Chart(el,{type:'line',data:{labels:rows.map(r=>fmtDate(r.created_at)),datasets:[{label:'Preço (AC)',data:ps,borderColor:'#b49aff',backgroundColor:g,fill:true,tension:.3,pointRadius:ps.length>60?0:3,borderWidth:2.5}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:P.motion?800:0},interaction:{intersect:false,mode:'index'},plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#8a85b8',maxTicksLimit:7},grid:{color:'#221e45'}},y:{ticks:{color:'#8a85b8'},grid:{color:'#221e45'}}}}});
-}
 
 /* ---------- ações das telas ---------- */
 async function trade(kind,id){
@@ -661,7 +1081,7 @@ async function trade(kind,id){
   if(error){toast(errMsg(error),'err');SFX.play('error');return}
   SFX.play('coin');
   toast(kind==='buy_shares'?`Compra feita: ${q} × ${asset(id).symbol} por ${fmt(data?.cost)} AC`:`Venda feita: ${q} × ${asset(id).symbol} por ${fmt(data?.proceeds)} AC`);
-  await refreshLight();
+  await refreshLight(true);
 }
 async function claimDaily(silent){
   const{data,error}=await sb.rpc('claim_daily');
@@ -680,7 +1100,7 @@ async function buyItem(id){
 }
 function musicBuyModal(){
   const q=MUS.slots.map(s=>`<div class="betline"><span>${esc(s.username)} — ${esc(s.title)}</span><span class="muted">${fmtDate(s.starts_at)}</span></div>`).join('')||'<span class="muted small">A fila está vazia: sua música toca na hora.</span>';
-  openForm({title:'🎵 Tocar minha música',intro:`Custa ${fmt(MUS.price,0)} AC e toca por ${MUS.minutes} minutos. Só aceita link do Spotify (faixa, álbum ou playlist).`,submit:`Pagar ${fmt(MUS.price,0)} AC`,
+  openForm({title:'Tocar minha música',intro:`Custa ${fmt(MUS.price,0)} AC e toca por ${MUS.minutes} minutos. Só aceita link do Spotify (faixa, álbum ou playlist).`,submit:`Pagar ${fmt(MUS.price,0)} AC`,
     fields:[{name:'url',label:'Link do Spotify',placeholder:'https://open.spotify.com/track/…'},{name:'title',label:'Nome para mostrar no player',max:80,placeholder:'Ex.: Minha playlist de treino'}],
     onSubmit:async v=>{const{data,error}=await sb.rpc('buy_music_slot',{p_url:v.url,p_title:v.title});if(error)throw error;
       SFX.play('win');toast(`Música na fila! Toca a partir de ${fmtDate(data.starts_at)}.`,'gain');setBalance(data.balance);await musicLoad();if(S.tab==='loja'||S.tab==='bolsa'||S.tab==='inicio')renderView()}});
@@ -718,8 +1138,8 @@ function casinoSwitch(tab){casinoStop();CAS.tab=tab;CAS.rl.phase=null;CAS.rk.pha
 
 /* ---------- tela ---------- */
 V.cassino=function(){
-  const sub=[['roleta','🎡 Roleta'],['foguete','🚀 Foguete'],['apostas','🎯 Apostas']];
-  return`<div class="page-head"><div><h2>🎰 Cassino</h2><p class="muted">Só moedas virtuais: não existe depósito, saque ou troca por dinheiro real.</p></div><span class="pill">Saldo: <b id="casbal">${fmt(me().balance)}</b> AC</span></div>
+  const sub=[['roleta',ico('cas.roleta')+' Roleta'],['foguete',ico('cas.foguete')+' Foguete'],['apostas',ico('cas.apostas')+' Apostas']];
+  return`<div class="page-head"><div><h2><span class="hico">${navIco('cassino')}</span> Cassino</h2><p class="muted">Só moedas virtuais: não existe depósito, saque ou troca por dinheiro real.</p></div><span class="pill">Saldo: <b id="casbal">${fmt(me().balance)}</b> AC</span></div>
 <div class="subtabs">${sub.map(([k,n])=>`<button data-do="cas-tab" data-tab="${k}" class="${CAS.tab===k?'active':''}">${n}</button>`).join('')}</div>
 <div class="casino"><div id="casmain">${CAS.tab==='roleta'?rlHtml():CAS.tab==='foguete'?rkHtml():prHtml()}</div>${chatHtml()}</div>`;
 };
@@ -729,18 +1149,18 @@ AFTER.cassino=function(){chatRender()};
    ROLETA
    ============================================================ */
 function rlHtml(){
-  return`<div class="panel arena"><div class="spread" style="margin-bottom:10px"><div><h3>Roleta europeia</h3><small>Vermelho e preto pagam 2x · verde (0) paga 36x</small></div><span class="pill" id="rlmax">Aposta máxima: 500 AC</span></div>
+  return`<div class="panel arena"><div class="spread" style="margin-bottom:10px"><div><h3>Roleta europeia</h3><small>Vermelho e preto pagam 2x · verde (0) paga 36x</small></div><span class="pill" id="rlmax">Aposta máxima: 2.000 AC</span></div>
 <div class="cv-wrap" style="aspect-ratio:2/1.15"><canvas id="rlcv"></canvas></div>
 <div class="muted" id="rlstatus" style="text-align:center;margin-top:10px;min-height:22px">Conectando…</div>
 <div class="hist" id="rlhist"></div>
-<div class="betbar"><label>Valor da aposta (AC)<input type="number" id="rlamt" min="1" step="1" value="10"></label><div class="chips" id="rlchips"><button data-do="chip" data-for="rlamt" data-v="10">+10</button><button data-do="chip" data-for="rlamt" data-v="50">+50</button><button data-do="chip" data-for="rlamt" data-v="100">+100</button><button data-do="chip" data-for="rlamt" data-v="half">½</button><button data-do="chip" data-for="rlamt" data-v="double">2×</button><button data-do="chip" data-for="rlamt" data-v="max">Máx</button></div></div>
+<div class="betbar"><label>Valor da aposta (AC)<input type="number" id="rlamt" min="1" step="1" value="100"></label><div class="chips" id="rlchips"><button data-do="chip" data-for="rlamt" data-v="100">+100</button><button data-do="chip" data-for="rlamt" data-v="500">+500</button><button data-do="chip" data-for="rlamt" data-v="1000">+1000</button><button data-do="chip" data-for="rlamt" data-v="half">½</button><button data-do="chip" data-for="rlamt" data-v="double">2×</button><button data-do="chip" data-for="rlamt" data-v="max">Máx</button></div></div>
 <div class="colorbtns"><button class="cb-red" data-do="rl-bet" data-color="red">Vermelho<small>paga 2x</small></button><button class="cb-black" data-do="rl-bet" data-color="black">Preto<small>paga 2x</small></button><button class="cb-green" data-do="rl-bet" data-color="green">Verde (0)<small>paga 36x</small></button></div>
 <div class="livebets" id="rlbets"></div></div>`;
 }
 async function rlPoll(g){
   if(g!==CAS.gen)return;
   try{const st=await stateRpc('roulette_state');if(g!==CAS.gen)return;rlApply(st)}catch(e){if(g===CAS.gen)console.warn('roleta:',e.message||e)}
-  if(g===CAS.gen)casinoTimer(()=>rlPoll(g),1100);
+  if(g===CAS.gen)casinoTimer(()=>rlPoll(g),document.hidden?5000:isLite()?1500:1100);
 }
 function rlApply(st){
   const prev=CAS.rl.st;CAS.rl.st=st;const r=st.round;
@@ -787,29 +1207,36 @@ async function rlBet(color){
   SFX.play('coin');setBalance(data.balance);const cb=$('#casbal');if(cb)cb.textContent=fmt(data.balance);
   try{const st=await stateRpc('roulette_state');rlApply(st)}catch(e){}
 }
-function rlFrame(){
-  if(!CAS.running||CAS.tab!=='roleta')return;
-  CAS.raf=requestAnimationFrame(rlFrame);
-  const cv=$('#rlcv');if(!cv)return;
-  const dpr=Math.min(2,window.devicePixelRatio||1),w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;
-  if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}
-  const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);
-  const cx=w/2,cy=h/2,R=Math.min(w,h)/2-6,N=37,step=Math.PI*2/N,now=srvNow(),st=CAS.rl.st,r=st&&st.round;
-  const wa=((now/1000)*0.32)%(Math.PI*2); // reduzido a uma volta: ângulos enormes quebram o arc() do canvas
-  // aro externo
+function rlBuildWheel(R,dpr){
+  const pad=4,sz=Math.ceil((R*2+pad*2)*dpr),cv=document.createElement('canvas');cv.width=sz;cv.height=sz;
+  const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);
+  const cx=R+pad,cy=R+pad,N=37,step=Math.PI*2/N;
   const rim=c.createRadialGradient(cx,cy,R*.9,cx,cy,R);rim.addColorStop(0,'#3a2d73');rim.addColorStop(1,'#120d2e');
-  c.beginPath();c.arc(cx,cy,R,0,7);c.fillStyle=rim;c.fill();
-  c.lineWidth=2;c.strokeStyle='#5b49b0';c.stroke();
-  // casas
+  c.beginPath();c.arc(cx,cy,R,0,7);c.fillStyle=rim;c.fill();c.lineWidth=2;c.strokeStyle='#5b49b0';c.stroke();
   for(let i=0;i<N;i++){
-    const n=WHEEL[i],a0=wa+i*step-step/2-Math.PI/2,a1=a0+step;
+    const n=WHEEL[i],a0=i*step-step/2-Math.PI/2,a1=a0+step;
     c.beginPath();c.moveTo(cx+Math.cos(a0)*R*.62,cy+Math.sin(a0)*R*.62);c.arc(cx,cy,R*.88,a0,a1);c.arc(cx,cy,R*.62,a1,a0,true);c.closePath();
     c.fillStyle=n===0?'#17a05d':REDS.has(n)?'#d8344d':'#1a1830';c.fill();c.strokeStyle='#8f7be0';c.lineWidth=.8;c.stroke();
     const am=a0+step/2;c.save();c.translate(cx+Math.cos(am)*R*.8,cy+Math.sin(am)*R*.8);c.rotate(am+Math.PI/2);
     c.fillStyle='#f3f0ff';c.font=`700 ${Math.max(9,R*.075)}px Inter,sans-serif`;c.textAlign='center';c.textBaseline='middle';c.fillText(n,0,0);c.restore();
   }
-  // miolo
   c.beginPath();c.arc(cx,cy,R*.6,0,7);const hub=c.createRadialGradient(cx,cy,0,cx,cy,R*.6);hub.addColorStop(0,'#2a2158');hub.addColorStop(1,'#0e0a24');c.fillStyle=hub;c.fill();c.strokeStyle='#5b49b0';c.lineWidth=2;c.stroke();
+  return cv;
+}
+function rlFrame(ts){
+  if(!CAS.running||CAS.tab!=='roleta')return;
+  CAS.raf=requestAnimationFrame(rlFrame);
+  if(isLite()&&ts-(CAS.rl.lastT||0)<40)return;CAS.rl.lastT=ts;
+  const cv=$('#rlcv');if(!cv)return;
+  const dpr=Math.min(isLite()?1:2,window.devicePixelRatio||1),w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;
+  if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}
+  const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);
+  const cx=w/2,cy=h/2,R=Math.min(w,h)/2-6,N=37,step=Math.PI*2/N,now=srvNow(),st=CAS.rl.st,r=st&&st.round;
+  const wa=((now/1000)*0.32)%(Math.PI*2); // reduzido a uma volta: ângulos enormes quebram o arc() do canvas
+  // aro, casas e miolo ficam num desenho guardado; a cada quadro só gira
+  const ck=Math.round(R)+'|'+dpr;
+  if(!CAS.rl.cache||CAS.rl.cache.key!==ck)CAS.rl.cache={key:ck,cv:rlBuildWheel(R,dpr)};
+  c.save();c.translate(cx,cy);c.rotate(wa);c.drawImage(CAS.rl.cache.cv,-R-4,-R-4,R*2+8,R*2+8);c.restore();
   // texto central
   c.textAlign='center';c.textBaseline='middle';
   if(r&&(r.status==='settled'||(r.status==='spinning'&&now>=Date.parse(r.spin_ends_at)))&&r.result_number!==null){
@@ -839,10 +1266,10 @@ function rlFrame(){
    FOGUETE
    ============================================================ */
 function rkHtml(){
-  return`<div class="panel arena"><div class="spread" style="margin-bottom:10px"><div><h3>Foguetinho</h3><small>Aposte, veja o multiplicador subir e saque antes que o foguete exploda.</small></div><span class="pill" id="rkmax">Aposta máxima: 500 AC</span></div>
+  return`<div class="panel arena"><div class="spread" style="margin-bottom:10px"><div><h3>Foguetinho</h3><small>Aposte, veja o multiplicador subir e saque antes que o foguete exploda.</small></div><span class="pill" id="rkmax">Aposta máxima: 2.000 AC</span></div>
 <div class="cv-wrap" id="rkwrap"><canvas id="rkcv"></canvas><div class="cv-over"><div><div class="big" id="rkbig">…</div><div class="sub" id="rksub"></div></div></div></div>
 <div class="hist" id="rkhist"></div>
-<div class="betbar"><label>Valor da aposta (AC)<input type="number" id="rkamt" min="1" step="1" value="10"></label><label>Saque automático em (opcional)<input type="number" id="rkauto" min="1.01" step="0.01" placeholder="ex.: 2.00" style="width:150px"></label><div class="chips"><button data-do="chip" data-for="rkamt" data-v="10">+10</button><button data-do="chip" data-for="rkamt" data-v="50">+50</button><button data-do="chip" data-for="rkamt" data-v="100">+100</button><button data-do="chip" data-for="rkamt" data-v="half">½</button><button data-do="chip" data-for="rkamt" data-v="double">2×</button></div></div>
+<div class="betbar"><label>Valor da aposta (AC)<input type="number" id="rkamt" min="1" step="1" value="100"></label><label>Saque automático em (opcional)<input type="number" id="rkauto" min="1.01" step="0.01" placeholder="ex.: 2.00" style="width:150px"></label><div class="chips"><button data-do="chip" data-for="rkamt" data-v="100">+100</button><button data-do="chip" data-for="rkamt" data-v="500">+500</button><button data-do="chip" data-for="rkamt" data-v="1000">+1000</button><button data-do="chip" data-for="rkamt" data-v="half">½</button><button data-do="chip" data-for="rkamt" data-v="double">2×</button></div></div>
 <div id="rkact" style="margin-top:12px"></div>
 <div class="rocketbets" id="rkbets"></div></div>`;
 }
@@ -850,7 +1277,7 @@ async function rkPoll(g){
   if(g!==CAS.gen)return;
   try{const st=await stateRpc('rocket_state');if(g!==CAS.gen)return;rkApply(st)}catch(e){if(g===CAS.gen)console.warn('foguete:',e.message||e)}
   const flying=CAS.rk.st&&CAS.rk.st.round.status==='flying';
-  if(g===CAS.gen)casinoTimer(()=>rkPoll(g),flying?450:1000);
+  if(g===CAS.gen)casinoTimer(()=>rkPoll(g),document.hidden?5000:flying?(isLite()?700:450):(isLite()?1400:1000));
 }
 const rkMy=st=>(st.bets||[]).find(b=>b.user_id===S.user.id);
 function rkApply(st){
@@ -876,7 +1303,7 @@ function rkSide(st){
   const mode=r.status+':'+(my?(my.cashed_mult?'cashed':'in'):'out')+':'+r.id;
   const act=$('#rkact');
   if(act&&mode!==CAS.rk.mode){CAS.rk.mode=mode;
-    if(betting&&!my)act.innerHTML=`<button class="btn-main btn-lg" style="width:100%" data-do="rk-bet">🚀 Apostar nesta rodada</button>`;
+    if(betting&&!my)act.innerHTML=`<button class="btn-main btn-lg" style="width:100%" data-do="rk-bet">${ico('cas.foguete')} Apostar nesta rodada</button>`;
     else if(betting&&my)act.innerHTML=`<div class="notice" style="margin:0">Aposta de <b>${fmt(my.amount)} AC</b> confirmada${st.my_auto?` · saque automático em ${fmtMult(st.my_auto)}`:''}. Decolagem em breve.</div>`;
     else if(r.status==='flying'&&my&&!my.cashed_mult)act.innerHTML=`<button class="btn-good cash-btn" data-do="rk-cash" id="rkcash">Sacar</button>`;
     else if(my&&my.cashed_mult)act.innerHTML=`<div class="notice" style="margin:0;border-color:var(--up)">✔ Você sacou em <b>${fmtMult(my.cashed_mult)}</b> e recebeu <b>${fmt(my.payout)} AC</b>.</div>`;
@@ -905,11 +1332,12 @@ async function rkCash(){
   try{const st=await stateRpc('rocket_state');rkApply(st)}catch(e){}
   refreshBalance();
 }
-function rkFrame(){
+function rkFrame(ts){
   if(!CAS.running||CAS.tab!=='foguete')return;
   CAS.raf=requestAnimationFrame(rkFrame);
+  if(isLite()&&ts-(CAS.rk.lastT||0)<40)return;CAS.rk.lastT=ts;
   const cv=$('#rkcv');if(!cv)return;
-  const dpr=Math.min(2,window.devicePixelRatio||1),W=cv.clientWidth,H=cv.clientHeight;if(!W||!H)return;
+  const dpr=Math.min(isLite()?1:2,window.devicePixelRatio||1),W=cv.clientWidth,H=cv.clientHeight;if(!W||!H)return;
   if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr)}
   const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W,H);
   const st=CAS.rk.st,now=srvNow(),r=st&&st.round,g=st?Number(st.growth):.12;
@@ -953,7 +1381,7 @@ function rkFrame(){
 /* ============================================================
    CHAT (Realtime)
    ============================================================ */
-function chatHtml(){return`<div class="panel chatbox"><div class="chat-head"><h3>💬 Chat do cassino</h3><small><span class="dot" id="chatdot"></span><span id="chatstate">conectando</span></small></div><div id="chatlist"></div><form class="chat-form" id="chatform" data-form="chat" autocomplete="off"><input id="chatinput" maxlength="300" placeholder="Mande uma mensagem…" aria-label="Mensagem"><button class="btn-main">Enviar</button></form></div>`}
+function chatHtml(){return`<div class="panel chatbox"><div class="chat-head"><h3>${ico('cas.chat')} Chat do cassino</h3><small><span class="dot" id="chatdot"></span><span id="chatstate">conectando</span></small></div><div id="chatlist"></div><form class="chat-form" id="chatform" data-form="chat" autocomplete="off"><input id="chatinput" maxlength="300" placeholder="Mande uma mensagem…" aria-label="Mensagem"><button class="btn-main">Enviar</button></form></div>`}
 function chatMsgHtml(m){const mine=m.user_id===S.user.id;return`<div class="msg ${mine?'mine':''}" data-mid="${m.id}">${m.avatar_url?`<img class="avatar" src="${esc(m.avatar_url)}" alt="" loading="lazy">`:'<span class="avatar"></span>'}<div style="min-width:0;flex:1"><div class="who">${esc(m.username||'Membro')}</div><div class="txt">${esc(m.body)}</div></div>${isAdmin()?`<button class="del" data-do="chat-del" data-id="${m.id}" title="Apagar mensagem" aria-label="Apagar mensagem">✕</button>`:''}</div>`}
 function chatRender(){
   const l=$('#chatlist');if(!l)return;
@@ -1064,28 +1492,31 @@ async function prCancel(id){
 /* ============================================================
    Painel do ADM: tudo é feito por funções do banco que conferem a permissão no servidor
    ============================================================ */
-const ADM={tab:'site',items:[],missions:[],orders:[],tracks:[],slots:[],log:[],loaded:false};
-const ADM_TABS=[['site','Site e economia'],['membros','Membros'],['moedas','Moedas'],['loja','Loja e pedidos'],['missoes','Missões'],['musica','Música'],['registro','Registro']];
+const ADM={tab:'site',items:[],missions:[],orders:[],tracks:[],slots:[],log:[],news:[],stats:null,loaded:false};
+const ADM_TABS=[['site','Site e economia'],['abertura','Abertura e reset'],['noticias','Notícias'],['icones','Ícones'],['membros','Membros'],['moedas','Moedas'],['loja','Loja e pedidos'],['missoes','Missões'],['musica','Música'],['registro','Registro']];
 const SETTINGS=[
  ['Aparência',[['site_name','Nome do site','text'],['announcement','Aviso na faixa do topo (vazio = texto padrão)','text'],['accent_color','Cor principal do site','color']]],
- ['Economia',[['daily_bonus','Bônus diário (AC)','number'],['music_slot_price','Preço para tocar uma música (AC)','number'],['music_slot_minutes','Duração da música paga (minutos)','number']]],
+ ['Economia',[['start_balance','Saldo inicial de cada jogador novo (AC)','number'],['base_price','Preço inicial da ação de uma moeda nova (AC)','number'],['daily_bonus','Bônus diário (AC)','number'],['p2p_fee_percent','Venda entre jogadores: taxa do site (%)','number'],['p2p_max_listings','Venda entre jogadores: ofertas abertas por pessoa','number'],['music_slot_price','Preço para tocar uma música (AC)','number'],['music_slot_minutes','Duração da música paga (minutos)','number']]],
+ ['Limpeza automática do histórico',[['retention_short_hours','Coisas de spam (apostas, chat, rodadas) somem após (horas)','number'],['retention_long_days','Coisas importantes (compras, vendas, trocas, registro) somem após (dias)','number']]],
  ['Cassino e apostas',[['roulette_bet_seconds','Roleta: tempo para apostar (segundos)','number'],['roulette_max_bet','Roleta: aposta máxima (AC)','number'],['rocket_bet_seconds','Foguete: tempo para apostar (segundos)','number'],['rocket_max_bet','Foguete: aposta máxima (AC)','number'],['prediction_fee_percent','Apostas entre membros: taxa da casa (%)','number'],['prediction_max_open_per_user','Apostas entre membros: máximo abertas por pessoa','number']]]
 ];
-const SETTING_DEFAULTS={site_name:'Bolsa do Autsim',announcement:'',accent_color:'#8b5cf6',daily_bonus:50,music_slot_price:100,music_slot_minutes:60,roulette_bet_seconds:20,roulette_max_bet:500,rocket_bet_seconds:12,rocket_max_bet:500,prediction_fee_percent:0,prediction_max_open_per_user:3};
+const SETTING_DEFAULTS={site_name:'Bolsa do Autsim',announcement:'',accent_color:'#8b5cf6',start_balance:10000,base_price:100,daily_bonus:500,p2p_fee_percent:0,p2p_max_listings:10,retention_short_hours:12,retention_long_days:3,music_slot_price:100,music_slot_minutes:60,roulette_bet_seconds:20,roulette_max_bet:2000,rocket_bet_seconds:12,rocket_max_bet:2000,prediction_fee_percent:0,prediction_max_open_per_user:3};
 
 async function admLoad(){
   if(!isAdmin())return;
-  const [it,mi,od,mu,lg]=await Promise.all([
+  const [it,mi,od,mu,lg,nw]=await Promise.all([
     sb.from('shop_items').select('*').order('sort_order').order('created_at'),
     sb.from('missions').select('*').order('sort_order').order('created_at'),
     sb.rpc('admin_list_orders'),
     sb.rpc('music_state',{p_all:true}),
-    sb.from('admin_log').select('*').order('id',{ascending:false}).limit(80)]);
-  ADM.items=it.data||[];ADM.missions=mi.data||[];ADM.orders=od.data||[];ADM.tracks=mu.data?.tracks||[];ADM.slots=mu.data?.slots||[];ADM.log=lg.data||[];
-  const bad=[it,mi,od,mu,lg].find(r=>r.error);if(bad)toast('Parte do painel não carregou: '+errMsg(bad.error),'err');
+    sb.from('admin_log').select('*').order('id',{ascending:false}).limit(80),
+    sb.from('news').select('*').order('created_at',{ascending:false}).limit(40)]);
+  ADM.items=it.data||[];ADM.missions=mi.data||[];ADM.orders=od.data||[];ADM.tracks=mu.data?.tracks||[];ADM.slots=mu.data?.slots||[];ADM.log=lg.data||[];ADM.news=nw.data||[];
+  const bad=[it,mi,od,mu,lg,nw].find(r=>r.error);if(bad)toast('Parte do painel não carregou: '+errMsg(bad.error),'err');
   ADM.loaded=true;if(S.tab==='adm')keepInputs(renderView);
 }
-AFTER.adm=function(){if(!ADM.loaded)admLoad()};
+AFTER.adm=function(){if(!ADM.loaded)admLoad();if(ADM.tab==='abertura'&&!ADM.stats)admStats()};
+async function admStats(){const{data,error}=await sb.rpc('admin_db_stats');if(!error&&data){ADM.stats=data;if(S.tab==='adm'&&ADM.tab==='abertura')keepInputs(renderView)}}
 
 const admSet=k=>S.settings[k]!==undefined?S.settings[k]:SETTING_DEFAULTS[k];
 const admBtn=(act,label,attrs='',cls='btn-sm')=>`<button class="${cls}" data-do="${act}" ${attrs}>${label}</button>`;
@@ -1103,7 +1534,7 @@ function admCoins(){
   return table(['Moeda','Dono','Preço','Ações (vendidas / total)','Ações'],S.assets.slice().sort((a,b)=>String(a.symbol).localeCompare(String(b.symbol))).map(a=>`<tr><td>${coinTag(a)}</td><td>${esc(profile(a.id).username||'—')}</td><td>${fmt(a.price)}</td><td>${sold(a.id)} / ${a.total_shares}</td><td>${admBtn('adm-coin','Editar moeda',`data-id="${esc(a.id)}"`)}</td></tr>`).join(''),'Nenhuma moeda ainda.');
 }
 function admShop(){
-  const items=table(['Item','Preço','Estoque','Situação','Ações'],ADM.items.map(i=>`<tr><td>${esc(i.emoji||'🎁')} ${esc(i.name)}</td><td>${fmt(i.price)}</td><td>${i.stock===null?'sem limite':i.stock}</td><td>${i.active?'<span class="up">à venda</span>':'<span class="dim">oculto</span>'}</td><td><div class="row">${admBtn('adm-item-edit','Editar',`data-id="${esc(i.id)}"`)}${admBtn('adm-item-del','Excluir',`data-id="${esc(i.id)}"`,'btn-sm btn-bad')}</div></td></tr>`).join(''),'Nenhum item cadastrado.');
+  const items=table(['Item','Preço','Estoque','Situação','Ações'],ADM.items.map(i=>`<tr><td>${itemIco(i)} ${esc(i.name)}</td><td>${fmt(i.price)}</td><td>${i.stock===null?'sem limite':i.stock}</td><td>${i.active?'<span class="up">à venda</span>':'<span class="dim">oculto</span>'}</td><td><div class="row">${admBtn('adm-item-edit','Editar',`data-id="${esc(i.id)}"`)}${admBtn('adm-item-del','Excluir',`data-id="${esc(i.id)}"`,'btn-sm btn-bad')}</div></td></tr>`).join(''),'Nenhum item cadastrado.');
   const pend=ADM.orders.filter(o=>!o.delivered).length;
   const orders=table(['Membro','Item','Qtd','Quando','Situação'],ADM.orders.map(o=>`<tr><td>${esc(o.username)}</td><td>${esc(o.item_name)}</td><td>${o.quantity}</td><td>${fmtDate(o.created_at)}</td><td>${o.delivered?`<span class="up">entregue</span> ${admBtn('adm-order-undo','desfazer',`data-id="${esc(o.id)}"`)}`:admBtn('adm-order-done','Marcar como entregue',`data-id="${esc(o.id)}"`,'btn-sm btn-good')}</td></tr>`).join(''),'Nenhum pedido ainda.');
   return`<div class="spread"><h3>Itens da loja</h3>${admBtn('adm-item-new','+ Novo item','','btn-main')}</div>${items}<div class="spread"><h3>Pedidos ${pend?`<span class="badge" style="position:static;margin-left:6px">${pend} pendentes</span>`:''}</h3></div>${orders}`;
@@ -1119,9 +1550,60 @@ ${table(['Faixa','Origem','Situação','Ações'],ADM.tracks.map(t=>`<tr><td>${e
 function admLog(){
   return table(['Quando','Quem','Ação','Detalhes'],ADM.log.map(l=>`<tr><td>${fmtDate(l.created_at)}</td><td>${esc(l.admin_name||'—')}</td><td>${esc(l.action)}</td><td style="white-space:normal;max-width:420px;overflow-wrap:anywhere" class="muted small">${esc(JSON.stringify(l.details||{}))}</td></tr>`).join(''),'Nenhuma ação registrada.');
 }
+/* ---------- notícias ("breaking news") ---------- */
+function admNews(){
+  const now=Date.now();
+  const rows=ADM.news.map(n=>{const exp=n.expires_at&&Date.parse(n.expires_at)<=now,on=n.active&&!exp;
+    return`<tr><td style="white-space:normal;max-width:380px;overflow-wrap:anywhere">${esc(n.body)}</td><td>${n.kind==='info'?'Aviso':'Última hora'}</td><td>${fmtDate(n.created_at)}</td><td>${n.expires_at?fmtDate(n.expires_at):'sem prazo'}</td><td>${on?'<span class="up">no ar</span>':exp?'<span class="dim">expirada</span>':'<span class="dim">escondida</span>'}</td><td><div class="row">${exp?'':admBtn('adm-news-toggle',n.active?'Esconder':'Mostrar',`data-id="${n.id}" data-on="${n.active?0:1}"`)}${admBtn('adm-news-del','Apagar',`data-id="${n.id}"`,'btn-sm btn-bad')}</div></td></tr>`}).join('');
+  return`<div class="panel"><h3>Publicar uma notícia</h3><p class="muted small" style="margin:4px 0 10px">Aparece na faixa que rola no topo do site, junto com as variações das moedas, para todo mundo. Clicando nela a pessoa lê o texto inteiro. Máximo de 12 no ar ao mesmo tempo.</p>
+<div class="formgrid"><label>Texto (3 a 200 caracteres)<textarea id="nwBody" maxlength="200" rows="2" placeholder="Ex.: KURONA$ despenca depois do anúncio do dono!"></textarea></label>
+<div class="formgrid cols3"><label>Tipo<select id="nwKind"><option value="alert">Última hora (AO VIVO)</option><option value="info">Aviso comum</option></select></label><label>Fica no ar por (horas)<input type="number" id="nwHours" min="0.1" step="any" value="6" style="width:100%"></label><label>&nbsp;<button class="btn-main" data-do="adm-news-add">Publicar agora</button></label></div></div><small>Deixe as horas vazias para a notícia ficar até você esconder ou apagar.</small></div>
+<h3 style="margin:20px 0 4px">Notícias publicadas</h3>${table(['Texto','Tipo','Publicada','Expira','Situação','Ações'],rows,'Nenhuma notícia ainda.')}`;
+}
+
+/* ---------- ícones: troca os emojis do site por emoji, link ou imagem enviada ---------- */
+const icKey=slot=>'ic_'+slot.replace(/[^a-z0-9]/gi,'_');
+function admIcons(){
+  const groups={};ICON_DEFS.forEach(d=>(groups[d[3]]=groups[d[3]]||[]).push({slot:d[0],label:d[1],def:d[2]}));
+  groups['Itens da loja']=ADM.items.map(i=>({slot:'item.'+i.id,label:'Item: '+i.name,def:i.emoji||ICON_DEFAULT.gift}));
+  const row=r=>{const cur=S.icons[r.slot],isImg=isImgIcon(cur);
+    return`<div class="icrow"><span class="icprev">${ico(r.slot,r.def)}</span><div class="iclabel"><b>${esc(r.label)}</b><small>${cur?(isImg?'imagem personalizada':'personalizado'):'padrão'}</small></div>
+<input id="${icKey(r.slot)}" type="text" maxlength="300" placeholder="emoji ou link https://…" value="${cur&&!isImg?esc(cur):(cur&&/^https:/.test(cur)?esc(cur):'')}" aria-label="Emoji ou link">
+<div class="row" style="flex-wrap:nowrap">${admBtn('adm-icon-save','Salvar',`data-slot="${esc(r.slot)}"`)}<label class="btn-sm filebtn">Enviar imagem<input type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml,image/x-icon" data-icfile="${esc(r.slot)}" hidden></label>${cur?admBtn('adm-icon-reset','Restaurar',`data-slot="${esc(r.slot)}"`):''}</div></div>`};
+  return`<div class="panel"><h3>Ícones do site</h3><p class="muted small" style="margin:4px 0">Cada lugar que tinha emoji pode virar outro emoji, um link de imagem ou uma imagem sua (PNG, JPG, WEBP, GIF, SVG). Imagens enviadas são reduzidas automaticamente para 96×96 pixels. Vale na hora para todo mundo.</p></div>
+${Object.entries(groups).map(([g,list])=>list.length?`<h3 style="margin:18px 0 6px">${esc(g)}</h3><div class="panel iclist">${list.map(row).join('')}</div>`:'').join('')}`;
+}
+function resizeImageFile(file,size){
+  return new Promise((res,rej)=>{
+    if(file.size>6e6){rej(new Error('Imagem muito grande (máximo 6 MB).'));return}
+    const url=URL.createObjectURL(file),img=new Image();
+    img.onload=()=>{try{const sz=size||96,cv=document.createElement('canvas');cv.width=cv.height=sz;const c=cv.getContext('2d');
+      const r=Math.min(sz/img.width,sz/img.height),w=img.width*r,h=img.height*r;c.drawImage(img,(sz-w)/2,(sz-h)/2,w,h);URL.revokeObjectURL(url);res(cv.toDataURL('image/png'))}catch(e){rej(e)}};
+    img.onerror=()=>{URL.revokeObjectURL(url);rej(new Error('Não consegui ler essa imagem.'))};img.src=url;
+  });
+}
+async function admIconSet(slot,value,okMsg){
+  const{error}=await sb.rpc('admin_set_icon',{p_slot:slot,p_value:value});if(error)throw error;
+  if(value)S.icons[slot]=value;else delete S.icons[slot];
+  applyIcons();S.tickSig='';renderTicker();renderRail();keepInputs(renderView);toast(okMsg||'Ícone atualizado.');
+}
+
+/* ---------- abertura, reset e limpeza ---------- */
+function admOpen(){
+  const closed=siteClosed(),st=ADM.stats;
+  const nice=b=>b>1048576?fmt(b/1048576,1)+' MB':fmt(b/1024,0)+' KB';
+  return`<div class="panel ${closed?'':'glow'}"><div class="spread"><div><h3>Site ${closed?'fechado':'aberto'} para os membros</h3><p class="muted small" style="margin-top:4px">${closed?'Membros comuns veem só uma tela de “abrimos em breve” e não conseguem comprar, vender, apostar ou pegar bônus. Você, como ADM, continua mexendo em tudo.':'Todo mundo que entrar consegue jogar normalmente.'}</p></div>${admBtn('adm-open-toggle',closed?'Abrir o site para todos':'Fechar o site agora',`data-open="${closed?1:0}"`,closed?'btn-main':'btn-bad')}</div></div>
+<div class="panel" style="margin-top:14px"><h3>Resetar o site (zerar tudo para começar de novo)</h3>
+<p class="muted small" style="margin:6px 0 10px">Antes de abrir para a comunidade. Isso <b>apaga</b>: compras e vendas de ações, extrato, gráficos de preço, apostas, chat, ofertas, trocas, notícias, pedidos da loja e fila de música. <b>Volta</b>: o saldo de todo mundo para ${fmt(admSet('start_balance'),0)} AC e o preço de todas as moedas para ${fmt(admSet('base_price'),0)} AC. <b>Mantém</b>: membros, moedas (nome, ID e imagem), itens da loja, missões, playlist, ícones e configurações. Não dá para desfazer.</p>
+<div class="formgrid"><label class="inline"><input type="checkbox" id="rsXp" checked> Zerar também o XP e as missões concluídas</label><label class="inline"><input type="checkbox" id="rsClose" checked> Deixar o site fechado depois do reset (recomendado)</label>
+<label>Para confirmar, digite RESETAR<input id="rsConfirm" autocomplete="off" placeholder="RESETAR"></label></div>${admBtn('adm-reset','Resetar o site','','btn-bad')}</div>
+<div class="panel" style="margin-top:14px"><div class="spread"><div><h3>Banco de dados e limpeza</h3><p class="muted small" style="margin-top:4px">O site apaga sozinho o histórico antigo (regras em “Site e economia”). Aqui dá para ver o tamanho de cada tabela e limpar na hora.</p></div><div class="row">${admBtn('adm-stats','↻ Atualizar números')}${admBtn('adm-cleanup','Limpar histórico antigo agora','','btn-main')}</div></div>
+${st?`<p class="muted small" style="margin:8px 0">Tamanho total: <b>${nice(st.total_bytes)}</b> · última limpeza: ${Number(st.last_cleanup)?fmtDate(Number(st.last_cleanup)*1000):'nunca'}</p>${table(['Tabela','Linhas','Tamanho'],st.tables.map(t=>`<tr><td>${esc(t.name)}</td><td>${Number(t.rows).toLocaleString('pt-BR')}</td><td>${nice(t.bytes)}</td></tr>`).join(''))}`:'<p class="muted small" style="margin-top:8px">Carregando números…</p>'}</div>`;
+}
+
 V.adm=function(){
   if(!isAdmin())return'<div class="notice">Acesso negado.</div>';
-  const body={site:admSite,membros:admMembers,moedas:admCoins,loja:admShop,missoes:admMissions,musica:admMusic,registro:admLog}[ADM.tab]();
+  const body={site:admSite,abertura:admOpen,noticias:admNews,icones:admIcons,membros:admMembers,moedas:admCoins,loja:admShop,missoes:admMissions,musica:admMusic,registro:admLog}[ADM.tab]();
   return`<div class="page-head"><div><h2>🛡️ Painel do ADM</h2><p class="muted">Tudo que muda aqui vale na hora para todo mundo. Cada ação fica registrada.</p></div></div><div class="admtabs">${ADM_TABS.map(([k,n])=>`<button data-do="adm-tab" data-tab="${k}" class="${ADM.tab===k?'active':''}">${n}</button>`).join('')}</div>${ADM.loaded?body:'<div class="empty">Carregando painel…</div>'}`;
 };
 
@@ -1153,7 +1635,7 @@ function admCoinForm(id){
 function admItemForm(id){
   const i=ADM.items.find(x=>x.id===id)||{emoji:'🎁',name:'',description:'',price:100,stock:null,active:true,sort_order:0};
   openForm({title:id?'Editar item':'Novo item da loja',submit:id?'Salvar':'Adicionar à loja',
-    fields:[{name:'emoji',label:'Emoji',value:i.emoji,max:8},{name:'name',label:'Nome do item',value:i.name,max:80},{name:'description',label:'Descrição',type:'textarea',value:i.description,max:400},{name:'price',label:'Preço (AC)',type:'number',step:0.01,min:0,value:Number(i.price)},{name:'stock',label:'Estoque',type:'number',step:1,min:0,value:i.stock,hint:'Deixe vazio para estoque ilimitado.'},{name:'sort',label:'Ordem na vitrine',type:'number',step:1,value:i.sort_order},{name:'active',label:'À venda',type:'checkbox',value:i.active}],
+    fields:[{name:'emoji',label:'Emoji (para trocar por imagem, use a aba Ícones depois de salvar)',value:i.emoji,max:8},{name:'name',label:'Nome do item',value:i.name,max:80},{name:'description',label:'Descrição',type:'textarea',value:i.description,max:400},{name:'price',label:'Preço (AC)',type:'number',step:0.01,min:0,value:Number(i.price)},{name:'stock',label:'Estoque',type:'number',step:1,min:0,value:i.stock,hint:'Deixe vazio para estoque ilimitado.'},{name:'sort',label:'Ordem na vitrine',type:'number',step:1,value:i.sort_order},{name:'active',label:'À venda',type:'checkbox',value:i.active}],
     onSubmit:async v=>{await admRpc('admin_upsert_shop_item',{p_id:id||null,p_name:v.name,p_description:v.description,p_price:v.price,p_stock:v.stock===null?null:Math.round(v.stock),p_active:v.active,p_sort:Math.round(v.sort||0),p_emoji:v.emoji},id?'Item atualizado.':'Item adicionado à loja.')}});
 }
 function admMissionForm(id){
@@ -1189,39 +1671,209 @@ async function admSaveXp(){
 }
 
 /* ============================================================
+   Mercado livre (venda entre jogadores) e propostas de troca
+   ============================================================ */
+const MK={sub:'oficial',list:null,fee:0,max:10,at:0,loading:false,sig:'',trades:null,trAt:0,trLoading:false,trSig:''};
+
+const mkSubtabs=()=>{const n=(MK.list||[]).filter(l=>Number(l.quantity)>0).length;
+  return`<div class="subtabs"><button data-do="mk-sub" data-sub="oficial" class="${MK.sub==='oficial'?'active':''}">Preço oficial</button><button data-do="mk-sub" data-sub="jogadores" class="${MK.sub==='jogadores'?'active':''}">Vendas dos jogadores${n?` <span class="pill">${n}</span>`:''}</button></div>`};
+const mkMyListed=aid=>(MK.list||[]).filter(l=>l.seller_id===S.user.id&&l.asset_id===aid).reduce((n,l)=>n+Number(l.quantity),0);
+function mkBestAsk(aid){
+  const l=(MK.list||[]).filter(x=>x.asset_id===aid&&Number(x.quantity)>0&&x.seller_id!==S.user.id);
+  if(!l.length)return null;
+  return{unit_price:Math.min(...l.map(x=>Number(x.unit_price))),n:l.length};
+}
+async function mkLoad(force){
+  if(!S.user||MK.loading)return;
+  if(!force&&MK.list&&Date.now()-MK.at<20000)return;
+  MK.loading=true;
+  try{
+    const{data,error}=await sb.rpc('market_listings_list');if(error)throw error;
+    MK.list=data.listings||[];MK.fee=Number(data.fee||0);MK.max=Number(data.max_listings||10);MK.at=Date.now();
+    const sig=JSON.stringify(MK.list.map(l=>[l.id,l.quantity,l.unit_price]));
+    if(sig!==MK.sig){MK.sig=sig;if(['bolsa','carteira'].includes(S.tab)&&$('#modal').classList.contains('hidden'))keepInputs(renderView)}
+  }catch(e){MK.at=Date.now();console.warn('ofertas:',e.message||e)}
+  finally{MK.loading=false}
+}
+
+function mkListingsHtml(){
+  mkLoad();
+  const list=(MK.list||[]).filter(l=>Number(l.quantity)>0);
+  const mineN=list.filter(l=>l.seller_id===S.user.id).length;
+  const sellable=S.holdings.filter(h=>h.user_id===S.user.id).map(h=>({a:asset(h.asset_id),free:Number(h.quantity)-mkMyListed(h.asset_id)})).filter(x=>x.a.id&&x.free>0);
+  const first=sellable[0];
+  const sellForm=sellable.length
+    ?`<div class="formgrid cols3"><label>Moeda<select id="mkAsset">${sellable.map(x=>`<option value="${esc(x.a.id)}">${esc(x.a.symbol)} (você tem ${x.free} livre${x.free>1?'s':''})</option>`).join('')}</select></label><label>Quantidade<input type="number" id="mkQty" min="1" step="1" value="1" style="width:100%"></label><label>Preço de cada ação (AC)<input type="number" id="mkPrice" min="0.01" step="any" value="${first?Number(first.a.price):''}" style="width:100%"></label></div><div class="row"><button class="btn-main" data-do="mk-list">Colocar à venda</button><small>Ofertas abertas: ${mineN} de ${MK.max}</small></div>`
+    :`<p class="muted">Você não tem ações livres para vender. Compre ações no preço oficial primeiro.</p>`;
+  const rows=list.map(l=>{const a=asset(l.asset_id),mine=l.seller_id===S.user.id,off=price(l.asset_id),diff=off?(Number(l.unit_price)/off-1)*100:0,id=esc(l.id);
+    return`<tr class="${mine?'me-row':''}"><td>${coinTag(a)}</td><td>${mine?'<span class="pill acc">você</span>':esc(l.seller_name||'—')}</td><td>${l.quantity}</td><td><b>${fmt(l.unit_price)}</b></td><td><span class="${diff<-0.005?'up':diff>0.005?'down':'dim'}">${pctTxt(diff)}</span></td><td>${mine?`<button class="btn-sm btn-bad" data-do="mk-cancel" data-id="${id}">Cancelar oferta</button>`:`<div class="row" style="flex-wrap:nowrap"><input type="number" id="mkq-${id}" min="1" max="${l.quantity}" step="1" value="1" aria-label="Quantidade"><button class="btn-good btn-sm" data-do="mk-buy" data-id="${id}">Comprar</button></div>`}</td></tr>`}).join('');
+  return`<div class="panel"><h3>Vender suas ações para outros jogadores</h3><p class="muted small" style="margin:4px 0 12px">Você escolhe o preço. As ações ficam guardadas na oferta até alguém comprar ou você cancelar.${MK.fee>0?` O site fica com ${fmt(MK.fee,1)}% de cada venda.`:''} Negócios entre jogadores empurram um pouco o preço oficial na direção do preço negociado.</p>${sellForm}</div>
+<h3 style="margin:20px 0 4px">Ofertas abertas</h3><small>“Vs. oficial” compara com o preço automático: verde é mais barato que a loja.</small>${table(['Moeda','Vendedor','Qtd','Preço de cada','Vs. oficial',''],rows,MK.list?'Nenhuma oferta aberta agora.':'Carregando ofertas…')}`;
+}
+async function mkList(){
+  const a=$('#mkAsset')?.value,q=Number($('#mkQty')?.value),p=Number($('#mkPrice')?.value);
+  if(!a){toast('Escolha uma moeda.','err');return}
+  if(!Number.isInteger(q)||q<1){toast('Informe uma quantidade inteira.','err');return}
+  if(!(p>0)){toast('Informe o preço de cada ação.','err');return}
+  const{error}=await sb.rpc('create_listing',{p_asset:a,p_qty:q,p_price:p});
+  if(error){toast(errMsg(error),'err');SFX.play('error');return}
+  SFX.play('coin');toast(`Oferta criada: ${q} × ${asset(a).symbol} a ${fmt(p)} AC cada.`);
+  await mkLoad(true);keepInputs(renderView);
+}
+async function mkBuy(id){
+  const l=(MK.list||[]).find(x=>x.id===id);if(!l)return;
+  const q=Number($('#mkq-'+CSS.escape(id))?.value);
+  if(!Number.isInteger(q)||q<1){toast('Informe uma quantidade inteira.','err');return}
+  const tot=Math.ceil(Number(l.unit_price)*q*100)/100;
+  if(!await confirmBox(`Comprar ${q} × ${asset(l.asset_id).symbol} de ${l.seller_name} por ${fmt(tot)} AC?`,'Comprar'))return;
+  const{data,error}=await sb.rpc('buy_listing',{p_id:id,p_qty:q});
+  if(error){toast(errMsg(error),'err');SFX.play('error');await mkLoad(true);if(S.tab==='bolsa')renderView();return}
+  SFX.play('coin');toast(`Compra feita: ${q} × ${asset(l.asset_id).symbol} por ${fmt(data?.cost)} AC.`);
+  await mkLoad(true);await refreshLight(true);
+}
+async function mkCancel(id){
+  const{error}=await sb.rpc('cancel_listing',{p_id:id});
+  if(error){toast(errMsg(error),'err');return}
+  toast('Oferta cancelada. As ações voltaram para você.');
+  await mkLoad(true);await refreshLight(true);
+}
+
+/* ============================================================
+   TROCAS (propostas diretas entre dois jogadores)
+   ============================================================ */
+const TR_STATUS={pending:'Aguardando',accepted:'Aceita',rejected:'Recusada',cancelled:'Cancelada',expired:'Expirada'};
+function trSide(aid,qty,ac){
+  const p=[];if(Number(qty)>0)p.push(`<b>${qty} × ${esc(asset(aid).symbol||'moeda')}</b>`);if(Number(ac)>0)p.push(`<b class="gold">${fmt(ac)} AC</b>`);
+  return p.join(' + ')||'—';
+}
+const trLeft=iso=>{const ms=Date.parse(iso)-Date.now();if(ms<=0)return'expirada';const h=Math.floor(ms/3600e3),m=Math.floor(ms%3600e3/60e3);return h?`expira em ${h} h`:`expira em ${m} min`};
+async function trLoad(force){
+  if(!S.user||MK.trLoading)return;
+  if(!force&&MK.trades&&Date.now()-MK.trAt<15000)return;
+  MK.trLoading=true;
+  try{
+    const{data,error}=await sb.rpc('trades_list');if(error)throw error;
+    MK.trades=data.offers||[];MK.trAt=Date.now();
+    const sig=JSON.stringify(MK.trades.map(o=>[o.id,o.status]));
+    if(sig!==MK.trSig){MK.trSig=sig;if(S.tab==='trocas'&&$('#modal').classList.contains('hidden'))renderView()}
+  }catch(e){MK.trAt=Date.now();console.warn('trocas:',e.message||e)}
+  finally{MK.trLoading=false}
+}
+function trCard(o){
+  const mine=o.from_user===S.user.id,pend=o.status==='pending'&&Date.parse(o.expires_at)>Date.now();
+  const other=mine?o.to_name:o.from_name;
+  return`<div class="panel offer ${o.status}"><div class="spread"><b>${mine?`Você → ${esc(other)}`:`${esc(other)} → você`}</b><span class="pill ${pend?'acc':''}">${pend?trLeft(o.expires_at):TR_STATUS[o.status]||o.status}</span></div>
+<div class="offer-body"><div><small>${mine?'Você dá':`${esc(other)} dá`}</small><div>${trSide(o.give_asset,o.give_qty,o.give_ac)}</div></div><span class="swap" aria-hidden="true">⇄</span><div><small>${mine?`Você recebe`:'Você dá'}</small><div>${trSide(o.want_asset,o.want_qty,o.want_ac)}</div></div></div>
+${o.message?`<p class="muted small offer-msg">“${esc(o.message)}”</p>`:''}
+${pend?`<div class="row" style="margin-top:10px">${mine?`<button class="btn-sm btn-bad" data-do="tr-cancel" data-id="${esc(o.id)}">Cancelar proposta</button>`:`<button class="btn-good" data-do="tr-accept" data-id="${esc(o.id)}">Aceitar</button><button class="btn-bad" data-do="tr-reject" data-id="${esc(o.id)}">Recusar</button>`}</div>`:''}</div>`;
+}
+V.trocas=function(){
+  trLoad();
+  const all=MK.trades||[],inb=all.filter(o=>o.to_user===S.user.id&&o.status==='pending'&&Date.parse(o.expires_at)>Date.now()),
+    out=all.filter(o=>o.from_user===S.user.id&&o.status==='pending'&&Date.parse(o.expires_at)>Date.now()),
+    done=all.filter(o=>!inb.includes(o)&&!out.includes(o));
+  return`${head('trocas','Trocas','Proponha uma troca direta com outro membro: ações por ações, ações por AC ou até um presente. Só vale se a outra pessoa aceitar, e a proposta expira em 24 horas.')}<button class="btn-main" data-do="tr-new">Nova proposta</button></div>
+<h3 style="margin:18px 0 8px">Para você responder ${inb.length?`<span class="badge" style="position:static;margin-left:6px">${inb.length}</span>`:''}</h3>${inb.map(trCard).join('')||`<div class="panel empty">${MK.trades?'Nenhuma proposta esperando por você.':'Carregando…'}</div>`}
+<h3 style="margin:22px 0 8px">Enviadas por você</h3>${out.map(trCard).join('')||'<div class="panel empty">Você não tem propostas em aberto.</div>'}
+<h3 style="margin:22px 0 8px">Histórico recente</h3>${done.map(trCard).join('')||'<div class="panel empty">Sem histórico por enquanto. Ele some sozinho depois de alguns dias.</div>'}`;
+};
+function trFreeShares(aid){return held(S.user.id,aid)-mkMyListed(aid)}
+function trNewModal(preTo){
+  mkLoad();
+  const others=S.profiles.filter(p=>p.id!==S.user.id).sort((a,b)=>String(a.username).localeCompare(String(b.username)));
+  if(!others.length){toast('Ainda não há outros membros para trocar.','err');return}
+  const mineOpts=S.holdings.filter(h=>h.user_id===S.user.id&&trFreeShares(h.asset_id)>0&&asset(h.asset_id).id).map(h=>`<option value="${esc(h.asset_id)}">${esc(asset(h.asset_id).symbol)} (livre: ${trFreeShares(h.asset_id)})</option>`).join('');
+  openModal(`<h3>Nova proposta de troca</h3>
+<form id="trform" class="formgrid"><label>Para quem<select id="trTo">${others.map(p=>`<option value="${esc(p.id)}" ${p.id===preTo?'selected':''}>${esc(p.username)}</option>`).join('')}</select></label>
+<fieldset><legend>Você dá</legend><div class="formgrid cols3"><label>Moeda<select id="trGiveA"><option value="">— nenhuma —</option>${mineOpts}</select></label><label>Quantidade<input type="number" id="trGiveQ" min="0" step="1" value="0" style="width:100%"></label><label>AC<input type="number" id="trGiveAc" min="0" step="0.01" value="0" style="width:100%"></label></div></fieldset>
+<fieldset><legend>Você quer receber</legend><div class="formgrid cols3"><label>Moeda<select id="trWantA"></select></label><label>Quantidade<input type="number" id="trWantQ" min="0" step="1" value="0" style="width:100%"></label><label>AC<input type="number" id="trWantAc" min="0" step="0.01" value="0" style="width:100%"></label></div></fieldset>
+<label>Recado (opcional)<input id="trMsg" maxlength="200" placeholder="Ex.: troco por uma ação sua, fechado?"></label>
+<div class="row" style="justify-content:flex-end"><button type="button" id="trCancel">Cancelar</button><button type="submit" class="btn-main">Enviar proposta</button></div></form>`,true);
+  const fillWant=()=>{const to=$('#trTo').value,hs=S.holdings.filter(h=>h.user_id===to&&Number(h.quantity)>0&&asset(h.asset_id).id);
+    $('#trWantA').innerHTML='<option value="">— nenhuma —</option>'+hs.map(h=>`<option value="${esc(h.asset_id)}">${esc(asset(h.asset_id).symbol)} (ele tem ${h.quantity})</option>`).join('')};
+  fillWant();$('#trTo').onchange=fillWant;$('#trCancel').onclick=closeModal;
+  $('#trform').onsubmit=async ev=>{ev.preventDefault();
+    const gq=Math.round(Number($('#trGiveQ').value)||0),wq=Math.round(Number($('#trWantQ').value)||0),ga=$('#trGiveA').value||null,wa=$('#trWantA').value||null;
+    const gac=Number($('#trGiveAc').value)||0,wac=Number($('#trWantAc').value)||0;
+    if(gq>0&&!ga){toast('Escolha a moeda que você vai dar.','err');return}
+    if(wq>0&&!wa){toast('Escolha a moeda que você quer receber.','err');return}
+    if(!(gq>0||gac>0||wq>0||wac>0)){toast('Preencha o que cada lado dá ou recebe.','err');return}
+    const btn=ev.submitter||$('#trform button[type=submit]');btn.disabled=true;
+    try{const{error}=await sb.rpc('propose_trade',{p_to:$('#trTo').value,p_give_asset:gq>0?ga:null,p_give_qty:gq,p_give_ac:gac,p_want_asset:wq>0?wa:null,p_want_qty:wq,p_want_ac:wac,p_message:$('#trMsg').value});
+      if(error)throw error;closeModal();SFX.play('coin');toast('Proposta enviada! Ela vale por 24 horas.');await trLoad(true);if(S.tab==='trocas')renderView()}
+    catch(e){toast(errMsg(e),'err');SFX.play('error')}finally{btn.disabled=false}};
+}
+async function trRespond(id,accept){
+  const{data,error}=await sb.rpc('respond_trade',{p_id:id,p_accept:accept});
+  if(error){toast(errMsg(error),'err');SFX.play('error');await trLoad(true);return}
+  if(accept){if(data&&data.accepted===false&&data.expired)toast('Essa proposta expirou.','err');else{SFX.play('win');toast('Troca feita! Confira sua carteira.','gain')}}
+  else toast('Proposta recusada.');
+  await trLoad(true);await refreshLight(true);
+}
+async function trCancel(id){
+  const{error}=await sb.rpc('cancel_trade',{p_id:id});
+  if(error){toast(errMsg(error),'err');return}
+  toast('Proposta cancelada.');await trLoad(true);if(S.tab==='trocas')renderView();
+}
+AFTER.trocas=function(){trLoad(true)};
+AFTER.bolsa=function(){mkLoad()};
+
+/* ============================================================
    Início do app: login, carregamento de dados, atualização periódica e eventos
    ============================================================ */
-async function fetchCore(){
+/* Dados que mudam toda hora (saldo, preços, carteiras) vêm sempre; o resto (loja, missões, ícones, configurações) só de tempos em tempos. */
+async function fetchLive(){
   const uid=S.user.id;
   const r=await Promise.all([
     sb.from('profiles').select('id,username,avatar_url,balance,xp,is_admin,terms_accepted_at,last_daily_date'),
     sb.from('assets').select('id,name,symbol,avatar_url,price,total_shares,updated_at'),
     sb.from('holdings').select('user_id,asset_id,quantity'),
-    sb.from('transactions').select('id,user_id,asset_id,type,quantity,unit_price,amount,balance_after,created_at').eq('user_id',uid).order('created_at',{ascending:false}).limit(100),
-    sb.from('shop_items').select('*').eq('active',true).order('sort_order').order('price'),
-    sb.from('user_inventory').select('*').eq('user_id',uid),
-    sb.from('missions').select('*').eq('active',true).order('sort_order'),
-    sb.from('mission_completions').select('mission_id').eq('user_id',uid),
-    sb.from('xp_settings').select('base,exponent,endgame_bonus').eq('id',true).maybeSingle(),
+    sb.from('transactions').select('id,user_id,asset_id,type,quantity,unit_price,amount,balance_after,note,created_at').eq('user_id',uid).order('created_at',{ascending:false}).limit(100),
     sb.rpc('market_movers'),
-    sb.from('site_settings').select('key,value')]);
-  const [pr,ar,hr,tr,ir,inv,mr,cm,xr,mv,ss]=r;
+    sb.from('news').select('id,body,kind,active,created_at,expires_at').order('created_at',{ascending:false}).limit(12),
+    sb.rpc('trades_pending_count')]);
+  const [pr,ar,hr,tr,mv,nw,tp]=r;
   r.forEach((x,i)=>{if(x.error)console.warn('carga',i,x.error.message)});
   if(!pr.error){S.profiles=pr.data||[];S.profile=S.profiles.find(x=>x.id===uid)||null}
   if(!ar.error)S.assets=ar.data||[];
   if(!hr.error)S.holdings=hr.data||[];
   if(!tr.error)S.tx=tr.data||[];
+  if(!mv.error){S.movers={};(mv.data||[]).forEach(x=>S.movers[x.asset_id]=x)}
+  if(!nw.error)S.news=nw.data||[];
+  if(!tp.error){const n=Number(tp.data||0);if(S.tradesInit&&n>(S.tradesPending||0)){toast('Você recebeu uma proposta de troca! Veja na aba Trocas.','gain',6000);SFX.play('win');if(S.tab==='trocas')trLoad(true)}S.tradesPending=n;S.tradesInit=true}
+  return JSON.stringify([pr.data,ar.data,hr.data,tr.data&&tr.data[0]&&tr.data[0].id,mv.data,nw.data,tp.data]);
+}
+async function fetchStatic(){
+  const uid=S.user.id;
+  const r=await Promise.all([
+    sb.from('shop_items').select('*').eq('active',true).order('sort_order').order('price'),
+    sb.from('user_inventory').select('*').eq('user_id',uid),
+    sb.from('missions').select('*').eq('active',true).order('sort_order'),
+    sb.from('mission_completions').select('mission_id').eq('user_id',uid),
+    sb.from('xp_settings').select('base,exponent,endgame_bonus').eq('id',true).maybeSingle(),
+    sb.from('site_settings').select('key,value'),
+    sb.from('site_icons').select('slot,value')]);
+  const [ir,inv,mr,cm,xr,ss,ic]=r;
+  r.forEach((x,i)=>{if(x.error)console.warn('carga estática',i,x.error.message)});
   if(!ir.error)S.items=ir.data||[];
   if(!inv.error)S.inventory=inv.data||[];
   if(!mr.error)S.missions=mr.data||[];
   if(!cm.error)S.completions=cm.data||[];
   if(xr.data)S.xpConfig=xr.data;
-  if(!mv.error){S.movers={};(mv.data||[]).forEach(x=>S.movers[x.asset_id]=x)}
   if(!ss.error&&ss.data)ss.data.forEach(x=>{S.settings[x.key]=x.value});
+  if(!ic.error&&ic.data){const o={};ic.data.forEach(x=>o[x.slot]=x.value);const sig=JSON.stringify(Object.keys(o).sort().map(k=>[k,o[k].length,o[k].slice(0,40),o[k].slice(-20)]));if(sig!==S.iconSig){S.iconSig=sig;S.icons=o;applyIcons();S.tickSig=''}}
+  S.staticAt=Date.now();
   applySettings();
+  return JSON.stringify([ir.data,inv.data,mr.data,cm.data,xr.data,ss.data]);
+}
+async function fetchCore(full){
+  const need=full||!S.staticAt||Date.now()-S.staticAt>90000;
+  const[a,b]=await Promise.all([fetchLive(),need?fetchStatic():Promise.resolve(S.staticSig||'')]);
+  if(need)S.staticSig=b;
+  return a+'|'+(S.staticSig||'');
 }
 async function loadPublicSettings(){
-  try{const{data,error}=await sb.from('site_settings').select('key,value');if(!error&&data){data.forEach(x=>S.settings[x.key]=x.value);applySettings()}}catch(e){}
+  try{const[a,b]=await Promise.all([sb.from('site_settings').select('key,value'),sb.from('site_icons').select('slot,value')]);if(!a.error&&a.data){a.data.forEach(x=>S.settings[x.key]=x.value);applySettings()}if(!b.error&&b.data){const o={};b.data.forEach(x=>o[x.slot]=x.value);S.icons=o;applyIcons()}}catch(e){}
 }
 async function refreshBalance(){
   if(!S.user)return;
@@ -1231,25 +1883,31 @@ async function refreshBalance(){
 const LIVE_TABS=new Set(['inicio','bolsa','carteira','ranking','extrato','loja','missoes','perfil']);
 async function refreshLight(force){
   if(!S.user||!S.profile||(S.refreshing&&!force))return;
-  S.refreshing=true;
+  S.refreshing=true;S.lastRefresh=Date.now();
   try{
-    await fetchCore();updateUserbar();renderRail();renderTicker();
-    if(LIVE_TABS.has(S.tab)&&($('#modal').classList.contains('hidden')||force))keepInputs(renderView);
-    else if(S.tab==='graficos'&&force)renderView();
-    else if(S.tab==='adm'&&force)keepInputs(renderView);
-    const cb=$('#casbal');if(cb)cb.textContent=fmt(me().balance);
+    const sig=await fetchCore(force);
+    if(siteClosed()&&!isAdmin()){showClosed();return}
+    const changed=force||sig!==S.viewSig;S.viewSig=sig;
+    if(changed){
+      updateUserbar();renderRail();renderTicker();
+      if(LIVE_TABS.has(S.tab)&&($('#modal').classList.contains('hidden')||force))keepInputs(renderView);
+      else if(S.tab==='graficos'&&force){CMP.at=0;renderView()}
+      else if(S.tab==='adm'&&force)keepInputs(renderView);
+      const cb=$('#casbal');if(cb)cb.textContent=fmt(me().balance);
+    }
   }catch(e){console.warn('atualização:',e)}
   finally{S.refreshing=false}
 }
 
 /* ---------- telas de entrada ---------- */
 function showGate(kind){
-  $('#shell').classList.add('hidden');$('#gate').classList.remove('hidden');$('#userbar').innerHTML='';$('#dock').classList.add('hidden');
+  $('#shell').classList.add('hidden');$('#gate').classList.remove('hidden');$('#ticker').classList.toggle('hidden',kind==='closed');$('#userbar').innerHTML='';$('#dock').classList.add('hidden');$('#bnav').classList.add('hidden');
   const name=esc(S.settings.site_name||'Bolsa do Autsim'),g=$('#gate');
-  if(kind==='login')g.innerHTML=`<div class="floaty" style="font-size:54px">📈</div><h1>${name}</h1><p class="lead">Invista nas moedas dos membros, jogue roleta e foguete com o chat ao vivo, faça apostas entre amigos e suba de nível. Tudo com AutsimCoins, sem dinheiro de verdade.</p>
-<div class="panel glow stack"><label class="inline"><input type="checkbox" id="termscheck"> Li e concordo em usar apenas uma conta e aceito os termos da comunidade.</label><button id="login" class="btn-main btn-lg" data-do="login">Entrar com Discord</button><small>Ganhe ${fmt(S.settings.daily_bonus||50,0)} AC de bônus todo dia que entrar.</small></div>`;
+  if(kind==='login')g.innerHTML=`<div class="floaty" style="font-size:54px">${ico('brand')}</div>${siteClosed()?'<div class="notice">O site está fechado para os membros por enquanto. Só os ADMs conseguem entrar.</div>':''}<h1>${name}</h1><p class="lead">Invista nas moedas dos membros, jogue roleta e foguete com o chat ao vivo, faça apostas entre amigos e suba de nível. Tudo com AutsimCoins, sem dinheiro de verdade.</p>
+<div class="panel glow stack"><label class="inline"><input type="checkbox" id="termscheck"> Li e concordo em usar apenas uma conta e aceito os termos da comunidade.</label><button id="login" class="btn-main btn-lg" data-do="login">Entrar com Discord</button><small>Você começa com ${fmt(S.settings.start_balance||10000,0)} AC e ganha ${fmt(S.settings.daily_bonus||500,0)} AC de bônus todo dia que entrar.</small></div>`;
   else if(kind==='terms')g.innerHTML=`<h1 style="font-size:clamp(34px,6vw,56px)">Termos da comunidade</h1><p class="lead">Você se compromete a usar apenas uma conta pessoal. Contas duplicadas podem ser bloqueadas pelo ADM.</p><div class="panel stack"><label class="inline"><input type="checkbox" id="accepttermscheck"> Li e aceito os termos (versão autsim-terms-v1).</label><button class="btn-main btn-lg" data-do="accept-terms">Aceitar e continuar</button><button data-do="logout">Sair</button></div>`;
   else if(kind==='profile')g.innerHTML=`<h1 style="font-size:clamp(34px,6vw,56px)">Perfil não encontrado</h1><p class="lead">Sua conta entrou, mas o perfil ainda não foi criado no banco. Confira o trigger de cadastro do Supabase e tente de novo.</p><div class="row" style="justify-content:center"><button class="btn-main" data-do="reload">Tentar de novo</button><button data-do="logout">Sair</button></div>`;
+  else if(kind==='closed')g.innerHTML=`<div class="floaty" style="font-size:54px">${ico('brand')}</div><h1>Abrimos em breve</h1><p class="lead">O ${name} está sendo preparado e ainda não abriu para os membros. Esta página confere sozinha e libera a entrada assim que o ADM abrir.</p><div class="row" style="justify-content:center"><button data-do="reload">Conferir agora</button><button data-do="logout">Sair</button></div>`;
   else if(kind==='denied')g.innerHTML=`<h1 style="font-size:clamp(34px,6vw,56px)">Acesso só para membros</h1><p class="lead">Não encontramos você no servidor do Discord da comunidade. Entre no servidor e tente de novo.</p><button class="btn-main" data-do="login">Entrar de novo</button>`;
   else g.innerHTML=`<div class="muted">Carregando…</div>`;
 }
@@ -1258,6 +1916,10 @@ async function guildGate(){
   const g=await sb.functions.invoke('check-guild-membership');
   if(g.error||!g.data?.is_member){await sb.auth.signOut();S.user=null;showGate('denied');return false}
   return true;
+}
+function showClosed(){
+  if(S.closedShown)return;S.closedShown=true;casinoStop();showGate('closed');
+  clearInterval(S.closedT);S.closedT=setInterval(async()=>{await loadPublicSettings();if(!siteClosed()){clearInterval(S.closedT);location.reload()}},15000);
 }
 async function enter(){
   if(S.booting||!S.user)return;
@@ -1268,26 +1930,29 @@ async function enter(){
     await fetchCore();
     if(!S.profile){showGate('profile');return}
     if(!S.profile.terms_accepted_at){showGate('terms');return}
+    if(siteClosed()&&!isAdmin()){showClosed();return}
     startApp();
   }catch(e){console.error(e);toast('Não foi possível carregar os dados. Recarregue a página.','err',8000)}
   finally{S.booting=false}
 }
 function startApp(){
   S.started=true;S.startedFor=S.user.id;S.lastLevel=null;S.day=todaySP();
-  $('#gate').classList.add('hidden');$('#shell').classList.remove('hidden');
-  updateUserbar();renderTicker();render();dockUpdate();
+  S.closedShown=false;$('#ticker').classList.remove('hidden');$('#gate').classList.add('hidden');$('#shell').classList.remove('hidden');$('#bnav').classList.remove('hidden');
+  S.viewSig=null;updateUserbar();renderTicker();render();dockUpdate();applyIcons();
+  sb.rpc('run_cleanup',{p_force:false}).then(()=>{},()=>{});
   armMusic();musicLoad();chatStart();
   if(S.profile.last_daily_date!==todaySP())claimDaily(true);
   if(!S.timersOn){S.timersOn=true;
-    setInterval(()=>{if(S.user&&!document.hidden)refreshLight()},20000);
+    setInterval(()=>{if(S.user&&S.started&&!document.hidden&&Date.now()-(S.lastRefresh||0)>=(isLite()?40000:25000))refreshLight()},5000);
+    setInterval(()=>{if(S.user&&S.started)sb.rpc('run_cleanup',{p_force:false}).then(()=>{},()=>{})},30*60*1000);
     setInterval(()=>{if(!S.user)return;const t=countdownTxt(nextResetMs()),a=$('#dailycd'),b=$('#dailycd2');if(a)a.textContent=t;if(b)b.textContent=t;if(S.day!==todaySP()){S.day=todaySP();claimDaily(true)}},1000);
     setInterval(()=>{if(S.user)musicTick()},4000);
-    setInterval(()=>{if(S.user&&!document.hidden)musicLoad()},45000);
+    setInterval(()=>{if(S.user&&!document.hidden)musicLoad()},isLite()?90000:45000);
     document.addEventListener('visibilitychange',()=>{if(!document.hidden&&S.user&&S.started)refreshLight()});
   }
 }
 function teardown(){
-  casinoStop();chatStop();musicStop();S.started=false;S.startedFor=null;S.profile=null;S.user=null;ADM.loaded=false;S.tab='inicio';
+  casinoStop();chatStop();musicStop();S.started=false;S.startedFor=null;S.profile=null;S.user=null;ADM.loaded=false;ADM.stats=null;S.tab='inicio';S.tradesInit=false;S.tradesPending=0;S.closedShown=false;clearInterval(S.closedT);MK.list=null;MK.trades=null;CMP.series=null;CMP.ids=null;
   showGate('login');
 }
 
@@ -1297,14 +1962,29 @@ document.addEventListener('click',async e=>{
   const d=el.dataset,act=d.do;
   try{switch(act){
     case'tab':goTab(d.tab);break;
-    case'coin':S.chartAsset=d.id;goTab('graficos');break;
+    case'coin':CMP.ids=[d.id];CMP.touched=true;CMP.sub='comparar';goTab('graficos');break;
+    case'news':newsModal(d.id);break;
+    case'more':moreModal();break;
+    case'mk-sub':MK.sub=d.sub;if(d.sub==='jogadores')mkLoad(true);renderView();break;
+    case'mk-list':el.disabled=true;try{await mkList()}finally{el.disabled=false}break;
+    case'mk-buy':el.disabled=true;try{await mkBuy(d.id)}finally{el.disabled=false}break;
+    case'mk-cancel':await mkCancel(d.id);break;
+    case'tr-new':trNewModal();break;
+    case'tr-accept':el.disabled=true;await trRespond(d.id,true);break;
+    case'tr-reject':el.disabled=true;await trRespond(d.id,false);break;
+    case'tr-cancel':await trCancel(d.id);break;
+    case'cmp-sub':CMP.sub=d.sub;renderView();break;
+    case'cmp-hours':CMP.hours=Number(d.h);renderView();break;
+    case'cmp-mode':CMP.mode=d.m;renderView();break;
+    case'cmp-del':CMP.ids=CMP.ids.filter(x=>x!==d.id);CMP.touched=true;renderView();break;
+    case'cmp-preset':cmpPreset(d.p);break;
     case'login':{const c=$('#termscheck');if(c&&!c.checked){toast('Marque a caixa para aceitar a regra de uma conta por pessoa.','err');break}
       const{error}=await sb.auth.signInWithOAuth({provider:'discord',options:{redirectTo:location.origin}});if(error)toast(errMsg(error),'err');break}
     case'logout':await sb.auth.signOut();teardown();break;
     case'reload':location.reload();break;
     case'accept-terms':{if(!$('#accepttermscheck')?.checked){toast('Você precisa aceitar os termos para continuar.','err');break}
       el.disabled=true;const{error}=await sb.rpc('accept_terms',{p_version:'autsim-terms-v1'});el.disabled=false;if(error){toast(errMsg(error),'err');break}
-      await fetchCore();if(S.profile?.terms_accepted_at)startApp();break}
+      await fetchCore(true);if(S.profile?.terms_accepted_at){if(siteClosed()&&!isAdmin())showClosed();else startApp()}break}
     case'refresh':await refreshLight(true);toast('Dados atualizados.');break;
     case'trade':el.disabled=true;try{await trade(d.kind,d.id)}finally{el.disabled=false}break;
     case'claim-daily':await claimDaily(false);break;
@@ -1316,7 +1996,7 @@ document.addEventListener('click',async e=>{
     case'cas-tab':if(d.tab!==CAS.tab){casinoSwitch(d.tab)}break;
     case'chip':{const inp=$('#'+d.for);if(!inp||inp.disabled)break;let v=Number(inp.value)||0;
       if(d.v==='half')v=Math.floor(v/2);else if(d.v==='double')v=v*2;
-      else if(d.v==='max'){const mx=Number((d.for==='rlamt'?CAS.rl.st?.max_bet:CAS.rk.st?.max_bet)||500);v=Math.floor(Math.min(mx,Number(me().balance)))}
+      else if(d.v==='max'){const mx=Number((d.for==='rlamt'?CAS.rl.st?.max_bet:CAS.rk.st?.max_bet)||2000);v=Math.floor(Math.min(mx,Number(me().balance)))}
       else v+=Number(d.v);inp.value=Math.max(1,Math.floor(v));break}
     case'rl-bet':el.disabled=true;await rlBet(d.color);break;
     case'rk-bet':el.disabled=true;await rkBet();el.disabled=false;break;
@@ -1348,17 +2028,38 @@ document.addEventListener('click',async e=>{
     case'adm-music-add':admMusicForm();break;
     case'adm-music-toggle':await admRpc('admin_toggle_music',{p_id:d.id,p_active:d.on==='1'},null,false);await musicLoad();await admLoad();break;
     case'adm-music-del':if(await confirmBox('Remover esta música da playlist?','Remover')){await admRpc('admin_delete_music',{p_id:d.id},'Música removida.',false);await musicLoad();await admLoad()}break;
+    case'adm-news-add':{const body=($('#nwBody')?.value||'').trim(),h=$('#nwHours')?.value;if(body.length<3){toast('Escreva a notícia (mínimo 3 letras).','err');break}
+      await admRpc('admin_add_news',{p_body:body,p_kind:$('#nwKind').value,p_hours:h===''?null:Number(h)},'Notícia publicada! Já está rolando no topo.');break}
+    case'adm-news-toggle':await admRpc('admin_set_news_active',{p_id:Number(d.id),p_active:d.on==='1'},null);break;
+    case'adm-news-del':if(await confirmBox('Apagar esta notícia?','Apagar'))await admRpc('admin_delete_news',{p_id:Number(d.id)},'Notícia apagada.');break;
+    case'adm-icon-save':{const v=($('#'+icKey(d.slot))?.value||'').trim();await admIconSet(d.slot,v,v?'Ícone salvo.':'Ícone restaurado ao padrão.');break}
+    case'adm-icon-reset':await admIconSet(d.slot,'','Ícone restaurado ao padrão.');break;
+    case'adm-open-toggle':{const open=d.open==='1';if(await confirmBox(open?'Abrir o site para todos os membros agora?':'Fechar o site? Membros comuns ficam sem acesso até você abrir.',open?'Abrir':'Fechar')){
+      const{error}=await sb.rpc('admin_set_site_open',{p_open:open});if(error)throw error;S.settings.site_open=open;applySettings();toast(open?'Site aberto!':'Site fechado para os membros.');keepInputs(renderView)}break}
+    case'adm-reset':{if(($('#rsConfirm')?.value||'').trim()!=='RESETAR'){toast('Digite RESETAR (em maiúsculas) para confirmar.','err');break}
+      if(!await confirmBox('Última chance: resetar TODO o site? Saldos e preços voltam ao início e o histórico é apagado.','Sim, resetar'))break;
+      const{error}=await sb.rpc('admin_reset_site',{p_confirm:'RESETAR',p_reset_xp:!!$('#rsXp')?.checked,p_close:!!$('#rsClose')?.checked});if(error)throw error;
+      MK.list=null;MK.trades=null;CMP.series=null;ADM.stats=null;S.staticAt=0;await refreshLight(true);await admLoad();toast('Site resetado. Tudo começou do zero.','gain',6000);break}
+    case'adm-cleanup':{const{error}=await sb.rpc('run_cleanup',{p_force:true});if(error)throw error;toast('Limpeza feita.');ADM.stats=null;await admStats();break}
+    case'adm-stats':ADM.stats=null;keepInputs(renderView);await admStats();break;
     case'adm-slot-del':await admRpc('admin_remove_music_slot',{p_id:d.id,p_refund:d.refund==='1'},d.refund==='1'?'Removida e valor devolvido.':'Removida da fila.');await musicLoad();break;
   }}catch(err){toast(errMsg(err),'err');SFX.play('error')}
 });
 document.addEventListener('submit',e=>{const f=e.target.closest('[data-form]');if(f&&f.dataset.form==='chat'){e.preventDefault();chatSend()}});
-document.addEventListener('change',e=>{
+document.addEventListener('change',async e=>{
   const t=e.target;
-  if(t.id==='chartasset'){S.chartAsset=t.value;drawPrice(t.value);return}
+  if(t.id==='cmpadd'){if(t.value&&CMP.ids.length<8){CMP.ids.push(t.value);CMP.touched=true;renderView()}return}
+  if(t.id==='mkAsset'){const p=$('#mkPrice');if(p)p.value=Number(price(t.value))||'';return}
+  if(t.dataset&&t.dataset.icfile){
+    const f=t.files&&t.files[0];if(!f)return;
+    try{const data=await resizeImageFile(f,t.dataset.icfile==='favicon'?64:96);await admIconSet(t.dataset.icfile,data,'Imagem enviada e aplicada.')}
+    catch(err){toast(errMsg(err),'err')}
+    t.value='';return}
   const pref=t.dataset&&t.dataset.pref;if(!pref)return;
   if(pref==='music'){if(t.checked!==P.music)musicToggle()}
   else if(pref==='sfx'){P.sfx=t.checked;savePrefs();if(P.sfx)SFX.play('coin')}
   else if(pref==='motion'){P.motion=t.checked;savePrefs()}
+  else if(pref==='lite'){P.lite=t.value==='auto'?null:t.value==='on';savePrefs();S.tickSig='';render();toast(isLite()?'Modo leve ligado.':'Modo completo ligado.')}
 });
 document.addEventListener('input',e=>{if(e.target.dataset&&e.target.dataset.pref==='volume')musicSetVolume(Number(e.target.value)/100)});
 
