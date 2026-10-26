@@ -537,6 +537,14 @@ html.lite .slide{transition:none}
 @media(max-width:1100px){.home-top{grid-template-columns:minmax(0,1fr)}}
 .home-top>.panel{margin-top:0!important}
 
+/* ticker: número que acabou de mudar pisca */
+.tk .pr.flash{animation:pxflash .9s ease-out}
+@keyframes pxflash{0%{color:var(--gold);transform:scale(1.12)}100%{color:inherit;transform:none}}
+/* carrossel: slides escondidos não carregam imagem nem gastam pintura */
+.slide:not(.on){display:none}
+.slide.on{animation:slidein .45s ease both}
+@keyframes slidein{from{opacity:0}to{opacity:1}}
+
 </style>
 </head>
 <body>
@@ -698,10 +706,13 @@ function imgToBlob(file,w,h,mode){
     if(file.size>12e6){rej(new Error('Imagem muito grande (máximo 12 MB).'));return}
     const url=URL.createObjectURL(file),img=new Image();
     img.onload=()=>{try{const cv=document.createElement('canvas');cv.width=w;cv.height=h;const c=cv.getContext('2d');
-      const r=mode==='contain'?Math.min(w/img.width,h/img.height):Math.max(w/img.width,h/img.height),dw=img.width*r,dh=img.height*r;
+      const big=w>=600,r=mode==='contain'?Math.min(w/img.width,h/img.height):Math.max(w/img.width,h/img.height),dw=img.width*r,dh=img.height*r;
+      if(big){c.fillStyle='#0b0919';c.fillRect(0,0,w,h)}
       c.drawImage(img,(w-dw)/2,(h-dh)/2,dw,dh);URL.revokeObjectURL(url);
+      /* banners grandes saem em JPEG (uns 100–250 KB em vez de 1–2 MB): o site carrega muito mais rápido */
+      if(big){cv.toBlob(j=>j?res(j):rej(new Error('Não consegui converter a imagem.')),'image/jpeg',.82);return}
       cv.toBlob(b=>{if(!b){rej(new Error('Não consegui converter a imagem.'));return}
-        if(b.size>1.8e6)cv.toBlob(j=>j?res(j):res(b),'image/jpeg',.86);else res(b)},'image/png')}catch(e){rej(e)}};
+        if(b.size>150e3)cv.toBlob(j=>j?res(j):res(b),'image/jpeg',.85);else res(b)},'image/png')}catch(e){rej(e)}};
     img.onerror=()=>{URL.revokeObjectURL(url);rej(new Error('Não consegui ler essa imagem.'))};img.src=url;
   });
 }
@@ -1012,9 +1023,18 @@ const head=(k,title,sub='')=>`<div class="page-head"><div><h2><span class="hico"
 const activeNews=()=>S.news.filter(n=>n.active!==false&&(!n.expires_at||Date.parse(n.expires_at)>Date.now())).slice(0,8);
 function renderTicker(){
   const el=$('#ticker');if(!el)return;
+  if(S.tickSig===''){S.tickSkel=null}
   const coins=topMovers(10),news=activeNews(),ads=(FEED.ticker||[]).filter(x=>x.text);
-  const sig=JSON.stringify([coins.map(x=>[x.a.id,x.a.symbol,x.a.price,x.c]),news.map(n=>[n.id,n.body,n.kind]),ads.map(x=>[x.id,x.text]),S.icons.news||'']);
-  if(sig===S.tickSig)return;S.tickSig=sig;
+  const skel=JSON.stringify([coins.map(x=>x.a.id).sort(),coins.map(x=>x.a.symbol),news.map(n=>[n.id,n.body,n.kind]),ads.map(x=>[x.id,x.text]),S.icons.news||'']);
+  const vals=JSON.stringify(coins.map(x=>[x.a.id,x.a.price,x.c]));
+  if(skel===S.tickSkel&&el.firstChild){
+    /* mesmas moedas no topo: só troca os números, sem reiniciar a faixa que rola */
+    if(vals===S.tickVals)return;S.tickVals=vals;
+    coins.forEach(x=>{el.querySelectorAll('.tk[data-do=coin]').forEach(b=>{if(b.dataset.id!==x.a.id)return;const pr=b.querySelector('.pr'),ch=b.querySelector('.ch'),np=fmt(x.a.price);
+      if(pr&&pr.textContent!==np){pr.textContent=np;pr.classList.remove('flash');void pr.offsetWidth;if(!isLite())pr.classList.add('flash')}
+      if(ch){ch.className='ch '+(x.c>0?'up':x.c<0?'down':'dim');ch.textContent=`${x.c>0?'▲':x.c<0?'▼':'■'} ${pctTxt(x.c)}`}})});
+    return}
+  S.tickSkel=skel;S.tickVals=vals;S.tickSig=skel;
   if(!coins.length&&!news.length&&!ads.length){el.innerHTML='<div class="tk-empty">O mercado ainda não tem moedas.</div>';return}
   const items=[];let ni=0;
   let ai=0;
@@ -1032,7 +1052,8 @@ function renderTicker(){
   const k=Math.max(1,Math.ceil(1700/Math.max(width,200)));
   const group=one.repeat(k);
   const dur=Math.max(26,Math.round(width*k/55));
-  el.innerHTML=`<div class="tk-track" style="--dur:${dur}s">${group}${group}</div>`;
+  let f=0;{const tr=el.firstElementChild;if(tr&&tr.classList.contains('tk-track')){try{const m=new DOMMatrix(getComputedStyle(tr).transform),w=tr.scrollWidth/2;f=w>0?Math.min(.98,Math.abs(m.m41)/w):0}catch(e){}}}
+  el.innerHTML=`<div class="tk-track" style="--dur:${dur}s;animation-delay:-${(f*dur).toFixed(2)}s">${group}${group}</div>`;
 }
 function newsModal(id){
   const n=S.news.find(x=>String(x.id)===String(id));if(!n)return;
@@ -1315,7 +1336,8 @@ async function buyItem(id){
   const{data,error}=await sb.rpc('purchase_shop_item',{p_item_id:id,p_quantity:1});
   if(error){toast(errMsg(error),'err');SFX.play('error');return}
   SFX.play('coin');toast(`Item comprado: ${data?.item||it.name}. Agora é só esperar o ADM entregar.`,'gain');
-  await refreshLight(true);
+  if(data?.balance!==undefined)setBalance(data.balance);
+  refreshLight('all');
 }
 function musicBuyModal(){
   const q=MUS.slots.map(s=>`<div class="betline"><span>${esc(s.username)} — ${esc(s.title)}</span><span class="muted">${fmtDate(s.starts_at)}</span></div>`).join('')||'<span class="muted small">A fila está vazia: sua música toca na hora.</span>';
@@ -1868,7 +1890,7 @@ async function admRpc(fn,args,ok,reload=true){
   const{data,error}=await sb.rpc(fn,args);
   if(error)throw error;
   if(ok)toast(ok);
-  if(reload){await refreshLight(true);await admLoad()}
+  if(reload){await refreshLight('all');await admLoad()}
   return data;
 }
 function admAdjust(id){
@@ -2492,11 +2514,11 @@ async function feedLoad(force){
   if(!force&&Date.now()-FEED.at<30000)return;
   FEED.busy=true;
   try{
-    const[f,d]=await Promise.all([sb.rpc('home_feed'),sb.rpc('daily_preview')]);
+    const f=await sb.rpc('home_feed2');
     if(f.error)throw f.error;
     if(f.data?.now)syncClock(f.data.now,Date.now(),Date.now());
     FEED.slides=f.data.slides||[];FEED.ticker=f.data.ticker||[];FEED.preds=f.data.predictions||[];
-    if(!d.error)FEED.daily=d.data;
+    FEED.daily=f.data.daily||null;
     FEED.at=Date.now();
     const sig=JSON.stringify([FEED.slides.map(x=>[x.type,x.id,x.current_bid,x.bid_count]),FEED.ticker.map(x=>[x.id,x.text]),FEED.preds.map(x=>[x.id,x.yes_total,x.no_total]),FEED.daily]);
     if(sig!==FEED.sig){
@@ -2531,6 +2553,7 @@ ${sl.length>1?`<button class="car-nav prev" data-do="car-prev" aria-label="Slide
 function carShow(i){
   const sl=FEED.slides;if(!sl.length)return;
   FEED.idx=(i+sl.length)%sl.length;
+  {const nx=sl[(FEED.idx+1)%sl.length];if(nx&&nx.image_url){const im=new Image();im.src=nx.image_url}}
   $$('#car .slide').forEach((el,k)=>{const on=k===FEED.idx;el.classList.toggle('on',on);el.setAttribute('aria-hidden',on?'false':'true')});
   $$('#car .car-dots button').forEach((el,k)=>el.classList.toggle('on',k===FEED.idx));
 }
@@ -2622,8 +2645,39 @@ async function tqConfirm(){
   const{data,error}=await sb.rpc(TQ.kind,{p_asset_id:TQ.id,p_qty:q});
   if(error){toast(errMsg(error),'err');SFX.play('error');tqSchedule(0);return}
   closeModal();SFX.play('coin');
+  if(data?.new_balance!==undefined)setBalance(data.new_balance);
+  if(a.id&&data?.new_price!==undefined){const x=S.assets.find(z=>z.id===a.id);if(x){x.price=Number(data.new_price);pxPatchMover(a.id,x.price);renderTicker()}}
   toast(buy?`Compra feita: ${q} × ${a.symbol} por ${fmt(data?.cost)} AC (taxa de ${fmt(data?.fee)} AC). Preço novo: ${fmt(data?.new_price)} AC.`:`Venda feita: ${q} × ${a.symbol}. Você recebeu ${fmt(data?.proceeds)} AC (taxa de ${fmt(data?.fee)} AC).`,'ok',6000);
-  await refreshLight(true);
+  refreshLight(true);
+}
+
+/* ============================================================
+   PREÇOS EM TEMPO REAL: quando alguém compra/vende, o topo e as telas mudam na hora (Realtime do Supabase)
+   ============================================================ */
+const PX={ch:null,live:false,tk:0,tv:0,th:0,lastH:0};
+function pxPatchMover(id,price){
+  const m=S.movers[id];if(!m)return;
+  m.price=price;const ref=Number(m.ref_price);m.change_pct=ref>0?Math.round((price-ref)/ref*10000)/100:0;
+}
+function pxApply(n){
+  if(!n||!n.id||!S.user||!S.started)return;
+  const a=S.assets.find(x=>x.id===n.id);if(!a)return;
+  const price=Number(n.price);
+  ['name','symbol','avatar_url','total_shares','is_system','pool0'].forEach(k=>{if(n[k]!==undefined)a[k]=n[k]});
+  a.price=price;pxPatchMover(a.id,price);
+  if(!PX.tk)PX.tk=setTimeout(()=>{PX.tk=0;renderTicker()},250);
+  if(!PX.tv&&LIVE_TABS.has(S.tab)&&['inicio','bolsa','carteira','ranking'].includes(S.tab))PX.tv=setTimeout(()=>{PX.tv=0;if($('#modal').classList.contains('hidden'))keepInputs(renderView)},1200);
+  /* "Disponíveis" e carteiras mudam junto: busca de novo (1 chamada), no máximo 1 vez a cada 4 s */
+  clearTimeout(PX.th);PX.th=setTimeout(()=>{if(Date.now()-PX.lastH<4000){PX.th=setTimeout(()=>{PX.lastH=Date.now();refreshLight()},4000);return}PX.lastH=Date.now();refreshLight()},1500);
+}
+function priceStart(){
+  if(PX.ch)return;
+  try{
+    PX.ch=sb.channel('autsim-prices')
+      .on('postgres_changes',{event:'UPDATE',schema:'public',table:'assets'},p=>pxApply(p.new))
+      .on('postgres_changes',{event:'INSERT',schema:'public',table:'assets'},()=>refreshLight(true))
+      .subscribe(s=>{PX.live=(s==='SUBSCRIBED')});
+  }catch(e){console.warn('preços ao vivo:',e)}
 }
 
 /* ============================================================
@@ -2631,51 +2685,36 @@ async function tqConfirm(){
    ============================================================ */
 /* Dados que mudam toda hora (saldo, preços, carteiras) vêm sempre; o resto (loja, missões, ícones, configurações) só de tempos em tempos. */
 async function fetchLive(){
-  const uid=S.user.id;
-  const r=await Promise.all([
-    sb.from('profiles').select('id,username,avatar_url,custom_avatar_url,discord_id,nick_style,balance,xp,level,crash_tokens,bio,goals,banner_url,is_admin,terms_accepted_at,last_daily_date'),
-    sb.from('assets').select('id,name,symbol,avatar_url,price,total_shares,is_system,pool0,updated_at'),
-    sb.from('holdings').select('user_id,asset_id,quantity'),
-    sb.from('transactions').select('id,user_id,asset_id,type,quantity,unit_price,amount,balance_after,note,created_at').eq('user_id',uid).order('created_at',{ascending:false}).limit(100),
-    sb.rpc('market_movers'),
-    sb.from('news').select('id,body,kind,active,created_at,expires_at').order('created_at',{ascending:false}).limit(12),
-    sb.rpc('trades_pending_count')]);
-  const [pr,ar,hr,tr,mv,nw,tp]=r;
-  r.forEach((x,i)=>{if(x.error)console.warn('carga',i,x.error.message)});
-  if(!pr.error){S.profiles=pr.data||[];S.profile=S.profiles.find(x=>x.id===uid)||null}
-  if(!ar.error)S.assets=ar.data||[];
-  if(!hr.error)S.holdings=hr.data||[];
-  if(!tr.error)S.tx=tr.data||[];
-  if(!mv.error){S.movers={};(mv.data||[]).forEach(x=>S.movers[x.asset_id]=x)}
-  if(!nw.error)S.news=nw.data||[];
-  if(!tp.error){const n=Number(tp.data||0);if(S.tradesInit&&n>(S.tradesPending||0)){toast('Você recebeu uma proposta de troca! Veja em Comunidade > Trocas.','gain',6000);SFX.play('win');if(inTrocas())trLoad(true)}S.tradesPending=n;S.tradesInit=true}
-  return JSON.stringify([pr.data,ar.data,hr.data,tr.data&&tr.data[0]&&tr.data[0].id,mv.data,nw.data,tp.data]);
+  const uid=S.user.id,t0=Date.now();
+  const r=await sb.rpc('live_core');
+  if(r.error)throw r.error;
+  const d=r.data||{};
+  if(d.now)syncClock(d.now,t0,Date.now());
+  S.profiles=d.profiles||[];S.profile=S.profiles.find(x=>x.id===uid)||null;
+  S.assets=d.assets||[];
+  S.holdings=(d.holdings||[]).map(x=>({user_id:x[0],asset_id:x[1],quantity:x[2]}));
+  S.tx=d.tx||[];
+  S.movers={};(d.movers||[]).forEach(x=>S.movers[x.asset_id]=x);
+  S.news=d.news||[];
+  const n=Number(d.trades_pending||0);
+  if(S.tradesInit&&n>(S.tradesPending||0)){toast('Você recebeu uma proposta de troca! Veja em Comunidade > Trocas.','gain',6000);SFX.play('win');if(inTrocas())trLoad(true)}
+  S.tradesPending=n;S.tradesInit=true;
+  return JSON.stringify([d.profiles,d.assets,d.holdings,d.tx&&d.tx[0]&&d.tx[0].id,d.movers,d.news,d.trades_pending]);
 }
 async function fetchStatic(){
-  const uid=S.user.id;
-  const r=await Promise.all([
-    sb.from('shop_items').select('*').eq('active',true).order('sort_order').order('price'),
-    sb.from('user_inventory').select('*').eq('user_id',uid),
-    sb.from('missions').select('*').eq('active',true).order('sort_order'),
-    sb.from('mission_completions').select('mission_id').eq('user_id',uid),
-    sb.from('xp_settings').select('base,exponent,endgame_bonus').eq('id',true).maybeSingle(),
-    sb.from('site_settings').select('key,value'),
-    sb.from('site_icons').select('slot,value')]);
-  const [ir,inv,mr,cm,xr,ss,ic]=r;
-  r.forEach((x,i)=>{if(x.error)console.warn('carga estática',i,x.error.message)});
-  if(!ir.error)S.items=ir.data||[];
-  if(!inv.error)S.inventory=inv.data||[];
-  if(!mr.error)S.missions=mr.data||[];
-  if(!cm.error)S.completions=cm.data||[];
-  if(xr.data)S.xpConfig=xr.data;
-  if(!ss.error&&ss.data)ss.data.forEach(x=>{S.settings[x.key]=x.value});
-  if(!ic.error&&ic.data){const o={};ic.data.forEach(x=>o[x.slot]=x.value);const sig=JSON.stringify(Object.keys(o).sort().map(k=>[k,o[k].length,o[k].slice(0,40),o[k].slice(-20)]));if(sig!==S.iconSig){S.iconSig=sig;S.icons=o;applyIcons();S.tickSig=''}}
+  const r=await sb.rpc('static_core',{p_icons_sig:S.iconSig||null});
+  if(r.error)throw r.error;
+  const d=r.data||{};
+  S.items=d.items||[];S.inventory=d.inventory||[];S.missions=d.missions||[];S.completions=d.completions||[];
+  if(d.xp)S.xpConfig=d.xp;
+  Object.entries(d.settings||{}).forEach(([k,v])=>{S.settings[k]=v});
+  if(d.icons){S.icons=d.icons;S.iconSig=d.icons_sig;applyIcons();S.tickSig=''}
   S.staticAt=Date.now();
   applySettings();
-  return JSON.stringify([ir.data,inv.data,mr.data,cm.data,xr.data,ss.data]);
+  return JSON.stringify([d.items,d.inventory,d.missions,d.completions,d.xp,d.settings,d.icons_sig]);
 }
 async function fetchCore(full){
-  const need=full||!S.staticAt||Date.now()-S.staticAt>90000;
+  const need=full==='all'||!S.staticAt||Date.now()-S.staticAt>120000;
   const[a,b]=await Promise.all([fetchLive(),need?fetchStatic():Promise.resolve(S.staticSig||'')]);
   if(need)S.staticSig=b;
   return a+'|'+(S.staticSig||'');
@@ -2705,7 +2744,7 @@ async function refreshLight(force){
       else if(S.tab==='adm'&&force)keepInputs(renderView);
       const cb=$('#casbal');if(cb)cb.textContent=fmt(me().balance);
     }
-    feedLoad(force);
+    feedLoad(force&&S.tab==='inicio');
   }catch(e){console.warn('atualização:',e)}
   finally{S.refreshing=false}
 }
@@ -2743,7 +2782,7 @@ async function enter(){
     if(!S.profile.terms_accepted_at){showGate('terms');return}
     if(siteClosed()&&!isAdmin()){showClosed();return}
     startApp();
-  }catch(e){console.error(e);toast('Não foi possível carregar os dados. Recarregue a página.','err',8000)}
+  }catch(e){console.error(e);toast(/live_core|static_core/.test(String(e&&e.message))?'Falta rodar a migração 5.0 atualizada no Supabase (SQL Editor) e recarregar.':'Não foi possível carregar os dados. Recarregue a página.','err',12000)}
   finally{S.booting=false}
 }
 function startApp(){
@@ -2751,10 +2790,10 @@ function startApp(){
   S.closedShown=false;$('#ticker').classList.remove('hidden');$('#gate').classList.add('hidden');$('#shell').classList.remove('hidden');$('#bnav').classList.remove('hidden');
   S.viewSig=null;updateUserbar();renderTicker();render();dockUpdate();applyIcons();
   sb.rpc('run_cleanup',{p_force:false}).then(()=>{},()=>{});
-  armMusic();musicLoad();chatStart();cmChatStart();feedLoad(true);syncDiscordIdentity();
+  armMusic();musicLoad();chatStart();cmChatStart();priceStart();feedLoad(true);syncDiscordIdentity();
   if(S.profile.last_daily_date!==todaySP())claimDaily(true);
   if(!S.timersOn){S.timersOn=true;
-    setInterval(()=>{if(S.user&&S.started&&!document.hidden&&Date.now()-(S.lastRefresh||0)>=(isLite()?40000:25000))refreshLight()},5000);
+    setInterval(()=>{if(S.user&&S.started&&!document.hidden&&Date.now()-(S.lastRefresh||0)>=(PX.live?(isLite()?60000:45000):(isLite()?40000:20000)))refreshLight()},5000);
     setInterval(()=>{if(S.user&&S.started)sb.rpc('run_cleanup',{p_force:false}).then(()=>{},()=>{})},30*60*1000);
     setInterval(()=>{if(!S.user)return;const t=countdownTxt(nextResetMs()),a=$('#dailycd'),b=$('#dailycd2');if(a)a.textContent=t;if(b)b.textContent=t;if(S.day!==todaySP()){S.day=todaySP();claimDaily(true)}},1000);
     setInterval(()=>{if(S.user)musicTick()},4000);
@@ -2822,7 +2861,7 @@ document.addEventListener('click',async e=>{
     case'accept-terms':{if(!$('#accepttermscheck')?.checked){toast('Você precisa aceitar os termos para continuar.','err');break}
       el.disabled=true;const{error}=await sb.rpc('accept_terms',{p_version:'autsim-terms-v1'});el.disabled=false;if(error){toast(errMsg(error),'err');break}
       await fetchCore(true);if(S.profile?.terms_accepted_at){if(siteClosed()&&!isAdmin())showClosed();else startApp()}break}
-    case'refresh':await refreshLight(true);toast('Dados atualizados.');break;
+    case'refresh':await refreshLight('all');toast('Dados atualizados.');break;
     case'trade':el.disabled=true;try{await trade(d.kind,d.id)}finally{el.disabled=false}break;
     case'claim-daily':await claimDaily(false);break;
     case'buy-item':await buyItem(d.id);break;
@@ -2888,7 +2927,7 @@ document.addEventListener('click',async e=>{
     case'adm-reset':{if(($('#rsConfirm')?.value||'').trim()!=='RESETAR'){toast('Digite RESETAR (em maiúsculas) para confirmar.','err');break}
       if(!await confirmBox('Última chance: resetar TODO o site? Saldos e preços voltam ao início e o histórico é apagado.','Sim, resetar'))break;
       const{error}=await sb.rpc('admin_reset_site',{p_confirm:'RESETAR',p_reset_xp:!!$('#rsXp')?.checked,p_close:!!$('#rsClose')?.checked});if(error)throw error;
-      MK.list=null;MK.trades=null;CMP.series=null;ADM.stats=null;S.staticAt=0;await refreshLight(true);await admLoad();toast('Site resetado. Tudo começou do zero.','gain',6000);break}
+      MK.list=null;MK.trades=null;CMP.series=null;ADM.stats=null;S.staticAt=0;await refreshLight('all');await admLoad();toast('Site resetado. Tudo começou do zero.','gain',6000);break}
     case'adm-cleanup':{const{error}=await sb.rpc('run_cleanup',{p_force:true});if(error)throw error;toast('Limpeza feita.');ADM.stats=null;await admStats();break}
     case'adm-stats':ADM.stats=null;keepInputs(renderView);await admStats();break;
     case'adm-slot-del':await admRpc('admin_remove_music_slot',{p_id:d.id,p_refund:d.refund==='1'},d.refund==='1'?'Removida e valor devolvido.':'Removida da fila.');await musicLoad();break;
