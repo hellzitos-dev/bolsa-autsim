@@ -401,6 +401,142 @@ html.lite .brand .logo{box-shadow:none}
   .setrow{grid-template-columns:1fr}
 }
 
+/* ============================================================
+   5.0 — nicks coloridos, carrossel, cotação, comunidade, leilões, perfis
+   ============================================================ */
+.linkbtn{background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;text-align:left}
+.linkbtn:hover{text-decoration:underline}
+.itemimg{width:28px;height:28px;object-fit:cover;border-radius:6px;vertical-align:middle}
+.filepv img{max-width:100%;max-height:150px;margin-top:6px;border-radius:8px;border:1px solid var(--line)}
+.nick{font-weight:800}
+.nk-gold{background:linear-gradient(90deg,#ffd76a,#ffb300,#fff1b0,#ffb300);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nkShine 4s linear infinite}
+.nk-silver{background:linear-gradient(90deg,#e8ecf5,#9aa4b8,#ffffff,#9aa4b8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nkShine 5s linear infinite}
+.nk-rainbow{background:linear-gradient(90deg,#ff5d73,#ffc857,#3ddc97,#5cc8ff,#a06bff,#ff5d73);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nkShine 3s linear infinite}
+.nk-fire{background:linear-gradient(90deg,#ff3d00,#ffab00,#ff3d00);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nkShine 2.4s linear infinite}
+.nk-ice{background:linear-gradient(90deg,#8be9ff,#e3fbff,#4aa8ff);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nkShine 4s linear infinite}
+.nk-neon{color:#39ff88;text-shadow:0 0 8px rgba(57,255,136,.7)}
+.nk-rose{color:#ff7ac8;text-shadow:0 0 8px rgba(255,122,200,.45)}
+@keyframes nkShine{to{background-position:200% center}}
+html.lite .nick{animation:none!important}
+html.lite .nk-gold,html.lite .nk-silver,html.lite .nk-rainbow,html.lite .nk-fire,html.lite .nk-ice{background-size:100% auto}
+.uname.linkbtn{font-weight:700}
+.tokpill{cursor:default}
+
+/* anúncios na faixa do topo */
+.tk-ad{gap:10px}
+.tk-ad .nb{display:inline-flex;font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 9px;border-radius:99px;background:var(--gold);color:#241a00}
+.tk-ad .nt{font-weight:600;color:var(--text)}
+
+/* carrossel 1080×720 (3:2) */
+.carousel{position:relative;width:100%;max-width:1080px;margin:0 auto 4px;aspect-ratio:3/2;border-radius:4px 26px 4px 26px;overflow:hidden;background:var(--panel);border:1px solid var(--line);box-shadow:0 22px 70px -34px var(--accent)}
+.car-stage{position:absolute;inset:0}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .55s ease,visibility .55s}
+.slide.on{opacity:1;visibility:visible;z-index:1}
+.slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slide-bg{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(60px,14vw,150px);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 55%,#10082a),#0b0919 70%)}
+.slide-bg.ph-auction{background:linear-gradient(135deg,#3b1d6e,#0b0919 70%)}
+.slide-bg.ph-closed{background:linear-gradient(135deg,#2a2a44,#0b0919 70%)}
+.slide-bg.ph-ad{background:linear-gradient(135deg,#6d4a00,#0b0919 70%)}
+.slide-bg span{opacity:.5}
+.slide-hit{position:absolute;inset:0;z-index:2;background:none;border:0;cursor:pointer;padding:0}
+.slide-cap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:clamp(14px,3vw,28px) clamp(14px,3vw,30px) clamp(30px,5vw,44px);background:linear-gradient(0deg,rgba(7,5,20,.92),rgba(7,5,20,.55) 60%,transparent);pointer-events:none}
+.slide-cap h3{font-size:clamp(18px,3.4vw,34px);font-weight:800;margin-top:8px;line-height:1.1;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.slide-cap p{margin-top:6px;color:#e6e2fb;font-size:clamp(13px,1.6vw,16px);max-width:60ch;overflow-wrap:anywhere}
+.slide-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.car-nav{position:absolute;top:50%;z-index:3;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;padding:0;font-size:26px;line-height:1;background:rgba(10,8,28,.6);border:1px solid var(--line);color:#fff}
+.car-nav.prev{left:10px}.car-nav.next{right:10px}
+.car-dots{position:absolute;left:0;right:0;bottom:10px;z-index:3;display:flex;justify-content:center;gap:8px}
+.car-dots button{width:10px;height:10px;padding:0;border-radius:50%;background:rgba(255,255,255,.35);border:0}
+.car-dots button.on{background:var(--gold);width:24px;border-radius:99px}
+html.lite .slide{transition:none}
+
+/* apostas badaladas */
+.hotrow{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line-soft)}
+.hotrow:first-of-type{margin-top:10px}
+.hot-main{min-width:0;flex:1}.hot-main b{display:block;overflow-wrap:anywhere}
+.hot-main small{display:block;margin-top:2px}
+.hotbar{height:6px;border-radius:9px;background:var(--down);margin-top:8px;overflow:hidden}
+.hotbar i{display:block;height:100%;background:var(--up)}
+
+/* janela de compra e venda */
+.tq .chips{margin:8px 0}
+.tqbox{margin-top:10px;transition:opacity .15s}
+.tqbox.stale{opacity:.5}
+.tq-total{display:flex;justify-content:space-between;align-items:baseline;padding:12px 14px;border-radius:4px 14px 4px 14px;background:var(--accent-soft);border:1px solid var(--line)}
+.tq-total b{font-family:var(--display);font-size:28px}
+.tq-rows{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+.tq-rows td{padding:6px 2px;border-bottom:1px solid var(--line-soft)}
+.tq-rows td:last-child{text-align:right;font-weight:600}
+.tq-rows tr.hl td{color:var(--gold)}
+.tq-info{display:flex;gap:6px 16px;flex-wrap:wrap;margin-top:10px;font-size:13px;color:var(--muted)}
+
+/* comunidade */
+.subtabs.sm button{padding:6px 14px;font-size:14px}
+.cm-chat{height:min(620px,calc(100vh - 220px));position:static}
+.msg.bid{background:linear-gradient(90deg,rgba(255,200,87,.16),transparent);border-left:3px solid var(--gold);padding:6px 8px;border-radius:6px}
+.msg.sys{justify-content:center}.msg.sys .txt{color:var(--muted);font-size:13px;text-align:center}
+.bidtag{display:inline-block;background:var(--gold);color:#241a00;font-size:10px;font-weight:800;letter-spacing:.06em;padding:1px 7px;border-radius:99px}
+.postlist{display:grid;gap:14px;margin-top:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr))}
+.post{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.pimg{aspect-ratio:3/2;background:var(--panel-2);overflow:hidden}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block}
+.pimg.ph{display:grid;place-items:center;font-size:54px;opacity:.7}
+.pimg.big{border-radius:12px;max-height:520px}
+.pbody{padding:14px 16px 16px}
+.post.is-fake{border-color:var(--down)}.post.is-fake .pimg img{filter:grayscale(.8) brightness(.7)}
+.post.is-exp{opacity:.65}
+.fakeseal{display:inline-block;transform:rotate(-3deg);border:2px solid var(--down);color:var(--down);font-weight:900;letter-spacing:.1em;padding:1px 10px;border-radius:6px;font-size:13px;background:rgba(255,93,115,.1)}
+.vote{background:var(--panel-2);border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:14px}
+.vote.on.up{border-color:var(--up);color:var(--up)}.vote.on.down{border-color:var(--down);color:var(--down)}
+.vote.ro{opacity:.7;cursor:default}
+.aucgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr))}
+.acard{padding:0;overflow:hidden;text-align:left;cursor:pointer;display:block;width:100%}
+.acard:hover{border-color:var(--accent)}
+.roomgrid{display:grid;gap:14px;grid-template-columns:minmax(0,1.3fr) minmax(300px,.8fr);align-items:start}
+.roomgrid .chatbox{position:sticky;top:112px}
+.mgrid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr))}
+.mcard{display:flex;gap:12px;align-items:center;text-align:left;cursor:pointer;padding:12px}
+.mcard:hover{border-color:var(--accent)}
+.mname{font-family:var(--display);font-weight:800;font-size:17px;overflow:hidden;text-overflow:ellipsis}
+.avatar.lg{width:48px;height:48px}.avatar.xl{width:84px;height:84px;border:3px solid var(--panel)}
+
+/* perfil */
+.profmodal{max-width:100%}
+.pbanner{height:140px;border-radius:4px 18px 4px 18px;overflow:hidden;background:linear-gradient(120deg,color-mix(in srgb,var(--accent) 60%,#10082a),#0b0919)}
+.pbanner img{width:100%;height:100%;object-fit:cover;display:block}
+.phead{display:flex;gap:14px;align-items:flex-end;margin:-38px 0 8px 14px;position:relative;flex-wrap:wrap}
+.pblock{margin-top:14px}.pblock h3{margin-bottom:6px}
+.vitrine{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+.vit{position:relative;border:1px solid var(--line-soft);background:var(--panel-2);border-radius:12px;padding:8px;text-align:center;overflow:hidden}
+.vit img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:8px}
+.vit .vemo{display:block;font-size:34px;padding:10px 0}
+.vit .vn{display:block;font-size:12px;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vit .nft{position:absolute;top:6px;right:6px;padding:0 7px;font-size:10px}
+.wall{display:flex;gap:10px;flex-wrap:wrap}
+.ach{display:flex;gap:8px;align-items:center;border:1px solid var(--line);background:var(--panel-2);border-radius:99px;padding:5px 14px 5px 6px;font-size:13px}
+.ach img{width:30px;height:30px;object-fit:cover;border-radius:50%}
+.ach .aemo{font-size:22px}
+.ach.cas{border-color:var(--gold)}
+
+/* cosméticos */
+.cos-prev{font-family:var(--display);font-size:26px;padding:10px 0}
+.itemtag{display:inline-flex;gap:4px;align-items:center}
+
+@media(max-width:1000px){.roomgrid{grid-template-columns:1fr}.roomgrid .chatbox{position:static;height:460px}}
+@media(max-width:520px){
+  .car-nav{width:34px;height:34px;font-size:22px}
+  .carousel{border-radius:4px 18px 4px 18px}
+  .hotrow{flex-direction:column;align-items:stretch}
+  .pbanner{height:96px}.avatar.xl{width:68px;height:68px}
+  .tq-total b{font-size:23px}
+}
+
+/* início 5.0: carrossel ao lado das apostas badaladas */
+.home-top{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr);gap:14px;align-items:start;margin-bottom:4px}
+.home-top .carousel{max-width:none;margin:0}
+@media(max-width:1100px){.home-top{grid-template-columns:minmax(0,1fr)}}
+.home-top>.panel{margin-top:0!important}
+
 </style>
 </head>
 <body>
@@ -431,7 +567,7 @@ html.lite .brand .logo{box-shadow:none}
 <script>
 'use strict';
 /* ============================================================
-   BOLSA DO AUTSIM 4.0 — núcleo: config, estado, utilitários, sons, efeitos
+   BOLSA DO AUTSIM 5.0 — núcleo: config, estado, utilitários, sons, efeitos
    ============================================================ */
 const SUPABASE_URL='https://vyhhbepqikaizjyuogxk.supabase.co';
 const SUPABASE_KEY='sb_publishable_te15kBxoDWsrWci0NhVY3w_M8ZC38XB';
@@ -447,7 +583,7 @@ const pctTxt=p=>(p>0?'+':'')+fmt(p,2)+'%';
 const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const ease={out3:t=>1-Math.pow(1-t,3),out5:t=>1-Math.pow(1-t,5)};
-const TYPE_NAMES={buy:'Compra',sell:'Venda',bonus:'Bônus',game:'Jogo',adjust:'Ajuste do ADM',shop:'Loja',daily:'Bônus diário',bet:'Aposta',win:'Prêmio',refund:'Devolução',music:'Música',trade:'Troca'};
+const TYPE_NAMES={buy:'Compra',sell:'Venda',bonus:'Bônus',game:'Jogo',adjust:'Ajuste do ADM',shop:'Loja',daily:'Bônus diário',bet:'Aposta',win:'Prêmio',refund:'Devolução',music:'Música',trade:'Troca',fine:'Multa',auction:'Leilão',ad:'Anúncio',cosmetic:'Cosmético'};
 
 /* ---------- preferências (neste navegador) ---------- */
 const PREFS_KEY='autsim_prefs_v3';
@@ -479,6 +615,7 @@ function xpProgress(xp){const l=levelOf(xp),lo=xpForLevel(l),hi=xpForLevel(Math.
 let clockOffset=0,clockInit=false;
 const srvNow=()=>Date.now()+clockOffset;
 function syncClock(iso,t0,t1){const t=Date.parse(iso);if(isNaN(t))return;const off=t-(t0+t1)/2;clockOffset=clockInit?clockOffset*.7+off*.3:off;clockInit=true}
+async function stateRpc2(fn,args){const t0=Date.now();const r=await sb.rpc(fn,args);const t1=Date.now();if(r.error)throw r.error;if(r.data?.now)syncClock(r.data.now,t0,t1);return r.data}
 async function stateRpc(fn){const t0=Date.now();const r=await sb.rpc(fn);const t1=Date.now();if(r.error)throw r.error;if(r.data?.now)syncClock(r.data.now,t0,t1);return r.data}
 
 /* ---------- toasts, modal ---------- */
@@ -494,12 +631,14 @@ function openForm({title,intro,fields,submit='Salvar',onSubmit,wide=false}){
   const inputs=fields.map(f=>{const id='f_'+f.name,v=f.value??'';let c;
     if(f.type==='textarea')c=`<textarea id="${id}" rows="3" ${f.max?`maxlength="${f.max}"`:''}>${esc(v)}</textarea>`;
     else if(f.type==='select')c=`<select id="${id}">${f.options.map(o=>`<option value="${esc(o.value)}" ${String(o.value)===String(v)?'selected':''}>${esc(o.label)}</option>`).join('')}</select>`;
+    else if(f.type==='file')c=`<input id="${id}" type="file" accept="image/png,image/jpeg,image/webp,image/gif" data-pv="${id}_pv"><div class="filepv" id="${id}_pv"></div>`;
     else if(f.type==='checkbox')return `<label class="inline"><input id="${id}" type="checkbox" ${v?'checked':''}> ${esc(f.label)}</label>`;
     else c=`<input id="${id}" type="${f.type||'text'}" value="${esc(v)}" ${f.step?`step="${f.step}"`:''} ${f.min!==undefined?`min="${f.min}"`:''} ${f.max&&f.type!=='number'?`maxlength="${f.max}"`:''} ${f.placeholder?`placeholder="${esc(f.placeholder)}"`:''} ${f.type==='number'?'style="width:100%"':''}>`;
     return `<label>${esc(f.label)}${c}${f.hint?`<small>${esc(f.hint)}</small>`:''}</label>`}).join('');
   openModal(`<h3>${esc(title)}</h3>${intro?`<p class="muted" style="margin-top:6px">${esc(intro)}</p>`:''}<form id="genform"><div class="formgrid">${inputs}</div><div class="row" style="justify-content:flex-end"><button type="button" id="gfCancel">Cancelar</button><button type="submit" class="btn-main">${esc(submit)}</button></div></form>`,wide);
   $('#gfCancel').onclick=closeModal;
-  $('#genform').onsubmit=async ev=>{ev.preventDefault();const vals={};for(const f of fields){const el=$('#f_'+f.name);vals[f.name]=f.type==='checkbox'?el.checked:(f.type==='number'?(el.value===''?null:Number(el.value)):el.value)}
+  $$('#genform input[type=file]').forEach(inp=>inp.addEventListener('change',()=>{const pv=$('#'+inp.dataset.pv),f=inp.files&&inp.files[0];if(!pv)return;pv.innerHTML='';if(f&&/^image\//.test(f.type)){const u=URL.createObjectURL(f);pv.innerHTML=`<img src="${u}" alt="prévia">`}}));
+  $('#genform').onsubmit=async ev=>{ev.preventDefault();const vals={};for(const f of fields){const el=$('#f_'+f.name);vals[f.name]=f.type==='checkbox'?el.checked:f.type==='file'?((el.files&&el.files[0])||null):(f.type==='number'?(el.value===''?null:Number(el.value)):el.value)}
     const btn=ev.submitter||$('#genform button[type=submit]');btn.disabled=true;try{await onSubmit(vals);closeModal()}catch(e){toast(errMsg(e),'err')}finally{btn.disabled=false}};
 }
 
@@ -546,9 +685,39 @@ function spark(arr,w=96,h=28){arr=(arr||[]).map(Number);if(arr.length<2)return`<
   const pts=arr.map((v,i)=>`${(i/(arr.length-1)*(w-2)+1).toFixed(1)},${(h-3-((v-mn)/rg)*(h-6)).toFixed(1)}`).join(' ');
   return`<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline points="${pts}" fill="none" stroke="${up?'#3ddc97':'#ff5d73'}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>`}
 
+/* ---------- nick colorido, avatar e envio de imagens ---------- */
+function nick(name,style){const n=esc(name||'Membro');if(!style)return n;if(/^#[0-9a-fA-F]{6}$/.test(style))return`<span class="nick" style="color:${style}">${n}</span>`;return`<span class="nick nk-${esc(style)}">${n}</span>`}
+const avOf=p=>(p&&(p.custom_avatar_url||p.avatar_url))||'';
+const nickOf=p=>nick(p.username,p.nick_style);
+const nickById=(id,fallbackName,fallbackStyle)=>{const p=S.profiles.find(x=>x.id===id);return nick(p?.username||fallbackName,p?p.nick_style:fallbackStyle)};
+const ownCap=()=>Number(S.settings.own_initial_shares||500);
+function imgToBlob(file,w,h,mode){
+  return new Promise((res,rej)=>{
+    if(!file){rej(new Error('Escolha uma imagem.'));return}
+    if(!/^image\//.test(file.type)){rej(new Error('O arquivo precisa ser uma imagem.'));return}
+    if(file.size>12e6){rej(new Error('Imagem muito grande (máximo 12 MB).'));return}
+    const url=URL.createObjectURL(file),img=new Image();
+    img.onload=()=>{try{const cv=document.createElement('canvas');cv.width=w;cv.height=h;const c=cv.getContext('2d');
+      const r=mode==='contain'?Math.min(w/img.width,h/img.height):Math.max(w/img.width,h/img.height),dw=img.width*r,dh=img.height*r;
+      c.drawImage(img,(w-dw)/2,(h-dh)/2,dw,dh);URL.revokeObjectURL(url);
+      cv.toBlob(b=>{if(!b){rej(new Error('Não consegui converter a imagem.'));return}
+        if(b.size>1.8e6)cv.toBlob(j=>j?res(j):res(b),'image/jpeg',.86);else res(b)},'image/png')}catch(e){rej(e)}};
+    img.onerror=()=>{URL.revokeObjectURL(url);rej(new Error('Não consegui ler essa imagem.'))};img.src=url;
+  });
+}
+/* Envia para o Storage do Supabase (bucket "autsim") e devolve o link público. opts: {w,h,mode:'cover'|'contain',admin} */
+async function uploadImage(file,o){
+  const blob=await imgToBlob(file,o.w,o.h,o.mode||'cover');
+  const ext=blob.type==='image/png'?'png':'jpg',name=Date.now().toString(36)+Math.random().toString(36).slice(2,7)+'.'+ext;
+  const path=(o.admin&&isAdmin()?'admin/':'u/'+S.user.id+'/')+name;
+  const{error}=await sb.storage.from('autsim').upload(path,blob,{contentType:blob.type,cacheControl:'31536000'});
+  if(error)throw new Error(/bucket|not found/i.test(error.message||'')?'O armazenamento de imagens ainda não foi criado. Rode a migração 5.0 no Supabase.':(error.message||'Falha no envio da imagem.'));
+  return sb.storage.from('autsim').getPublicUrl(path).data.publicUrl;
+}
+
 /* ---------- peças de UI repetidas ---------- */
 function coinTag(a){return`<span class="coin">${a.avatar_url?`<img src="${esc(a.avatar_url)}" alt="" loading="lazy">`:''}<span><span class="sym">${esc(a.symbol||'MOEDA$')}</span> <span class="nm">${esc(a.name||'')}</span></span></span>`}
-function whoTag(p){return`<span class="coin">${p.avatar_url?`<img class="avatar" style="width:26px;height:26px" src="${esc(p.avatar_url)}" alt="" loading="lazy">`:''}<span>${esc(p.username||'Membro')}</span></span>`}
+function whoTag(p){const av=avOf(p);return`<span class="coin">${av?`<img class="avatar" style="width:26px;height:26px" src="${esc(av)}" alt="" loading="lazy">`:''}<button class="linkbtn" data-do="profile" data-id="${esc(p.id||'')}">${nickOf(p)}</button></span>`}
 function table(headers,rows,empty='Nada por aqui ainda.'){return`<div class="tablewrap"><table class="rt"><thead><tr>${headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="empty">${empty}</td></tr>`}</tbody></table></div>`}
 const fmtDate=d=>d?new Date(d).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';
 function countdownTxt(ms){ms=Math.max(0,ms);const s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;return(h?String(h).padStart(2,'0')+':':'')+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0')}
@@ -561,8 +730,9 @@ const ICON_DEFS=[
  ['nav.inicio','Menu: Início','🏠','Menu'],['nav.bolsa','Menu: Mercado','📈','Menu'],['nav.trocas','Menu: Trocas','🔁','Menu'],['nav.carteira','Menu: Carteira','💼','Menu'],
  ['nav.graficos','Menu: Gráficos','📊','Menu'],['nav.cassino','Menu: Cassino','🎰','Menu'],['nav.loja','Menu: Loja','🛍️','Menu'],['nav.missoes','Menu: Missões','🎯','Menu'],
  ['nav.ranking','Menu: Ranking','🏅','Menu'],['nav.extrato','Menu: Extrato','🧾','Menu'],['nav.perfil','Menu: Perfil','👤','Menu'],['nav.config','Menu: Configurações','⚙️','Menu'],
- ['nav.adm','Menu: Painel ADM','🛡️','Menu'],['nav.mais','Menu do celular: botão "Mais"','☰','Menu'],
+ ['nav.adm','Menu: Painel ADM','🛡️','Menu'],['nav.comunidade','Menu: Comunidade','👥','Menu'],['nav.mais','Menu do celular: botão "Mais"','☰','Menu'],
  ['cas.roleta','Cassino: Roleta','🎡','Cassino'],['cas.foguete','Cassino: Foguete','🚀','Cassino'],['cas.apostas','Cassino: Apostas','🎯','Cassino'],['cas.chat','Cassino: Chat','💬','Cassino'],
+ ['com.chat','Comunidade: Chat','💬','Comunidade'],['com.forum','Comunidade: Fórum e notícias','📰','Comunidade'],['com.leiloes','Comunidade: Leilões','🔨','Comunidade'],['com.trocas','Comunidade: Trocas','🔁','Comunidade'],['com.membros','Comunidade: Perfis','👤','Comunidade'],['com.ostentacao','Comunidade: Ostentação','✨','Comunidade'],['com.cassino','Comunidade: Cassino','🎰','Comunidade'],
  ['music','Música (chamada da loja)','🎵','Música'],['music.play','Player: tocar','▶','Música'],['music.pause','Player: pausar','⏸','Música'],['music.next','Player: próxima','⏭','Música'],['music.note','Player: nota ao lado do nome','♪','Música']
 ];
 const ICON_DEFAULT=Object.fromEntries(ICON_DEFS.map(d=>[d[0],d[2]]));
@@ -698,17 +868,19 @@ function donutChart(cv,items,centerTxt,centerSub){
 /* ============================================================
    Música de fundo: playlist do ADM (YouTube/Spotify) + fila paga pelos membros (Spotify)
    ============================================================ */
-const MUS={tracks:[],slots:[],idx:0,cur:null,yt:null,ytReady:false,ytLoading:false,pendingYt:null,gesture:false,price:100,minutes:60};
+const MUS={tracks:[],slots:[],idx:0,cur:null,yt:null,ytReady:false,ytLoading:false,pendingYt:null,gesture:false,price:100,minutes:10,sync:null,dur:0,lastSeek:0};
 
 async function musicLoad(){
-  try{const d=await stateRpc('music_state');MUS.tracks=d.tracks||[];MUS.slots=d.slots||[];MUS.price=Number(d.price||100);MUS.minutes=Number(d.minutes||60);musicTick()}
+  try{const d=await stateRpc('music_state');MUS.tracks=d.tracks||[];MUS.slots=d.slots||[];MUS.price=Number(d.price||100);MUS.minutes=Number(d.minutes||10);MUS.sync=d.yt||null;musicTick()}
   catch(e){console.warn('música:',e.message||e)}
 }
 function musicActiveSlot(){const n=srvNow();return MUS.slots.find(s=>Date.parse(s.starts_at)<=n&&n<Date.parse(s.ends_at))||null}
 function musicDesired(){
   const s=musicActiveSlot();
   if(s)return{key:'slot:'+s.id,kind:'spotify',type:s.ref_type,id:s.ref_id,title:s.title,by:s.username};
-  const t=MUS.tracks.filter(x=>x.active);if(!t.length)return null;
+  const y=MUS.sync;
+  if(y&&Date.parse(y.ends_at)>srvNow()-1500)return{key:'yt:'+y.track_id+':'+y.started_at,kind:'youtube',type:y.ref_type,id:y.ref_id,title:y.title,sync:true,startedAt:Date.parse(y.started_at),cap:Number(y.cap_seconds||600)};
+  const t=MUS.tracks.filter(x=>x.active&&x.kind==='spotify');if(!t.length)return null;
   const x=t[MUS.idx%t.length];
   return{key:'trk:'+x.id,kind:x.kind,type:x.ref_type,id:x.ref_id,title:x.title};
 }
@@ -716,9 +888,10 @@ function musicTick(){
   if(!S.user){return}
   if(!P.music||!MUS.gesture){dockUpdate();return}
   const want=musicDesired();
+  if(MUS.sync&&Date.parse(MUS.sync.ends_at)<=srvNow()&&!MUS.loadingSync){MUS.loadingSync=true;musicLoad().finally(()=>{MUS.loadingSync=false})}
   if(!want){musicStop();MUS.cur=null;dockUpdate();return}
   if(!MUS.cur||MUS.cur.key!==want.key)musicPlay(want);
-  else dockUpdate();
+  else{if(want.sync)ytKeepSync();dockUpdate()}
 }
 function musicPlay(w){
   MUS.cur=w;
@@ -727,7 +900,14 @@ function musicPlay(w){
   dockUpdate();
 }
 function musicStop(){ytStop();spHide();MUS.cur=null;dockUpdate()}
-function musicNext(){MUS.idx++;MUS.cur=null;if(P.music)musicTick();else dockUpdate()}
+async function musicNext(){
+  if(MUS.sync){
+    if(!isAdmin()){toast('A música é a mesma para todos. Só o ADM pode pular.','err');return}
+    const yts=MUS.tracks.filter(x=>x.active&&x.kind==='youtube');if(!yts.length)return;
+    const i=yts.findIndex(x=>x.id===MUS.sync.track_id),nx=yts[(i+1)%yts.length];
+    const{error}=await sb.rpc('admin_play_track',{p_id:nx.id});if(error){toast(errMsg(error),'err');return}
+    await musicLoad();return}
+  MUS.idx++;MUS.cur=null;if(P.music)musicTick();else dockUpdate()}
 function musicToggle(){
   MUS.gesture=true;P.music=!P.music;savePrefs();
   if(P.music)musicTick();else musicStop();
@@ -747,15 +927,41 @@ function ytPlay(){
       const holder=document.createElement('div');holder.id='ytinner';$('#ytp').appendChild(holder);
       MUS.yt=new YT.Player('ytinner',{width:'200',height:'200',playerVars:{playsinline:1,controls:0,rel:0},events:{
         onReady:()=>{MUS.ytReady=true;ytLoadCur()},
-        onStateChange:e=>{if(e.data===0)musicNext()},
-        onError:()=>{toast('Essa faixa do YouTube não pôde tocar. Pulando para a próxima.','err');setTimeout(musicNext,900)}}});
+        onStateChange:e=>{
+          const w=MUS.cur;
+          if(e.data===1&&w&&w.sync){try{MUS.dur=Math.floor(MUS.yt.getDuration()||0)}catch(x){}ytKeepSync()}
+          if(e.data===0){
+            if(w&&w.sync){ytKeepSync(true)}          // vídeo curto: repete até completar o tempo da faixa
+            else musicNext()}},
+        onError:()=>{toast('Essa faixa do YouTube não pôde tocar.','err');if(!MUS.cur||!MUS.cur.sync)setTimeout(musicNext,900)}}});
     }else if(MUS.ytReady)ytLoadCur();
   });
 }
+/* Segundo exato em que a faixa deve estar agora: tempo desde o started_at do servidor; vídeos curtos dão a volta (loop), longos são cortados em 10 min. */
+function ytTarget(w){
+  const el=Math.max(0,(srvNow()-w.startedAt)/1000);
+  if(el>=w.cap)return -1;
+  const d=MUS.dur;
+  return d>0&&d<w.cap?el%d:el;
+}
 function ytLoadCur(){
   const w=MUS.cur;if(!w||w.kind!=='youtube'||!MUS.ytReady)return;
+  MUS.dur=0;
   try{MUS.yt.setVolume(Math.round(P.volume*100));
-    if(w.type==='playlist')MUS.yt.loadPlaylist({list:w.id,listType:'playlist',index:0});else MUS.yt.loadVideoById(w.id)}catch(e){console.warn(e)}
+    if(w.sync&&w.type!=='playlist'){const t=ytTarget(w);if(t<0){musicLoad();return}MUS.yt.loadVideoById({videoId:w.id,startSeconds:Math.max(0,t)})}
+    else if(w.type==='playlist')MUS.yt.loadPlaylist({list:w.id,listType:'playlist',index:0});
+    else MUS.yt.loadVideoById(w.id)}catch(e){console.warn(e)}
+}
+/* Mantém todo mundo no mesmo segundo (corrige atraso de rede, aba em segundo plano, pausas) */
+function ytKeepSync(force){
+  const w=MUS.cur;if(!w||!w.sync||!MUS.yt||!MUS.ytReady||w.type==='playlist')return;
+  try{
+    const t=ytTarget(w);
+    if(t<0){ytStop();musicLoad();return}
+    const st=MUS.yt.getPlayerState(),cur=MUS.yt.getCurrentTime();
+    if(st===2&&P.music){MUS.yt.playVideo()}
+    if(st===0||force||Math.abs(cur-t)>2.5){if(Date.now()-MUS.lastSeek>1200){MUS.lastSeek=Date.now();MUS.yt.seekTo(t,true);if(st!==1)MUS.yt.playVideo()}}
+  }catch(e){}
 }
 function ytStop(){try{if(MUS.yt&&MUS.ytReady)MUS.yt.stopVideo()}catch(e){}}
 function musicSetVolume(v){P.volume=clamp(v,0,1);savePrefs();try{if(MUS.yt&&MUS.ytReady)MUS.yt.setVolume(Math.round(P.volume*100))}catch(e){}}
@@ -771,12 +977,13 @@ function dockUpdate(){
   const dock=$('#dock');if(!dock)return;
   dock.classList.toggle('hidden',!S.user);
   const w=MUS.cur;
+  const nx=$('#docknext');if(nx)nx.classList.toggle('hidden',!!(MUS.sync&&!isAdmin()));
   dock.classList.toggle('playing',!!(P.music&&w));
   $('#dockplay').innerHTML=ico(P.music?'music.pause':'music.play');
   let t;
   if(!P.music)t='Música desligada';
   else if(!w)t=MUS.tracks.some(x=>x.active)?'Carregando…':'Sem faixas — o ADM ainda não adicionou músicas';
-  else t=`<span>${ico('music.note')} ${esc(w.title)}</span><small>${w.by?`pedida por ${esc(w.by)}`:(w.kind==='spotify'?'Spotify':'YouTube')}${w.kind==='spotify'?' · aperte ▶ no player':''}</small>`;
+  else t=`<span>${ico('music.note')} ${esc(w.title)}</span><small>${w.by?`pedida por ${esc(w.by)}`:(w.sync?'YouTube · tocando igual para todos':w.kind==='spotify'?'Spotify':'YouTube')}${w.kind==='spotify'?' · aperte ▶ no player':''}</small>`;
   $('#docktitle').innerHTML=t;
 }
 /* O navegador só libera som depois de um clique: o primeiro clique "arma" a música. */
@@ -788,8 +995,8 @@ function armMusic(){
 /* ============================================================
    Telas: início, mercado, carteira, gráficos, loja, missões, ranking, extrato, perfil, configurações
    ============================================================ */
-const TABS=[['inicio','Início'],['bolsa','Mercado'],['trocas','Trocas'],['carteira','Carteira'],['graficos','Gráficos'],['cassino','Cassino'],['loja','Loja'],['missoes','Missões'],['ranking','Ranking'],['extrato','Extrato'],['perfil','Perfil'],['config','Configurações']];
-const BNAV_MAIN=['inicio','bolsa','trocas','cassino'];
+const TABS=[['inicio','Início'],['bolsa','Mercado'],['comunidade','Comunidade'],['carteira','Carteira'],['graficos','Gráficos'],['loja','Loja'],['missoes','Missões'],['ranking','Ranking'],['extrato','Extrato'],['perfil','Perfil'],['config','Configurações']];
+const BNAV_MAIN=['inicio','bolsa','comunidade','carteira'];
 const todaySP=()=>new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
 const nextResetMs=()=>{const t=Date.now()-3*3600e3;return (Math.floor(t/86400e3)+1)*86400e3+3*3600e3-Date.now()};
 const rankedProfiles=()=>S.profiles.slice().sort((a,b)=>worth(b.id)-worth(a.id));
@@ -805,15 +1012,19 @@ const head=(k,title,sub='')=>`<div class="page-head"><div><h2><span class="hico"
 const activeNews=()=>S.news.filter(n=>n.active!==false&&(!n.expires_at||Date.parse(n.expires_at)>Date.now())).slice(0,8);
 function renderTicker(){
   const el=$('#ticker');if(!el)return;
-  const coins=topMovers(10),news=activeNews();
-  const sig=JSON.stringify([coins.map(x=>[x.a.id,x.a.symbol,x.a.price,x.c]),news.map(n=>[n.id,n.body,n.kind]),S.icons.news||'']);
+  const coins=topMovers(10),news=activeNews(),ads=(FEED.ticker||[]).filter(x=>x.text);
+  const sig=JSON.stringify([coins.map(x=>[x.a.id,x.a.symbol,x.a.price,x.c]),news.map(n=>[n.id,n.body,n.kind]),ads.map(x=>[x.id,x.text]),S.icons.news||'']);
   if(sig===S.tickSig)return;S.tickSig=sig;
-  if(!coins.length&&!news.length){el.innerHTML='<div class="tk-empty">O mercado ainda não tem moedas.</div>';return}
+  if(!coins.length&&!news.length&&!ads.length){el.innerHTML='<div class="tk-empty">O mercado ainda não tem moedas.</div>';return}
   const items=[];let ni=0;
-  coins.forEach((x,i)=>{if(i%3===0&&ni<news.length)items.push({n:news[ni++]});items.push(x)});
+  let ai=0;
+  coins.forEach((x,i)=>{if(i%3===0&&ni<news.length)items.push({n:news[ni++]});if(i%2===1&&ai<ads.length)items.push({ad:ads[ai++]});items.push(x)});
   while(ni<news.length)items.push({n:news[ni++]});
+  while(ai<ads.length)items.push({ad:ads[ai++]});
   let width=0;
   const one=items.map(it=>{
+    if(it.ad){const t=String(it.ad.text).slice(0,40);width+=Math.min(420,t.length*8+120);
+      return`<button class="tk tk-ad" data-do="cm-go" data-sub="forum" title="Anúncio de ${esc(it.ad.author_name||'um membro')} — clique para ver no fórum"><span class="nb">ANÚNCIO</span><span class="nt">${esc(t)}</span></button>`}
     if(it.n){const n=it.n,t=n.body.length>110?n.body.slice(0,108)+'…':n.body;width+=Math.min(560,t.length*8+130);
       return`<button class="tk tk-news ${n.kind==='info'?'info':'alert'}" data-do="news" data-id="${esc(n.id)}" title="Clique para ler"><span class="nb">${ico('news')} ${n.kind==='info'?'AVISO':'AO VIVO'}</span><span class="nt">${esc(t)}</span></button>`}
     const{a,c}=it;width+=200;
@@ -832,7 +1043,8 @@ function updateUserbar(){
   const m=me(),xp=xpProgress(Number(m.xp||0));
   if(S.lastLevel!==null&&xp.l>S.lastLevel){toast(`Subiu para o nível ${xp.l}! 🎉`,'gain',5200);SFX.play('level');FX.confetti()}
   S.lastLevel=xp.l;
-  $('#userbar').innerHTML=`${m.avatar_url?`<img class="avatar" src="${esc(m.avatar_url)}" alt="">`:''}<span class="uname">${esc(m.username||'Membro')}</span><span class="bal" title="Seu saldo">${ico('coin')} <span id="topbal">${fmt(m.balance)}</span></span><span class="lvl">Nv. ${xp.l}<span class="xpbar"><i style="width:${xp.pct}%"></i></span></span>${m.is_admin?'<span class="pill acc adm-pill">ADM</span>':''}<button class="iconbtn" data-do="refresh" title="Atualizar" aria-label="Atualizar">↻</button><button data-do="logout" class="btn-out">Sair</button>`;
+  const tk=Number(m.crash_tokens||0);
+  $('#userbar').innerHTML=`${avOf(m)?`<img class="avatar" src="${esc(avOf(m))}" alt="">`:''}<button class="uname linkbtn" data-do="profile" data-id="${esc(m.id||'')}" title="Ver meu perfil">${nick(m.username||'Membro',m.nick_style)}</button>${tk>0?`<span class="pill gold tokpill" title="Token grátis para apostar ${fmt(tokenAmt(),0)} AC no Crash">🎟 ${tk}</span>`:''}<span class="bal" title="Seu saldo">${ico('coin')} <span id="topbal">${fmt(m.balance)}</span></span><span class="lvl">Nv. ${xp.l}<span class="xpbar"><i style="width:${xp.pct}%"></i></span></span>${m.is_admin?'<span class="pill acc adm-pill">ADM</span>':''}<button class="iconbtn" data-do="refresh" title="Atualizar" aria-label="Atualizar">↻</button><button data-do="logout" class="btn-out">Sair</button>`;
 }
 function setBalance(v){if(S.profile)S.profile.balance=Number(v);const t=$('#topbal');if(t)countTo(t,v,500);const h=$('#heroBal');if(h)countTo(h,v,500)}
 function applySettings(){
@@ -846,12 +1058,12 @@ function applySettings(){
 /* ---------- casca: menu lateral (PC) e barra inferior (celular) ---------- */
 const tabList=()=>{const t=TABS.slice();if(isAdmin())t.push(['adm','Painel ADM']);return t};
 function renderRail(){
-  const pend=S.tradesPending||0;
-  $('#rail').innerHTML=tabList().map(([k,n])=>`<button data-do="tab" data-tab="${k}" class="${S.tab===k?'active':''}"><span class="ic">${navIco(k)}</span>${n}${k==='cassino'&&S.unread&&S.tab!=='cassino'?`<span class="badge">${S.unread>9?'9+':S.unread}</span>`:''}${k==='trocas'&&pend?`<span class="badge">${pend>9?'9+':pend}</span>`:''}</button>`).join('');
+  const pend=S.tradesPending||0,cb=typeof cmBadge==='function'?cmBadge():pend;
+  $('#rail').innerHTML=tabList().map(([k,n])=>`<button data-do="tab" data-tab="${k}" class="${S.tab===k?'active':''}"><span class="ic">${navIco(k)}</span>${n}${k==='comunidade'&&cb&&S.tab!=='comunidade'?`<span class="badge">${cb>9?'9+':cb}</span>`:''}</button>`).join('');
   const bn=$('#bnav');
   if(bn){
     const inMain=BNAV_MAIN.includes(S.tab);
-    bn.innerHTML=BNAV_MAIN.map(k=>{const n=TABS.find(t=>t[0]===k)[1];return`<button data-do="tab" data-tab="${k}" class="${S.tab===k?'active':''}"><span class="ic">${navIco(k)}</span><span class="lb">${n}</span>${k==='trocas'&&pend?`<span class="badge">${pend>9?'9+':pend}</span>`:''}${k==='cassino'&&S.unread&&S.tab!=='cassino'?`<span class="badge">${S.unread>9?'9+':S.unread}</span>`:''}</button>`}).join('')
+    bn.innerHTML=BNAV_MAIN.map(k=>{const n=TABS.find(t=>t[0]===k)[1];return`<button data-do="tab" data-tab="${k}" class="${S.tab===k?'active':''}"><span class="ic">${navIco(k)}</span><span class="lb">${n}</span>${k==='comunidade'&&cb&&S.tab!=='comunidade'?`<span class="badge">${cb>9?'9+':cb}</span>`:''}</button>`}).join('')
       +`<button data-do="more" class="${!inMain?'active':''}"><span class="ic">${navIco('mais')}</span><span class="lb">Mais</span></button>`;
   }
 }
@@ -875,20 +1087,29 @@ function labelTables(root){
   });
 }
 function renderView(){
+  clearInterval(FEED.t);
   const fn=V[S.tab]||V.inicio;
   $('#view').innerHTML=fn();
   labelTables();
   const after=AFTER[S.tab];if(after)after();
 }
+const casinoOn=()=>S.tab==='comunidade'&&CM.sub==='cassino'&&!CM.roomId;
 function render(){
-  if(CAS.running&&S.tab!=='cassino')casinoStop();
-  if(S.tab==='cassino')S.unread=0;
+  if(CAS.running&&!casinoOn())casinoStop();
+  if(casinoOn())S.unread=0;
   renderRail();renderView();
   const v=$('#view');if(!isLite()){v.style.animation='none';void v.offsetWidth;v.style.animation=''}
-  if(S.tab==='cassino'&&!CAS.running)casinoStart();
+  if(casinoOn()&&!CAS.running)casinoStart();
   window.scrollTo({top:0});
 }
-function goTab(t){if(t==='adm'&&!isAdmin())t='inicio';S.tab=t;closeModal();render()}
+/* "cassino" e "trocas" continuam existindo como atalhos: abrem a Comunidade na sub-aba certa */
+function goTab(t){
+  if(t==='adm'&&!isAdmin())t='inicio';
+  if(t==='cassino'||t==='trocas'){cmGo(t);t='comunidade'}
+  else if(t==='comunidade'&&!CM.sub)cmGo('chat');
+  S.tab=t;closeModal();render()
+}
+function goCommunity(sub){cmGo(sub);if(sub!=='leiloes')CM.roomId=null;S.tab='comunidade';closeModal();render()}
 
 const tile=(label,val,sub='')=>`<div class="panel"><div class="stat-label">${label}</div><div class="stat">${val}</div>${sub?`<small>${sub}</small>`:''}</div>`;
 const musicPromo=()=>`<div class="panel slotcard"><div class="spread"><div><h3>${ico('music')} Toque sua música no site</h3><p class="muted" style="margin-top:4px">Por ${fmt(MUS.price,0)} AC, o link do Spotify que você escolher toca por ${MUS.minutes>=60&&MUS.minutes%60===0?MUS.minutes/60+' h':MUS.minutes+' min'} para todo mundo que estiver com a música ligada.</p></div><button class="btn-main" data-do="music-buy">Escolher minha música</button></div></div>`;
@@ -906,24 +1127,28 @@ function moversChart(){
 const V={
 inicio(){
   const m=me(),rk=rankedProfiles(),pos=rk.findIndex(p=>p.id===S.user.id)+1,xp=xpProgress(Number(m.xp||0));
-  const claimed=m.last_daily_date===todaySP();
+  const claimed=m.last_daily_date===todaySP(),dp=FEED.daily,amt=dp?Number(dp.amount):Number(S.settings.daily_bonus||500);
   const stocks=S.holdings.filter(h=>h.user_id===S.user.id).reduce((n,h)=>n+Number(h.quantity)*price(h.asset_id),0);
-  return`<div class="page-head"><div><h2>Salve, ${esc(m.username)} ${ico('hello')}</h2><p class="muted">Invista nas moedas dos membros, jogue no cassino e suba no ranking.</p></div><span class="pill">${S.profiles.length} membros no ranking</span></div>
-<div class="cols">
+  const tk=Number(m.crash_tokens||0),nextTok=(Math.floor(xp.l/10)+1)*10;
+  return`<div class="page-head"><div><h2>Salve, ${nick(m.username,m.nick_style)} ${ico('hello')}</h2><p class="muted">Invista nas moedas dos membros, dê lances nos leilões, jogue no cassino e suba no ranking.</p></div><span class="pill">${S.profiles.length} membros no ranking</span></div>
+<div class="home-top">${carouselHtml()}${hotHtml()}</div>
+<div class="cols" style="margin-top:14px">
   <div class="panel glow"><div class="stat-label">Seu saldo</div><div class="stat hero-bal">${ico('coin')} <span id="heroBal" data-v="${Number(m.balance||0)}">${fmt(m.balance)}</span></div><small>AutsimCoins (AC) · patrimônio total ${fmt(worth(S.user.id))} AC</small>
-    <div class="row" style="margin-top:16px"><button class="btn-main" data-do="tab" data-tab="cassino">${navIco('cassino')} Ir ao cassino</button><button data-do="tab" data-tab="bolsa">${navIco('bolsa')} Ver mercado</button><button data-do="tab" data-tab="loja">${navIco('loja')} Loja</button></div></div>
-  <div class="panel"><h3>Bônus diário</h3>${claimed?`<p class="up" style="margin-top:8px">✔ Você já pegou os ${fmt(S.settings.daily_bonus,0)} AC de hoje.</p><p class="muted small">Próximo bônus em <b id="dailycd2">--:--:--</b>.</p>`:`<p class="muted" style="margin-top:8px">O bônus de hoje ainda não foi coletado.</p><button class="btn-gold" style="margin-top:10px" data-do="claim-daily">Coletar ${fmt(S.settings.daily_bonus,0)} AC</button>`}</div>
+    <div class="row" style="margin-top:16px"><button class="btn-main" data-do="tab" data-tab="bolsa">${navIco('bolsa')} Ver mercado</button><button data-do="tab" data-tab="comunidade">${navIco('comunidade')} Comunidade</button><button data-do="tab" data-tab="loja">${navIco('loja')} Loja</button></div></div>
+  <div class="panel"><h3>Bônus diário</h3>${claimed?`<p class="up" style="margin-top:8px">✔ Você já pegou o bônus de hoje.</p><p class="muted small">Próximo bônus${dp?` (${fmt(dp.next,0)} AC${dp.weekend?'':''})`:''} em <b id="dailycd2">--:--:--</b>.</p>`:`<p class="muted" style="margin-top:8px">O bônus de hoje ainda não foi coletado.</p><button class="btn-gold" style="margin-top:10px" data-do="claim-daily">Coletar ${fmt(amt,0)} AC${dp&&dp.weekend?' (dobro de fim de semana!)':''}</button>`}
+    <p class="muted small" style="margin-top:8px">Cresce com o seu nível (500 AC no nível 1 até 2.000 AC no 99) e vale o dobro no sábado e no domingo.</p></div>
 </div>
 <div class="grid">
   ${tile('Posição no ranking',pos?pos+'º':'—',`de ${S.profiles.length} membros`)}
   ${tile('Nível',`Nv. ${xp.l}`,`${Number(m.xp||0).toLocaleString('pt-BR')} XP`)}
   ${tile('Em ações',fmt(stocks)+' AC','valor atual da carteira')}
+  ${tile('Tokens grátis do Crash','🎟 '+tk,xp.l>=99?'nível máximo':`próximo no nível ${nextTok}`)}
 </div>
-<div class="panel"><div class="spread"><div><h3>Top 10 · maiores variações em 24h</h3><small>Verde subiu, vermelho caiu. Clique numa moeda para ver o gráfico dela.</small></div><button class="btn-sm" data-do="tab" data-tab="bolsa">Abrir mercado</button></div>${moversChart()}</div>
+<div class="panel" style="margin-top:14px"><div class="spread"><div><h3>Top 10 · maiores variações em 24h</h3><small>Verde subiu, vermelho caiu. Clique numa moeda para ver o gráfico dela.</small></div><button class="btn-sm" data-do="tab" data-tab="bolsa">Abrir mercado</button></div>${moversChart()}</div>
 <div style="height:14px"></div>${musicPromo()}`;
 },
 bolsa(){
-  return`${head('bolsa','Mercado',`O preço oficial sobe quando alguém compra e cai quando alguém vende. Você também pode vender suas ações aos outros membros pelo preço que quiser. Máximo de ${OWN_CAP} unidades da sua própria moeda.`)}</div>${mkSubtabs()}${MK.sub==='jogadores'?mkListingsHtml():mkOfficialHtml()}${musicPromo()}`;
+  return`${head('bolsa','Mercado',`O preço oficial sobe a cada compra e cai a cada venda: quanto menos ações sobram no mercado, mais caras elas ficam. Taxa de ${fmt(S.settings.official_fee_percent??1,0)}% em cada compra e venda. Entre jogadores a taxa é de ${fmt(S.settings.p2p_fee_percent??2,0)}%. Da sua própria moeda você pode ter no máximo ${ownCap()} ações.`)}</div>${mkSubtabs()}${MK.sub==='jogadores'?mkListingsHtml():mkOfficialHtml()}${musicPromo()}`;
 },
 carteira(){
   const mine=S.holdings.filter(h=>h.user_id===S.user.id&&Number(h.quantity)>0);const stocks=mine.reduce((n,h)=>n+Number(h.quantity)*price(h.asset_id),0);
@@ -935,7 +1160,7 @@ loja(){
 ${musicPromo()}
 <h3 style="margin:20px 0 10px">Itens</h3>
 <div class="items">${S.items.map(i=>`<div class="panel item"><div class="spread"><span class="em">${itemIco(i)}</span><span class="pill">${i.stock===null||i.stock===undefined?'sem limite':`restam ${i.stock}`}</span></div><h3>${esc(i.name)}</h3><p class="muted small">${esc(i.description||'')}</p><div class="foot"><b class="gold">${ico('coin')} ${fmt(i.price)}</b><button class="btn-main" data-do="buy-item" data-id="${esc(i.id)}" ${Number(i.stock)===0&&i.stock!==null?'disabled':''}>Comprar</button></div></div>`).join('')||'<div class="panel empty">A loja ainda está vazia. O ADM pode cadastrar itens no Painel ADM.</div>'}</div>
-<h3 style="margin:24px 0 4px">Meus itens</h3>${table(['Item','Qtd','Comprado em','Situação'],S.inventory.slice().sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))).map(v=>`<tr><td>${esc(v.item_name||'Item')}</td><td>${v.quantity||1}</td><td>${fmtDate(v.created_at)}</td><td>${v.delivered?'<span class="up">entregue</span>':'<span class="gold">aguardando entrega</span>'}</td></tr>`).join(''),'Você ainda não comprou nada.')}`;
+<h3 style="margin:24px 0 4px">Meus itens</h3>${table(['Item','Qtd','Recebido em','Situação'],S.inventory.slice().sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))).map(v=>`<tr><td>${v.image_url?`<img class="ico-img itemimg" src="${esc(v.image_url)}" alt="" loading="lazy"> `:''}${esc(v.item_name||'Item')}${v.kind==='nft'?' <span class="pill gold">NFT</span>':''}${v.locked?' <span class="pill">em leilão</span>':''}</td><td>${v.quantity||1}</td><td>${fmtDate(v.created_at)}</td><td>${v.source==='shop'?(v.delivered?'<span class="up">entregue</span>':'<span class="gold">aguardando entrega</span>'):'<span class="dim">no inventário</span>'}</td></tr>`).join(''),'Você ainda não tem itens.')}`;
 },
 missoes(){
   const done=new Set(S.completions.map(c=>c.mission_id));
@@ -949,12 +1174,14 @@ extrato(){
   return`${head('extrato','Extrato')}<span class="pill">últimas 100 movimentações</span></div><p class="muted small" style="margin-top:6px">Para o site não ficar pesado, apostas e prêmios de jogos somem do extrato em ${sh} h; compras, vendas, trocas e o resto, em ${lg} dias. O saldo e as ações não mudam.</p>${table(['Data','Tipo','Moeda','Qtd','Valor','Saldo depois','Detalhe'],S.tx.map(t=>`<tr><td>${fmtDate(t.created_at)}</td><td>${esc(TYPE_NAMES[t.type]||t.type||'—')}</td><td>${t.asset_id?esc(asset(t.asset_id).symbol||'—'):'—'}</td><td>${t.quantity??'—'}</td><td class="${Number(t.amount)>=0?'up':'down'}">${Number(t.amount)>0?'+':''}${fmt(t.amount)}</td><td>${fmt(t.balance_after)}</td><td class="note">${esc(t.note||'')}</td></tr>`).join(''),'Nenhuma movimentação ainda.')}`;
 },
 perfil(){
-  const m=me(),xp=xpProgress(Number(m.xp||0)),a=asset(S.user.id);
-  return`${head('perfil','Meu perfil')}</div>
-<div class="panel glow"><div class="row">${m.avatar_url?`<img class="avatar" style="width:64px;height:64px" src="${esc(m.avatar_url)}" alt="">`:''}<div><h2>${esc(m.username)}</h2><span class="pill">Nível ${xp.l} de 99</span></div></div>
-<div class="grid"><div><div class="stat-label">XP</div><div class="stat">${Number(m.xp||0).toLocaleString('pt-BR')}</div></div><div><div class="stat-label">Para o próximo nível</div><div class="stat">${xp.l>=99?'Máximo':Number(Math.max(0,xp.hi-Number(m.xp||0))).toLocaleString('pt-BR')+' XP'}</div></div></div>
-<div class="xpbar" style="width:100%;height:10px"><i style="width:${xp.pct}%"></i></div><p class="muted small" style="margin-top:8px">Você ganha XP comprando, vendendo e jogando. Quanto mais alto o nível, mais XP cada nível pede.</p></div>
-<div class="panel" style="margin-top:14px"><h3>Minha moeda</h3><div style="margin:10px 0">${a.id?coinTag(a):'Sua moeda ainda não foi criada.'}</div>${a.id?`<div class="row"><button class="btn-main" data-do="edit-coin" data-id="${esc(a.id)}">Editar nome e imagem</button></div><p class="muted small" style="margin-top:8px">O ID da moeda (${esc(a.symbol||'')}) só o ADM pode alterar.</p>`:''}</div>`;
+  const m=me(),xp=xpProgress(Number(m.xp||0)),a=asset(S.user.id),tk=Number(m.crash_tokens||0);
+  const d=CM.prof[S.user.id]?.d;
+  return`${head('perfil','Meu perfil')}<div class="row"><button class="btn-main" data-do="prof-edit">Editar perfil</button><button data-do="profile" data-id="${esc(S.user.id)}">Ver como os outros veem</button></div></div>
+<div class="panel glow profpage">${d?profBody(d,true):'<div class="empty small">Carregando seu perfil…</div>'}</div>
+<div class="grid" style="margin-top:14px"><div class="panel"><div class="stat-label">XP</div><div class="stat">${Number(m.xp||0).toLocaleString('pt-BR')}</div><small>Nível ${xp.l} de 99</small><div class="xpbar" style="width:100%;height:10px;margin-top:8px"><i style="width:${xp.pct}%"></i></div></div>
+<div class="panel"><div class="stat-label">Para o próximo nível</div><div class="stat">${xp.l>=99?'Máximo':Number(Math.max(0,xp.hi-Number(m.xp||0))).toLocaleString('pt-BR')+' XP'}</div><small>Você ganha XP comprando, vendendo e jogando.</small></div>
+<div class="panel"><div class="stat-label">Tokens grátis do Crash</div><div class="stat">🎟 ${tk}</div><small>Um novo a cada 10 níveis. Vale ${fmt(tokenAmt(),0)} AC de aposta sem gastar nada.</small></div></div>
+<div class="panel" style="margin-top:14px"><h3>Minha moeda</h3><div style="margin:10px 0">${a.id?coinTag(a):'Sua moeda ainda não foi criada.'}</div>${a.id?`<div class="row"><button class="btn-main" data-do="edit-coin" data-id="${esc(a.id)}">Editar nome e imagem</button></div><p class="muted small" style="margin-top:8px">O ID da moeda (${esc(a.symbol||'')}) só o ADM pode alterar. Você começou com ${ownCap()} ações dela; outras ${ownCap()} foram para o mercado oficial.</p>`:''}</div>`;
 },
 config(){
   const mode=P.lite===null?'auto':P.lite?'on':'off';
@@ -969,14 +1196,13 @@ config(){
 <div><button data-do="logout">Sair da conta</button></div></div>`;
 }
 };
-const OWN_CAP=10;
-const itemIco=i=>ico('item.'+i.id,i.emoji||ICON_DEFAULT.gift);
+const itemIco=i=>i.image_url?`<img class="ico-img itemimg" src="${esc(i.image_url)}" alt="" loading="lazy">`:ico('item.'+i.id,i.emoji||ICON_DEFAULT.gift);
 
 /* ---------- mercado oficial (preço automático) ---------- */
 function mkOfficialHtml(){
   mkLoad();
-  const rows=S.assets.slice().sort((a,b)=>b.price-a.price).map(a=>{const own=held(S.user.id,a.id),free=Number(a.total_shares||0)-sold(a.id),c=changeOf(a.id),id=esc(a.id),ask=mkBestAsk(a.id);
-    return`<tr><td>${coinTag(a)}${a.id===S.user.id?' <span class="pill acc">sua moeda</span>':''}</td><td><b>${fmt(a.price)}</b></td><td>${changeTag(c)}</td><td>${isLite()?'':spark(S.movers[a.id]?.spark,80,24)}</td><td>${free.toLocaleString('pt-BR')}</td><td>${own}</td><td>${ask?`<button class="btn-sm" data-do="mk-sub" data-sub="jogadores" title="Ver ofertas de jogadores">${fmt(ask.unit_price)} <small>(${ask.n})</small></button>`:'<span class="dim">—</span>'}</td><td><div class="row" style="flex-wrap:nowrap"><input type="number" min="1" step="1" value="1" id="qty-${id}" aria-label="Quantidade"><button class="btn-good btn-sm" data-do="trade" data-kind="buy_shares" data-id="${id}">Comprar</button><button class="btn-bad btn-sm" data-do="trade" data-kind="sell_shares" data-id="${id}" ${own-mkMyListed(a.id)<1?'disabled':''}>Vender</button></div></td></tr>`}).join('');
+  const rows=S.assets.slice().sort((a,b)=>b.price-a.price).map(a=>{const own=held(S.user.id,a.id),free=Math.max(0,Number(a.total_shares||0)-sold(a.id)),c=changeOf(a.id),id=esc(a.id),ask=mkBestAsk(a.id);
+    return`<tr><td>${coinTag(a)}${a.id===S.user.id?' <span class="pill acc">sua moeda</span>':''}${a.is_system?' <span class="pill gold">sistema</span>':''}</td><td><b>${fmt(a.price)}</b></td><td>${changeTag(c)}</td><td>${isLite()?'':spark(S.movers[a.id]?.spark,80,24)}</td><td>${free.toLocaleString('pt-BR')}</td><td>${own}</td><td>${ask?`<button class="btn-sm" data-do="mk-sub" data-sub="jogadores" title="Ver ofertas de jogadores">${fmt(ask.unit_price)} <small>(${ask.n})</small></button>`:'<span class="dim">—</span>'}</td><td><div class="row" style="flex-wrap:nowrap"><button class="btn-good btn-sm" data-do="trade" data-kind="buy_shares" data-id="${id}" ${free<1||(a.id===S.user.id&&own>=ownCap())?'disabled':''} title="${a.id===S.user.id&&own>=ownCap()?'Você não pode comprar mais da sua própria moeda':''}">Comprar</button><button class="btn-bad btn-sm" data-do="trade" data-kind="sell_shares" data-id="${id}" ${own-mkMyListed(a.id)<1?'disabled':''}>Vender</button></div></td></tr>`}).join('');
   return table(['Moeda','Preço','24h',isLite()?'':'Tendência','Disponíveis','Você tem','Melhor oferta de jogador','Negociar'],rows,'Ainda não há moedas no mercado.');
 }
 
@@ -1069,24 +1295,17 @@ function cmpPreset(p){
 
 /* ---------- depois de desenhar a tela ---------- */
 const AFTER={
-inicio(){const c=$('#dailycd2');if(c)c.textContent=countdownTxt(nextResetMs())},
+inicio(){const c=$('#dailycd2');if(c)c.textContent=countdownTxt(nextResetMs());feedLoad();carStart()},
+perfil(){cmProfLoad(S.user.id,!CM.prof[S.user.id]).then(()=>{if(S.tab==='perfil')keepInputs(()=>{const e=$('.profpage');if(e)e.innerHTML=profBody(CM.prof[S.user.id].d,true)})}).catch(()=>{})},
 graficos(){if(CMP.sub==='patrimonio')drawWealth();else cmpLoad()}
 };
 
 /* ---------- ações das telas ---------- */
-async function trade(kind,id){
-  const q=Number($('#qty-'+CSS.escape(id))?.value);
-  if(!Number.isInteger(q)||q<1){toast('Informe uma quantidade inteira maior que zero.','err');return}
-  const{data,error}=await sb.rpc(kind,{p_asset_id:id,p_qty:q});
-  if(error){toast(errMsg(error),'err');SFX.play('error');return}
-  SFX.play('coin');
-  toast(kind==='buy_shares'?`Compra feita: ${q} × ${asset(id).symbol} por ${fmt(data?.cost)} AC`:`Venda feita: ${q} × ${asset(id).symbol} por ${fmt(data?.proceeds)} AC`);
-  await refreshLight(true);
-}
+function trade(kind,id){tradeModal(kind,id)}
 async function claimDaily(silent){
   const{data,error}=await sb.rpc('claim_daily');
   if(error){if(!silent)toast(errMsg(error),'err');return}
-  if(data?.claimed){toast(`+${fmt(data.amount,0)} AC de bônus diário! 🎁`,'gain',5200);SFX.play('win');FX.rain();if(S.profile){S.profile.last_daily_date=todaySP()}setBalance(data.balance)}
+  if(data?.claimed){toast(`+${fmt(data.amount,0)} AC de bônus diário${data.weekend?' (dobro de fim de semana!)':''}! 🎁`,'gain',5600);FEED.at=0;SFX.play('win');FX.rain();if(S.profile){S.profile.last_daily_date=todaySP()}setBalance(data.balance)}
   else if(S.profile)S.profile.last_daily_date=todaySP();
   if(S.tab==='inicio')renderView();
 }
@@ -1137,13 +1356,15 @@ function casinoStop(){CAS.running=false;CAS.gen++;cancelAnimationFrame(CAS.raf);
 function casinoSwitch(tab){casinoStop();CAS.tab=tab;CAS.rl.phase=null;CAS.rk.phase=null;CAS.rk.mode='';renderView();casinoStart()}
 
 /* ---------- tela ---------- */
-V.cassino=function(){
+V.cassino=function(emb){
   const sub=[['roleta',ico('cas.roleta')+' Roleta'],['foguete',ico('cas.foguete')+' Foguete'],['apostas',ico('cas.apostas')+' Apostas']];
-  return`<div class="page-head"><div><h2><span class="hico">${navIco('cassino')}</span> Cassino</h2><p class="muted">Só moedas virtuais: não existe depósito, saque ou troca por dinheiro real.</p></div><span class="pill">Saldo: <b id="casbal">${fmt(me().balance)}</b> AC</span></div>
+  const tk=Number(me().crash_tokens||0);
+  return`<div class="page-head"><div><h2><span class="hico">${ico('com.cassino')}</span> Cassino</h2><p class="muted">Só moedas virtuais: não existe depósito, saque ou troca por dinheiro real.</p></div><div class="row"><span class="pill gold" id="toktop" title="A cada 10 níveis você ganha 1 token grátis para apostar no Crash">🎟 ${tk} token${tk===1?'':'s'} grátis</span><span class="pill">Saldo: <b id="casbal">${fmt(me().balance)}</b> AC</span></div></div>
 <div class="subtabs">${sub.map(([k,n])=>`<button data-do="cas-tab" data-tab="${k}" class="${CAS.tab===k?'active':''}">${n}</button>`).join('')}</div>
 <div class="casino"><div id="casmain">${CAS.tab==='roleta'?rlHtml():CAS.tab==='foguete'?rkHtml():prHtml()}</div>${chatHtml()}</div>`;
 };
 AFTER.cassino=function(){chatRender()};
+const tokenAmt=()=>Number(S.settings.crash_token_amount||1000);
 
 /* ============================================================
    ROLETA
@@ -1303,24 +1524,24 @@ function rkSide(st){
   const mode=r.status+':'+(my?(my.cashed_mult?'cashed':'in'):'out')+':'+r.id;
   const act=$('#rkact');
   if(act&&mode!==CAS.rk.mode){CAS.rk.mode=mode;
-    if(betting&&!my)act.innerHTML=`<button class="btn-main btn-lg" style="width:100%" data-do="rk-bet">${ico('cas.foguete')} Apostar nesta rodada</button>`;
-    else if(betting&&my)act.innerHTML=`<div class="notice" style="margin:0">Aposta de <b>${fmt(my.amount)} AC</b> confirmada${st.my_auto?` · saque automático em ${fmtMult(st.my_auto)}`:''}. Decolagem em breve.</div>`;
+    if(betting&&!my){const tk=Number(me().crash_tokens||0);act.innerHTML=`<button class="btn-main btn-lg" style="width:100%" data-do="rk-bet">${ico('cas.foguete')} Apostar nesta rodada</button>${tk>0?`<button class="btn-gold btn-lg" style="width:100%;margin-top:8px" data-do="rk-bet-token">🎟 Usar token grátis: aposta de ${fmt(tokenAmt(),0)} AC sem gastar nada <small>(se ganhar, você fica só com o lucro)</small></button>`:`<small class="dim" style="display:block;margin-top:6px">Você ganha 1 token grátis de ${fmt(tokenAmt(),0)} AC a cada 10 níveis (10, 20, 30…).</small>`}`}
+    else if(betting&&my)act.innerHTML=`<div class="notice" style="margin:0">${my.free?'🎟 Aposta <b>grátis</b> de ':'Aposta de '}<b>${fmt(my.amount)} AC</b> confirmada${st.my_auto?` · saque automático em ${fmtMult(st.my_auto)}`:''}. Decolagem em breve.</div>`;
     else if(r.status==='flying'&&my&&!my.cashed_mult)act.innerHTML=`<button class="btn-good cash-btn" data-do="rk-cash" id="rkcash">Sacar</button>`;
-    else if(my&&my.cashed_mult)act.innerHTML=`<div class="notice" style="margin:0;border-color:var(--up)">✔ Você sacou em <b>${fmtMult(my.cashed_mult)}</b> e recebeu <b>${fmt(my.payout)} AC</b>.</div>`;
-    else if(r.status==='crashed'&&my)act.innerHTML=`<div class="notice" style="margin:0;border-color:var(--down)">Explodiu em ${fmtMult(r.crash_point)}. Você perdeu ${fmt(my.amount)} AC.</div>`;
+    else if(my&&my.cashed_mult)act.innerHTML=`<div class="notice" style="margin:0;border-color:var(--up)">✔ Você sacou em <b>${fmtMult(my.cashed_mult)}</b> e recebeu <b>${fmt(my.payout)} AC</b>${my.free?' de lucro (token grátis)':''}.</div>`;
+    else if(r.status==='crashed'&&my)act.innerHTML=`<div class="notice" style="margin:0;border-color:var(--down)">Explodiu em ${fmtMult(r.crash_point)}. ${my.free?'Você não perdeu nada: era um token grátis.':`Você perdeu ${fmt(my.amount)} AC.`}</div>`;
     else if(r.status==='flying')act.innerHTML=`<div class="notice" style="margin:0">Foguete no ar. Você pode apostar na próxima rodada.</div>`;
     else act.innerHTML=`<div class="notice" style="margin:0">Próxima rodada em instantes.</div>`;
   }
   const hs=$('#rkhist');if(hs)hs.innerHTML=(st.history||[]).map(x=>{const v=Number(x.crash);return`<span class="${v<2?'h-lo':v<10?'h-mid':'h-hi'}" style="min-width:auto;border-radius:99px;padding:0 10px">${fmt(v,2)}x</span>`}).join('')||'<small>Nenhuma rodada ainda.</small>';
   const bx=$('#rkbets');if(bx)bx.innerHTML=(st.bets||[]).map(b=>{const won=!!b.cashed_mult,lost=r.status==='crashed'&&!won;return`<div class="betline ${won?'win':lost?'lose':''}"><span>${esc(b.username)}${b.user_id===S.user.id?' (você)':''}</span><span>${fmt(b.amount,0)} AC ${won?`→ ${fmtMult(b.cashed_mult)} (+${fmt(b.payout)})`:''}</span></div>`}).join('')||'<div class="dim small">Ninguém apostou ainda nesta rodada.</div>';
 }
-async function rkBet(){
+async function rkBet(useToken){
   const amt=Number($('#rkamt')?.value),autoRaw=$('#rkauto')?.value,auto=autoRaw===''||autoRaw==null?null:Number(autoRaw);
-  if(!Number.isFinite(amt)||amt<1){toast('Informe quanto quer apostar.','err');return}
+  if(!useToken&&(!Number.isFinite(amt)||amt<1)){toast('Informe quanto quer apostar.','err');return}
   if(auto!==null&&(!Number.isFinite(auto)||auto<1.01)){toast('O saque automático precisa ser 1,01x ou mais.','err');return}
-  const{data,error}=await sb.rpc('rocket_place_bet',{p_amount:amt,p_auto:auto});
+  const{data,error}=await sb.rpc('rocket_place_bet',{p_amount:useToken?tokenAmt():amt,p_auto:auto,p_use_token:!!useToken});
   if(error){toast(errMsg(error),'err');SFX.play('error');return}
-  SFX.play('coin');CAS.rk.localCash=false;setBalance(data.balance);const cb=$('#casbal');if(cb)cb.textContent=fmt(data.balance);
+  SFX.play('coin');CAS.rk.localCash=false;if(data.free&&S.profile)S.profile.crash_tokens=Math.max(0,Number(S.profile.crash_tokens||0)-1);setBalance(data.balance);const tt=$('#toktop');if(tt)tt.textContent='🎟 '+Number(me().crash_tokens||0)+' tokens grátis';const cb=$('#casbal');if(cb)cb.textContent=fmt(data.balance);
   try{const st=await stateRpc('rocket_state');rkApply(st)}catch(e){}
 }
 async function rkCash(){
@@ -1468,10 +1689,10 @@ function prNewForm(){
     onSubmit:async v=>{const dt=new Date(v.closes);if(isNaN(dt))throw new Error('Informe o prazo.');const{error}=await sb.rpc('create_prediction',{p_title:v.title,p_description:v.description,p_closes_at:dt.toISOString()});if(error)throw error;toast('Aposta criada!');SFX.play('coin');prLoad(CAS.gen)}});
 }
 function prBetForm(id,side){
-  const m=(CAS.pr.data?.markets||[]).find(x=>x.id===id);if(!m)return;
+  const m=(CAS.pr.data?.markets||[]).find(x=>x.id===id)||(typeof FEED!=='undefined'?FEED.preds:[]).find(x=>x.id===id);if(!m)return;
   openForm({title:`Apostar no ${side==='yes'?'SIM':'NÃO'}`,intro:m.title,submit:'Confirmar aposta',
     fields:[{name:'amount',label:'Valor (AC)',type:'number',value:50,min:1,step:1,hint:'Seu ganho depende do pote final: outras apostas ainda podem mudar o valor.'}],
-    onSubmit:async v=>{const{data,error}=await sb.rpc('place_prediction_bet',{p_market:id,p_side:side,p_amount:v.amount});if(error)throw error;SFX.play('coin');toast('Aposta feita!');setBalance(data.balance);prLoad(CAS.gen)}});
+    onSubmit:async v=>{const{data,error}=await sb.rpc('place_prediction_bet',{p_market:id,p_side:side,p_amount:v.amount});if(error)throw error;SFX.play('coin');toast('Aposta feita!');setBalance(data.balance);if(typeof FEED!=='undefined')FEED.at=0;if(typeof feedLoad==='function')feedLoad(true);if(inCasino())prLoad(CAS.gen)}});
   const upd=()=>{const a=Number($('#f_amount').value)||0;let h=$('#prest');if(!h){h=document.createElement('div');h.id='prest';h.className='notice';h.style.margin='0';$('#genform .formgrid').appendChild(h)}
     const est=prShare(side,a,m);h.innerHTML=a>0?`Se o ${side==='yes'?'SIM':'NÃO'} ganhar agora, você leva cerca de <b>${fmt(est)} AC</b> (${est>0?fmt(est/a,2):'0'}x).`:'Informe um valor para ver a estimativa.'};
   $('#f_amount').addEventListener('input',upd);upd();
@@ -1492,27 +1713,36 @@ async function prCancel(id){
 /* ============================================================
    Painel do ADM: tudo é feito por funções do banco que conferem a permissão no servidor
    ============================================================ */
-const ADM={tab:'site',items:[],missions:[],orders:[],tracks:[],slots:[],log:[],news:[],stats:null,loaded:false};
-const ADM_TABS=[['site','Site e economia'],['abertura','Abertura e reset'],['noticias','Notícias'],['icones','Ícones'],['membros','Membros'],['moedas','Moedas'],['loja','Loja e pedidos'],['missoes','Missões'],['musica','Música'],['registro','Registro']];
+const ADM={tab:'site',items:[],missions:[],orders:[],tracks:[],slots:[],log:[],news:[],cosm:[],ach:[],posts:[],aucs:[],yt:null,stats:null,loaded:false};
+const ADM_TABS=[['site','Site e economia'],['abertura','Abertura e reset'],['noticias','Notícias do topo'],['comunidade','Fórum e anúncios'],['leiloes','Leilões'],['icones','Ícones'],['membros','Membros e multas'],['moedas','Moedas'],['conquistas','Conquistas'],['cosmeticos','Cosméticos'],['loja','Loja e pedidos'],['missoes','Missões'],['musica','Música'],['registro','Registro']];
 const SETTINGS=[
  ['Aparência',[['site_name','Nome do site','text'],['announcement','Aviso na faixa do topo (vazio = texto padrão)','text'],['accent_color','Cor principal do site','color']]],
- ['Economia',[['start_balance','Saldo inicial de cada jogador novo (AC)','number'],['base_price','Preço inicial da ação de uma moeda nova (AC)','number'],['daily_bonus','Bônus diário (AC)','number'],['p2p_fee_percent','Venda entre jogadores: taxa do site (%)','number'],['p2p_max_listings','Venda entre jogadores: ofertas abertas por pessoa','number'],['music_slot_price','Preço para tocar uma música (AC)','number'],['music_slot_minutes','Duração da música paga (minutos)','number']]],
+ ['Economia',[['start_balance','Saldo inicial de cada jogador novo (AC)','number'],['base_price','Preço inicial da ação de uma moeda nova (AC)','number'],['official_fee_percent','Mercado oficial: imposto em cada compra e venda (%)','number'],['p2p_fee_percent','Venda entre jogadores: imposto (%)','number'],['p2p_max_listings','Venda entre jogadores: ofertas abertas por pessoa','number'],['curve_steepness','Curva do preço: força da alta (só vale para moedas novas; padrão 3)','number'],['own_initial_shares','Ações iniciais do dono (e limite da própria moeda; só moedas novas)','number']]],
+ ['Bônus e recompensas',[['daily_bonus','Bônus diário no nível 1 (AC)','number'],['daily_bonus_max','Bônus diário no nível 99 (AC)','number'],['daily_weekend_mult','Multiplicador do bônus no fim de semana','number'],['crash_token_amount','Token grátis do Crash: valor da aposta (AC)','number']]],
+ ['Anúncios e fórum',[['ad_price_base','Anúncio: preço das primeiras 24 h (AC)','number'],['ad_price_extra','Anúncio: preço de cada 24 h extra (AC)','number'],['ad_price_cap','Anúncio: preço máximo (AC)','number'],['ad_max_days','Anúncio: máximo de dias','number'],['fake_news_refund_percent','Fake News: % do valor devolvido ao dono','number']]],
+ ['Leilões',[['auction_fee_percent','Leilão de jogador: taxa sobre a venda (%)','number'],['auction_min_increment_percent','Lance mínimo acima do atual (%)','number'],['auction_max_per_user','Leilões abertos por jogador','number']]],
+ ['Música',[['music_slot_price','Preço para tocar uma música (AC)','number'],['music_slot_minutes','Duração da música paga (minutos, máx. 10)','number']]],
  ['Limpeza automática do histórico',[['retention_short_hours','Coisas de spam (apostas, chat, rodadas) somem após (horas)','number'],['retention_long_days','Coisas importantes (compras, vendas, trocas, registro) somem após (dias)','number']]],
  ['Cassino e apostas',[['roulette_bet_seconds','Roleta: tempo para apostar (segundos)','number'],['roulette_max_bet','Roleta: aposta máxima (AC)','number'],['rocket_bet_seconds','Foguete: tempo para apostar (segundos)','number'],['rocket_max_bet','Foguete: aposta máxima (AC)','number'],['prediction_fee_percent','Apostas entre membros: taxa da casa (%)','number'],['prediction_max_open_per_user','Apostas entre membros: máximo abertas por pessoa','number']]]
 ];
-const SETTING_DEFAULTS={site_name:'Bolsa do Autsim',announcement:'',accent_color:'#8b5cf6',start_balance:10000,base_price:100,daily_bonus:500,p2p_fee_percent:0,p2p_max_listings:10,retention_short_hours:12,retention_long_days:3,music_slot_price:100,music_slot_minutes:60,roulette_bet_seconds:20,roulette_max_bet:2000,rocket_bet_seconds:12,rocket_max_bet:2000,prediction_fee_percent:0,prediction_max_open_per_user:3};
+const SETTING_DEFAULTS={site_name:'Bolsa do Autsim',announcement:'',accent_color:'#8b5cf6',start_balance:10000,base_price:10,official_fee_percent:1,p2p_fee_percent:2,p2p_max_listings:10,curve_steepness:3,own_initial_shares:500,daily_bonus:500,daily_bonus_max:2000,daily_weekend_mult:2,crash_token_amount:1000,ad_price_base:5000,ad_price_extra:1000,ad_price_cap:10000,ad_max_days:7,fake_news_refund_percent:50,auction_fee_percent:0,auction_min_increment_percent:5,auction_max_per_user:5,retention_short_hours:12,retention_long_days:3,music_slot_price:100,music_slot_minutes:10,roulette_bet_seconds:20,roulette_max_bet:2000,rocket_bet_seconds:12,rocket_max_bet:2000,prediction_fee_percent:0,prediction_max_open_per_user:3};
 
 async function admLoad(){
   if(!isAdmin())return;
-  const [it,mi,od,mu,lg,nw]=await Promise.all([
+  const [it,mi,od,mu,lg,nw,cs,ac,fp,au]=await Promise.all([
     sb.from('shop_items').select('*').order('sort_order').order('created_at'),
     sb.from('missions').select('*').order('sort_order').order('created_at'),
     sb.rpc('admin_list_orders'),
     sb.rpc('music_state',{p_all:true}),
     sb.from('admin_log').select('*').order('id',{ascending:false}).limit(80),
-    sb.from('news').select('*').order('created_at',{ascending:false}).limit(40)]);
+    sb.from('news').select('*').order('created_at',{ascending:false}).limit(40),
+    sb.from('cosmetics').select('*').order('sort_order').order('price'),
+    sb.from('achievements').select('*').order('category').order('created_at'),
+    sb.rpc('forum_list'),
+    sb.rpc('auctions_list')]);
+  ADM.cosm=cs.data||[];ADM.ach=ac.data||[];ADM.posts=fp.data?.posts||[];ADM.aucs=au.data?.auctions||[];ADM.yt=mu.data?.yt||null;
   ADM.items=it.data||[];ADM.missions=mi.data||[];ADM.orders=od.data||[];ADM.tracks=mu.data?.tracks||[];ADM.slots=mu.data?.slots||[];ADM.log=lg.data||[];ADM.news=nw.data||[];
-  const bad=[it,mi,od,mu,lg,nw].find(r=>r.error);if(bad)toast('Parte do painel não carregou: '+errMsg(bad.error),'err');
+  const bad=[it,mi,od,mu,lg,nw,cs,ac,fp,au].find(r=>r.error);if(bad)toast('Parte do painel não carregou: '+errMsg(bad.error),'err');
   ADM.loaded=true;if(S.tab==='adm')keepInputs(renderView);
 }
 AFTER.adm=function(){if(!ADM.loaded)admLoad();if(ADM.tab==='abertura'&&!ADM.stats)admStats()};
@@ -1528,10 +1758,17 @@ function admSite(){
 <div class="panel"><h3 style="margin-bottom:6px">Moderação</h3><div class="row">${admBtn('adm-clear-chat','🧹 Limpar o chat do cassino')}${admBtn('adm-refresh','↻ Recarregar painel')}</div><p class="muted small" style="margin-top:8px">Para apagar uma mensagem só, use o ✕ ao lado dela no chat.</p></div></div>`;
 }
 function admMembers(){
-  return table(['Membro','Saldo','Patrimônio','XP / nível','ADM','Ações'],rankedProfiles().map(p=>`<tr><td>${whoTag(p)}</td><td>${fmt(p.balance)}</td><td>${fmt(worth(p.id))}</td><td>${Number(p.xp||0).toLocaleString('pt-BR')} · Nv. ${levelOf(Number(p.xp||0))}</td><td>${p.is_admin?'<span class="pill acc">ADM</span>':'—'}</td><td><div class="row">${admBtn('adm-adjust','± Dinheiro',`data-id="${esc(p.id)}"`,'btn-sm btn-gold')}${admBtn('adm-xp','XP',`data-id="${esc(p.id)}"`)}${p.id!==S.user.id?admBtn('adm-toggle-admin',p.is_admin?'Tirar ADM':'Dar ADM',`data-id="${esc(p.id)}"`):''}</div></td></tr>`).join(''));
+  return table(['Membro','Saldo','Patrimônio','XP / nível','ADM','Ações'],rankedProfiles().map(p=>`<tr><td>${whoTag(p)}</td><td>${fmt(p.balance)}</td><td>${fmt(worth(p.id))}</td><td>${Number(p.xp||0).toLocaleString('pt-BR')} · Nv. ${levelOf(Number(p.xp||0))}</td><td>${p.is_admin?'<span class="pill acc">ADM</span>':'—'}</td><td><div class="row">${admBtn('adm-adjust','± Dinheiro',`data-id="${esc(p.id)}"`,'btn-sm btn-gold')}${p.id!==S.user.id?admBtn('adm-fine','Multar jogador',`data-id="${esc(p.id)}"`,'btn-sm btn-bad'):''}${admBtn('adm-xp','XP',`data-id="${esc(p.id)}"`)}${admBtn('adm-ach-give','Dar conquista',`data-id="${esc(p.id)}"`)}${p.id!==S.user.id?admBtn('adm-toggle-admin',p.is_admin?'Tirar ADM':'Dar ADM',`data-id="${esc(p.id)}"`):''}</div></td></tr>`).join(''));
 }
 function admCoins(){
-  return table(['Moeda','Dono','Preço','Ações (vendidas / total)','Ações'],S.assets.slice().sort((a,b)=>String(a.symbol).localeCompare(String(b.symbol))).map(a=>`<tr><td>${coinTag(a)}</td><td>${esc(profile(a.id).username||'—')}</td><td>${fmt(a.price)}</td><td>${sold(a.id)} / ${a.total_shares}</td><td>${admBtn('adm-coin','Editar moeda',`data-id="${esc(a.id)}"`)}</td></tr>`).join(''),'Nenhuma moeda ainda.');
+  const list=S.assets.slice().sort((x,y)=>(x.is_system===y.is_system?0:x.is_system?-1:1)||String(x.symbol).localeCompare(String(y.symbol)));
+  return`<div class="panel"><div class="spread"><div><h3>Moedas do sistema (RPG e eventos)</h3><p class="muted small" style="margin-top:4px;max-width:70ch">Moedas neutras, como GOLD$ ou CRISTAL$, que não têm dono. Você define o preço inicial e quantas ações ficam no mercado oficial. Elas seguem a mesma curva de preço e o mesmo imposto das outras.</p></div>${admBtn('adm-sys-new','+ Nova moeda do sistema','','btn-main')}</div></div>
+<h3 style="margin:16px 0 6px">Todas as moedas</h3>${table(['Moeda','Dono','Preço','Ações (em carteiras / total)','Ações'],list.map(a=>`<tr><td>${coinTag(a)}${a.is_system?' <span class="pill gold">sistema</span>':''}</td><td>${a.is_system?'<span class="dim">sem dono</span>':esc(profile(a.id).username||'—')}</td><td>${fmt(a.price)}</td><td>${sold(a.id)} / ${a.total_shares}</td><td><div class="row">${admBtn('adm-coin','Editar moeda',`data-id="${esc(a.id)}"`)}${a.is_system?admBtn('adm-sys-del','Apagar',`data-id="${esc(a.id)}"`,'btn-sm btn-bad'):''}</div></td></tr>`).join(''),'Nenhuma moeda ainda.')}`;
+}
+function admSysForm(){
+  openForm({title:'Nova moeda do sistema',intro:'Sem dono. As ações entram no mercado oficial e qualquer membro pode comprar e vender.',submit:'Criar moeda',
+    fields:[{name:'name',label:'Nome',max:30,placeholder:'Ex.: Ouro de Aldeia'},{name:'symbol',label:'ID da moeda',hint:'Ex.: GOLD$ — letras, números e _ (o $ final é automático).'},{name:'img',label:'Imagem (opcional)',type:'file'},{name:'price',label:'Preço inicial (AC)',type:'number',step:'any',min:0.01,value:10},{name:'qty',label:'Quantidade de ações no mercado oficial',type:'number',step:1,min:1,value:5000}],
+    onSubmit:async v=>{const url=v.img?await uploadImage(v.img,{w:256,h:256,mode:'contain',admin:true}):'';await admRpc('admin_create_system_coin',{p_name:v.name,p_symbol:v.symbol,p_avatar:url,p_price:v.price,p_quantity:Math.round(v.qty)},'Moeda do sistema criada!')}});
 }
 function admShop(){
   const items=table(['Item','Preço','Estoque','Situação','Ações'],ADM.items.map(i=>`<tr><td>${itemIco(i)} ${esc(i.name)}</td><td>${fmt(i.price)}</td><td>${i.stock===null?'sem limite':i.stock}</td><td>${i.active?'<span class="up">à venda</span>':'<span class="dim">oculto</span>'}</td><td><div class="row">${admBtn('adm-item-edit','Editar',`data-id="${esc(i.id)}"`)}${admBtn('adm-item-del','Excluir',`data-id="${esc(i.id)}"`,'btn-sm btn-bad')}</div></td></tr>`).join(''),'Nenhum item cadastrado.');
@@ -1543,8 +1780,8 @@ function admMissions(){
   return`<div class="spread"><h3>Missões</h3>${admBtn('adm-mis-new','+ Nova missão','','btn-main')}</div>${table(['Missão','Categoria','Recompensa','Situação','Ações'],ADM.missions.map(m=>`<tr><td>${esc(m.title)}</td><td>${esc(m.category)}</td><td>+${m.xp_reward} XP · ${fmt(m.coin_reward)} AC</td><td>${m.active?'<span class="up">ativa</span>':'<span class="dim">oculta</span>'}</td><td><div class="row">${admBtn('adm-mis-grant','Conceder a um membro',`data-id="${esc(m.id)}"`,'btn-sm btn-gold')}${admBtn('adm-mis-edit','Editar',`data-id="${esc(m.id)}"`)}${admBtn('adm-mis-del','Excluir',`data-id="${esc(m.id)}"`,'btn-sm btn-bad')}</div></td></tr>`).join(''),'Nenhuma missão cadastrada.')}<p class="muted small">Missões não pagam sozinhas: você confere se o membro cumpriu e clica em “Conceder”. Cada membro recebe uma vez só.</p>`;
 }
 function admMusic(){
-  return`<div class="spread"><div><h3>Playlist do site</h3><p class="muted small">Toca em sequência para quem ligou a música. Aceita vídeo ou playlist do YouTube e faixa, álbum ou playlist do Spotify.</p></div>${admBtn('adm-music-add','+ Adicionar música','','btn-main')}</div>
-${table(['Faixa','Origem','Situação','Ações'],ADM.tracks.map(t=>`<tr><td>${esc(t.title)}</td><td>${t.kind==='youtube'?'YouTube':'Spotify'} · ${esc(t.ref_type)}</td><td>${t.active?'<span class="up">tocando na rotação</span>':'<span class="dim">pausada</span>'}</td><td><div class="row">${admBtn('adm-music-toggle',t.active?'Pausar':'Ativar',`data-id="${esc(t.id)}" data-on="${t.active?0:1}"`)}${admBtn('adm-music-del','Remover',`data-id="${esc(t.id)}"`,'btn-sm btn-bad')}</div></td></tr>`).join(''),'Nenhuma música ainda. Adicione a primeira.')}
+  return`<div class="spread"><div><h3>Playlist do site</h3><p class="muted small" style="max-width:72ch">Os vídeos do YouTube tocam <b>no mesmo segundo para todo mundo</b>, em sequência, com no máximo 10 minutos cada: vídeo mais curto repete até completar 10 min, mais longo é cortado aos 10 min. Spotify só entra como música paga pelos membros.</p></div>${admBtn('adm-music-add','+ Adicionar música','','btn-main')}</div>
+${table(['Faixa','Origem','Situação','Ações'],ADM.tracks.map(t=>`<tr><td>${esc(t.title)}</td><td>${t.kind==='youtube'?'YouTube':'Spotify'} · ${esc(t.ref_type)}</td><td>${ADM.yt&&ADM.yt.track_id===t.id?'<span class="pill acc">tocando agora</span>':t.active?'<span class="up">na rotação</span>':'<span class="dim">pausada</span>'}</td><td><div class="row">${t.kind==='youtube'&&t.active?admBtn('adm-music-play','Tocar agora',`data-id="${esc(t.id)}"`,'btn-sm btn-gold'):''}${admBtn('adm-music-toggle',t.active?'Pausar':'Ativar',`data-id="${esc(t.id)}" data-on="${t.active?0:1}"`)}${admBtn('adm-music-del','Remover',`data-id="${esc(t.id)}"`,'btn-sm btn-bad')}</div></td></tr>`).join(''),'Nenhuma música ainda. Adicione a primeira.')}
 <h3 style="margin-top:20px">Fila de músicas pagas pelos membros</h3>${table(['Quem pediu','Música','Começa','Termina','Ações'],ADM.slots.map(s=>`<tr><td>${esc(s.username)}</td><td>${esc(s.title)}</td><td>${fmtDate(s.starts_at)}</td><td>${fmtDate(s.ends_at)}</td><td><div class="row">${admBtn('adm-slot-del','Remover e devolver',`data-id="${esc(s.id)}" data-refund="1"`,'btn-sm btn-gold')}${admBtn('adm-slot-del','Remover',`data-id="${esc(s.id)}" data-refund="0"`)}</div></td></tr>`).join(''),'A fila está vazia.')}`;
 }
 function admLog(){
@@ -1594,16 +1831,35 @@ function admOpen(){
   const nice=b=>b>1048576?fmt(b/1048576,1)+' MB':fmt(b/1024,0)+' KB';
   return`<div class="panel ${closed?'':'glow'}"><div class="spread"><div><h3>Site ${closed?'fechado':'aberto'} para os membros</h3><p class="muted small" style="margin-top:4px">${closed?'Membros comuns veem só uma tela de “abrimos em breve” e não conseguem comprar, vender, apostar ou pegar bônus. Você, como ADM, continua mexendo em tudo.':'Todo mundo que entrar consegue jogar normalmente.'}</p></div>${admBtn('adm-open-toggle',closed?'Abrir o site para todos':'Fechar o site agora',`data-open="${closed?1:0}"`,closed?'btn-main':'btn-bad')}</div></div>
 <div class="panel" style="margin-top:14px"><h3>Resetar o site (zerar tudo para começar de novo)</h3>
-<p class="muted small" style="margin:6px 0 10px">Antes de abrir para a comunidade. Isso <b>apaga</b>: compras e vendas de ações, extrato, gráficos de preço, apostas, chat, ofertas, trocas, notícias, pedidos da loja e fila de música. <b>Volta</b>: o saldo de todo mundo para ${fmt(admSet('start_balance'),0)} AC e o preço de todas as moedas para ${fmt(admSet('base_price'),0)} AC. <b>Mantém</b>: membros, moedas (nome, ID e imagem), itens da loja, missões, playlist, ícones e configurações. Não dá para desfazer.</p>
+<p class="muted small" style="margin:6px 0 10px">Antes de abrir para a comunidade. Isso <b>apaga</b>: compras e vendas de ações, extrato, gráficos de preço, apostas, chat, ofertas, trocas, notícias, pedidos da loja e fila de música. <b>Volta</b>: o saldo de todo mundo para ${fmt(admSet('start_balance'),0)} AC, o preço das moedas dos membros para ${fmt(admSet('base_price'),0)} AC (cada dono recebe ${fmt(admSet('own_initial_shares'),0)} ações da própria moeda e outras ${fmt(admSet('own_initial_shares'),0)} vão para o mercado oficial) e as moedas do sistema para o preço inicial delas. Também apaga: leilões, anúncios e fórum, chat da comunidade e itens/NFTs do inventário. <b>Mantém</b>: membros, moedas (nome, ID e imagem), itens da loja, missões, conquistas (e as já ganhas), cosméticos comprados, playlist, ícones e configurações. Não dá para desfazer.</p>
 <div class="formgrid"><label class="inline"><input type="checkbox" id="rsXp" checked> Zerar também o XP e as missões concluídas</label><label class="inline"><input type="checkbox" id="rsClose" checked> Deixar o site fechado depois do reset (recomendado)</label>
 <label>Para confirmar, digite RESETAR<input id="rsConfirm" autocomplete="off" placeholder="RESETAR"></label></div>${admBtn('adm-reset','Resetar o site','','btn-bad')}</div>
 <div class="panel" style="margin-top:14px"><div class="spread"><div><h3>Banco de dados e limpeza</h3><p class="muted small" style="margin-top:4px">O site apaga sozinho o histórico antigo (regras em “Site e economia”). Aqui dá para ver o tamanho de cada tabela e limpar na hora.</p></div><div class="row">${admBtn('adm-stats','↻ Atualizar números')}${admBtn('adm-cleanup','Limpar histórico antigo agora','','btn-main')}</div></div>
 ${st?`<p class="muted small" style="margin:8px 0">Tamanho total: <b>${nice(st.total_bytes)}</b> · última limpeza: ${Number(st.last_cleanup)?fmtDate(Number(st.last_cleanup)*1000):'nunca'}</p>${table(['Tabela','Linhas','Tamanho'],st.tables.map(t=>`<tr><td>${esc(t.name)}</td><td>${Number(t.rows).toLocaleString('pt-BR')}</td><td>${nice(t.bytes)}</td></tr>`).join(''))}`:'<p class="muted small" style="margin-top:8px">Carregando números…</p>'}</div>`;
 }
 
+/* ---------- fórum, anúncios e notícia principal ---------- */
+function admForum(){
+  const rows=ADM.posts.map(f=>`<tr><td style="white-space:normal;max-width:300px;overflow-wrap:anywhere">${f.image_url?`<img class="ico-img itemimg" src="${esc(f.image_url)}" alt=""> `:''}<b>${esc(f.title)}</b></td><td>${f.kind==='main'?'<span class="pill gold">Principal</span>':'Anúncio'}</td><td>${esc(f.author_name||'—')}</td><td>${f.status==='fake'?'<span class="fakeseal">FAKE</span>':f.status==='expired'?'<span class="dim">encerrado</span>':'<span class="up">no ar</span>'}</td><td>${f.likes} 👍 · ${f.dislikes} 👎</td><td>${admBtn('adm-post-del','Apagar',`data-id="${esc(f.id)}"`,'btn-sm btn-bad')}</td></tr>`).join('');
+  return`<div class="panel"><div class="spread"><div><h3>Notícia principal da página inicial</h3><p class="muted small" style="margin-top:4px;max-width:70ch">É o slide 1 do carrossel: uma imagem PNG (1080×720) mais um texto. Publicar uma nova substitui a anterior.</p></div>${admBtn('adm-main-news','Publicar notícia principal','','btn-main')}</div></div>
+<div class="panel" style="margin-top:14px"><h3>Preços dos anúncios</h3><p class="muted small" style="margin:4px 0 8px">Hoje: ${fmt(admSet('ad_price_base'),0)} AC pelas primeiras 24 h, mais ${fmt(admSet('ad_price_extra'),0)} AC por dia extra, no máximo ${fmt(admSet('ad_price_cap'),0)} AC (até ${admSet('ad_max_days')} dias). Mude em <button class="linkbtn" data-do="adm-tab" data-tab="site">Site e economia</button> &gt; Anúncios e fórum.</p></div>
+<h3 style="margin:18px 0 6px">Publicações no fórum</h3>${table(['Título','Tipo','Autor','Situação','Votos',''],rows,'Nenhuma publicação.')}<p class="muted small" style="margin-top:8px">Fake News: quem votar 👎 em 4 ou mais, e pelo menos o dobro dos 👍, derruba o anúncio (sai do carrossel e do topo, fica no fórum com selo vermelho por 24 h, e o dono recebe metade do valor de volta). Abuso dessa ferramenta pode ser punido em Membros e multas.</p>`;
+}
+function admAuctions(){
+  const rows=ADM.aucs.map(a=>`<tr><td>${esc(a.title)}</td><td>${a.kind==='grand'?'<span class="pill gold">Grande</span>':'Jogador'}</td><td>${esc(a.creator_name||'—')}</td><td>${fmt(a.bid_count?a.current_bid:a.start_price)} AC (${a.bid_count} lance${a.bid_count==1?'':'s'})</td><td>${a.status==='open'?`<span class="up">aberto · <b class="ac-cd" data-t="${esc(a.ends_at)}">${countdownTxt(Date.parse(a.ends_at)-srvNow())}</b></span>`:esc(a.status)}</td><td>${a.status==='open'?admBtn('adm-auc-cancel','Cancelar (devolve o lance)',`data-id="${esc(a.id)}"`,'btn-sm btn-bad'):''}</td></tr>`).join('');
+  return`<div class="panel"><div class="spread"><div><h3>Grande Leilão</h3><p class="muted small" style="margin-top:4px;max-width:70ch">Venda prints e memes marcantes do chat “Grandes Momentos”. Os lances aparecem destacados no chat do leilão, e quem arremata recebe o item como NFT no inventário.</p></div>${admBtn('adm-grand-new','Abrir Grande Leilão','','btn-gold')}</div></div><h3 style="margin:18px 0 6px">Todos os leilões</h3>${table(['Leilão','Tipo','Criado por','Lance','Situação',''],rows,'Nenhum leilão ainda.')}`;
+}
+function admCosmetics(){
+  return`<div class="spread"><div><h3>Cosméticos (nick colorido)</h3><p class="muted small" style="max-width:70ch">Aparece na aba Comunidade &gt; Ostentação. Estilos prontos: gold, silver, rainbow, fire, ice, neon, rose, ou uma cor #RRGGBB.</p></div>${admBtn('adm-cos-new','+ Novo cosmético','','btn-main')}</div>${table(['Cosmético','Prévia','Preço','Situação','Ações'],ADM.cosm.map(c=>`<tr><td>${esc(c.name)}<br><small class="muted">${esc(c.description||'')}</small></td><td>${nick('Fulano',c.style)}</td><td>${fmt(c.price,0)} AC</td><td>${c.active?'<span class="up">à venda</span>':'<span class="dim">oculto</span>'}</td><td><div class="row">${admBtn('adm-cos-edit','Editar',`data-id="${esc(c.id)}"`)}${admBtn('adm-cos-del','Excluir',`data-id="${esc(c.id)}"`,'btn-sm btn-bad')}</div></td></tr>`).join(''),'Nenhum cosmético.')}`;
+}
+const ACH_RULES={'':'Manual (só o ADM dá)',level:'Automática: chegar ao nível…',balance:'Automática: ter de saldo (AC)…',trades:'Automática: fazer … negociações',casino_bets:'Automática: fazer … apostas no cassino',casino_wins:'Automática: ganhar … vezes no cassino'};
+function admAchievements(){
+  return`<div class="spread"><div><h3>Conquistas</h3><p class="muted small" style="max-width:70ch">Aparecem no mural do perfil. São permanentes e ninguém pode transferir. Podem ser dadas na hora por você ou ganhas sozinhas quando a pessoa bate a meta.</p></div>${admBtn('adm-ach-new','+ Nova conquista','','btn-main')}</div>${table(['Conquista','Categoria','Como se ganha','Situação','Ações'],ADM.ach.map(c=>`<tr><td>${c.icon_url?`<img class="ico-img itemimg" src="${esc(c.icon_url)}" alt=""> `:'🏆 '}<b>${esc(c.name)}</b><br><small class="muted">${esc(c.description||'')}</small></td><td>${c.category==='cassino'?'Cassino':'Padrão'}</td><td>${c.auto_rule?esc((ACH_RULES[c.auto_rule]||c.auto_rule).replace('…',fmt(c.auto_threshold,0))):'Manual'}</td><td>${c.active?'<span class="up">ativa</span>':'<span class="dim">pausada</span>'}</td><td><div class="row">${admBtn('adm-ach-edit','Editar',`data-id="${esc(c.id)}"`)}${admBtn('adm-ach-del','Excluir',`data-id="${esc(c.id)}"`,'btn-sm btn-bad')}</div></td></tr>`).join(''),'Nenhuma conquista cadastrada.')}`;
+}
+
 V.adm=function(){
   if(!isAdmin())return'<div class="notice">Acesso negado.</div>';
-  const body={site:admSite,abertura:admOpen,noticias:admNews,icones:admIcons,membros:admMembers,moedas:admCoins,loja:admShop,missoes:admMissions,musica:admMusic,registro:admLog}[ADM.tab]();
+  const body={site:admSite,abertura:admOpen,noticias:admNews,comunidade:admForum,leiloes:admAuctions,icones:admIcons,membros:admMembers,moedas:admCoins,conquistas:admAchievements,cosmeticos:admCosmetics,loja:admShop,missoes:admMissions,musica:admMusic,registro:admLog}[ADM.tab]();
   return`<div class="page-head"><div><h2>🛡️ Painel do ADM</h2><p class="muted">Tudo que muda aqui vale na hora para todo mundo. Cada ação fica registrada.</p></div></div><div class="admtabs">${ADM_TABS.map(([k,n])=>`<button data-do="adm-tab" data-tab="${k}" class="${ADM.tab===k?'active':''}">${n}</button>`).join('')}</div>${ADM.loaded?body:'<div class="empty">Carregando painel…</div>'}`;
 };
 
@@ -1633,10 +1889,10 @@ function admCoinForm(id){
     onSubmit:async v=>{await admRpc('admin_update_asset',{p_asset_id:id,p_name:v.name,p_symbol:v.symbol,p_avatar:v.avatar,p_price:v.price,p_total_shares:Math.round(v.shares)},'Moeda atualizada.')}});
 }
 function admItemForm(id){
-  const i=ADM.items.find(x=>x.id===id)||{emoji:'🎁',name:'',description:'',price:100,stock:null,active:true,sort_order:0};
+  const i=ADM.items.find(x=>x.id===id)||{emoji:'🎁',name:'',description:'',price:100,stock:null,active:true,sort_order:0,image_url:null};
   openForm({title:id?'Editar item':'Novo item da loja',submit:id?'Salvar':'Adicionar à loja',
-    fields:[{name:'emoji',label:'Emoji (para trocar por imagem, use a aba Ícones depois de salvar)',value:i.emoji,max:8},{name:'name',label:'Nome do item',value:i.name,max:80},{name:'description',label:'Descrição',type:'textarea',value:i.description,max:400},{name:'price',label:'Preço (AC)',type:'number',step:0.01,min:0,value:Number(i.price)},{name:'stock',label:'Estoque',type:'number',step:1,min:0,value:i.stock,hint:'Deixe vazio para estoque ilimitado.'},{name:'sort',label:'Ordem na vitrine',type:'number',step:1,value:i.sort_order},{name:'active',label:'À venda',type:'checkbox',value:i.active}],
-    onSubmit:async v=>{await admRpc('admin_upsert_shop_item',{p_id:id||null,p_name:v.name,p_description:v.description,p_price:v.price,p_stock:v.stock===null?null:Math.round(v.stock),p_active:v.active,p_sort:Math.round(v.sort||0),p_emoji:v.emoji},id?'Item atualizado.':'Item adicionado à loja.')}});
+    fields:[{name:'emoji',label:'Emoji (para trocar por imagem, use a aba Ícones depois de salvar)',value:i.emoji,max:8},{name:'name',label:'Nome do item',value:i.name,max:80},{name:'description',label:'Descrição',type:'textarea',value:i.description,max:400},{name:'price',label:'Preço (AC)',type:'number',step:0.01,min:0,value:Number(i.price)},{name:'stock',label:'Estoque',type:'number',step:1,min:0,value:i.stock,hint:'Deixe vazio para estoque ilimitado.'},{name:'img',label:`Imagem do item (PNG)${i.image_url?' — já tem uma; envie outra para trocar':''}`,type:'file'},{name:'sort',label:'Ordem na vitrine',type:'number',step:1,value:i.sort_order},{name:'active',label:'À venda',type:'checkbox',value:i.active}],
+    onSubmit:async v=>{const url=v.img?await uploadImage(v.img,{w:512,h:512,mode:'contain',admin:true}):(i.image_url||null);await admRpc('admin_upsert_shop_item',{p_image:url,p_id:id||null,p_name:v.name,p_description:v.description,p_price:v.price,p_stock:v.stock===null?null:Math.round(v.stock),p_active:v.active,p_sort:Math.round(v.sort||0),p_emoji:v.emoji},id?'Item atualizado.':'Item adicionado à loja.')}});
 }
 function admMissionForm(id){
   const m=ADM.missions.find(x=>x.id===id)||{title:'',description:'',category:'Geral',xp_reward:50,coin_reward:0,active:true,sort_order:0};
@@ -1669,6 +1925,38 @@ async function admSaveXp(){
   if(error){toast(errMsg(error),'err');return}
   S.xpConfig={base,exponent:exp,endgame_bonus:bonus};toast('Curva de níveis salva.');updateUserbar();
 }
+
+/* ---------- formulários 5.0 ---------- */
+function admFineForm(id){
+  const p=profile(id);
+  openForm({title:`Multar ${p.username}`,intro:`Saldo atual: ${fmt(p.balance)} AC. O valor sai do saldo e o motivo fica no extrato do jogador e no registro do ADM. Se ele tiver menos que o valor, é cobrado só o que ele tem.`,submit:'Aplicar multa',
+    fields:[{name:'amount',label:'Valor da multa (AC)',type:'number',min:1,step:'any',value:1000},{name:'reason',label:'Motivo (o jogador vê)',max:200,placeholder:'Ex.: abuso da marcação de Fake News'}],
+    onSubmit:async v=>{const a=Number(v.amount);if(!(a>0))throw new Error('Informe um valor maior que zero.');if((v.reason||'').trim().length<3)throw new Error('Escreva o motivo da multa.');
+      const r=await admRpc('admin_fine_player',{p_user:id,p_amount:a,p_reason:v.reason},null);toast(`Multa aplicada: ${fmt(r?.charged??a)} AC de ${p.username}${r?.partial?' (era o saldo todo)':''}.`)}});
+}
+function admCosForm(id){
+  const c=ADM.cosm.find(x=>x.id===id)||{name:'',description:'',price:100000,style:'gold',active:true,sort_order:0};
+  openForm({title:id?'Editar cosmético':'Novo cosmético',
+    fields:[{name:'name',label:'Nome',value:c.name,max:40,placeholder:'Nome Dourado'},{name:'description',label:'Descrição',value:c.description,max:200},{name:'price',label:'Preço (AC)',type:'number',min:0,step:1,value:Number(c.price)},{name:'style',label:'Estilo do nick',type:'select',value:/^#/.test(c.style)?'custom':c.style,options:[{value:'gold',label:'Dourado'},{value:'silver',label:'Prata'},{value:'rainbow',label:'Arco-íris'},{value:'fire',label:'Fogo'},{value:'ice',label:'Gelo'},{value:'neon',label:'Neon'},{value:'rose',label:'Rosa'},{value:'custom',label:'Cor personalizada (abaixo)'}]},{name:'color',label:'Cor personalizada (#RRGGBB)',value:/^#/.test(c.style)?c.style:'#ff8800',max:7},{name:'sort',label:'Ordem',type:'number',step:1,value:c.sort_order},{name:'active',label:'À venda',type:'checkbox',value:c.active}],
+    onSubmit:async v=>{await admRpc('admin_save_cosmetic',{p_id:id||null,p_name:v.name,p_description:v.description,p_price:v.price,p_style:v.style==='custom'?v.color:v.style,p_active:v.active,p_sort:Math.round(v.sort||0)},id?'Cosmético atualizado.':'Cosmético criado.')}});
+}
+function admAchForm(id){
+  const c=ADM.ach.find(x=>x.id===id)||{name:'',description:'',category:'padrao',auto_rule:'',auto_threshold:null,active:true,icon_url:null};
+  openForm({title:id?'Editar conquista':'Nova conquista',wide:true,
+    fields:[{name:'name',label:'Nome',value:c.name,max:60},{name:'description',label:'Descrição',type:'textarea',value:c.description,max:300},{name:'cat',label:'Categoria',type:'select',value:c.category,options:[{value:'padrao',label:'Padrão'},{value:'cassino',label:'Cassino'}]},
+      {name:'img',label:`Ícone PNG${c.icon_url?' (já tem; envie outro para trocar)':''}`,type:'file'},
+      {name:'rule',label:'Como se ganha',type:'select',value:c.auto_rule||'',options:Object.entries(ACH_RULES).map(([value,label])=>({value,label}))},{name:'thr',label:'Valor da meta automática (se for automática)',type:'number',min:1,step:1,value:c.auto_threshold===null?'':Number(c.auto_threshold)},{name:'active',label:'Ativa',type:'checkbox',value:c.active}],
+    onSubmit:async v=>{const url=v.img?await uploadImage(v.img,{w:256,h:256,mode:'contain',admin:true}):(c.icon_url||'');
+      await admRpc('admin_save_achievement',{p_id:id||null,p_name:v.name,p_description:v.description,p_category:v.cat,p_icon:url,p_rule:v.rule||null,p_threshold:v.rule?v.thr:null,p_active:v.active},id?'Conquista atualizada.':'Conquista criada.')}});
+}
+function admAchGive(uid){
+  const p=profile(uid);
+  if(!ADM.ach.length){toast('Cadastre uma conquista primeiro (aba Conquistas).','err');return}
+  openForm({title:`Dar conquista a ${p.username}`,intro:'Ela fica para sempre no mural do jogador.',submit:'Dar conquista',
+    fields:[{name:'a',label:'Conquista',type:'select',value:ADM.ach[0].id,options:ADM.ach.map(c=>({value:c.id,label:c.name}))}],
+    onSubmit:async v=>{await admRpc('admin_award_achievement',{p_user:uid,p_achievement:v.a},'Conquista entregue!',false);CM.prof={}}});
+}
+function admGrandForm(){cmAucNew('grand')}
 
 /* ============================================================
    Mercado livre (venda entre jogadores) e propostas de troca
@@ -1742,10 +2030,12 @@ async function mkCancel(id){
    TROCAS (propostas diretas entre dois jogadores)
    ============================================================ */
 const TR_STATUS={pending:'Aguardando',accepted:'Aceita',rejected:'Recusada',cancelled:'Cancelada',expired:'Expirada'};
-function trSide(aid,qty,ac){
+function trSide(aid,qty,ac,item){
   const p=[];if(Number(qty)>0)p.push(`<b>${qty} × ${esc(asset(aid).symbol||'moeda')}</b>`);if(Number(ac)>0)p.push(`<b class="gold">${fmt(ac)} AC</b>`);
+  if(item)p.push(`<b class="itemtag">${ico('gift')} ${esc(item)}</b>`);
   return p.join(' + ')||'—';
 }
+const inTrocas=()=>S.tab==='comunidade'&&CM.sub==='trocas';
 const trLeft=iso=>{const ms=Date.parse(iso)-Date.now();if(ms<=0)return'expirada';const h=Math.floor(ms/3600e3),m=Math.floor(ms%3600e3/60e3);return h?`expira em ${h} h`:`expira em ${m} min`};
 async function trLoad(force){
   if(!S.user||MK.trLoading)return;
@@ -1755,7 +2045,7 @@ async function trLoad(force){
     const{data,error}=await sb.rpc('trades_list');if(error)throw error;
     MK.trades=data.offers||[];MK.trAt=Date.now();
     const sig=JSON.stringify(MK.trades.map(o=>[o.id,o.status]));
-    if(sig!==MK.trSig){MK.trSig=sig;if(S.tab==='trocas'&&$('#modal').classList.contains('hidden'))renderView()}
+    if(sig!==MK.trSig){MK.trSig=sig;if(inTrocas()&&$('#modal').classList.contains('hidden'))renderView()}
   }catch(e){MK.trAt=Date.now();console.warn('trocas:',e.message||e)}
   finally{MK.trLoading=false}
 }
@@ -1763,44 +2053,48 @@ function trCard(o){
   const mine=o.from_user===S.user.id,pend=o.status==='pending'&&Date.parse(o.expires_at)>Date.now();
   const other=mine?o.to_name:o.from_name;
   return`<div class="panel offer ${o.status}"><div class="spread"><b>${mine?`Você → ${esc(other)}`:`${esc(other)} → você`}</b><span class="pill ${pend?'acc':''}">${pend?trLeft(o.expires_at):TR_STATUS[o.status]||o.status}</span></div>
-<div class="offer-body"><div><small>${mine?'Você dá':`${esc(other)} dá`}</small><div>${trSide(o.give_asset,o.give_qty,o.give_ac)}</div></div><span class="swap" aria-hidden="true">⇄</span><div><small>${mine?`Você recebe`:'Você dá'}</small><div>${trSide(o.want_asset,o.want_qty,o.want_ac)}</div></div></div>
+<div class="offer-body"><div><small>${mine?'Você dá':`${esc(other)} dá`}</small><div>${trSide(o.give_asset,o.give_qty,o.give_ac,o.give_item_name)}</div></div><span class="swap" aria-hidden="true">⇄</span><div><small>${mine?`Você recebe`:'Você dá'}</small><div>${trSide(o.want_asset,o.want_qty,o.want_ac,o.want_item_name)}</div></div></div>
 ${o.message?`<p class="muted small offer-msg">“${esc(o.message)}”</p>`:''}
 ${pend?`<div class="row" style="margin-top:10px">${mine?`<button class="btn-sm btn-bad" data-do="tr-cancel" data-id="${esc(o.id)}">Cancelar proposta</button>`:`<button class="btn-good" data-do="tr-accept" data-id="${esc(o.id)}">Aceitar</button><button class="btn-bad" data-do="tr-reject" data-id="${esc(o.id)}">Recusar</button>`}</div>`:''}</div>`;
 }
-V.trocas=function(){
+function trocasHtml(){
   trLoad();
   const all=MK.trades||[],inb=all.filter(o=>o.to_user===S.user.id&&o.status==='pending'&&Date.parse(o.expires_at)>Date.now()),
     out=all.filter(o=>o.from_user===S.user.id&&o.status==='pending'&&Date.parse(o.expires_at)>Date.now()),
     done=all.filter(o=>!inb.includes(o)&&!out.includes(o));
-  return`${head('trocas','Trocas','Proponha uma troca direta com outro membro: ações por ações, ações por AC ou até um presente. Só vale se a outra pessoa aceitar, e a proposta expira em 24 horas.')}<button class="btn-main" data-do="tr-new">Nova proposta</button></div>
+  return`<div class="spread" style="margin-bottom:8px"><p class="muted small" style="max-width:70ch">Proponha uma troca direta com outro membro: ações por ações, ações por AC, itens e NFTs do inventário, ou até um presente. Só vale se a outra pessoa aceitar, e a proposta expira em 24 horas. Trocas diretas não pagam taxa.</p><button class="btn-main" data-do="tr-new">Nova proposta</button></div>
 <h3 style="margin:18px 0 8px">Para você responder ${inb.length?`<span class="badge" style="position:static;margin-left:6px">${inb.length}</span>`:''}</h3>${inb.map(trCard).join('')||`<div class="panel empty">${MK.trades?'Nenhuma proposta esperando por você.':'Carregando…'}</div>`}
 <h3 style="margin:22px 0 8px">Enviadas por você</h3>${out.map(trCard).join('')||'<div class="panel empty">Você não tem propostas em aberto.</div>'}
 <h3 style="margin:22px 0 8px">Histórico recente</h3>${done.map(trCard).join('')||'<div class="panel empty">Sem histórico por enquanto. Ele some sozinho depois de alguns dias.</div>'}`;
-};
+}
 function trFreeShares(aid){return held(S.user.id,aid)-mkMyListed(aid)}
 function trNewModal(preTo){
   mkLoad();
   const others=S.profiles.filter(p=>p.id!==S.user.id).sort((a,b)=>String(a.username).localeCompare(String(b.username)));
   if(!others.length){toast('Ainda não há outros membros para trocar.','err');return}
+  const myItems=(S.inventory||[]).filter(i=>!i.locked).map(i=>`<option value="${esc(i.id)}">${esc(i.item_name)}${i.quantity>1?` (×${i.quantity})`:''}${i.kind==='nft'?' · NFT':''}</option>`).join('');
   const mineOpts=S.holdings.filter(h=>h.user_id===S.user.id&&trFreeShares(h.asset_id)>0&&asset(h.asset_id).id).map(h=>`<option value="${esc(h.asset_id)}">${esc(asset(h.asset_id).symbol)} (livre: ${trFreeShares(h.asset_id)})</option>`).join('');
   openModal(`<h3>Nova proposta de troca</h3>
 <form id="trform" class="formgrid"><label>Para quem<select id="trTo">${others.map(p=>`<option value="${esc(p.id)}" ${p.id===preTo?'selected':''}>${esc(p.username)}</option>`).join('')}</select></label>
-<fieldset><legend>Você dá</legend><div class="formgrid cols3"><label>Moeda<select id="trGiveA"><option value="">— nenhuma —</option>${mineOpts}</select></label><label>Quantidade<input type="number" id="trGiveQ" min="0" step="1" value="0" style="width:100%"></label><label>AC<input type="number" id="trGiveAc" min="0" step="0.01" value="0" style="width:100%"></label></div></fieldset>
-<fieldset><legend>Você quer receber</legend><div class="formgrid cols3"><label>Moeda<select id="trWantA"></select></label><label>Quantidade<input type="number" id="trWantQ" min="0" step="1" value="0" style="width:100%"></label><label>AC<input type="number" id="trWantAc" min="0" step="0.01" value="0" style="width:100%"></label></div></fieldset>
+<fieldset><legend>Você dá</legend><div class="formgrid cols3"><label>Moeda<select id="trGiveA"><option value="">— nenhuma —</option>${mineOpts}</select></label><label>Quantidade<input type="number" id="trGiveQ" min="0" step="1" value="0" style="width:100%"></label><label>AC<input type="number" id="trGiveAc" min="0" step="0.01" value="0" style="width:100%"></label></div><label>Item / NFT do seu inventário<select id="trGiveI"><option value="">— nenhum —</option>${myItems}</select></label></fieldset>
+<fieldset><legend>Você quer receber</legend><div class="formgrid cols3"><label>Moeda<select id="trWantA"></select></label><label>Quantidade<input type="number" id="trWantQ" min="0" step="1" value="0" style="width:100%"></label><label>AC<input type="number" id="trWantAc" min="0" step="0.01" value="0" style="width:100%"></label></div><label>Item / NFT dele(a)<select id="trWantI"><option value="">— nenhum —</option></select></label></fieldset>
 <label>Recado (opcional)<input id="trMsg" maxlength="200" placeholder="Ex.: troco por uma ação sua, fechado?"></label>
 <div class="row" style="justify-content:flex-end"><button type="button" id="trCancel">Cancelar</button><button type="submit" class="btn-main">Enviar proposta</button></div></form>`,true);
   const fillWant=()=>{const to=$('#trTo').value,hs=S.holdings.filter(h=>h.user_id===to&&Number(h.quantity)>0&&asset(h.asset_id).id);
     $('#trWantA').innerHTML='<option value="">— nenhuma —</option>'+hs.map(h=>`<option value="${esc(h.asset_id)}">${esc(asset(h.asset_id).symbol)} (ele tem ${h.quantity})</option>`).join('')};
-  fillWant();$('#trTo').onchange=fillWant;$('#trCancel').onclick=closeModal;
+  const fillItems=async()=>{const to=$('#trTo').value;const{data}=await sb.rpc('member_items',{p_user:to});if($('#trTo')?.value!==to)return;
+    $('#trWantI').innerHTML='<option value="">— nenhum —</option>'+(data||[]).map(i=>`<option value="${esc(i.id)}">${esc(i.name)}${i.quantity>1?` (×${i.quantity})`:''}${i.kind==='nft'?' · NFT':''}</option>`).join('')};
+  fillWant();fillItems();$('#trTo').onchange=()=>{fillWant();fillItems()};$('#trCancel').onclick=closeModal;
   $('#trform').onsubmit=async ev=>{ev.preventDefault();
     const gq=Math.round(Number($('#trGiveQ').value)||0),wq=Math.round(Number($('#trWantQ').value)||0),ga=$('#trGiveA').value||null,wa=$('#trWantA').value||null;
     const gac=Number($('#trGiveAc').value)||0,wac=Number($('#trWantAc').value)||0;
     if(gq>0&&!ga){toast('Escolha a moeda que você vai dar.','err');return}
     if(wq>0&&!wa){toast('Escolha a moeda que você quer receber.','err');return}
-    if(!(gq>0||gac>0||wq>0||wac>0)){toast('Preencha o que cada lado dá ou recebe.','err');return}
+    const gi=$('#trGiveI').value||null,wi=$('#trWantI').value||null;
+    if(!(gq>0||gac>0||wq>0||wac>0||gi||wi)){toast('Preencha o que cada lado dá ou recebe.','err');return}
     const btn=ev.submitter||$('#trform button[type=submit]');btn.disabled=true;
-    try{const{error}=await sb.rpc('propose_trade',{p_to:$('#trTo').value,p_give_asset:gq>0?ga:null,p_give_qty:gq,p_give_ac:gac,p_want_asset:wq>0?wa:null,p_want_qty:wq,p_want_ac:wac,p_message:$('#trMsg').value});
-      if(error)throw error;closeModal();SFX.play('coin');toast('Proposta enviada! Ela vale por 24 horas.');await trLoad(true);if(S.tab==='trocas')renderView()}
+    try{const{error}=await sb.rpc('propose_trade',{p_to:$('#trTo').value,p_give_asset:gq>0?ga:null,p_give_qty:gq,p_give_ac:gac,p_want_asset:wq>0?wa:null,p_want_qty:wq,p_want_ac:wac,p_message:$('#trMsg').value,p_give_item:gi,p_want_item:wi});
+      if(error)throw error;closeModal();SFX.play('coin');toast('Proposta enviada! Ela vale por 24 horas.');await trLoad(true);if(inTrocas())renderView();refreshLight(true)}
     catch(e){toast(errMsg(e),'err');SFX.play('error')}finally{btn.disabled=false}};
 }
 async function trRespond(id,accept){
@@ -1813,10 +2107,524 @@ async function trRespond(id,accept){
 async function trCancel(id){
   const{error}=await sb.rpc('cancel_trade',{p_id:id});
   if(error){toast(errMsg(error),'err');return}
-  toast('Proposta cancelada.');await trLoad(true);if(S.tab==='trocas')renderView();
+  toast('Proposta cancelada.');await trLoad(true);if(inTrocas())renderView();
 }
-AFTER.trocas=function(){trLoad(true)};
 AFTER.bolsa=function(){mkLoad()};
+
+/* ============================================================
+   COMUNIDADE: chat próprio, fórum/anúncios (Fake News), leilões ao vivo, trocas, perfis e ostentação
+   ============================================================ */
+const CM={sub:'chat',
+  chat:{msgs:[],ids:new Set(),sub:null,live:false,lastId:0,loaded:false,fb:0,unread:0},
+  forum:null,forumAt:0,forumBusy:false,forumSig:'',
+  aucTab:'jogadores',aucs:null,aucAt:0,aucBusy:false,aucSig:'',
+  roomId:null,room:null,roomMsgs:[],roomIds:new Set(),roomLast:0,roomT:0,roomBusy:false,
+  prof:{},cosm:null,myCosm:null,cosmBusy:false,cosmAt:0,ach:null};
+const CM_SUBS=[['chat','Chat'],['forum','Fórum e notícias'],['leiloes','Leilões'],['trocas','Trocas'],['membros','Perfis'],['ostentacao','Ostentação'],['cassino','Cassino']];
+const inCasino=()=>S.tab==='comunidade'&&CM.sub==='cassino';
+const cmBadge=()=>(S.tradesPending||0)+(CM.chat.unread||0)+(S.unread||0);
+
+V.comunidade=function(){
+  const pend=S.tradesPending||0;
+  const tabs=CM_SUBS.map(([k,n])=>`<button data-do="cm-sub" data-sub="${k}" class="${CM.sub===k?'active':''}">${ico('com.'+k)} ${n}${k==='trocas'&&pend?` <span class="pill acc">${pend}</span>`:''}${k==='cassino'&&S.unread&&CM.sub!=='cassino'?` <span class="pill acc">${S.unread>9?'9+':S.unread}</span>`:''}${k==='chat'&&CM.chat.unread&&CM.sub!=='chat'?` <span class="pill acc">${CM.chat.unread>9?'9+':CM.chat.unread}</span>`:''}</button>`).join('');
+  let body='';
+  switch(CM.sub){
+    case'forum':body=cmForumHtml();break;
+    case'leiloes':body=cmAuctionsHtml();break;
+    case'trocas':body=trocasHtml();break;
+    case'membros':body=cmMembersHtml();break;
+    case'ostentacao':body=cmShopHtml();break;
+    case'cassino':body=V.cassino(true);break;
+    default:body=cmChatHtml();
+  }
+  return`${head('comunidade','Comunidade','Converse, anuncie, dê lances em leilões, troque com os membros e mostre sua conquista.')}</div><div class="subtabs">${tabs}</div>${body}`;
+};
+AFTER.comunidade=function(){
+  if(CM.sub!=='leiloes')cmRoomStop();
+  switch(CM.sub){
+    case'chat':CM.chat.unread=0;cmChatRender();renderRail();break;
+    case'forum':cmForumLoad();break;
+    case'leiloes':cmAucAfter();break;
+    case'trocas':trLoad(true);break;
+    case'ostentacao':cmShopLoad();break;
+    case'cassino':chatRender();break;
+  }
+};
+function cmGo(sub){CM.sub=sub;if(sub==='cassino')S.unread=0;if(sub==='chat')CM.chat.unread=0}
+
+/* ---------- chat da comunidade (Realtime) ---------- */
+function cmChatHtml(){return`<div class="panel chatbox cm-chat"><div class="chat-head"><h3>${ico('com.chat')} Chat da comunidade</h3><small><span class="dot" id="cmdot"></span><span id="cmstate">conectando</span></small></div><div id="cmlist" class="chatlist"></div><form class="chat-form" data-form="cmchat" autocomplete="off"><input id="cminput" maxlength="300" placeholder="Fale com a comunidade…" aria-label="Mensagem"><button class="btn-main">Enviar</button></form></div>`}
+function cmMsgHtml(m,room){
+  if(m.kind==='system')return`<div class="msg sys" data-mid="${m.id}"><div class="txt">${esc(m.body)}</div></div>`;
+  const p=profile(m.user_id),av=avOf(p)||m.avatar_url,mine=m.user_id===S.user.id,st=p.id?p.nick_style:m.nick_style;
+  return`<div class="msg ${m.kind==='bid'?'bid':''} ${mine?'mine':''}" data-mid="${m.id}">${av?`<img class="avatar" src="${esc(av)}" alt="" loading="lazy">`:'<span class="avatar"></span>'}<div style="min-width:0;flex:1"><div class="who"><button class="linkbtn" data-do="profile" data-id="${esc(m.user_id)}">${nick(p.username||m.username,st)}</button></div><div class="txt">${m.kind==='bid'?'<span class="bidtag">LANCE</span> ':''}${esc(m.body)}</div></div>${isAdmin()&&!room?`<button class="del" data-do="cm-del" data-id="${m.id}" title="Apagar mensagem" aria-label="Apagar mensagem">✕</button>`:''}</div>`;
+}
+function cmChatDot(){const d=$('#cmdot'),s=$('#cmstate');if(d)d.classList.toggle('on',CM.chat.live);if(s)s.textContent=CM.chat.live?'ao vivo':'atualizando a cada poucos segundos'}
+function cmChatRender(){
+  const l=$('#cmlist');if(!l)return;
+  l.innerHTML=CM.chat.msgs.map(m=>cmMsgHtml(m)).join('')||'<div class="empty small">Ninguém falou ainda. Mande a primeira mensagem!</div>';
+  l.scrollTop=l.scrollHeight;cmChatDot();
+}
+function cmChatPush(m){
+  if(!m||m.auction_id||CM.chat.ids.has(m.id))return;CM.chat.ids.add(m.id);CM.chat.msgs.push(m);CM.chat.lastId=Math.max(CM.chat.lastId,m.id);
+  if(CM.chat.msgs.length>120){const o=CM.chat.msgs.shift();CM.chat.ids.delete(o.id)}
+  const l=$('#cmlist');
+  if(l&&S.tab==='comunidade'&&CM.sub==='chat'){const near=l.scrollHeight-l.scrollTop-l.clientHeight<80;const e=l.querySelector('.empty');if(e)e.remove();l.insertAdjacentHTML('beforeend',cmMsgHtml(m));if(near||m.user_id===S.user.id)l.scrollTop=l.scrollHeight;if(m.user_id!==S.user.id)SFX.play('chat')}
+  else if(m.user_id!==S.user.id&&CM.chat.loaded){CM.chat.unread++;renderRail()}
+}
+function cmChatRemove(id){CM.chat.msgs=CM.chat.msgs.filter(m=>m.id!==id);const e=document.querySelector(`#cmlist [data-mid="${id}"]`);if(e)e.remove()}
+async function cmChatFetch(){
+  const q=sb.from('community_messages').select('id,user_id,username,avatar_url,nick_style,body,kind,auction_id,created_at').is('auction_id',null);
+  const{data,error}=await(CM.chat.lastId?q.gt('id',CM.chat.lastId).order('id',{ascending:true}).limit(100):q.order('id',{ascending:false}).limit(60));
+  if(error){console.warn('chat comunidade:',error.message);return}
+  const rows=CM.chat.lastId?data:(data||[]).reverse();
+  const first=!CM.chat.loaded;CM.chat.loaded=true;
+  rows.forEach(m=>{if(first){if(!CM.chat.ids.has(m.id)){CM.chat.ids.add(m.id);CM.chat.msgs.push(m);CM.chat.lastId=Math.max(CM.chat.lastId,m.id)}}else cmChatPush(m)});
+  if(first)cmChatRender();
+}
+function cmChatStart(){
+  if(CM.chat.sub)return;
+  cmChatFetch();
+  try{
+    CM.chat.sub=sb.channel('autsim-community')
+      .on('postgres_changes',{event:'INSERT',schema:'public',table:'community_messages'},p=>cmChatPush(p.new))
+      .on('postgres_changes',{event:'DELETE',schema:'public',table:'community_messages'},p=>cmChatRemove(p.old&&p.old.id))
+      .subscribe(s=>{CM.chat.live=(s==='SUBSCRIBED');cmChatDot()});
+  }catch(e){console.warn('realtime:',e)}
+  CM.chat.fb=setInterval(()=>{if(!CM.chat.live&&S.user)cmChatFetch()},5000);
+}
+function cmChatStop(){if(CM.chat.sub){try{sb.removeChannel(CM.chat.sub)}catch(e){}}CM.chat.sub=null;CM.chat.live=false;clearInterval(CM.chat.fb);CM.chat.msgs=[];CM.chat.ids=new Set();CM.chat.lastId=0;CM.chat.loaded=false;CM.chat.unread=0}
+async function cmChatSend(){
+  const inp=$('#cminput'),txt=(inp?.value||'').trim();if(!txt)return;inp.value='';
+  const{error}=await sb.rpc('send_community_chat',{p_body:txt});
+  if(error){inp.value=txt;toast(errMsg(error),'err',3000)}else if(!CM.chat.live)cmChatFetch();
+}
+
+/* ============================================================
+   FÓRUM / NOTÍCIAS / ANÚNCIOS
+   ============================================================ */
+const adPrice=d=>Math.min(Number(S.settings.ad_price_cap??10000),Number(S.settings.ad_price_base??5000)+Number(S.settings.ad_price_extra??1000)*(Math.max(1,d)-1));
+async function cmForumLoad(force){
+  if(!S.user||CM.forumBusy)return;
+  if(!force&&CM.forum&&Date.now()-CM.forumAt<20000)return;
+  CM.forumBusy=true;
+  try{
+    const d=await stateRpc('forum_list');CM.forum=d;CM.forumAt=Date.now();
+    const sig=JSON.stringify((d.posts||[]).map(p=>[p.id,p.likes,p.dislikes,p.status,p.my_vote]));
+    if(sig!==CM.forumSig){CM.forumSig=sig;if(S.tab==='comunidade'&&CM.sub==='forum'&&$('#modal').classList.contains('hidden'))keepInputs(renderView)}
+  }catch(e){CM.forumAt=Date.now();console.warn('fórum:',e.message||e)}
+  finally{CM.forumBusy=false}
+}
+const cmLeft=iso=>{const ms=Date.parse(iso)-srvNow();if(ms<=0)return'encerrado';const h=Math.floor(ms/3600e3),m=Math.floor(ms%3600e3/60e3);return h>=24?`${Math.floor(h/24)} d ${h%24} h`:h?`${h} h ${m} min`:`${m} min`};
+function cmPostCard(f){
+  const fake=f.status==='fake',exp=f.status==='expired',mine=f.author_id===S.user.id,ad=f.kind==='ad';
+  const canVote=ad&&!fake&&!exp&&!mine;
+  const vote=(v,ic,n)=>canVote?`<button class="vote ${f.my_vote===v?(v>0?'on up':'on down'):''}" data-do="cm-vote" data-id="${esc(f.id)}" data-v="${f.my_vote===v?0:v}" aria-label="${v>0?'Curtir':'Não curtir'}">${ic} ${n}</button>`:`<span class="vote ro">${ic} ${n}</span>`;
+  const tag=fake?'<span class="fakeseal">FAKE NEWS</span>':ad?'<span class="pill acc">Anúncio</span>':'<span class="pill gold">Notícia principal</span>';
+  return`<article class="panel post ${fake?'is-fake':''} ${exp?'is-exp':''}">
+${f.image_url?`<div class="pimg"><img src="${esc(f.image_url)}" alt="" loading="lazy"></div>`:''}
+<div class="pbody"><div class="spread">${tag}<small>${fake?`some do fórum em ${cmLeft(f.delete_at)}`:exp?'encerrado':f.expires_at?`no ar por mais ${cmLeft(f.expires_at)}`:'sem prazo'}</small></div>
+<h3 style="margin-top:8px">${esc(f.title)}</h3>${f.body?`<p class="muted" style="margin-top:6px;overflow-wrap:anywhere">${esc(f.body)}</p>`:''}
+${f.ticker_text&&!fake?`<p class="small" style="margin-top:6px">Faixa do topo: “${esc(f.ticker_text)}”</p>`:''}
+<div class="spread" style="margin-top:12px"><span class="small">por <button class="linkbtn" data-do="profile" data-id="${esc(f.author_id)}">${nick(f.author_name,f.nick_style)}</button> · ${fmtDate(f.created_at)}</span>
+<span class="row" style="gap:8px">${vote(1,'👍',f.likes)}${vote(-1,'👎',f.dislikes)}${isAdmin()?`<button class="btn-sm btn-bad" data-do="cm-post-del" data-id="${esc(f.id)}">Apagar</button>`:''}</span></div>
+${ad&&!fake&&!exp&&!mine?`<small class="dim">Se parecer mentira ou enganação, marque 👎. Com 4 ou mais 👎 (e pelo menos o dobro dos 👍), vira Fake News.</small>`:''}
+${fake&&mine?'<small class="down">Seu anúncio foi marcado como Fake News: metade do valor voltou para você.</small>':''}</div></article>`;
+}
+function cmForumHtml(){
+  cmForumLoad();
+  const d=CM.forum,pr=d?.prices||{base:5000,extra:1000,cap:10000};
+  const posts=d?(d.posts||[]):null;
+  return`<div class="panel glow"><div class="spread"><div><h3>Publique uma notícia ou anúncio</h3><p class="muted small" style="margin-top:4px;max-width:70ch">Seu anúncio entra no carrossel da página inicial e no texto rolante do topo. Custa ${fmt(pr.base,0)} AC por 24 h, mais ${fmt(pr.extra,0)} AC por dia extra (teto de ${fmt(pr.cap,0)} AC). A imagem é PNG 1080×720. Os membros votam: se virar Fake News, o anúncio sai do ar e metade do valor volta para você.</p></div>
+<div class="row"><button class="btn-main" data-do="cm-ad-new">Anunciar / publicar notícia</button>${isAdmin()?'<button class="btn-gold" data-do="cm-main-new">Notícia principal (ADM)</button>':''}</div></div></div>
+<div class="postlist">${posts?posts.map(cmPostCard).join('')||'<div class="panel empty">Nenhuma publicação ainda. Seja o primeiro a anunciar!</div>':'<div class="panel empty">Carregando…</div>'}</div>`;
+}
+function cmAdModal(){
+  const maxd=Number(S.settings.ad_max_days||7);
+  openForm({title:'Novo anúncio / notícia',intro:'Ele aparece no fórum, no carrossel da página inicial (slides 3 a 5) e no texto rolante do topo.',submit:'Pagar e publicar',wide:true,
+    fields:[{name:'title',label:'Título',max:80},{name:'body',label:'Texto da notícia (opcional)',type:'textarea',max:600},
+      {name:'ticker',label:'Texto da faixa do topo (até 40 caracteres)',max:40,hint:'É o que rola no topo do site para todo mundo.'},
+      {name:'days',label:'Duração',type:'select',value:1,options:Array.from({length:maxd},(_,i)=>({value:i+1,label:`${i+1} dia${i?'s':''} — ${fmt(adPrice(i+1),0)} AC`}))},
+      {name:'img',label:'Imagem (será ajustada para 1080×720)',type:'file'}],
+    onSubmit:async v=>{
+      if(!v.img)throw new Error('Escolha a imagem do anúncio.');
+      const url=await uploadImage(v.img,{w:1080,h:720,mode:'cover'});
+      const{data,error}=await sb.rpc('buy_ad',{p_title:v.title,p_body:v.body,p_image:url,p_ticker:v.ticker,p_days:Number(v.days)});
+      if(error)throw error;SFX.play('win');toast(`Anúncio publicado por ${fmt(data.cost,0)} AC!`,'gain');setBalance(data.balance);FEED.at=0;await cmForumLoad(true);feedLoad(true);if(S.tab==='comunidade'&&CM.sub==='forum')renderView()}});
+}
+function cmMainModal(){
+  openForm({title:'Notícia principal da página inicial',intro:'É o slide 1 do carrossel. Substitui a notícia principal anterior.',submit:'Publicar',wide:true,
+    fields:[{name:'title',label:'Título',max:80},{name:'body',label:'Texto',type:'textarea',max:600},{name:'ticker',label:'Texto da faixa do topo (opcional, até 40)',max:40},
+      {name:'hours',label:'Fica no ar por (horas, vazio = até trocar)',type:'number',min:1,step:1,value:''},{name:'img',label:'Imagem (1080×720)',type:'file'}],
+    onSubmit:async v=>{
+      const url=v.img?await uploadImage(v.img,{w:1080,h:720,mode:'cover',admin:true}):null;
+      const{error}=await sb.rpc('admin_set_main_news',{p_title:v.title,p_body:v.body,p_image:url,p_ticker:v.ticker||null,p_hours:v.hours===null?null:Math.round(v.hours)});
+      if(error)throw error;toast('Notícia principal publicada.');feedLoad(true);await cmForumLoad(true);if(S.tab==='comunidade'&&CM.sub==='forum')renderView()}});
+}
+
+/* ============================================================
+   LEILÕES
+   ============================================================ */
+async function cmAucLoad(force){
+  if(!S.user||CM.aucBusy)return;
+  if(!force&&CM.aucs&&Date.now()-CM.aucAt<12000)return;
+  CM.aucBusy=true;
+  try{
+    const d=await stateRpc('auctions_list');CM.aucs=d.auctions||[];CM.aucAt=Date.now();
+    const sig=JSON.stringify(CM.aucs.map(a=>[a.id,a.current_bid,a.status,a.bid_count]));
+    if(sig!==CM.aucSig){CM.aucSig=sig;if(S.tab==='comunidade'&&CM.sub==='leiloes'&&!CM.roomId&&$('#modal').classList.contains('hidden'))keepInputs(renderView)}
+  }catch(e){CM.aucAt=Date.now();console.warn('leilões:',e.message||e)}
+  finally{CM.aucBusy=false}
+}
+function cmAucAfter(){
+  if(CM.roomId){cmRoomStart();return}
+  cmAucLoad();
+}
+function aucCard(a){
+  const open=a.status==='open';
+  const stat=open?`<span class="pill acc"><b class="ac-cd" data-t="${esc(a.ends_at)}">${countdownTxt(Date.parse(a.ends_at)-srvNow())}</b></span>`
+    :a.status==='sold'?'<span class="pill up">vendido</span>':a.status==='cancelled'?'<span class="pill">cancelado</span>':'<span class="pill">sem lances</span>';
+  return`<button class="panel acard ${a.mine?'me-row':''}" data-do="cm-room" data-id="${esc(a.id)}">
+${a.image_url?`<div class="pimg"><img src="${esc(a.image_url)}" alt="" loading="lazy"></div>`:`<div class="pimg ph">${ico('com.leiloes')}</div>`}
+<div class="pbody"><div class="spread">${a.kind==='grand'?'<span class="pill gold">Grande Leilão</span>':'<span class="pill">Jogador</span>'}${stat}</div>
+<h3 style="margin-top:8px">${esc(a.title)}</h3>
+<div class="small">por ${nick(a.creator_name,a.creator_style)}</div>
+<div class="spread" style="margin-top:10px"><div><small>${a.bid_count?'Lance atual':'Lance inicial'}</small><div class="gold" style="font-weight:800;font-size:19px">${ico('coin')} ${fmt(a.bid_count?a.current_bid:a.start_price)}</div></div><div style="text-align:right"><small>${a.bid_count} lance${a.bid_count==1?'':'s'}</small>${a.high_name?`<div class="small">${a.leading?'<b class="up">você lidera</b>':nick(a.high_name,a.high_style)}</div>`:''}</div></div></div></button>`;
+}
+function cmAuctionsHtml(){
+  if(CM.roomId)return cmRoomHtml();
+  cmAucLoad();
+  const list=(CM.aucs||[]).filter(a=>CM.aucTab==='grande'?a.kind==='grand':a.kind==='player');
+  const open=list.filter(a=>a.status==='open'),done=list.filter(a=>a.status!=='open');
+  const sub=`<div class="subtabs sm"><button data-do="cm-auc-tab" data-t="jogadores" class="${CM.aucTab==='jogadores'?'active':''}">Leilões dos jogadores</button><button data-do="cm-auc-tab" data-t="grande" class="${CM.aucTab==='grande'?'active':''}">Grande Leilão</button></div>`;
+  const intro=CM.aucTab==='grande'
+    ?`<p class="muted small" style="max-width:70ch">O Grande Leilão vende prints e memes marcantes do chat “Grandes Momentos”, sempre abertos pelo ADM. Quem arremata recebe o item no inventário (vitrine do perfil).</p>${isAdmin()?'<button class="btn-gold" data-do="cm-auc-new" data-k="grand">Abrir Grande Leilão (ADM)</button>':''}`
+    :`<p class="muted small" style="max-width:70ch">Qualquer jogador pode leiloar um item do inventário, um NFT ou qualquer coisa que queira (texto + imagem PNG). Se alguém cobrir seu lance, o valor volta na hora para o seu saldo.</p><button class="btn-main" data-do="cm-auc-new" data-k="player">Abrir meu leilão</button>`;
+  return`${sub}<div class="spread" style="align-items:flex-start;margin:10px 0 14px"><div>${intro.split('</p>')[0]}</p></div>${intro.includes('</p>')?intro.split('</p>')[1]:''}</div>
+<h3 style="margin:8px 0 10px">Abertos agora</h3><div class="aucgrid">${open.map(aucCard).join('')||`<div class="panel empty">${CM.aucs?'Nenhum leilão aberto agora.':'Carregando…'}</div>`}</div>
+${done.length?`<h3 style="margin:22px 0 10px">Encerrados recentemente</h3><div class="aucgrid">${done.map(aucCard).join('')}</div>`:''}`;
+}
+const AUC_DURS=[[15,'15 minutos'],[60,'1 hora'],[180,'3 horas'],[360,'6 horas'],[720,'12 horas'],[1440,'24 horas'],[4320,'3 dias'],[10080,'7 dias']];
+function cmAucNew(kind){
+  const grand=kind==='grand';
+  const inv=(S.inventory||[]).filter(i=>!i.locked);
+  const fields=[];
+  if(!grand)fields.push({name:'inv',label:'Item do seu inventário (opcional)',type:'select',value:'',options:[{value:'',label:'— nenhum: leiloar algo que eu descrevo —'},...inv.map(i=>({value:i.id,label:`${i.item_name}${i.quantity>1?` (×${i.quantity})`:''}${i.kind==='nft'?' · NFT':''}`}))],hint:'Se escolher um item, ele fica travado até o leilão acabar e vai para quem arrematar.'});
+  fields.push({name:'title',label:grand?'Título do print/meme':'Título do leilão (vazio = nome do item)',max:80},{name:'desc',label:'Descrição / história',type:'textarea',max:500},
+    {name:'img',label:grand?'Imagem do print (obrigatória)':'Imagem PNG (opcional se escolheu um item com imagem)',type:'file'},
+    {name:'start',label:'Lance inicial (AC)',type:'number',min:1,step:1,value:grand?1000:100},
+    {name:'mins',label:'Duração',type:'select',value:grand?1440:60,options:AUC_DURS.map(([v,l])=>({value:v,label:l}))});
+  openForm({title:grand?'Abrir Grande Leilão':'Abrir meu leilão',submit:'Abrir leilão',wide:true,fields,
+    onSubmit:async v=>{
+      if(grand&&!v.img)throw new Error('O Grande Leilão precisa de uma imagem.');
+      const url=v.img?await uploadImage(v.img,{w:1080,h:720,mode:'contain',admin:grand}):null;
+      let id;
+      if(grand){const r=await sb.rpc('admin_create_grand_auction',{p_title:v.title,p_desc:v.desc,p_image:url,p_start:v.start,p_minutes:Number(v.mins)});if(r.error)throw r.error;id=r.data}
+      else{const r=await sb.rpc('create_player_auction',{p_title:v.title,p_desc:v.desc,p_image:url,p_start:v.start,p_minutes:Number(v.mins),p_inventory:v.inv||null});if(r.error)throw r.error;id=r.data}
+      SFX.play('win');toast('Leilão aberto!','gain');S.staticAt=0;await cmAucLoad(true);cmRoomOpen(id)}});
+}
+
+/* --- sala do leilão: lances em tempo real + chat ao vivo --- */
+function cmRoomOpen(id){CM.roomId=id;CM.room=null;CM.roomMsgs=[];CM.roomIds=new Set();CM.roomLast=0;CM.sub='leiloes';if(S.tab!=='comunidade')S.tab='comunidade';render()}
+function cmRoomStop(){clearTimeout(CM.roomT);CM.roomT=0;CM.roomPoll=false}
+function cmRoomClose(){cmRoomStop();CM.roomId=null;CM.room=null;CM.aucAt=0;renderView()}
+function cmRoomStart(){if(CM.roomPoll)return;CM.roomPoll=true;cmRoomPoll()}
+async function cmRoomPoll(){
+  if(!CM.roomPoll||!CM.roomId||S.tab!=='comunidade'||CM.sub!=='leiloes'){CM.roomPoll=false;return}
+  const id=CM.roomId;
+  try{
+    const d=await stateRpc2('auction_state',{p_id:id,p_after:CM.roomLast});
+    if(id!==CM.roomId)return;
+    const prev=CM.room;CM.room=d;
+    const fresh=[];(d.messages||[]).forEach(m=>{if(!CM.roomIds.has(m.id)){CM.roomIds.add(m.id);CM.roomMsgs.push(m);CM.roomLast=Math.max(CM.roomLast,m.id);fresh.push(m)}});
+    const first=!prev;
+    if(first){const box=$('#room');if(box)box.innerHTML=cmRoomInner();cmRoomMsgsPaint(true)}
+    else{cmRoomStatPaint();if(fresh.length)cmRoomMsgsAppend(fresh)}
+    if(prev&&prev.auction.status==='open'&&d.auction.status!=='open'){
+      if(d.auction.winner_id===S.user.id){toast(`Você arrematou "${d.auction.title}"! O item está no seu inventário.`,'gain',7000);SFX.play('win');FX.confetti()}
+      else if(d.auction.status==='sold')toast(`Leilão encerrado: arrematado por ${d.auction.high_name} por ${fmt(d.auction.current_bid)} AC.`);
+      refreshLight(true);S.staticAt=0;
+    }
+    if(prev&&prev.auction.leading&&!d.auction.leading&&d.auction.status==='open'){toast(`Seu lance foi coberto em "${d.auction.title}". O valor voltou para o seu saldo.`,'err',5000);SFX.play('error');refreshBalance()}
+  }catch(e){if(id===CM.roomId){console.warn('sala:',e.message||e);if(/não encontrado/i.test(e.message||'')){toast('Esse leilão não existe mais.','err');cmRoomClose();return}}}
+  if(CM.roomPoll&&id===CM.roomId)CM.roomT=setTimeout(cmRoomPoll,document.hidden?5000:isLite()?2500:1500);
+}
+function cmRoomHtml(){
+  return`<div id="room">${CM.room?cmRoomInner():'<div class="panel empty">Entrando no leilão…</div>'}</div>`;
+}
+function cmRoomInner(){
+  const a=CM.room.auction;
+  return`<div class="row" style="margin-bottom:10px"><button data-do="cm-room-back">← Voltar aos leilões</button></div>
+<div class="roomgrid"><div class="stack"><div class="panel">
+${a.image_url?`<div class="pimg big"><img src="${esc(a.image_url)}" alt=""></div>`:''}
+<div class="spread" style="margin-top:12px">${a.kind==='grand'?'<span class="pill gold">Grande Leilão</span>':'<span class="pill">Leilão de jogador</span>'}<span id="acState"></span></div>
+<h2 style="font-size:24px;margin-top:8px">${esc(a.title)}</h2><p class="small">por ${nickById(a.creator_id,a.creator_name)}</p>
+${a.description?`<p class="muted" style="margin-top:8px;overflow-wrap:anywhere">${esc(a.description)}</p>`:''}</div>
+<div class="panel" id="acStats"></div>
+<div class="panel" id="acBidBox"></div>
+<div class="panel"><h3>Últimos lances</h3><div id="acBids"></div></div></div>
+<div class="panel chatbox"><div class="chat-head"><h3>${ico('com.chat')} Chat do leilão</h3><small>lances aparecem em destaque</small></div><div id="aclist" class="chatlist"></div><form class="chat-form" data-form="acchat" autocomplete="off"><input id="acinput" maxlength="300" placeholder="Converse durante o leilão…" aria-label="Mensagem"><button class="btn-main">Enviar</button></form></div></div>`;
+}
+function cmRoomStatPaint(){
+  if(!CM.room)return;const a=CM.room.auction,open=a.status==='open';
+  const st=$('#acState');if(st)st.innerHTML=open?`<span class="pill acc">termina em <b class="ac-cd" data-t="${esc(a.ends_at)}">${countdownTxt(Date.parse(a.ends_at)-srvNow())}</b></span>`:a.status==='sold'?'<span class="pill up">vendido</span>':a.status==='cancelled'?'<span class="pill">cancelado</span>':'<span class="pill">encerrado sem lances</span>';
+  const s=$('#acStats');if(s)s.innerHTML=`<div class="grid"><div><div class="stat-label">${a.bid_count?'Lance atual':'Lance inicial'}</div><div class="stat gold">${ico('coin')} ${fmt(a.bid_count?a.current_bid:a.start_price)}</div></div><div><div class="stat-label">${open?'Quem lidera':'Vencedor'}</div><div class="stat" style="font-size:20px">${a.high_bidder?(a.leading?'<span class="up">você</span>':nickById(a.high_bidder,a.high_name)):'—'}</div></div><div><div class="stat-label">Lances</div><div class="stat">${a.bid_count}</div></div></div>`;
+  const b=$('#acBids');if(b)b.innerHTML=(CM.room.bids||[]).map(x=>`<div class="betline"><span>${nickById(x.user_id,x.username)}</span><b class="gold">${fmt(x.amount)} AC</b><small>${fmtDate(x.created_at)}</small></div>`).join('')||'<span class="muted small">Ainda não há lances.</span>';
+  const box=$('#acBidBox');
+  if(box){
+    if(!open)box.innerHTML=a.status==='sold'?`<p class="up">Arrematado por ${nickById(a.winner_id,a.high_name)} por <b>${fmt(a.current_bid)} AC</b>.</p>`:'<p class="muted">Este leilão terminou.</p>';
+    else if(a.mine)box.innerHTML=`<p class="muted">Este leilão é seu. ${a.bid_count?'Já há lances: ele só termina quando o tempo acabar.':'Enquanto não houver lances você pode cancelar.'}</p>${!a.bid_count||isAdmin()?`<button class="btn-bad" data-do="cm-auc-cancel" data-id="${esc(a.id)}" style="margin-top:8px">Cancelar leilão</button>`:''}`;
+    else{
+      const min=Number(a.min_next),keep=$('#acAmt');const cur=keep?keep.value:'';
+      box.innerHTML=`<h3>Dar um lance</h3><p class="small" style="margin:4px 0 10px">Lance mínimo agora: <b class="gold">${fmt(min)} AC</b>. O valor sai do seu saldo na hora e volta sozinho se alguém cobrir.</p>
+<div class="row"><input id="acAmt" type="number" min="${min}" step="1" value="${cur||Math.ceil(min)}" style="flex:1;min-width:120px" aria-label="Valor do lance"><button class="btn-main" data-do="cm-bid" data-id="${esc(a.id)}">Dar lance</button></div>
+<div class="chips" style="margin-top:8px"><button data-do="cm-bid-set" data-v="${Math.ceil(min)}">mínimo</button><button data-do="cm-bid-set" data-v="${Math.ceil(Math.max(min,Number(a.current_bid)*1.1))}">+10%</button><button data-do="cm-bid-set" data-v="${Math.ceil(Math.max(min,Number(a.current_bid)*1.25))}">+25%</button><button data-do="cm-bid-set" data-v="${Math.ceil(Math.max(min,Number(a.current_bid)*2))}">2x</button></div>
+${a.leading?'<p class="up small" style="margin-top:8px">Você está liderando.</p>':''}`;
+    }
+  }
+}
+function cmRoomMsgsPaint(){cmRoomStatPaint();const l=$('#aclist');if(!l)return;l.innerHTML=CM.roomMsgs.map(m=>cmMsgHtml(m,true)).join('')||'<div class="empty small">Sem mensagens ainda.</div>';l.scrollTop=l.scrollHeight}
+function cmRoomMsgsAppend(list){
+  const l=$('#aclist');if(!l)return;const near=l.scrollHeight-l.scrollTop-l.clientHeight<80;const e=l.querySelector('.empty');if(e)e.remove();
+  l.insertAdjacentHTML('beforeend',list.map(m=>cmMsgHtml(m,true)).join(''));if(near)l.scrollTop=l.scrollHeight;
+  if(list.some(m=>m.kind==='bid'&&m.user_id!==S.user.id))SFX.play('tick');
+}
+async function cmBid(id){
+  const v=Number($('#acAmt')?.value);if(!(v>0)){toast('Informe o valor do lance.','err');return}
+  const{data,error}=await sb.rpc('place_bid',{p_auction:id,p_amount:v});
+  if(error){toast(errMsg(error),'err');SFX.play('error');cmRoomPollNow();return}
+  SFX.play('coin');toast(`Lance de ${fmt(v)} AC feito!`);setBalance(data.balance);cmRoomPollNow();
+}
+function cmRoomPollNow(){clearTimeout(CM.roomT);if(CM.roomPoll)cmRoomPoll();else cmRoomStart()}
+async function cmRoomSend(){
+  const inp=$('#acinput'),txt=(inp?.value||'').trim();if(!txt||!CM.roomId)return;inp.value='';
+  const{error}=await sb.rpc('send_community_chat',{p_body:txt,p_auction:CM.roomId});
+  if(error){inp.value=txt;toast(errMsg(error),'err',3000)}else cmRoomPollNow();
+}
+/* contagem regressiva dos leilões (1 vez por segundo, sem redesenhar a tela) */
+function cmTick(){
+  $$('.ac-cd').forEach(el=>{const ms=Date.parse(el.dataset.t)-srvNow();el.textContent=ms>0?countdownTxt(ms):'encerrando…'});
+}
+
+/* ============================================================
+   PERFIS DOS MEMBROS
+   ============================================================ */
+function cmMembersHtml(){
+  const rk=rankedProfiles();
+  return`<div class="spread" style="margin-bottom:12px"><p class="muted small">Toque num membro para ver o perfil: moeda, vitrine de itens e conquistas.</p><input id="cmFind" type="search" placeholder="Buscar membro…" style="max-width:240px" aria-label="Buscar membro"></div>
+<div class="mgrid" id="mgrid">${rk.map((p,i)=>{const a=asset(p.id),av=avOf(p);return`<button class="panel mcard ${p.id===S.user.id?'me-row':''}" data-do="profile" data-id="${esc(p.id)}" data-n="${esc(String(p.username||'').toLowerCase())}">${av?`<img class="avatar lg" src="${esc(av)}" alt="" loading="lazy">`:'<span class="avatar lg"></span>'}<div style="min-width:0"><div class="mname">${nickOf(p)}</div><small>#${i+1} · Nv. ${levelOf(Number(p.xp||0))}${a.symbol?` · ${esc(a.symbol)} ${fmt(a.price)}`:''}</small><div class="small gold">${fmt(worth(p.id))} AC</div></div></button>`}).join('')}</div>`;
+}
+function cmFindFilter(q){q=String(q||'').toLowerCase().trim();$$('#mgrid .mcard').forEach(b=>b.classList.toggle('hidden',!!q&&!b.dataset.n.includes(q)))}
+async function cmProfLoad(id,force){
+  if(!force&&CM.prof[id]&&Date.now()-CM.prof[id].at<30000)return CM.prof[id].d;
+  const{data,error}=await sb.rpc('public_profile',{p_id:undefined,p_user:id});
+  if(error)throw error;CM.prof[id]={d:data,at:Date.now()};return data;
+}
+function profBody(d,own){
+  const xp=xpProgress(Number(d.xp||0)),itemsN=(d.items||[]).length;
+  const items=(d.items||[]).map(i=>`<div class="vit" title="${esc(i.name)}${i.description?' — '+esc(i.description):''}">${i.image_url?`<img src="${esc(i.image_url)}" alt="" loading="lazy">`:`<span class="vemo">${ico('gift')}</span>`}<span class="vn">${esc(i.name)}${i.quantity>1?` ×${i.quantity}`:''}</span>${i.kind==='nft'?'<span class="pill gold nft">NFT</span>':''}</div>`).join('');
+  const ach=(d.achievements||[]).map(c=>`<div class="ach ${c.category==='cassino'?'cas':''}" title="${esc(c.name)} — ${esc(c.description||'')}">${c.icon_url?`<img src="${esc(c.icon_url)}" alt="" loading="lazy">`:'<span class="aemo">🏆</span>'}<span>${esc(c.name)}</span></div>`).join('');
+  return`${d.banner_url?`<div class="pbanner"><img src="${esc(d.banner_url)}" alt=""></div>`:'<div class="pbanner ph"></div>'}
+<div class="phead">${d.avatar_url?`<img class="avatar xl" src="${esc(d.avatar_url)}" alt="">`:'<span class="avatar xl"></span>'}<div style="min-width:0"><h2 style="font-size:26px">${nick(d.username,d.nick_style)}</h2><div class="row" style="gap:8px;margin-top:4px"><span class="pill">Nível ${xp.l}</span><span class="pill gold">${fmt(d.networth,0)} AC de patrimônio</span><span class="pill">${Number(d.trades||0)} negociações</span></div></div></div>
+${d.bio?`<div class="pblock"><h3>Sobre</h3><p style="overflow-wrap:anywhere">${esc(d.bio)}</p></div>`:(own?'<div class="pblock muted small">Você ainda não escreveu sua biografia.</div>':'')}
+${d.goals?`<div class="pblock"><h3>Metas pessoais</h3><p style="overflow-wrap:anywhere">${esc(d.goals)}</p></div>`:''}
+${d.coin?`<div class="pblock"><h3>Moeda</h3><div class="spread">${coinTag(d.coin)}<span><b>${fmt(d.coin.price)}</b> AC <button class="btn-sm" data-do="coin" data-id="${esc(d.coin.id)}">Ver gráfico</button></span></div></div>`:''}
+<div class="pblock"><h3>Vitrine de itens e NFTs ${itemsN?`<small>(${itemsN})</small>`:''}</h3><div class="vitrine">${items||'<span class="muted small">Nenhum item ainda. Compre na Loja ou arremate em um leilão.</span>'}</div></div>
+<div class="pblock"><h3>Mural de conquistas ${(d.achievements||[]).length?`<small>(${d.achievements.length})</small>`:''}</h3><div class="wall">${ach||'<span class="muted small">Nenhuma conquista ainda. Elas são permanentes e ninguém pode transferir.</span>'}</div></div>`;
+}
+async function profileModal(id){
+  try{
+    const d=await cmProfLoad(id,true),own=id===S.user.id;
+    openModal(`<div class="profmodal">${profBody(d,own)}<div class="row" style="justify-content:flex-end;margin-top:14px">${own?'<button class="btn-main" data-do="prof-edit">Editar meu perfil</button>':`<button class="btn-main" data-do="tr-new-to" data-id="${esc(id)}">Propor troca</button>`}<button id="pfClose">Fechar</button></div></div>`,true);
+    $('#pfClose').onclick=closeModal;
+  }catch(e){toast(errMsg(e),'err')}
+}
+function profEditModal(){
+  const m=me();
+  openForm({title:'Editar meu perfil',submit:'Salvar',wide:true,
+    fields:[{name:'bio',label:'Biografia',type:'textarea',value:m.bio||'',max:400},{name:'goals',label:'Metas pessoais',type:'textarea',value:m.goals||'',max:400},
+      {name:'av',label:'Avatar personalizado (substitui a foto do Discord)',type:'file'},{name:'clear',label:'Voltar a usar a foto do Discord',type:'checkbox',value:false}],
+    onSubmit:async v=>{
+      const url=v.av?await uploadImage(v.av,{w:256,h:256,mode:'cover'}):null;
+      const{error}=await sb.rpc('update_my_profile',{p_bio:v.bio,p_goals:v.goals,p_avatar:url,p_clear_avatar:!!v.clear&&!url});if(error)throw error;
+      CM.prof={};toast('Perfil atualizado!');await refreshLight(true);if(S.tab==='perfil')renderView()}});
+}
+
+/* ============================================================
+   OSTENTAÇÃO (cosméticos: nicks coloridos)
+   ============================================================ */
+async function cmShopLoad(force){
+  if(!S.user||CM.cosmBusy)return;
+  if(!force&&CM.cosm&&Date.now()-CM.cosmAt<30000)return;
+  CM.cosmBusy=true;
+  try{
+    const[a,b]=await Promise.all([sb.from('cosmetics').select('*').eq('active',true).order('sort_order').order('price'),sb.from('user_cosmetics').select('cosmetic_id').eq('user_id',S.user.id)]);
+    if(a.error)throw a.error;CM.cosm=a.data||[];CM.myCosm=new Set((b.data||[]).map(x=>x.cosmetic_id));CM.cosmAt=Date.now();
+    if(S.tab==='comunidade'&&CM.sub==='ostentacao'&&$('#modal').classList.contains('hidden'))renderView();
+  }catch(e){CM.cosmAt=Date.now();console.warn('cosméticos:',e.message||e)}
+  finally{CM.cosmBusy=false}
+}
+function cmShopHtml(){
+  cmShopLoad();
+  const list=CM.cosm;
+  return`<div class="panel glow"><div class="spread"><div><h3>Loja de ostentação</h3><p class="muted small" style="margin-top:4px;max-width:66ch">Compre um nick colorido e ele aparece no seu perfil, nos chats, nos leilões e no ranking. Uma compra vale para sempre; você pode trocar de estilo quando quiser.</p></div>${me().nick_style?'<button data-do="cos-equip" data-id="">Tirar destaque do meu nick</button>':''}</div></div>
+<div class="items" style="margin-top:14px">${list?list.map(c=>{const has=CM.myCosm&&CM.myCosm.has(c.id),on=me().nick_style===c.style;
+  return`<div class="panel item cosm"><div class="cos-prev">${nick(me().username,c.style)}</div><h3>${esc(c.name)}</h3><p class="muted small">${esc(c.description||'')}</p><div class="foot"><b class="gold">${ico('coin')} ${fmt(c.price,0)}</b>${has?(on?'<span class="pill up">equipado ✔</span>':`<button class="btn-main" data-do="cos-equip" data-id="${esc(c.id)}">Equipar</button>`):`<button class="btn-main" data-do="cos-buy" data-id="${esc(c.id)}">Comprar</button>`}</div></div>`}).join('')||'<div class="panel empty">Nada à venda por enquanto.</div>':'<div class="panel empty">Carregando…</div>'}</div>`;
+}
+async function cosBuy(id){
+  const c=(CM.cosm||[]).find(x=>x.id===id);if(!c)return;
+  if(!await confirmBox(`Comprar “${c.name}” por ${fmt(c.price,0)} AC?`,'Comprar'))return;
+  const{data,error}=await sb.rpc('buy_cosmetic',{p_id:id});if(error){toast(errMsg(error),'err');SFX.play('error');return}
+  SFX.play('win');FX.confetti();toast(`${c.name} é seu! Já está equipado.`,'gain');setBalance(data.balance);CM.myCosm.add(id);if(S.profile)S.profile.nick_style=data.style;await refreshLight(true);cmShopLoad(true);
+}
+async function cosEquip(id){
+  const{error}=await sb.rpc('equip_cosmetic',{p_id:id||null});if(error){toast(errMsg(error),'err');return}
+  await refreshLight(true);if(S.tab==='comunidade')renderView();toast(id?'Estilo equipado.':'Destaque removido.');
+}
+
+/* ============================================================
+   Início 5.0: carrossel 1080×720, apostas badaladas, anúncios no topo, janela de compra/venda com cotação
+   ============================================================ */
+const FEED={slides:[],ticker:[],preds:[],daily:null,at:0,busy:false,idx:0,t:0,sig:''};
+
+async function feedLoad(force){
+  if(!S.user||FEED.busy)return;
+  if(!force&&Date.now()-FEED.at<30000)return;
+  FEED.busy=true;
+  try{
+    const[f,d]=await Promise.all([sb.rpc('home_feed'),sb.rpc('daily_preview')]);
+    if(f.error)throw f.error;
+    if(f.data?.now)syncClock(f.data.now,Date.now(),Date.now());
+    FEED.slides=f.data.slides||[];FEED.ticker=f.data.ticker||[];FEED.preds=f.data.predictions||[];
+    if(!d.error)FEED.daily=d.data;
+    FEED.at=Date.now();
+    const sig=JSON.stringify([FEED.slides.map(x=>[x.type,x.id,x.current_bid,x.bid_count]),FEED.ticker.map(x=>[x.id,x.text]),FEED.preds.map(x=>[x.id,x.yes_total,x.no_total]),FEED.daily]);
+    if(sig!==FEED.sig){
+      FEED.sig=sig;S.tickSig='';renderTicker();
+      if(S.tab==='inicio'&&$('#modal').classList.contains('hidden'))keepInputs(renderView);
+    }
+  }catch(e){FEED.at=Date.now();console.warn('início:',e.message||e)}
+  finally{FEED.busy=false}
+}
+
+/* ---------- carrossel ---------- */
+const SLIDE_TAG={main:['Notícia principal','gold'],auction:['Leilão mais badalado do dia','acc'],ad:['Anúncio','acc'],closed:['Leilões Fechados','']};
+function slideHtml(sl,i){
+  const [tag,cls]=SLIDE_TAG[sl.type]||['',''];
+  const bg=sl.image_url?`<img src="${esc(sl.image_url)}" alt="" ${i===0?'':'loading="lazy"'} decoding="async">`:`<div class="slide-bg ph-${sl.type}"><span>${sl.type==='auction'?ico('com.leiloes'):sl.type==='closed'?'🔒':ico('com.forum')}</span></div>`;
+  let extra='',act='';
+  if(sl.type==='auction'){
+    extra=`<div class="slide-meta"><span class="pill gold">${ico('coin')} ${fmt(sl.bid_count?sl.current_bid:0,0)} AC</span><span class="pill">${sl.bid_count||0} lance${sl.bid_count==1?'':'s'}</span><span class="pill acc"><b class="ac-cd" data-t="${esc(sl.ends_at)}">${countdownTxt(Date.parse(sl.ends_at)-srvNow())}</b></span></div>`;
+    act=`data-do="cm-room" data-id="${esc(sl.id)}"`}
+  else if(sl.type==='ad')act=`data-do="cm-go" data-sub="forum"`;
+  else if(sl.type==='closed')act=`data-do="cm-go" data-sub="leiloes"`;
+  else act=`data-do="cm-go" data-sub="forum"`;
+  return`<div class="slide ${i===FEED.idx?'on':''}" data-i="${i}" ${i===FEED.idx?'':'aria-hidden="true"'}><button class="slide-hit" ${act} aria-label="${esc(sl.title||tag)}"></button>${bg}<div class="slide-cap"><div class="row" style="gap:8px">${tag?`<span class="pill ${cls}">${tag}</span>`:''}${sl.type==='ad'&&sl.author_name?`<span class="small">por ${nick(sl.author_name,sl.nick_style)}</span>`:''}</div><h3>${esc(sl.title||'')}</h3>${sl.body?`<p>${esc(String(sl.body).slice(0,160))}</p>`:''}${extra}</div></div>`;
+}
+function carouselHtml(){
+  const sl=FEED.slides;
+  if(!sl.length)return`<div class="carousel loading"><div class="slide on"><div class="slide-bg ph-main"><span>${ico('brand')}</span></div><div class="slide-cap"><h3>Carregando as novidades…</h3></div></div></div>`;
+  if(FEED.idx>=sl.length)FEED.idx=0;
+  return`<div class="carousel" id="car" role="region" aria-roledescription="carrossel" aria-label="Destaques"><div class="car-stage">${sl.map(slideHtml).join('')}</div>
+${sl.length>1?`<button class="car-nav prev" data-do="car-prev" aria-label="Slide anterior">‹</button><button class="car-nav next" data-do="car-next" aria-label="Próximo slide">›</button><div class="car-dots">${sl.map((_,i)=>`<button data-do="car-go" data-i="${i}" class="${i===FEED.idx?'on':''}" aria-label="Ir para o slide ${i+1}"></button>`).join('')}</div>`:''}</div>`;
+}
+function carShow(i){
+  const sl=FEED.slides;if(!sl.length)return;
+  FEED.idx=(i+sl.length)%sl.length;
+  $$('#car .slide').forEach((el,k)=>{const on=k===FEED.idx;el.classList.toggle('on',on);el.setAttribute('aria-hidden',on?'false':'true')});
+  $$('#car .car-dots button').forEach((el,k)=>el.classList.toggle('on',k===FEED.idx));
+}
+function carStart(){
+  clearInterval(FEED.t);
+  if(!$('#car')||FEED.slides.length<2||!P.motion)return;
+  FEED.t=setInterval(()=>{const c=$('#car');if(!c){clearInterval(FEED.t);return}if(document.hidden||c.matches(':hover')||c.contains(document.activeElement))return;carShow(FEED.idx+1)},6500);
+}
+
+/* ---------- apostas badaladas ---------- */
+function hotHtml(){
+  const list=FEED.preds;
+  const rows=list.map(m=>{
+    const y=Number(m.yes_total),n=Number(m.no_total),tot=y+n,py=tot?y/tot*100:50;
+    return`<div class="hotrow"><div class="hot-main"><b>${esc(m.title)}</b><small>${fmt(tot,0)} AC apostados · ${m.bettors} jogador${m.bettors==1?'':'es'} · fecha em <span class="ac-cd" data-t="${esc(m.closes_at)}">${countdownTxt(Date.parse(m.closes_at)-srvNow())}</span></small>
+<div class="hotbar" title="SIM ${fmt(py,0)}% · NÃO ${fmt(100-py,0)}%"><i style="width:${py.toFixed(1)}%"></i></div></div>
+<div class="row" style="flex-wrap:nowrap"><button class="btn-good btn-sm" data-do="pr-bet" data-id="${esc(m.id)}" data-side="yes">SIM</button><button class="btn-bad btn-sm" data-do="pr-bet" data-id="${esc(m.id)}" data-side="no">NÃO</button></div></div>`}).join('');
+  return`<div class="panel" style="margin-top:14px"><div class="spread"><div><h3>${ico('cas.apostas')} Apostas badaladas</h3><small>As 5 apostas da comunidade com mais dinheiro rolando agora. Toque em SIM ou NÃO para palpitar.</small></div><button class="btn-sm" data-do="cm-go" data-sub="cassino" data-cas="apostas">Ver todas</button></div>${rows||'<div class="empty small">Nenhuma aposta aberta no momento. Crie uma no Cassino &gt; Apostas.</div>'}</div>`;
+}
+
+/* ============================================================
+   COMPRAR / VENDER no mercado oficial: mostra o custo real, a taxa e o preço novo ANTES de confirmar
+   ============================================================ */
+const TQ={kind:'',id:'',seq:0,timer:0,last:null};
+function tradeModal(kind,id){
+  const a=asset(id),buy=kind==='buy_shares';if(!a.id)return;
+  TQ.kind=kind;TQ.id=id;TQ.last=null;
+  const own=id===S.user.id;
+  openModal(`<div class="spread"><h3>${buy?'Comprar':'Vender'} ${esc(a.symbol)}</h3><span id="tqPrice" class="pill gold">${ico('coin')} ${fmt(a.price)}</span></div>
+<div style="margin:8px 0 12px">${coinTag(a)}${a.is_system?' <span class="pill acc">moeda do sistema</span>':''}${own?' <span class="pill acc">sua moeda</span>':''}</div>
+<div class="tq"><label>Quantidade de ações<input id="tqQty" type="number" min="1" step="1" value="1" inputmode="numeric" style="width:100%"></label>
+<div class="chips" id="tqChips"><button type="button" data-do="tq-set" data-v="1">1</button><button type="button" data-do="tq-set" data-v="10">10</button><button type="button" data-do="tq-set" data-v="50">50</button><button type="button" data-do="tq-set" data-v="100">100</button><button type="button" data-do="tq-set" data-v="max">${buy?'Máximo que posso comprar':'Vender tudo'}</button></div>
+<div id="tqBox" class="tqbox"><span class="muted">Calculando…</span></div></div>
+<div class="row" style="justify-content:flex-end;margin-top:14px"><button id="tqNo">Cancelar</button><button id="tqYes" class="${buy?'btn-good':'btn-bad'} btn-lg" disabled>${buy?'Confirmar compra':'Confirmar venda'}</button></div>`);
+  $('#tqNo').onclick=closeModal;
+  $('#tqQty').addEventListener('input',()=>tqSchedule());
+  $('#tqQty').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();if(!$('#tqYes').disabled)tqConfirm()}});
+  $('#tqYes').onclick=tqConfirm;
+  tqSchedule(0);
+}
+function tqSchedule(ms=160){
+  clearTimeout(TQ.timer);const box=$('#tqBox');if(box)box.classList.add('stale');
+  const yes=$('#tqYes');if(yes)yes.disabled=true;
+  TQ.timer=setTimeout(tqQuote,ms);
+}
+async function tqQuote(){
+  const inp=$('#tqQty');if(!inp)return;
+  const q=Math.floor(Number(inp.value)),seq=++TQ.seq,buy=TQ.kind==='buy_shares';
+  const{data,error}=await sb.rpc('quote_trade',{p_asset:TQ.id,p_qty:Number.isFinite(q)&&q>0?q:0,p_side:buy?'buy':'sell'});
+  if(seq!==TQ.seq||!$('#tqBox'))return;
+  const box=$('#tqBox');box.classList.remove('stale');
+  if(error){box.innerHTML=`<span class="down">${esc(errMsg(error))}</span>`;return}
+  TQ.last=data;
+  const d=data,a=asset(TQ.id);let msg='',ok=false;
+  if(!(q>0)){box.innerHTML='<span class="muted">Digite quantas ações você quer.</span>';return}
+  const rows=[];
+  if(d.total!==undefined){
+    const pa=Number(d.price_after),pb=Number(d.price_before),ch=pb?(pa/pb-1)*100:0;
+    rows.push(['Preço de 1 ação agora',fmt(pb)+' AC'],[buy?'Preço médio desta compra':'Preço médio desta venda',fmt(d.avg_price)+' AC'],['Valor das ações',fmt(d.subtotal)+' AC'],[`Taxa do mercado (${fmt(d.fee_percent,0)}%)`,(buy?'+ ':'− ')+fmt(d.fee)+' AC']);
+    const after=buy?Number(d.balance)-Number(d.total):Number(d.balance)+Number(d.total);
+    box.innerHTML=`<div class="tq-total"><small>${buy?'Você vai pagar':'Você vai receber'}</small><b class="${buy?'down':'up'}">${fmt(d.total)} AC</b></div>
+<table class="tq-rows"><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}<tr class="hl"><td>Preço novo da moeda (depois ${buy?'da compra':'da venda'})</td><td><b>${fmt(pa)} AC</b> <span class="${ch>0?'up':ch<0?'down':'dim'}">${ch>0?'▲':ch<0?'▼':'■'} ${pctTxt(ch)}</span></td></tr><tr><td>Seu saldo depois</td><td class="${after<0?'down':''}">${fmt(after)} AC</td></tr></tbody></table>`;
+    ok=true;
+    if(buy&&Number(d.total)>Number(d.balance)){ok=false;msg=`Saldo insuficiente. Você consegue comprar até <b>${d.max_buy}</b> ação(ões) agora.`}
+    if(!buy&&q>Number(d.free)){ok=false;msg=`Você só tem ${d.free} ação(ões) livre(s) para vender.`}
+  }else{
+    if(buy&&q>Number(d.pool))msg=`O mercado só tem <b>${d.pool}</b> ação(ões) disponíveis agora.`;
+    else if(!buy&&q>Number(d.free))msg=`Você só tem ${d.free} ação(ões) livre(s) para vender.`;
+    box.innerHTML='';
+  }
+  if(buy&&d.own_limit!==null&&d.own_limit!==undefined&&q>Number(d.own_limit)){ok=false;msg=`Sua própria moeda: você só pode ter ${ownCap()} ações dela. Você ainda pode comprar ${d.own_limit}.`}
+  const info=`<div class="tq-info"><span>Disponíveis no mercado: <b>${Number(d.pool).toLocaleString('pt-BR')}</b></span><span>Você tem: <b>${Number(d.held)}</b></span>${buy?`<span>Dá para comprar até: <b>${d.max_buy}</b></span>`:''}</div>`;
+  box.insertAdjacentHTML('beforeend',info+(msg?`<div class="notice" style="margin:8px 0 0">${msg}</div>`:''));
+  const yes=$('#tqYes');if(yes)yes.disabled=!ok;
+}
+async function tqSet(v){
+  const inp=$('#tqQty');if(!inp)return;
+  if(v==='max'){
+    const d=TQ.last;
+    if(TQ.kind==='buy_shares')inp.value=Math.max(1,Number(d?.max_buy||1));
+    else inp.value=Math.max(1,Number(d?.free||1));
+  }else inp.value=v;
+  tqSchedule(0);
+}
+async function tqConfirm(){
+  const q=Math.floor(Number($('#tqQty')?.value)),buy=TQ.kind==='buy_shares',a=asset(TQ.id);
+  if(!(q>0))return;
+  const yes=$('#tqYes');yes.disabled=true;
+  const{data,error}=await sb.rpc(TQ.kind,{p_asset_id:TQ.id,p_qty:q});
+  if(error){toast(errMsg(error),'err');SFX.play('error');tqSchedule(0);return}
+  closeModal();SFX.play('coin');
+  toast(buy?`Compra feita: ${q} × ${a.symbol} por ${fmt(data?.cost)} AC (taxa de ${fmt(data?.fee)} AC). Preço novo: ${fmt(data?.new_price)} AC.`:`Venda feita: ${q} × ${a.symbol}. Você recebeu ${fmt(data?.proceeds)} AC (taxa de ${fmt(data?.fee)} AC).`,'ok',6000);
+  await refreshLight(true);
+}
 
 /* ============================================================
    Início do app: login, carregamento de dados, atualização periódica e eventos
@@ -1825,8 +2633,8 @@ AFTER.bolsa=function(){mkLoad()};
 async function fetchLive(){
   const uid=S.user.id;
   const r=await Promise.all([
-    sb.from('profiles').select('id,username,avatar_url,balance,xp,is_admin,terms_accepted_at,last_daily_date'),
-    sb.from('assets').select('id,name,symbol,avatar_url,price,total_shares,updated_at'),
+    sb.from('profiles').select('id,username,avatar_url,custom_avatar_url,discord_id,nick_style,balance,xp,level,crash_tokens,bio,goals,banner_url,is_admin,terms_accepted_at,last_daily_date'),
+    sb.from('assets').select('id,name,symbol,avatar_url,price,total_shares,is_system,pool0,updated_at'),
     sb.from('holdings').select('user_id,asset_id,quantity'),
     sb.from('transactions').select('id,user_id,asset_id,type,quantity,unit_price,amount,balance_after,note,created_at').eq('user_id',uid).order('created_at',{ascending:false}).limit(100),
     sb.rpc('market_movers'),
@@ -1840,7 +2648,7 @@ async function fetchLive(){
   if(!tr.error)S.tx=tr.data||[];
   if(!mv.error){S.movers={};(mv.data||[]).forEach(x=>S.movers[x.asset_id]=x)}
   if(!nw.error)S.news=nw.data||[];
-  if(!tp.error){const n=Number(tp.data||0);if(S.tradesInit&&n>(S.tradesPending||0)){toast('Você recebeu uma proposta de troca! Veja na aba Trocas.','gain',6000);SFX.play('win');if(S.tab==='trocas')trLoad(true)}S.tradesPending=n;S.tradesInit=true}
+  if(!tp.error){const n=Number(tp.data||0);if(S.tradesInit&&n>(S.tradesPending||0)){toast('Você recebeu uma proposta de troca! Veja em Comunidade > Trocas.','gain',6000);SFX.play('win');if(inTrocas())trLoad(true)}S.tradesPending=n;S.tradesInit=true}
   return JSON.stringify([pr.data,ar.data,hr.data,tr.data&&tr.data[0]&&tr.data[0].id,mv.data,nw.data,tp.data]);
 }
 async function fetchStatic(){
@@ -1877,10 +2685,11 @@ async function loadPublicSettings(){
 }
 async function refreshBalance(){
   if(!S.user)return;
-  const{data}=await sb.from('profiles').select('balance,xp,last_daily_date').eq('id',S.user.id).maybeSingle();
+  const{data}=await sb.from('profiles').select('balance,xp,level,crash_tokens,last_daily_date').eq('id',S.user.id).maybeSingle();
   if(data&&S.profile){Object.assign(S.profile,data);updateUserbar();const cb=$('#casbal');if(cb)cb.textContent=fmt(data.balance)}
 }
 const LIVE_TABS=new Set(['inicio','bolsa','carteira','ranking','extrato','loja','missoes','perfil']);
+const COM_TABS_LIVE=()=>S.tab==='comunidade'&&['membros','ostentacao'].includes(CM.sub);
 async function refreshLight(force){
   if(!S.user||!S.profile||(S.refreshing&&!force))return;
   S.refreshing=true;S.lastRefresh=Date.now();
@@ -1891,10 +2700,12 @@ async function refreshLight(force){
     if(changed){
       updateUserbar();renderRail();renderTicker();
       if(LIVE_TABS.has(S.tab)&&($('#modal').classList.contains('hidden')||force))keepInputs(renderView);
+      else if(COM_TABS_LIVE()&&$('#modal').classList.contains('hidden'))keepInputs(renderView);
       else if(S.tab==='graficos'&&force){CMP.at=0;renderView()}
       else if(S.tab==='adm'&&force)keepInputs(renderView);
       const cb=$('#casbal');if(cb)cb.textContent=fmt(me().balance);
     }
+    feedLoad(force);
   }catch(e){console.warn('atualização:',e)}
   finally{S.refreshing=false}
 }
@@ -1904,7 +2715,7 @@ function showGate(kind){
   $('#shell').classList.add('hidden');$('#gate').classList.remove('hidden');$('#ticker').classList.toggle('hidden',kind==='closed');$('#userbar').innerHTML='';$('#dock').classList.add('hidden');$('#bnav').classList.add('hidden');
   const name=esc(S.settings.site_name||'Bolsa do Autsim'),g=$('#gate');
   if(kind==='login')g.innerHTML=`<div class="floaty" style="font-size:54px">${ico('brand')}</div>${siteClosed()?'<div class="notice">O site está fechado para os membros por enquanto. Só os ADMs conseguem entrar.</div>':''}<h1>${name}</h1><p class="lead">Invista nas moedas dos membros, jogue roleta e foguete com o chat ao vivo, faça apostas entre amigos e suba de nível. Tudo com AutsimCoins, sem dinheiro de verdade.</p>
-<div class="panel glow stack"><label class="inline"><input type="checkbox" id="termscheck"> Li e concordo em usar apenas uma conta e aceito os termos da comunidade.</label><button id="login" class="btn-main btn-lg" data-do="login">Entrar com Discord</button><small>Você começa com ${fmt(S.settings.start_balance||10000,0)} AC e ganha ${fmt(S.settings.daily_bonus||500,0)} AC de bônus todo dia que entrar.</small></div>`;
+<div class="panel glow stack"><label class="inline"><input type="checkbox" id="termscheck"> Li e concordo em usar apenas uma conta e aceito os termos da comunidade.</label><button id="login" class="btn-main btn-lg" data-do="login">Entrar com Discord</button><small>Você começa com ${fmt(S.settings.start_balance||10000,0)} AC e ${fmt(S.settings.own_initial_shares||500,0)} ações da sua própria moeda, e ganha um bônus todo dia que entrar (o dobro no fim de semana). Pedimos ao Discord só o seu perfil público (ID, nome, foto e faixa); nunca lemos suas mensagens ou servidores.</small></div>`;
   else if(kind==='terms')g.innerHTML=`<h1 style="font-size:clamp(34px,6vw,56px)">Termos da comunidade</h1><p class="lead">Você se compromete a usar apenas uma conta pessoal. Contas duplicadas podem ser bloqueadas pelo ADM.</p><div class="panel stack"><label class="inline"><input type="checkbox" id="accepttermscheck"> Li e aceito os termos (versão autsim-terms-v1).</label><button class="btn-main btn-lg" data-do="accept-terms">Aceitar e continuar</button><button data-do="logout">Sair</button></div>`;
   else if(kind==='profile')g.innerHTML=`<h1 style="font-size:clamp(34px,6vw,56px)">Perfil não encontrado</h1><p class="lead">Sua conta entrou, mas o perfil ainda não foi criado no banco. Confira o trigger de cadastro do Supabase e tente de novo.</p><div class="row" style="justify-content:center"><button class="btn-main" data-do="reload">Tentar de novo</button><button data-do="logout">Sair</button></div>`;
   else if(kind==='closed')g.innerHTML=`<div class="floaty" style="font-size:54px">${ico('brand')}</div><h1>Abrimos em breve</h1><p class="lead">O ${name} está sendo preparado e ainda não abriu para os membros. Esta página confere sozinha e libera a entrada assim que o ADM abrir.</p><div class="row" style="justify-content:center"><button data-do="reload">Conferir agora</button><button data-do="logout">Sair</button></div>`;
@@ -1940,19 +2751,20 @@ function startApp(){
   S.closedShown=false;$('#ticker').classList.remove('hidden');$('#gate').classList.add('hidden');$('#shell').classList.remove('hidden');$('#bnav').classList.remove('hidden');
   S.viewSig=null;updateUserbar();renderTicker();render();dockUpdate();applyIcons();
   sb.rpc('run_cleanup',{p_force:false}).then(()=>{},()=>{});
-  armMusic();musicLoad();chatStart();
+  armMusic();musicLoad();chatStart();cmChatStart();feedLoad(true);syncDiscordIdentity();
   if(S.profile.last_daily_date!==todaySP())claimDaily(true);
   if(!S.timersOn){S.timersOn=true;
     setInterval(()=>{if(S.user&&S.started&&!document.hidden&&Date.now()-(S.lastRefresh||0)>=(isLite()?40000:25000))refreshLight()},5000);
     setInterval(()=>{if(S.user&&S.started)sb.rpc('run_cleanup',{p_force:false}).then(()=>{},()=>{})},30*60*1000);
     setInterval(()=>{if(!S.user)return;const t=countdownTxt(nextResetMs()),a=$('#dailycd'),b=$('#dailycd2');if(a)a.textContent=t;if(b)b.textContent=t;if(S.day!==todaySP()){S.day=todaySP();claimDaily(true)}},1000);
     setInterval(()=>{if(S.user)musicTick()},4000);
+    setInterval(()=>{if(S.user&&!document.hidden)cmTick()},1000);
     setInterval(()=>{if(S.user&&!document.hidden)musicLoad()},isLite()?90000:45000);
     document.addEventListener('visibilitychange',()=>{if(!document.hidden&&S.user&&S.started)refreshLight()});
   }
 }
 function teardown(){
-  casinoStop();chatStop();musicStop();S.started=false;S.startedFor=null;S.profile=null;S.user=null;ADM.loaded=false;ADM.stats=null;S.tab='inicio';S.tradesInit=false;S.tradesPending=0;S.closedShown=false;clearInterval(S.closedT);MK.list=null;MK.trades=null;CMP.series=null;CMP.ids=null;
+  casinoStop();chatStop();cmChatStop();cmRoomStop();CM.roomId=null;CM.room=null;CM.forum=null;CM.aucs=null;CM.prof={};CM.cosm=null;FEED.at=0;FEED.slides=[];clearInterval(FEED.t);musicStop();S.started=false;S.startedFor=null;S.profile=null;S.user=null;ADM.loaded=false;ADM.stats=null;S.tab='inicio';S.tradesInit=false;S.tradesPending=0;S.closedShown=false;clearInterval(S.closedT);MK.list=null;MK.trades=null;CMP.series=null;CMP.ids=null;
   showGate('login');
 }
 
@@ -1970,6 +2782,31 @@ document.addEventListener('click',async e=>{
     case'mk-buy':el.disabled=true;try{await mkBuy(d.id)}finally{el.disabled=false}break;
     case'mk-cancel':await mkCancel(d.id);break;
     case'tr-new':trNewModal();break;
+    case'tr-new-to':closeModal();goCommunity('trocas');trNewModal(d.id);break;
+    case'cm-sub':cmGo(d.sub);if(d.sub!=='leiloes')CM.roomId=null;render();break;
+    case'cm-go':goCommunity(d.sub);if(d.cas&&CAS.tab!==d.cas)casinoSwitch(d.cas);break;
+    case'cm-del':{const{error}=await sb.rpc('admin_delete_community_msg',{p_id:Number(d.id)});if(error)toast(errMsg(error),'err');break}
+    case'cm-vote':{const{data,error}=await sb.rpc('vote_post',{p_post:d.id,p_vote:Number(d.v)});if(error){toast(errMsg(error),'err');break}
+      if(data&&data.fake){toast('Essa publicação virou Fake News e saiu do ar.','gain',5500);FEED.at=0;feedLoad(true)}await cmForumLoad(true);if(CM.sub==='forum')keepInputs(renderView);break}
+    case'cm-ad-new':cmAdModal();break;
+    case'cm-main-new':case'adm-main-news':cmMainModal();break;
+    case'cm-post-del':case'adm-post-del':if(await confirmBox('Apagar esta publicação do fórum?','Apagar')){const{error}=await sb.rpc('admin_delete_post',{p_id:d.id});if(error)throw error;FEED.at=0;feedLoad(true);await cmForumLoad(true);if(act==='adm-post-del')await admLoad();else renderView()}break;
+    case'cm-auc-tab':CM.aucTab=d.t;renderView();break;
+    case'cm-auc-new':cmAucNew(d.k);break;
+    case'cm-room':if(S.tab!=='comunidade'||CM.sub!=='leiloes'){cmGo('leiloes');S.tab='comunidade'}cmRoomOpen(d.id);break;
+    case'cm-room-back':cmRoomClose();break;
+    case'cm-bid':el.disabled=true;try{await cmBid(d.id)}finally{el.disabled=false}break;
+    case'cm-bid-set':{const i=$('#acAmt');if(i)i.value=d.v;break}
+    case'cm-auc-cancel':case'adm-auc-cancel':if(await confirmBox('Cancelar este leilão? O lance atual (se houver) volta para quem deu.','Cancelar leilão')){const{error}=await sb.rpc('cancel_auction',{p_id:d.id});if(error)throw error;toast('Leilão cancelado.');S.staticAt=0;if(act==='adm-auc-cancel')await admLoad();else{await cmAucLoad(true);cmRoomPollNow()}}break;
+    case'profile':profileModal(d.id);break;
+    case'prof-edit':closeModal();profEditModal();break;
+    case'cos-buy':await cosBuy(d.id);break;
+    case'cos-equip':await cosEquip(d.id);break;
+    case'car-prev':carShow(FEED.idx-1);carStart();break;
+    case'car-next':carShow(FEED.idx+1);carStart();break;
+    case'car-go':carShow(Number(d.i));carStart();break;
+    case'tq-set':tqSet(d.v==='max'?'max':Number(d.v));break;
+    case'rk-bet-token':el.disabled=true;await rkBet(true);el.disabled=false;break;
     case'tr-accept':el.disabled=true;await trRespond(d.id,true);break;
     case'tr-reject':el.disabled=true;await trRespond(d.id,false);break;
     case'tr-cancel':await trCancel(d.id);break;
@@ -1979,7 +2816,7 @@ document.addEventListener('click',async e=>{
     case'cmp-del':CMP.ids=CMP.ids.filter(x=>x!==d.id);CMP.touched=true;renderView();break;
     case'cmp-preset':cmpPreset(d.p);break;
     case'login':{const c=$('#termscheck');if(c&&!c.checked){toast('Marque a caixa para aceitar a regra de uma conta por pessoa.','err');break}
-      const{error}=await sb.auth.signInWithOAuth({provider:'discord',options:{redirectTo:location.origin}});if(error)toast(errMsg(error),'err');break}
+      const{error}=await sb.auth.signInWithOAuth({provider:'discord',options:{redirectTo:location.origin,scopes:'identify'}});if(error)toast(errMsg(error),'err');break}
     case'logout':await sb.auth.signOut();teardown();break;
     case'reload':location.reload();break;
     case'accept-terms':{if(!$('#accepttermscheck')?.checked){toast('Você precisa aceitar os termos para continuar.','err');break}
@@ -2026,6 +2863,18 @@ document.addEventListener('click',async e=>{
     case'adm-mis-del':if(await confirmBox('Excluir esta missão?','Excluir'))await admRpc('admin_delete_mission',{p_id:d.id},'Missão excluída.');break;
     case'adm-mis-grant':admGrantForm(d.id);break;
     case'adm-music-add':admMusicForm();break;
+    case'adm-music-play':await admRpc('admin_play_track',{p_id:d.id},'Tocando para todo mundo agora.',false);await musicLoad();await admLoad();break;
+    case'adm-sys-new':admSysForm();break;
+    case'adm-sys-del':if(await confirmBox('Apagar esta moeda do sistema? As ações em carteiras somem junto.','Apagar')){await admRpc('admin_delete_system_coin',{p_asset_id:d.id},'Moeda apagada.')}break;
+    case'adm-fine':admFineForm(d.id);break;
+    case'adm-cos-new':admCosForm(null);break;
+    case'adm-cos-edit':admCosForm(d.id);break;
+    case'adm-cos-del':if(await confirmBox('Excluir este cosmético? Quem já comprou continua com o estilo equipado.','Excluir'))await admRpc('admin_delete_cosmetic',{p_id:d.id},'Cosmético excluído.');break;
+    case'adm-ach-new':admAchForm(null);break;
+    case'adm-ach-edit':admAchForm(d.id);break;
+    case'adm-ach-del':if(await confirmBox('Excluir esta conquista? Ela some do mural de quem já ganhou.','Excluir'))await admRpc('admin_delete_achievement',{p_id:d.id},'Conquista excluída.');break;
+    case'adm-ach-give':admAchGive(d.id);break;
+    case'adm-grand-new':admGrandForm();break;
     case'adm-music-toggle':await admRpc('admin_toggle_music',{p_id:d.id,p_active:d.on==='1'},null,false);await musicLoad();await admLoad();break;
     case'adm-music-del':if(await confirmBox('Remover esta música da playlist?','Remover')){await admRpc('admin_delete_music',{p_id:d.id},'Música removida.',false);await musicLoad();await admLoad()}break;
     case'adm-news-add':{const body=($('#nwBody')?.value||'').trim(),h=$('#nwHours')?.value;if(body.length<3){toast('Escreva a notícia (mínimo 3 letras).','err');break}
@@ -2045,7 +2894,10 @@ document.addEventListener('click',async e=>{
     case'adm-slot-del':await admRpc('admin_remove_music_slot',{p_id:d.id,p_refund:d.refund==='1'},d.refund==='1'?'Removida e valor devolvido.':'Removida da fila.');await musicLoad();break;
   }}catch(err){toast(errMsg(err),'err');SFX.play('error')}
 });
-document.addEventListener('submit',e=>{const f=e.target.closest('[data-form]');if(f&&f.dataset.form==='chat'){e.preventDefault();chatSend()}});
+document.addEventListener('submit',e=>{const f=e.target.closest('[data-form]');if(!f)return;
+  if(f.dataset.form==='chat'){e.preventDefault();chatSend()}
+  else if(f.dataset.form==='cmchat'){e.preventDefault();cmChatSend()}
+  else if(f.dataset.form==='acchat'){e.preventDefault();cmRoomSend()}});
 document.addEventListener('change',async e=>{
   const t=e.target;
   if(t.id==='cmpadd'){if(t.value&&CMP.ids.length<8){CMP.ids.push(t.value);CMP.touched=true;renderView()}return}
@@ -2061,7 +2913,24 @@ document.addEventListener('change',async e=>{
   else if(pref==='motion'){P.motion=t.checked;savePrefs()}
   else if(pref==='lite'){P.lite=t.value==='auto'?null:t.value==='on';savePrefs();S.tickSig='';render();toast(isLite()?'Modo leve ligado.':'Modo completo ligado.')}
 });
-document.addEventListener('input',e=>{if(e.target.dataset&&e.target.dataset.pref==='volume')musicSetVolume(Number(e.target.value)/100)});
+document.addEventListener('input',e=>{if(e.target.dataset&&e.target.dataset.pref==='volume')musicSetVolume(Number(e.target.value)/100);if(e.target.id==='cmFind')cmFindFilter(e.target.value)});
+
+/* ---------- Discord: só o escopo "identify" (ID, nome, foto e faixa) ---------- */
+async function syncDiscordIdentity(){
+  try{
+    const{data:{session}}=await sb.auth.getSession();if(!session||!S.user)return;
+    const u=session.user,did=u.user_metadata?.provider_id||(u.identities||[]).find(i=>i.provider==='discord')?.id||null;
+    if(!did)return;
+    let banner=null;
+    if(session.provider_token){
+      try{const r=await fetch('https://discord.com/api/users/@me',{headers:{Authorization:'Bearer '+session.provider_token}});
+        if(r.ok){const j=await r.json();if(j.banner)banner=`https://cdn.discordapp.com/banners/${j.id}/${j.banner}.${String(j.banner).startsWith('a_')?'gif':'png'}?size=1024`}}catch(e){}
+    }
+    if(did===S.profile?.discord_id&&!banner)return;
+    const{error}=await sb.rpc('save_discord_identity',{p_discord_id:String(did),p_banner:banner});
+    if(error)console.warn('discord:',error.message);
+  }catch(e){console.warn('discord:',e)}
+}
 
 /* ---------- partida ---------- */
 (async()=>{
